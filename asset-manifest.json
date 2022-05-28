@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/.react-feiwea/static/css/main.4675b756.css",
-    "main.js": "/.react-feiwea/static/js/main.d6b6d1bc.js",
-    "static/js/787.82d4153b.chunk.js": "/.react-feiwea/static/js/787.82d4153b.chunk.js",
-    "index.html": "/.react-feiwea/index.html",
-    "main.4675b756.css.map": "/.react-feiwea/static/css/main.4675b756.css.map",
-    "main.d6b6d1bc.js.map": "/.react-feiwea/static/js/main.d6b6d1bc.js.map",
-    "787.82d4153b.chunk.js.map": "/.react-feiwea/static/js/787.82d4153b.chunk.js.map"
+    "main.css": "/react-feiwea/static/css/main.4675b756.css",
+    "main.js": "/react-feiwea/static/js/main.2aa4f246.js",
+    "static/js/787.82d4153b.chunk.js": "/react-feiwea/static/js/787.82d4153b.chunk.js",
+    "index.html": "/react-feiwea/index.html",
+    "main.4675b756.css.map": "/react-feiwea/static/css/main.4675b756.css.map",
+    "main.2aa4f246.js.map": "/react-feiwea/static/js/main.2aa4f246.js.map",
+    "787.82d4153b.chunk.js.map": "/react-feiwea/static/js/787.82d4153b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4675b756.css",
-    "static/js/main.d6b6d1bc.js"
+    "static/js/main.2aa4f246.js"
   ]
 }
