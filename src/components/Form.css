@@ -1,0 +1,80 @@
+/* ? form div-wrapper */
+.form-div {
+    margin-top: 3rem;
+}
+
+/* ? data form */
+.data-form {
+    display: flex;
+    padding: 1rem;
+    gap: .5rem;
+}
+
+/* wraper for separate labels and form inputs (generally for flipping them vertically together ) */
+.label-input-div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* ? summary class for the input labels  */
+.labels{
+    color: var(--wkd-white)
+}
+
+/* ? summary class for the form input fields */
+.formFields {
+    border: none;
+    outline: none;
+}
+
+/* ? classes for the div wrappers of labels and inputs */
+.id-div  {
+    width: 6ch;
+}
+
+.fn-div  {
+    width: 20ch;
+}
+
+.ln-div  {
+    width: 20ch;
+}
+
+.po-div  {
+    width: 15ch;
+}
+
+/* ? classes for input labels */
+.label-ID  {
+
+}
+
+.label-FN  {
+
+}
+
+.label-LN  {
+
+}
+
+.label-PO  {
+
+}
+
+/* ? classes for the individual inputs  */
+.inp-ID  {
+
+}
+
+.inp-FN  {
+
+}
+
+.inp-LN  {
+
+}
+
+.inp-PO  {
+
+}

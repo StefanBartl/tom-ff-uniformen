@@ -1,12 +1,11 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import Overview from "./components/Overview";
+import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-        <h1 className="main-title">Feuerwehr-Uniform-Datenbank</h1>
+      <Overview />
     </div>
   );
-}
-
-export default App;
+};

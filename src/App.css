@@ -121,13 +121,3 @@ select {
 
 /* #endregion */
 
-.App {
-  height: 100vh;
-    background-color: var(--wkd-red);
-}
-
-.App h1 {
-  color: var(--wkd-white);
-  text-align: center;
-  font-size: 3rem;
-}

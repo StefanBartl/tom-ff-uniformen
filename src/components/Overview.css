@@ -1,0 +1,15 @@
+
+.Overview {
+    min-height: 100vh;
+    background-color: var(--wkd-red);
+}
+
+.main-logo {
+    width: 5rem;
+}
+
+.ov-main-title {
+    color: var(--wkd-white);
+    text-align: center;
+    font-size: 3rem;
+  }
