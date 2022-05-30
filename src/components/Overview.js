@@ -7,7 +7,7 @@ export default function Overview() {
   const [ formData, setFormData ] =  useState(
     [
       {
-        id: 1, '1inputFN': 'Thomas','1inputLN': 'Raming', '1inputPO': 'General',
+        id: 1, firstName: 'Thomas',lastName: 'Raming', position: 'General',
      },
     ]
     );
@@ -20,7 +20,7 @@ export default function Overview() {
                 newArray.push(formData[x]);
               };
                 // change changed element
-                newArray[event.target.id[0] - 1][event.target.id] = event.target.value;
+                newArray[event.target.id[0] - 1][event.target.name] = event.target.value;
                 setFormData(newArray);
     };
 
@@ -29,7 +29,7 @@ export default function Overview() {
         <h1 className="ov-main-title">Feuerwehr-Uniform-Datenbank</h1>
         { formData.map(e =>
             <Form 
-               key={e.id}  id={e.id} firstName={e[`${e.id}inputFN`]} lastName={e[`${e.id}inputLN`]}  position={e[`${e.id}inputPO`]} handleChange={handleChange}
+               key={e.id}  id={e.id} firstName={e.firstName} lastName={e.lastName}  position={e.position} handleChange={handleChange}
             />
         )}
 

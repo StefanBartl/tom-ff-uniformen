@@ -26,6 +26,7 @@
 .formFields {
     border: none;
     outline: none;
+    text-align: centerss;
 }
 
 /* ? classes for the div wrappers of labels and inputs */
