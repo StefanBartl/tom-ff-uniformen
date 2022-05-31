@@ -21,6 +21,10 @@
     width: 6ch;
 }
 
+.passedDataIDfield{
+    pointer-events: none;
+}
+
 .inp-FN  {
     width: 20ch;
 }

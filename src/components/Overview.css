@@ -23,11 +23,21 @@
 }
 
   .manBtn {
-    width: 6ch;
+    width: 8rem;
 }
 
 .manBtn:hover {
   outline: solid 4px white;
+}
+
+.newBtn-div{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.updateBtn {
+  margin-left: auto;
 }
 
 .newMember-div{
