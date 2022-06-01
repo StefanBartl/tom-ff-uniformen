@@ -5,18 +5,17 @@ import './Form.css';
 
 // ? Firebase imports
 import { db } from '../firebase-config';
-import { collection, addDoc, getDocs, updateDoc, doc} from 'firebase/firestore';
+import { collection, addDoc, getDocs, setDoc, updateDoc, doc } from 'firebase/firestore';
+ 
 
 export default function Overview() {
 
-  //#region Firebase
+  const [ data, setData ] = useState([]); 
+  const dataCollectionRef = collection(db, "uniformen");
+  // console.log(data);
 
-    const [ data, setData ] = useState([]); // database react state
-    const dataCollectionRef = collection(db, "uniformen"); // referencing the whole document
-    console.log(data);
-
-    // ? Fetch database from Firebase
-    useEffect(() =>{
+  // ? Fetch database from Firebase
+  useEffect(() =>{
       const data = async () => {
         const fetchedData = await getDocs(dataCollectionRef);
         setData(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -25,61 +24,46 @@ export default function Overview() {
         setData(fetchedData.docs.map((doc) => ({ ...doc.data(), position: doc.ffposition })));
       };
       data(); // ! Automate it ()
-    }, []);
+  }, []);
+
+  // ? Create new Member / put it in te database
+  const [ newFirstName, setNewFirstName ] = useState("");
+  const [ newLastName, setNewLastName ] = useState("");
+  const [ newPosition, setNewPosition ] = useState("");
+
+  const createMember = async () => {
+    await addDoc(dataCollectionRef, { id: data.length + 1, firstName: newFirstName, lastName: newLastName, ffposition: newPosition });
+  };
 
 
+  function handleNew (event) {
+    event.preventDefault();
+  };
 
-    // Create new member
+  function handleChange (event) {
+  event.preventDefault();  
 
-    const [ newFirstName, setNewFirstName ] = useState("");
-    const [ newLastName, setNewLastName ] = useState("");
-    const [ newPosition, setNewPosition ] = useState("");
+  const dataMemberIndex = event.target.id - 1;
+  const memberKey = event.target.name;
+  const newValue = event.target.value;
+  const memperUpdate = data[dataMemberIndex];
+  memperUpdate[memberKey] = newValue;
 
-    const createMember = async () => {
-      await addDoc(dataCollectionRef, { id: data.length + 1, firstName: newFirstName, lastName: newLastName, ffposition: newPosition });
-    };
+  let newData = [];
+  for(let i = 0; i < data.length; i++){
+    newData.push(data[i]);
+  };
+  newData[dataMemberIndex] = memperUpdate;
+  setData(newData);
+  };
 
-
-    function handleChange (event) {
-      event.preventDefault();  
-
-      const dataMemberIndex = event.target.id - 1;
-      const memberKey = event.target.name;
-      const newValue = event.target.value;
-      const memperUpdate = data[dataMemberIndex];
-      memperUpdate[memberKey] = newValue;
-    
-      let newData = [];
-      const oldData = data;
-      for(let i = 0; i < data.length; i++){
-        newData.push(oldData[i]);
-      };
-      newData[dataMemberIndex] = memperUpdate;
-      setData(newData);
       
-     };
-
-     function handleUpdate (event) {
-      event.preventDefault();
-    };
+  function handleUpdate (event) {
+    event.preventDefault();
+  };
 
 
-  //#endregion
-
-
-//#region Buttons for field manipulations (New, Save, Update)
-
-function handleNew (event) {
-  event.preventDefault();
-};
-
-
-
-//#endregion
-
-
-
-    return (
+  return (
     <div className="Overview">
         <h1 className="ov-main-title">Feuerwehr-Uniform-Datenbank</h1>
 
@@ -111,4 +95,5 @@ function handleNew (event) {
 
     </div>
   );
+
 };
