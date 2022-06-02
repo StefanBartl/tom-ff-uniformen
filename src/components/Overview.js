@@ -63,10 +63,11 @@ export default function Overview() {
     const newMemberForm = document.querySelector('.newMember-div');
     newMemberForm.style.visibility === 'hidden' ?  newMemberForm.style.visibility = 'visible' : newMemberForm.style.visibility = 'hidden'; 
 
-    // Toggle button/image direction
+    // Toggle newButton image direction
     const newMemberBtn = document.getElementById('new'); 
     newMemberForm.style.visibility === 'hidden' ?  newMemberBtn.style.transform = 'rotate(0deg)' : newMemberBtn.style.transform = 'rotate(90deg)';
     
+    // Toggle save button
     const saveBtn = document.querySelector('.saveBtn');
     newMemberForm.style.visibility === 'hidden' ?  saveBtn.style.visibility = 'hidden' : saveBtn.style.visibility = 'visible'; 
 
@@ -179,6 +180,7 @@ export default function Overview() {
       <h1 className="ov-main-title">FF Kaltenleutgeb Uniformen-Datenbank</h1>
 
       <div className="mainBtn">
+
           <img 
               src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"  
               name="newBtn"
@@ -186,6 +188,7 @@ export default function Overview() {
               className="newBtn imageNewBtn"
               onClick={toggleNewMemberDiv}
           />
+
           <button
               name="saveBtn"
               id={`save`}
@@ -195,11 +198,14 @@ export default function Overview() {
               >
               speichern
           </button>
+
       </div>
 
 
       <div className="newMember-div" style={{visibility: 'hidden'}}>
+
           <p className="idVal formFields">{data.length || 0}.</p>
+
           <input
             type="text"
             placeholder="Vorname"
@@ -227,6 +233,7 @@ export default function Overview() {
               setNewPosition(event.target.value);
             }}
           />
+
       </div>
       
       <main className="data-wrapper">
