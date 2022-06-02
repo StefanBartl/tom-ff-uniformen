@@ -17,8 +17,11 @@ export default function Overview() {
 
   //#region Firebase firestore
 
+  // ? [....States]
   const [data, setData] = useState([]);
-  // console.log(data);
+  const [newFirstName, setNewFirstName] = useState("");
+  const [newLastName, setNewLastName] = useState("");
+  const [newPosition, setNewPosition] = useState("");
 
   // ? Fetch database from Firebase
   useEffect(() => {
@@ -51,48 +54,77 @@ export default function Overview() {
     getData();
   }, []);
 
-  // ? Create new Member and add him/her in the database
-  const [newFirstName, setNewFirstName] = useState("");
-  const [newLastName, setNewLastName] = useState("");
-  const [newPosition, setNewPosition] = useState("");
-
   // ? Create new form to add a new member
-  function createNewMember(event) {
+  function toggleNewMemberDiv(event) {
     event.preventDefault();
     const newMemberForm = document.querySelector('.newMember-div');
+    const newMemberBtn = document.getElementById('new');
+
     newMemberForm.style.visibility === 'hidden' ?  newMemberForm.style.visibility = 'visible' : newMemberForm.style.visibility = 'hidden';  
+    newMemberBtn.innerHTML === `Neu anlegen` ? newMemberBtn.innerHTML = `Verstecken` : newMemberBtn.innerHTML = `Neu anlegen`;
+  };
 
-  }
-
-  // ? Add a new member to he database
+  // ? Add a new member to the firestore database
   const saveNewMember = async () => {
+    
+    // Store new member in firestore database
     const dataCollectionRef = collection(db, "uniformen");
-    await setDoc(doc(dataCollectionRef, `${data.length}`), {
+    await setDoc(doc(dataCollectionRef, `${data.length || 0}`), {
       id: Number(data.length),
       firstName: newFirstName,
       lastName: newLastName,
       ffposition: newPosition,
     });
+
+    // // Set new state
+    // const newData = [];
+    // const newMember = {
+    //   id: Number(data.length),
+    //   firstName: newFirstName,
+    //   lastName: newLastName,
+    //   ffposition: newPosition,
+    // }
+    // // Make input fields free of old data
+    // setNewFirstName("");
+    // setNewLastName("");
+    // setNewPosition(""); 
+
+    // // Pushh all existing members in new array
+    // for (let i = 0; i < data.length; i++) {
+    //   newData.push(data[i]);
+    // };
+    // // Add new member to array
+    // newData.push(newMember);
+    // // Set new data state
+    // setData(newData);
+
+    window.location.reload();
+
   };
 
-  // ? Handle state of data
+  // ? Handle state of member
   function handleChange(event) {
+
+    // Update member in state
     const newData = [];
-    const upObj = data[parseInt(event.target.id)];
-    upObj[event.target.name] = event.target.value;
-    console.log(upObj);
+    const updatingMember = data[parseInt(event.target.id)];
+    updatingMember[event.target.name] = event.target.value;
+
     for (let i = 0; i < data.length; i++) {
       newData.push(data[i]);
       if (i === event.target.id) {
-        newData[i] = upObj;
+        newData[i] = updatingMember;
       }
     }
+
     setData(newData);
+
   };
 
-  // ? Update a member
+  // ? Update a member in the firestore database
   const handleUpdate = async (id) => {
-    // Update member in firestore
+
+    // Update member in firestore database
     const updatingData = data[id];
     const updatingMember = doc(db, "uniformen", `${id}`);
     await updateDoc(updatingMember, updatingData);
@@ -109,29 +141,34 @@ export default function Overview() {
       iterations: 1,
     };    
     memberUpdateBtn.animate(updateUIEffect, updateUIEffectTiming, {easing: "ease-in-out"});
+
+    window.location.reload();
+
   };
 
-  // ? Delete a member
+  // ? Delete a memberr in the firestore database
   const handleDelete = async (id) => {
 
-    // Delete member in database
+    // Delete member in firestore database
     const docId = `${id}`;
     await deleteDoc(doc(db, "uniformen", docId));
 
-    // Delete member in state
-    const newData = [];
-    const upObj = data[parseInt(id)];
-    for (let i = 0; i < data.length; i++) {
-      if (i === id) {continue} else newData.push(data[i]);
-    };
-    setData(newData);
+    // // Delete member in state
+    // const newData = [];
+    // for (let i = 0; i < data.length; i++) {
+    //   if (i === id) {continue} else newData.push(data[i]);
+    // };
+    // setData(newData);
+    window.location.reload();
+
   };
 
   //#endregion
 
   return (
     <div className="Overview">
-      <h1 className="ov-main-title">Feuerwehr-Uniform-Datenbank</h1>
+
+      <h1 className="ov-main-title">FF Kaltenleutgeb Uniformen-Datenbank</h1>
 
       <div className="mainBtn">
         <div className="newBtn-div">
@@ -139,7 +176,7 @@ export default function Overview() {
             name="newBtn"
             id={`new`}
             className="newBtn manBtn formFields"
-            onClick={createNewMember}
+            onClick={toggleNewMemberDiv}
           >
             Neu anlegen
           </button>{" "}
@@ -148,7 +185,7 @@ export default function Overview() {
       </div>
 
       <div className="newMember-div" style={{visibility: 'hidden'}}>
-        <p className="idVal formFields">{data.length}</p>
+        <p className="idVal formFields">{data.length || 0}</p>
         <input
           type="text"
           placeholder="Vorname"
@@ -185,13 +222,19 @@ export default function Overview() {
             speichern
         </button>
       </div>
+      
+      <main className="data-wrapper">
+
+      <div className="label-form">
+              <h3 className="label-ID">Nr.</h3><h3 className="label-FN">Vorname</h3><h3 className="label-LN">Nachname</h3><h3 className="label-PO">Dienstgrad</h3>
+      </div>
 
       <div className="form-div">
         {Children.toArray(
-          data.map((member) => (
+          data.map((member, index) => (
             <div className="form-memberDiv">
               <form name="dataForm" className="data-form">
-                <p className="idVal formFields">{member.id}</p>
+                <p className="idVal formFields">{index}</p>
                 <input
                   type="text"
                   name="firstName"
@@ -241,6 +284,7 @@ export default function Overview() {
           ))
         )}
       </div>
+      </main>
     </div>
   );
 }

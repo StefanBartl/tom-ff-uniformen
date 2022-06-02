@@ -50,9 +50,48 @@
   gap: .5rem;
 }
 
+/* ! Main section data */
+
+.data-wrapper {
+  margin: 1rem;
+  border: dashed 2px white ;
+}
+
 .deleteBtn,
 .updateBtn {
   width: 8rem;
   width: fit-content;
   visibility: hidden;
+}
+
+/* ? classes for the input labels */
+
+.label-form{
+  display: flex;
+  padding: .5rem;
+  gap: .5rem;
+}
+
+.label-form > h3 {
+  border: none;
+  outline: none;
+  text-align: center;
+  color: white;
+}
+
+.label-ID  {
+  color: white;
+  width: 3ch;
+}
+
+.label-FN  {
+  width: 16.5ch;
+}
+
+.label-LN  {
+  width: 17ch;
+}
+
+.label-PO  {
+  width: 13ch;
 }
