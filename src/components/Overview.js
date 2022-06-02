@@ -60,7 +60,6 @@ export default function Overview() {
   function createNewMember(event) {
     event.preventDefault();
     const newMemberForm = document.querySelector('.newMember-div');
-
     newMemberForm.style.visibility === 'hidden' ?  newMemberForm.style.visibility = 'visible' : newMemberForm.style.visibility = 'hidden';  
 
   }
@@ -93,9 +92,23 @@ export default function Overview() {
 
   // ? Update a member
   const handleUpdate = async (id) => {
+    // Update member in firestore
     const updatingData = data[id];
     const updatingMember = doc(db, "uniformen", `${id}`);
     await updateDoc(updatingMember, updatingData);
+    
+    // UI-Effect
+    const memberUpdateBtn = document.querySelector(`.update-${id}`); // get the correct btn element 
+    const updateUIEffect = [
+      { backgroundColor: 'white', color: 'black'},
+      { backgroundColor: 'green', color: 'white'},
+      { backgroundColor: 'white', color: 'black'}
+    ];
+    const updateUIEffectTiming = {
+      duration: 2000,
+      iterations: 1,
+    };    
+    memberUpdateBtn.animate(updateUIEffect, updateUIEffectTiming, {easing: "ease-in-out"});
   };
 
   // ? Delete a member
@@ -207,7 +220,7 @@ export default function Overview() {
                   type="button"
                   name="updateBtn"
                   id={member.id}
-                  className="updateBtn manBtn formFields"
+                  className={`updateBtn update-${member.id} formFields`}
                   onClick={(event) => {
                     handleUpdate(member.id);
                   }}
@@ -217,7 +230,7 @@ export default function Overview() {
                   type="button"
                   name="deleteBtn"
                   id={member.id}
-                  className="deleteBtn manBtn formFields"
+                  className="deleteBtn formFields"
                   onClick={(event) => {
                     handleDelete(member.id);
                   }}

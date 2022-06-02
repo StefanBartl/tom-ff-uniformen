@@ -36,14 +36,23 @@
   gap: .5rem;
 }
 
-.deleteBtn,
-.updateBtn {
-  width: fit-content;
-  visibility: hidden;
+.newBtn {
+
+}
+
+.saveBtn{
+
 }
 
 .newMember-div{
   display: flex;
   padding: 1rem;
   gap: .5rem;
+}
+
+.deleteBtn,
+.updateBtn {
+  width: 8rem;
+  width: fit-content;
+  visibility: hidden;
 }
