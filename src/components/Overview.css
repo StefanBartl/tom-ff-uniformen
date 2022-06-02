@@ -22,7 +22,7 @@
     padding-right: 1rem;
 }
 
-  .manBtn {
+.manBtn {
     width: 8rem;
 }
 
@@ -40,13 +40,13 @@
   margin-left: auto;
 }
 
+.deleteBtn {
+  width: fit-content;
+  visibility: hidden;
+}
+
 .newMember-div{
   display: flex;
   padding: 1rem;
   gap: .5rem;
-}
-
-.newID {
-  pointer-events: none;
-  background-color: lightgrey;
 }

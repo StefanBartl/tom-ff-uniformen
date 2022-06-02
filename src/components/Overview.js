@@ -1,65 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import uniqueId from 'uniqueid';
+import { useState, useEffect, Children } from 'react';
 import './Overview.css';
 import './Form.css';
 
 // ? Firebase imports
 import { db } from '../firebase-config';
-import { collection, addDoc, getDocs, setDoc, updateDoc, doc } from 'firebase/firestore';
- 
+import { collection, getDocs, setDoc, doc, deleteDoc  } from 'firebase/firestore'; 
 
 export default function Overview() {
 
   const [ data, setData ] = useState([]); 
-  const dataCollectionRef = collection(db, "uniformen");
-  // console.log(data);
 
   // ? Fetch database from Firebase
   useEffect(() =>{
-      const data = async () => {
+      const dataCollectionRef = collection(db, "uniformen");
+      const getData = async function fetchingData () {
         const fetchedData = await getDocs(dataCollectionRef);
         setData(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         setData(fetchedData.docs.map((doc) => ({ ...doc.data(), firstName: doc.firstName })));
         setData(fetchedData.docs.map((doc) => ({ ...doc.data(), lastName: doc.lastName })));
-        setData(fetchedData.docs.map((doc) => ({ ...doc.data(), position: doc.ffposition })));
+        setData(fetchedData.docs.map((doc) => ({ ...doc.data(), ffposition: doc.ffposition })));
+        setData(fetchedData.docs.map((doc) => ({ ...doc.data(), nullentry: null })));
       };
-      data(); // ! Automate it ()
+      getData();
   }, []);
 
-  // ? Create new Member / put it in te database
+  // ? Create new Member / put it in the database
   const [ newFirstName, setNewFirstName ] = useState("");
   const [ newLastName, setNewLastName ] = useState("");
   const [ newPosition, setNewPosition ] = useState("");
 
-  const createMember = async () => {
-    await addDoc(dataCollectionRef, { id: data.length + 1, firstName: newFirstName, lastName: newLastName, ffposition: newPosition });
-  };
-
-
+  // ? Create new form to add a new member
   function handleNew (event) {
     event.preventDefault();
   };
 
-  function handleChange (event) {
-  event.preventDefault();  
-
-  const dataMemberIndex = event.target.id - 1;
-  const memberKey = event.target.name;
-  const newValue = event.target.value;
-  const memperUpdate = data[dataMemberIndex];
-  memperUpdate[memberKey] = newValue;
-
-  let newData = [];
-  for(let i = 0; i < data.length; i++){
-    newData.push(data[i]);
-  };
-  newData[dataMemberIndex] = memperUpdate;
-  setData(newData);
+    // ? Add a new member to he database
+  const createMember = async () => {
+    const dataCollectionRef = collection(db, "uniformen");
+     await setDoc(doc(dataCollectionRef, `${data.length}`),{ id: Number(data.length), firstName: newFirstName, lastName: newLastName, ffposition: newPosition });
   };
 
+  // Comment out to quickly add a new test member to database ==>
+  // const createNewTestMember = (async function newTestMember () {
+  //   await setDoc(doc(dataCollectionRef, "0"), {
+  //     id: "0", firstName: "Tes", lastName: "ter", ffposition: "opop"
+  // })}
+  //());
+
+  // ? Handle state of data
+ function handleChange (event){
+  // console.log(event.target.value)
+  //  const newData = [];
+  // const upObj = data[event.target.id - 1];
+  // upObj[event.target.name] = event.target.value;
+  // console.log(upObj);
+  // for(let i = 0; i < data.length; i++){ 
+  //   newData.push(data[i]);
+  //   if(i === event.target.id - 1){
+  //     newData[i] = upObj
+  //   }
+  // }
+  // setData(newData);
+ };
       
+  // ? Delete a member 
+ const handleDelete = async (id) => {
+    const docId = `${id}`;
+    await deleteDoc(doc(db, "uniformen", docId));
+ };
+
+ // !!X PUSH DATA
   function handleUpdate (event) {
-    event.preventDefault();
+    // event.preventDefault();
   };
 
 
@@ -76,21 +88,22 @@ export default function Overview() {
         </div>
 
         <div className='newMember-div'>
-          <input type='number' name='newID' className='inp-ID newID formFields' value={data.length +1}></input>
+          <p className='idVal formFields'>{data.length}</p>
           <input type='text' placeholder='Vorname' name='vorname' className='inp-FN formFields' onChange={(event) => {setNewFirstName(event.target.value)}} />
           <input type='text' placeholder='Nachname' name='vorname' className='inp-LN formFields' onChange={(event) => {setNewLastName(event.target.value)}} />
           <input type='text' placeholder='Position' name='vorname' className='inp-PO formFields' onChange={(event) => {setNewPosition(event.target.value)}} />        
         </div>
 
         <div className="form-div">
-        { data.map(member =>
+        { Children.toArray(data.map(member =>
             <form name='dataForm' className='data-form'>
-                  <input type='number' key={uniqueId()} name='id' id={`${member.id}`}  className='inp-ID passedDataIDfield formFields' value={member.id} readOnly  />
-                  <input type='text' key={uniqueId()} name='firstName' id={`${member.id}`}  className='inp-FN formFields' value={member.firstName} onChange={handleChange} />
-                  <input type='text' key={uniqueId()} name='lastName' id={`${member.id}`}  className='inp-LN formFields' value={member.lastName} onChange={handleChange}  /> 
-                  <input type='text' key={uniqueId()} name='position' id={`${member.id}`} className='inp-PO formFields' value={member.ffposition} onChange={handleChange} />
+                  <p className='idVal formFields'>{member.id}</p>
+                  <input type='text'  name='firstName'   className='inp-FN formFields' value={member.firstName} onChange={handleChange} />
+                  <input type='text'  name='lastName'  className='inp-LN formFields' value={member.lastName} onChange={handleChange}  /> 
+                  <input type='text'  name='ffposition'  className='inp-PO formFields' value={member.ffposition} onChange={handleChange} />
+                  <button type='submit' name='delete' className='deleteBtn manBtn formFields' onClick={() => {handleDelete(member.id)}}>Löschen</button> 
             </form>
-        )}
+        ))}
         </div>
 
     </div>

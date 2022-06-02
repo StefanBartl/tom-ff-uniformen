@@ -9,6 +9,10 @@
     gap: .5rem;
 }
 
+.data-form:hover > .deleteBtn {
+    visibility: visible;
+}
+
 /* ? summary class for the form input fields */
 .formFields {
     border: none;
@@ -17,12 +21,9 @@
 }
 
 /* ? classes for the individual inputs  */
-.inp-ID  {
-    width: 6ch;
-}
-
-.passedDataIDfield{
-    pointer-events: none;
+.idVal  {
+    color: white;
+    width: 3ch;
 }
 
 .inp-FN  {
