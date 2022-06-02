@@ -36,11 +36,8 @@
   gap: .5rem;
 }
 
+.deleteBtn,
 .updateBtn {
-  margin-left: auto;
-}
-
-.deleteBtn {
   width: fit-content;
   visibility: hidden;
 }

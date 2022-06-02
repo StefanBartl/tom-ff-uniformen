@@ -9,6 +9,10 @@
     gap: .5rem;
 }
 
+.data-form:hover > .updateBtn {
+    visibility: visible;
+}
+
 .data-form:hover > .deleteBtn {
     visibility: visible;
 }

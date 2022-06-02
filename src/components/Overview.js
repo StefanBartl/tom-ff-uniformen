@@ -84,7 +84,7 @@ export default function Overview() {
                   <button type='submit' name='newBtn' id={`new`}className='newBtn manBtn formFields' onClick={handleNew}>Neu anlegen</button> {/* TODO - new field should be at top */ }
                   <button type='submit' name='saveBtn' id={`save`}className='saveBtn manBtn formFields' onClick={createMember}>Neu speichern</button> 
               </div>
-            <button type='submit' name='updateBtn' id={`update`}className='updateBtn manBtn formFields' onClick={handleUpdate}>Daten speichern</button> 
+            {/* <button type='submit' name='updateBtn' id={`update`}className='updateBtn manBtn formFields' onClick={handleUpdate}>Daten speichern</button>  */}
         </div>
 
         <div className='newMember-div'>
@@ -102,8 +102,9 @@ export default function Overview() {
                       <input type='text'  name='firstName'   className='inp-FN formFields' value={member.firstName} onChange={handleChange} />
                       <input type='text'  name='lastName'  className='inp-LN formFields' value={member.lastName} onChange={handleChange}  /> 
                       <input type='text'  name='ffposition'  className='inp-PO formFields' value={member.ffposition} onChange={handleChange} />
-            </form>
+                      <input type="button" name='updateBtn' id={member.id} className='updateBtn manBtn formFields' onClick={(event) => {handleUpdate(member.id)}} defaultValue="update"></input>
             <input type="button" name='deleteBtn' id={member.id} className='deleteBtn manBtn formFields' onClick={(event) => {handleDelete(member.id)}} defaultValue="löschen"></input>
+            </form>
           </div>
         ))}
         </div>
