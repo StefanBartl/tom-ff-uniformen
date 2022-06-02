@@ -96,13 +96,15 @@ export default function Overview() {
 
         <div className="form-div">
         { Children.toArray(data.map(member =>
+        <div className='form-memberDiv'>
             <form name='dataForm' className='data-form'>
-                  <p className='idVal formFields'>{member.id}</p>
-                  <input type='text'  name='firstName'   className='inp-FN formFields' value={member.firstName} onChange={handleChange} />
-                  <input type='text'  name='lastName'  className='inp-LN formFields' value={member.lastName} onChange={handleChange}  /> 
-                  <input type='text'  name='ffposition'  className='inp-PO formFields' value={member.ffposition} onChange={handleChange} />
-                  <button type='submit' name='delete' className='deleteBtn manBtn formFields' onClick={() => {handleDelete(member.id)}}>Löschen</button> 
+                      <p className='idVal formFields'>{member.id}</p>
+                      <input type='text'  name='firstName'   className='inp-FN formFields' value={member.firstName} onChange={handleChange} />
+                      <input type='text'  name='lastName'  className='inp-LN formFields' value={member.lastName} onChange={handleChange}  /> 
+                      <input type='text'  name='ffposition'  className='inp-PO formFields' value={member.ffposition} onChange={handleChange} />
             </form>
+            <input type="button" name='deleteBtn' id={member.id} className='deleteBtn manBtn formFields' onClick={(event) => {handleDelete(member.id)}} defaultValue="löschen"></input>
+          </div>
         ))}
         </div>
 
