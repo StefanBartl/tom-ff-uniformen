@@ -1,18 +1,11 @@
+// ? React and file import
 import { useState, useEffect, Children } from "react";
 import "./Overview.css";
 import "./Form.css";
 
 // ? Firebase imports
 import { db } from "../firebase-config";
-import {
-  collection,
-  doc,
-  getDocs,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
-
+import { collection, doc, getDocs, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
 
 export default function Overview() {
 
@@ -59,17 +52,31 @@ export default function Overview() {
   function toggleNewMemberDiv(event) {
     event.preventDefault();
 
-    // Toggle div
-    const newMemberForm = document.querySelector('.newMember-div');
-    newMemberForm.style.visibility === 'hidden' ?  newMemberForm.style.visibility = 'visible' : newMemberForm.style.visibility = 'hidden'; 
-
-    // Toggle newButton image direction
+    // Toggle div, newButton image direction & save button
+    // Get DOM-Elements
     const newMemberBtn = document.getElementById('new'); 
-    newMemberForm.style.visibility === 'hidden' ?  newMemberBtn.style.transform = 'rotate(0deg)' : newMemberBtn.style.transform = 'rotate(90deg)';
-    
-    // Toggle save button
-    const saveBtn = document.querySelector('.saveBtn');
-    newMemberForm.style.visibility === 'hidden' ?  saveBtn.style.visibility = 'hidden' : saveBtn.style.visibility = 'visible'; 
+    const saveBtn = document.getElementById('save');
+    const newMemberID = document.getElementById('newID');
+    const newMemberFN = document.getElementById('newFN');
+    const newMemberLN = document.getElementById('newLN');
+    const newMemberPO = document.getElementById('newPO');
+
+    // Toggle logic
+    if(saveBtn.style.display === 'none'){
+      newMemberBtn.style.transform = 'rotate(90deg)';
+      saveBtn.style.display = 'block'; 
+      newMemberID.style.display = 'block';
+      newMemberFN.style.display = 'block';
+      newMemberLN.style.display = 'block';
+      newMemberPO.style.display = 'block';
+    } else {
+      newMemberBtn.style.transform = 'rotate(0deg)';
+      saveBtn.style.display = 'none';
+      newMemberID.style.display = 'none'; 
+      newMemberFN.style.display = 'none';
+      newMemberLN.style.display = 'none';
+      newMemberPO.style.display = 'none';
+    };
 
   };
 
@@ -176,129 +183,149 @@ export default function Overview() {
 
   return (
     <div className="Overview">
-
-      <h1 className="ov-main-title">FF Kaltenleutgeb Uniformen-Datenbank</h1>
-
-      <div className="mainBtn">
-
-          <img 
-              src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"  
-              name="newBtn"
-              id={`new`}
-              className="newBtn imageNewBtn"
-              onClick={toggleNewMemberDiv}
-          />
-
-          <button
-              name="saveBtn"
-              id={`save`}
-              className="saveBtn manBtn formFields"
-              onClick={saveNewMember}
-              style={{visibility: 'hidden'}}
-              >
-              speichern
-          </button>
-
-      </div>
-
-
-      <div className="newMember-div" style={{visibility: 'hidden'}}>
-
-          <p className="idVal formFields">{data.length || 0}.</p>
-
-          <input
-            type="text"
-            placeholder="Vorname"
-            name="vorname"
-            className="inp-FN formFields"
-            onChange={(event) => {
-              setNewFirstName(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Nachname"
-            name="vorname"
-            className="inp-LN formFields"
-            onChange={(event) => {
-              setNewLastName(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Position"
-            name="vorname"
-            className="inp-PO formFields"
-            onChange={(event) => {
-              setNewPosition(event.target.value);
-            }}
-          />
-
-      </div>
       
-      <main className="data-wrapper">
+          <h1 className="ov-main-title">FF Kaltenleutgeb Uniformen-Datenbank</h1>
 
-      <div className="label-form">
-              <h3 className="label-ID">Nr.</h3><h3 className="label-FN">Vorname</h3><h3 className="label-LN">Nachname</h3><h3 className="label-PO">Dienstgrad</h3>
-      </div>
+          <div className="console">
 
-      <div className="form-div">
-        {Children.toArray(
-          data.map((member, index) => (
-            <div className="form-memberDiv">
-              <form name="dataForm" className="data-form">
-                <p className="idVal formFields">{index}.</p>
-                <input
-                  type="text"
-                  name="firstName"
-                  id={member.id}
-                  className="inp-FN formFields"
-                  value={member.firstName}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="lastName"
-                  id={member.id}
-                  className="inp-LN formFields"
-                  value={member.lastName}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="ffposition"
-                  id={member.id}
-                  className="inp-PO formFields"
-                  value={member.ffposition}
-                  onChange={handleChange}
-                />
-                <input
-                  type="button"
-                  name="updateBtn"
-                  id={member.id}
-                  className={`updateBtn update-${member.id} formFields`}
-                  onClick={(event) => {
-                    handleUpdate(member.id);
-                  }}
-                  defaultValue="update"
-                ></input>
-                <input
-                  type="button"
-                  name="deleteBtn"
-                  id={member.id}
-                  className="deleteBtn formFields"
-                  onClick={(event) => {
-                    handleDelete(member.id);
-                  }}
-                  defaultValue="löschen"
-                ></input>
-              </form>
-            </div>
-          ))
-        )}
-      </div>
-      </main>
+              <img 
+                  src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"  
+                  name="newBtn"
+                  id={`new`}
+                  className="newBtn imageNewBtn"
+                  onClick={toggleNewMemberDiv}
+              />
+
+              <button
+                  name="saveBtn"
+                  id={`save`}
+                  className="saveBtn manBtn formFields"
+                  onClick={saveNewMember}
+                  style={{display: 'none'}}
+                  >
+                  speichern
+              </button>
+
+          </div>
+
+
+          <div className="newMember-div">
+
+              <p className="idVal formFields" id="newID"  style={{display: 'none'}}>{data.length || 0}.</p>
+
+              <input
+                type="text"
+                placeholder="Vorname"
+                name="vorname"
+                id="newFN"
+                className="inp-FN formFields"
+                style={{display: 'none'}}
+                onChange={(event) => {
+                  setNewFirstName(event.target.value);
+                }}
+              />
+
+              <input
+                type="text"
+                placeholder="Nachname"
+                name="vorname"
+                id="newLN"
+                className="inp-LN formFields"
+                style={{display: 'none'}}
+                onChange={(event) => {
+                  setNewLastName(event.target.value);
+                }}
+              />
+
+              <input
+                type="text"
+                placeholder="Position"
+                name="vorname"
+                id="newPO"
+                className="inp-PO formFields"
+                style={{display: 'none'}}
+                onChange={(event) => {
+                  setNewPosition(event.target.value);
+                }}
+              />
+
+          </div>
+          
+          <main className="data-wrapper">
+
+                  <div className="label-form">
+                          <h3 className="label-ID">Nr.</h3><h3 className="label-FN">Vorname</h3><h3 className="label-LN">Nachname</h3><h3 className="label-PO">Dienstgrad</h3>
+                  </div>
+
+                  <div className="form-div">
+                    {Children.toArray(
+                      data.map((member, index) => (
+
+                            <div className="form-memberDiv">
+
+                                  <form name="dataForm" className="data-form">
+
+                                        <p className="idVal formFields">{index}.</p>
+
+                                            <input
+                                              type="text"
+                                              name="firstName"
+                                              id={member.id}
+                                              className="inp-FN formFields"
+                                              value={member.firstName}
+                                              onChange={handleChange}
+                                            />
+
+                                            <input
+                                              type="text"
+                                              name="lastName"
+                                              id={member.id}
+                                              className="inp-LN formFields"
+                                              value={member.lastName}
+                                              onChange={handleChange}
+                                            />
+
+                                            <input
+                                              type="text"
+                                              name="ffposition"
+                                              id={member.id}
+                                              className="inp-PO formFields"
+                                              value={member.ffposition}
+                                              onChange={handleChange}
+                                            />
+
+                                            <input
+                                              type="button"
+                                              name="updateBtn"
+                                              id={member.id}
+                                              className={`updateBtn update-${member.id} formFields`}
+                                              onClick={(event) => {
+                                                handleUpdate(member.id);
+                                              }}
+                                              defaultValue="update"
+                                            />
+
+                                            <input
+                                              type="button"
+                                              name="deleteBtn"
+                                              id={member.id}
+                                              className="deleteBtn formFields"
+                                              onClick={(event) => {
+                                                handleDelete(member.id);
+                                              }}
+                                              defaultValue="löschen"
+                                            />
+
+                                  </form>
+
+                            </div>
+                      )))}
+
+                  </div>
+
+          </main>
 
     </div>
   );
+
 };
