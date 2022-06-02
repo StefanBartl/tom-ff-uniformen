@@ -13,6 +13,10 @@
     visibility: visible;
 }
 
+.data-form > input[type="button"]:hover {
+    background-color: goldenrod;
+}
+
 /* ? summary class for the form input fields */
 .formFields {
     border: none;

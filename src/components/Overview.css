@@ -26,28 +26,26 @@
     width: 8rem;
 }
 
-.manBtn:hover {
-  outline: solid 4px white;
-}
-
 .newBtn-div{
   display: flex;
   flex-direction: column;
   gap: .5rem;
 }
 
-.newBtn {
-
-}
-
-.saveBtn{
-
-}
-
 .newMember-div{
   display: flex;
   padding: 1rem;
   gap: .5rem;
+  padding: .5rem;
+  margin-left: 1.5rem;
+}
+
+.saveBtn{
+  margin-left: .7rem;
+}
+
+.saveBtn:hover {
+  background-color: goldenrod;
 }
 
 /* ! Main section data */
@@ -94,4 +92,10 @@
 
 .label-PO  {
   width: 13ch;
+}
+
+.imageNewBtn{
+  width: 2rem;
+  height: 2rem;
+  filter: invert(1);
 }

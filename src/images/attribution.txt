@@ -1,0 +1,4 @@
+arrow-right.png : https://www.flaticon.com/authors/deemakdaksina
+next.png : https://www.flaticon.com/authors/smashicons
+add: "https://www.flaticon.com/free-icons/add"
+minus: https://www.flaticon.com/authors/inkubators

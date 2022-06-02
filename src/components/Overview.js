@@ -13,6 +13,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+
 export default function Overview() {
 
   //#region Firebase firestore
@@ -57,11 +58,18 @@ export default function Overview() {
   // ? Create new form to add a new member
   function toggleNewMemberDiv(event) {
     event.preventDefault();
-    const newMemberForm = document.querySelector('.newMember-div');
-    const newMemberBtn = document.getElementById('new');
 
-    newMemberForm.style.visibility === 'hidden' ?  newMemberForm.style.visibility = 'visible' : newMemberForm.style.visibility = 'hidden';  
-    newMemberBtn.innerHTML === `Neu anlegen` ? newMemberBtn.innerHTML = `Verstecken` : newMemberBtn.innerHTML = `Neu anlegen`;
+    // Toggle div
+    const newMemberForm = document.querySelector('.newMember-div');
+    newMemberForm.style.visibility === 'hidden' ?  newMemberForm.style.visibility = 'visible' : newMemberForm.style.visibility = 'hidden'; 
+
+    // Toggle button/image direction
+    const newMemberBtn = document.getElementById('new'); 
+    newMemberForm.style.visibility === 'hidden' ?  newMemberBtn.style.transform = 'rotate(0deg)' : newMemberBtn.style.transform = 'rotate(90deg)';
+    
+    const saveBtn = document.querySelector('.saveBtn');
+    newMemberForm.style.visibility === 'hidden' ?  saveBtn.style.visibility = 'hidden' : saveBtn.style.visibility = 'visible'; 
+
   };
 
   // ? Add a new member to the firestore database
@@ -171,56 +179,54 @@ export default function Overview() {
       <h1 className="ov-main-title">FF Kaltenleutgeb Uniformen-Datenbank</h1>
 
       <div className="mainBtn">
-        <div className="newBtn-div">
+          <img 
+              src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"  
+              name="newBtn"
+              id={`new`}
+              className="newBtn imageNewBtn"
+              onClick={toggleNewMemberDiv}
+          />
           <button
-            name="newBtn"
-            id={`new`}
-            className="newBtn manBtn formFields"
-            onClick={toggleNewMemberDiv}
-          >
-            Neu anlegen
-          </button>{" "}
-        </div>
-        {/* <button type='submit' name='updateBtn' id={`update`}className='updateBtn manBtn formFields' onClick={handleUpdate}>Daten speichern</button>  */}
+              name="saveBtn"
+              id={`save`}
+              className="saveBtn manBtn formFields"
+              onClick={saveNewMember}
+              style={{visibility: 'hidden'}}
+              >
+              speichern
+          </button>
       </div>
 
+
       <div className="newMember-div" style={{visibility: 'hidden'}}>
-        <p className="idVal formFields">{data.length || 0}</p>
-        <input
-          type="text"
-          placeholder="Vorname"
-          name="vorname"
-          className="inp-FN formFields"
-          onChange={(event) => {
-            setNewFirstName(event.target.value);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Nachname"
-          name="vorname"
-          className="inp-LN formFields"
-          onChange={(event) => {
-            setNewLastName(event.target.value);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Position"
-          name="vorname"
-          className="inp-PO formFields"
-          onChange={(event) => {
-            setNewPosition(event.target.value);
-          }}
-        />
-        <button
-            name="saveBtn"
-            id={`save`}
-            className="saveBtn manBtn formFields"
-            onClick={saveNewMember}
-            >
-            speichern
-        </button>
+          <p className="idVal formFields">{data.length || 0}.</p>
+          <input
+            type="text"
+            placeholder="Vorname"
+            name="vorname"
+            className="inp-FN formFields"
+            onChange={(event) => {
+              setNewFirstName(event.target.value);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Nachname"
+            name="vorname"
+            className="inp-LN formFields"
+            onChange={(event) => {
+              setNewLastName(event.target.value);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Position"
+            name="vorname"
+            className="inp-PO formFields"
+            onChange={(event) => {
+              setNewPosition(event.target.value);
+            }}
+          />
       </div>
       
       <main className="data-wrapper">
@@ -234,7 +240,7 @@ export default function Overview() {
           data.map((member, index) => (
             <div className="form-memberDiv">
               <form name="dataForm" className="data-form">
-                <p className="idVal formFields">{index}</p>
+                <p className="idVal formFields">{index}.</p>
                 <input
                   type="text"
                   name="firstName"
@@ -285,6 +291,7 @@ export default function Overview() {
         )}
       </div>
       </main>
+
     </div>
   );
-}
+};
