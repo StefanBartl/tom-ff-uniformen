@@ -123,12 +123,14 @@ export default function Overview() {
     const memberInfoBtn = document.getElementById(`memberInfoBtn-${index}`); 
     const memberWholeSection = document.querySelector(`.formMemberDiv-${index}`); 
     const memberInfoSection = document.getElementById(`infoSection-${index}`); 
+    const memberFireTruck = document.querySelector(`.fireTruck-${index}`); 
     const allMembersArray = document.querySelectorAll('.form-memberDiv');
 
     // Toggle UI logic
     if(memberInfoSection.style.display === 'none'){
       toggle90degAnimation(memberInfoBtn);
       memberInfoSection.style.display = 'flex'; 
+      memberFireTruck.style.display = 'flex'; 
       memberWholeSection.classList.add('visibleMemberSection-div');
       for(let i = 0; i < allMembersArray.length; i++){
        if (allMembersArray[i].classList.contains('visibleMemberSection-div') === false) allMembersArray[i].classList.add('notSelectedMember-div'); // TODO Or hardcoded better?
@@ -136,6 +138,7 @@ export default function Overview() {
     } else {
       toggle90degAnimation(memberInfoBtn);
       memberInfoSection.style.display = 'none';
+      memberFireTruck.style.display = 'none';
       for(let i = 0; i < allMembersArray.length; i++){
         if (allMembersArray[i].classList.contains('visibleMemberSection-div') == false) allMembersArray[i].classList.remove('notSelectedMember-div'); // TODO Or hardcoded better?
        };
@@ -253,11 +256,9 @@ export default function Overview() {
   // ? Delete a memberr in the firestore database
   const handleDeleteFirestoreMember = async (id) => {
 
-    // Delete member in firestore database
-
     if(window.confirm(`Willst du ${data[id].ffposition} ${data[id].firstName} ${data[id].lastName} wirklich löschen? Der Datensatz kann nicht mehr hergestellt werden!`)){
-      const docId = `${id}`;
-      await deleteDoc(doc(db, "uniformen", docId));
+      // Delete member in firestore database
+      await deleteDoc(doc(db, "uniformen", `${id}`));
       firestoreUIEffect('delete', id);
       return;
     }; 
@@ -428,6 +429,13 @@ export default function Overview() {
                                                     onClick={()=>{toggleMemberInfo(index)}}
                                                 />
 
+
+                                                <img 
+                                                  src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
+                                                  className={`fireTruck fireTruck-${index}`}
+                                                  style={{display: 'none'}}
+                                                />
+
                                        </section>
 
                                       {/* Member info Form fields */ }
@@ -445,6 +453,8 @@ export default function Overview() {
                                                       value={data[index].textarea || ""}
                                                       onChange={handleChange}
                                                     />
+
+                                                <img src='https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c' className="memberInfo-fireImage" />    
 
 
                                                 <div className="memberButtons-div">

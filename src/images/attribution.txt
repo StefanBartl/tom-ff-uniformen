@@ -2,3 +2,8 @@ arrow-right.png : https://www.flaticon.com/authors/deemakdaksina
 next.png : https://www.flaticon.com/authors/smashicons
 add: "https://www.flaticon.com/free-icons/add"
 minus: https://www.flaticon.com/authors/inkubators
+fire-truck: "https://www.flaticon.com/free-icons/fire-truck
+second-fire: "https://www.flaticon.com/free-icons/fire-truck"
+
+
+<a href="https://www.flaticon.com/free-icons/fire-truck" title="fire truck icons">Fire truck icons created by Freepik - Flaticon</a>
