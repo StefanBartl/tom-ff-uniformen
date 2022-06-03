@@ -1,13 +1,22 @@
-// ? React and file import
+// TODO Toggle Animation without css
+
+// ? React and file imports
 import { useState, useEffect, Children } from "react";
 import "./Overview.css";
 import "./Form.css";
+import toggle90degAnimation from './Toggle90Animation';
 
 // ? Firebase imports
 import { db } from "../firebase-config";
 import { collection, doc, getDocs, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
 
 export default function Overview() {
+
+  const options = [
+    { value: true, label: 'Ja' },
+    { value: false, label: 'Nein' }
+  ]
+
 
   //#region Firebase firestore
 
@@ -16,13 +25,29 @@ export default function Overview() {
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
   const [newPosition, setNewPosition] = useState("");
+  const [newTextarea, setNewTextarea] = useState("");
+  // Galauniformen state
+  const [newMantelS, setNewMantelS] = useState(0);
+  const [newMantelB, setNewMantelB] = useState(true);
+  const [newJackeS, setNewJackeN] = useState(0);
+  const [newJackeB, setNewJackeB] = useState(true);
+  const [newHoseS, setNewHoseS] = useState(0);
+  const [newHoseB, setNewHoseB] = useState(true);
+  const [newHemdS, setNewHemdS] = useState(0);
+  const [newHemdB, setNewHemdB] = useState(true);
+  const [newKappeS, setNewKappeS] = useState(0);
+  const [newKappeB, setNewKappeB] = useState(true);
+
+
 
   // ? Fetch database from Firebase
   useEffect(() => {
     const dataCollectionRef = collection(db, "uniformen");
     const getData = async function fetchingData() {
       const fetchedData = await getDocs(dataCollectionRef);
+
       setData(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
       setData(
         fetchedData.docs.map((doc) => ({
           ...doc.data(),
@@ -41,6 +66,26 @@ export default function Overview() {
           ffposition: doc.ffposition,
         }))
       );
+
+      setData(
+        fetchedData.docs.map((doc) => ({
+          ...doc.data(),
+          textarea: doc.textarea,
+        }))
+      );
+      setData(
+        fetchedData.docs.map((doc) => ({
+          ...doc.data(),
+          mantelN: doc.mantelN,
+        }))
+      );
+      setData(
+        fetchedData.docs.map((doc) => ({
+          ...doc.data(),
+          mantelB: doc.mantelB,
+        }))
+      );
+
       setData(
         fetchedData.docs.map((doc) => ({ ...doc.data(), nullentry: null }))
       );
@@ -61,16 +106,16 @@ export default function Overview() {
     const newMemberLN = document.getElementById('newLN');
     const newMemberPO = document.getElementById('newPO');
 
-    // Toggle logic
+    // Toggle UI logic
     if(saveBtn.style.display === 'none'){
-      newMemberBtn.style.transform = 'rotate(90deg)';
+      toggle90degAnimation(newMemberBtn);
       saveBtn.style.display = 'block'; 
       newMemberID.style.display = 'block';
       newMemberFN.style.display = 'block';
       newMemberLN.style.display = 'block';
       newMemberPO.style.display = 'block';
     } else {
-      newMemberBtn.style.transform = 'rotate(0deg)';
+      toggle90degAnimation(newMemberBtn);
       saveBtn.style.display = 'none';
       newMemberID.style.display = 'none'; 
       newMemberFN.style.display = 'none';
@@ -90,29 +135,20 @@ export default function Overview() {
       firstName: newFirstName,
       lastName: newLastName,
       ffposition: newPosition,
+      textarea: newTextarea,
+
+      mantelS: newMantelS,
+      mantelB: newMantelB,
+      jackeS: newJackeS,
+      jackeB: newJackeB,
+      hoseS: newHoseS,
+      hoseB: newHoseB,
+      hemdS: newHemdS,
+      hemdB: newHemdB,
+      kappeS: newKappeS,
+      kappeB: newKappeB,
+
     });
-
-    // // Set new state
-    // const newData = [];
-    // const newMember = {
-    //   id: Number(data.length),
-    //   firstName: newFirstName,
-    //   lastName: newLastName,
-    //   ffposition: newPosition,
-    // }
-    // // Make input fields free of old data
-    // setNewFirstName("");
-    // setNewLastName("");
-    // setNewPosition(""); 
-
-    // // Pushh all existing members in new array
-    // for (let i = 0; i < data.length; i++) {
-    //   newData.push(data[i]);
-    // };
-    // // Add new member to array
-    // newData.push(newMember);
-    // // Set new data state
-    // setData(newData);
 
     window.location.reload();
 
@@ -124,7 +160,29 @@ export default function Overview() {
     // Update member in state
     const newData = [];
     const updatingMember = data[parseInt(event.target.id)];
-    updatingMember[event.target.name] = event.target.value;
+
+
+    //#region Galauniformen boolean
+    if(event.target.name === "mantelB") {setNewMantelB(!newMantelB);
+    updatingMember[event.target.name] = newMantelB;
+    };
+
+    if(event.target.name === "JackeB") {setNewJackeB(!newJackeB);
+    updatingMember[event.target.name] = newJackeB;
+    };
+
+    if(event.target.name === "HoseB") {setNewHoseB(!newHoseB);
+    updatingMember[event.target.name] = newHoseB;
+    };
+
+    if(event.target.name === "HemdB") {setNewHemdB(!newHemdB);
+    updatingMember[event.target.name] = newHemdB;
+    };
+
+    if(event.target.name === "KappeB") {setNewKappeB(!newKappeB);
+      updatingMember[event.target.name] = newKappeB;
+    };
+    //#endregion
 
     for (let i = 0; i < data.length; i++) {
       newData.push(data[i]);
@@ -169,15 +227,28 @@ export default function Overview() {
     const docId = `${id}`;
     await deleteDoc(doc(db, "uniformen", docId));
 
-    // // Delete member in state
-    // const newData = [];
-    // for (let i = 0; i < data.length; i++) {
-    //   if (i === id) {continue} else newData.push(data[i]);
-    // };
-    // setData(newData);
     window.location.reload();
 
   };
+
+  // ? Toggle the member info arrow
+  function toggleMemberInfo(index) {
+
+    // Get DOM-Element
+    const memberInfoBtn = document.getElementById(`memberInfoBtn-${index}`); 
+    const memberInfoSection = document.getElementById(`infoSection-${index}`); 
+
+    // Toggle UI logic
+    if(memberInfoSection.style.display === 'none'){
+      toggle90degAnimation(memberInfoBtn);
+      memberInfoSection.style.display = 'flex'; 
+    } else {
+      toggle90degAnimation(memberInfoBtn);
+      memberInfoSection.style.display = 'none';
+    };
+
+  };
+  
 
   //#endregion
 
@@ -193,6 +264,7 @@ export default function Overview() {
                   name="newBtn"
                   id={`new`}
                   className="newBtn imageNewBtn"
+                  alt="Arrow"
                   onClick={toggleNewMemberDiv}
               />
 
@@ -265,59 +337,227 @@ export default function Overview() {
 
                                   <form name="dataForm" className="data-form">
 
-                                        <p className="idVal formFields">{index}.</p>
+                                      {/* Member form fields before toggling info visible  */ }
 
-                                            <input
-                                              type="text"
-                                              name="firstName"
-                                              id={member.id}
-                                              className="inp-FN formFields"
-                                              value={member.firstName}
-                                              onChange={handleChange}
-                                            />
+                                       <section className="visibleMemberSections">
 
-                                            <input
-                                              type="text"
-                                              name="lastName"
-                                              id={member.id}
-                                              className="inp-LN formFields"
-                                              value={member.lastName}
-                                              onChange={handleChange}
-                                            />
+                                            <p className="idVal formFields">{index}.</p>
 
-                                            <input
-                                              type="text"
-                                              name="ffposition"
-                                              id={member.id}
-                                              className="inp-PO formFields"
-                                              value={member.ffposition}
-                                              onChange={handleChange}
-                                            />
+                                                <input
+                                                  type="text"
+                                                  name="firstName"
+                                                  id={member.id}
+                                                  className="inp-FN formFields"
+                                                  value={member.firstName}
+                                                  onChange={handleChange}
+                                                />
 
-                                            <input
-                                              type="button"
-                                              name="updateBtn"
-                                              id={member.id}
-                                              className={`updateBtn update-${member.id} formFields`}
-                                              onClick={(event) => {
-                                                handleUpdate(member.id);
-                                              }}
-                                              defaultValue="update"
-                                            />
+                                                <input
+                                                  type="text"
+                                                  name="lastName"
+                                                  id={member.id}
+                                                  className="inp-LN formFields"
+                                                  value={member.lastName}
+                                                  onChange={handleChange}
+                                                />
 
-                                            <input
-                                              type="button"
-                                              name="deleteBtn"
-                                              id={member.id}
-                                              className="deleteBtn formFields"
-                                              onClick={(event) => {
-                                                handleDelete(member.id);
-                                              }}
-                                              defaultValue="löschen"
-                                            />
+                                                <input
+                                                  type="text"
+                                                  name="ffposition"
+                                                  id={member.id}
+                                                  className="inp-PO formFields"
+                                                  value={member.ffposition}
+                                                  onChange={handleChange}
+                                                />
+
+                                                <img 
+                                                    src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"  
+                                                    name="memberInfoBtn"
+                                                    id={`memberInfoBtn-${index}`}
+                                                    className="memberInfoBtn"
+                                                    alt="Arrow"
+                                                    onClick={()=>{toggleMemberInfo(index)}}
+                                                />
+
+                                                <input
+                                                  type="button"
+                                                  name="updateBtn"
+                                                  id={member.id}
+                                                  className={`updateBtn update-${member.id} formFields`}
+                                                  onClick={(event) => {
+                                                    handleUpdate(member.id);
+                                                  }}
+                                                  defaultValue="update"
+                                                />
+
+                                                <input
+                                                  type="button"
+                                                  name="deleteBtn"
+                                                  id={member.id}
+                                                  className="deleteBtn formFields"
+                                                  onClick={(event) => {
+                                                    handleDelete(member.id);
+                                                  }}
+                                                  defaultValue="löschen"
+                                                />
+
+                                       </section>
+
+                                      {/* Member info Form fields */ }
+                                                                                                                    
+                                        <section id={`infoSection-${index}`} className="toggledMemberSections" style={{display: 'none'}} >
+                                              
+                                            <div className="memberInfo-wrapper">
+                                                <h3 className="memberInfos-h3">Infos:</h3>
+                                                <textarea
+                                                      name="textarea"
+                                                      cols={20}
+                                                      rows={7}
+                                                      id={member.id}
+                                                      className="inp-text formFields"
+                                                      value={member.textfield || ""}
+                                                      onChange={handleChange}
+                                                    />
+                                            </div>     
+
+                                            <div className="uniformen-div"> 
+        
+                                                  <h3>Galauniformen</h3>
+
+                                                <div className="mantel-div uniformen-divs">
+                                                    <p>Mantel</p>   
+                                              
+                                                            <input
+                                                                  type='text'
+                                                                  name="mantelS"
+                                                                  id={member.id}
+                                                                  className="inp-mantelS infoFields formFields"
+                                                                  value={member.mantelN}
+                                                                  onChange={handleChange}
+                                                            />                          
+                                                      
+                                                        <label htmlFor="mantelB"> ausgegeben?</label>   
+
+                                                            <input
+                                                                  type='checkbox'
+                                                                  name="mantelB"
+                                                                  id={member.id}
+                                                                  className="inp-mantelB formFields"
+                                                                  checked={member.mantelB}
+                                                                  onChange={handleChange}
+                                                            />         
+
+                                                </div>
+
+                                                <div className="jacke-div uniformen-divs">
+                                                    <p>Jacke</p>   
+                                              
+                                                            <input
+                                                                  type='text'
+                                                                  name="jackeS"
+                                                                  id={member.id}
+                                                                  className="inp-jackeS infoFields formFields"
+                                                                  value={member.jackeN}
+                                                                  onChange={handleChange}
+                                                            />                          
+                                                      
+                                                        <label htmlFor="jackeB"> ausgegeben?</label>   
+
+                                                            <input
+                                                                  type='checkbox'
+                                                                  name="jackeB"
+                                                                  id={member.id}
+                                                                  className="inp-jackeB formFields"
+                                                                  checked={member.jackeB}
+                                                                  onChange={handleChange}
+                                                            />         
+
+                                                </div>
+
+                                                <div className="hose-rock-div uniformen-divs">
+                                                    <p>Hose</p>   
+                                              
+                                                            <input
+                                                                  type='text'
+                                                                  name="hoseS"
+                                                                  id={member.id}
+                                                                  className="inp-hoseS infoFields formFields"
+                                                                  value={member.hoseN}
+                                                                  onChange={handleChange}
+                                                            />                          
+                                                      
+                                                        <label htmlFor="hoseB"> ausgegeben?</label>   
+
+                                                            <input
+                                                                  type='checkbox'
+                                                                  name="hoseB"
+                                                                  id={member.id}
+                                                                  className="inp-hoseB formFields"
+                                                                  checked={member.hoseB}
+                                                                  onChange={handleChange}
+                                                            />         
+
+                                                </div>
+
+                                                <div className="hemd-div uniformen-divs">
+                                                    <p>Hemd</p>   
+                                              
+                                                            <input
+                                                                  type='text'
+                                                                  name="hemdS"
+                                                                  id={member.id}
+                                                                  className="inp-hemdS infoFields formFields"
+                                                                  value={member.hemdN}
+                                                                  onChange={handleChange}
+                                                            />                          
+                                                      
+                                                        <label htmlFor="hemdB"> ausgegeben?</label>   
+
+                                                            <input
+                                                                  type='checkbox'
+                                                                  name="hemdB"
+                                                                  id={member.id}
+                                                                  className="inp-hemdB formFields"
+                                                                  checked={member.hemdB}
+                                                                  onChange={handleChange}
+                                                            />         
+
+                                                </div>
+
+                                                <div className="kappe-div uniformen-divs">
+                                                    <p>Kappe</p>   
+                                              
+                                                            <input
+                                                                  type='text'
+                                                                  name="kappeS"
+                                                                  id={member.id}
+                                                                  className="inp-kappeSb infoFields formFields"
+                                                                  value={member.kappeN}
+                                                                  onChange={handleChange}
+                                                            />                          
+                                                      
+                                                        <label htmlFor="kappeB"> ausgegeben?</label>   
+
+                                                            <input
+                                                                  type='checkbox'
+                                                                  name="kappeB"
+                                                                  id={member.id}
+                                                                  className="inp-kappeB formFields"
+                                                                  checked={member.kappeB}
+                                                                  onChange={handleChange}
+                                                            />         
+
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </section>
+
 
                                   </form>
-
+                                              
                             </div>
                       )))}
 

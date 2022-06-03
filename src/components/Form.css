@@ -1,15 +1,14 @@
 /* ? data form */
 .data-form {
     display: flex;
-    padding: 1rem;
-    gap: .5rem;
+    flex-direction: column;
 }
 
-.data-form:hover > .updateBtn {
+.visibleMemberSections:hover > .updateBtn {
     visibility: visible;
 }
 
-.data-form:hover > .deleteBtn {
+.visibleMemberSections:hover > .deleteBtn {
     visibility: visible;
 }
 
@@ -22,6 +21,43 @@
     border: none;
     outline: none;
     text-align: center;
+}
+
+.visibleMemberSections {
+    display: flex;
+    padding: 1rem;
+    gap: .5rem;
+}
+
+.toggledMemberSections {
+    border-bottom: dashed 2px white ;
+    color: white;
+    padding-bottom: .5rem;
+    padding-left: .5rem;
+    gap: .5rem;
+}
+
+.uniformen-div{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.uniformen-div > h3 {
+    text-align: center;
+}
+
+.uniformen-divs {
+    display: flex;
+    gap: .5rem;
+}
+
+.uniformen-divs > p{
+    width: 8ch;
+}
+
+.infoFields  {
+    width: 5ch;
 }
 
 /* ? classes for the individual inputs  */
@@ -40,4 +76,22 @@
 
 .inp-PO  {
     width: 15ch;
+}
+
+.memberInfo-wrapper{
+    margin-left: 1rem;
+    margin-bottom: .5rem;
+}
+
+.memberInfo-wrapper > h3{
+    color: white;
+}
+
+.inp-Text  {
+}
+
+.memberInfoBtn{
+    width: 2rem;
+    height: 2rem;
+    filter: invert(1);
 }
