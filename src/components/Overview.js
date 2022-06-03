@@ -119,6 +119,38 @@ export default function Overview() {
 
   };
 
+//#endregion
+
+
+ //#region React-Application UI-helper functions
+
+  function toggleFullscreen(elem) {
+    elem = elem || document.documentElement;
+  
+    if (!document.fullscreenElement && !document.mozFullScreenElement &&
+      !document.webkitFullscreenElement && !document.msFullscreenElement) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+      } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+ };
+
   // ? Toggle the member info arrow
   function toggleMemberInfo(index) {
 
@@ -432,9 +464,12 @@ export default function Overview() {
                                                     className="memberInfoBtn"
                                                     alt="Arrow"
                                                     title="Info aufklappen"
-                                                    onClick={()=>{toggleMemberInfo(index)}}
+                                                    onClick={()=>{
+                                                      toggleMemberInfo(index)
+                                                        toggleFullscreen();                         
+                                                        toggleFullscreen(this);
+                                                    }}
                                                 />
-
 
                                                 <img 
                                                   src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
@@ -449,11 +484,9 @@ export default function Overview() {
                                         <section id={`infoSection-${index}`} className="toggledMemberSections" style={{display: 'none'}} >
                                               
                                             <div className="memberInfo-wrapper">
-                                                <h3 className="memberInfos-h3">Infos:</h3>
+                                                <h3 className="memberInfos-h3">Infos</h3>
                                                 <textarea
                                                       name="textarea"
-                                                      cols={20}
-                                                      rows={7}
                                                       id={member.id}
                                                       className="inp-text formFields"
                                                       value={data[index].textarea || ""}
