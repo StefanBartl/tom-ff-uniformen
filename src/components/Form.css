@@ -12,10 +12,6 @@
     visibility: visible;
 }
 
-.data-form > input[type="button"]:hover {
-    background-color: goldenrod;
-}
-
 /* ? summary class for the form input fields */
 .formFields {
     border: none;
@@ -94,3 +90,146 @@
     height: 2rem;
     filter: invert(1);
 }
+
+
+/* ! Main section data */
+
+.data-wrapper {
+    margin: 1rem;
+    border: dashed 2px white ;
+  }
+  
+  .deleteBtn,
+  .updateBtn {
+    width: 8ch;
+    visibility: hidden;
+    outline: solid 4px goldenrod;
+    transition: .2s ease-in-out;
+    transition-property: background-color, color;
+  }
+
+  .deleteBtn:hover,
+  .updateBtn:hover {
+    background-color: goldenrod;
+    color: white;
+  }
+  
+  .notSelectedMember-div{
+    visibility: hidden;
+  }
+  
+  .visibleMemberSection-div{
+    outline: solid 6px white;
+  }
+  
+  .uniformenTypes-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .5rem;
+    padding: .5rem;
+    text-align: center;
+  }
+  
+  .uniformenLabels-div {
+    display: flex;
+    gap: 1rem;
+   }
+  
+   /* .uniformenLabels-div > p { 
+   } */
+  
+   .galaLabel-div .uLabelsP1 {
+      margin-left: 7ch;
+   }
+  
+   .dienstbekleidungLabel-div .uLabelsP1 {
+    margin-left: 9ch;
+  
+  }
+  
+  .einsatzuniformenLabel-div .uLabelsP1 {
+    margin-left: 20ch;
+  }
+  
+   .uniformenLabels-div .uLabelsP2 {
+      margin-left: auto;
+  }
+  
+  
+  /* .galaLabel-div {
+  
+  } */
+  
+  /* .dienstbekleidungLabel-div  {
+  
+  } */
+  
+  /* .einsatzuniformLabel-div{
+   
+  } */
+  
+   .uniformenAssets-divs {
+     display: flex;
+     gap: .5rem;
+   }
+  
+   .uniformenAssets-divs > [type='checkbox'] {
+    margin-left: auto;
+  }
+  
+  /* .galaAsset {
+  
+  } */
+  
+  .galaAsset > p {
+      width: 6ch;
+  }
+  
+  /* .dienstAsset {
+  
+  } */
+  
+  .dienstAsset > p {
+    width: 8ch;
+  }
+  
+  /* .einsatzAsset {
+  
+  } */
+  
+  .einsatzAsset > p {
+    width: 19ch;
+  }
+  
+  /* ? classes for the input labels */
+  
+  .label-form{
+    display: flex;
+    padding: .5rem;
+    gap: .5rem;
+  }
+  
+  .label-form > h3 {
+    border: none;
+    outline: none;
+    text-align: center;
+    color: white;
+  }
+  
+  .label-ID  {
+    color: white;
+    width: 3ch;
+  }
+  
+  .label-FN  {
+    width: 16.5ch;
+  }
+  
+  .label-LN  {
+    width: 17ch;
+  }
+  
+  .label-PO  {
+    width: 13ch;
+  }  

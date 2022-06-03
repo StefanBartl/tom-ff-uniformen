@@ -224,7 +224,7 @@ export default function Overview() {
       ffposition: newPosition,
     });
 
-    window.location.reload();
+    firestoreUIEffect('save');
 
   };
 
@@ -236,8 +236,30 @@ export default function Overview() {
     const updatingMember = doc(db, "uniformen", `${id}`);
     await updateDoc(updatingMember, updatingData);
     
+    firestoreUIEffect('update', id);
+
+  };
+
+  // ? Delete a memberr in the firestore database
+  const handleDeleteFirestoreMember = async (id) => {
+
+    // Delete member in firestore database
+    const docId = `${id}`;
+    await deleteDoc(doc(db, "uniformen", docId));
+
+   firestoreUIEffect('delete', id);
+
+  };
+
+  function firestoreUIEffect(type, id){
+
+    // get the correct btn element 
+    let memberUpdateBtn;
+    type === 'save' 
+      ?  memberUpdateBtn = document.querySelector(`.saveBtn`)
+      : memberUpdateBtn = document.querySelector(`.${type}-${id}`); 
+
     // UI-Effect
-    const memberUpdateBtn = document.querySelector(`.update-${id}`); // get the correct btn element 
     const updateUIEffect = [
       { backgroundColor: 'white', color: 'black'},
       { backgroundColor: 'green', color: 'white'},
@@ -249,20 +271,10 @@ export default function Overview() {
     };    
     memberUpdateBtn.animate(updateUIEffect, updateUIEffectTiming, {easing: "ease-in-out"});
 
-    window.location.reload();
+    setTimeout(()=>{    window.location.reload();},2000)
 
-  };
+};
 
-  // ? Delete a memberr in the firestore database
-  const handleDeleteFirestoreMember = async (id) => {
-
-    // Delete member in firestore database
-    const docId = `${id}`;
-    await deleteDoc(doc(db, "uniformen", docId));
-
-    window.location.reload();
-
-  };
   //#endregion
 
 
@@ -285,7 +297,7 @@ export default function Overview() {
               <button
                   name="saveBtn"
                   id={`save`}
-                  className="saveBtn manBtn formFields"
+                  className="saveBtn firestoreBtn"
                   onClick={handleSaveNewFirestoreMember}
                   style={{display: 'none'}}
                   >
@@ -397,7 +409,7 @@ export default function Overview() {
                                                   type="button"
                                                   name="updateBtn"
                                                   id={member.id}
-                                                  className={`updateBtn update-${member.id} formFields`}
+                                                  className={`updateBtn update-${member.id} firestoreBtn`}
                                                   onClick={(event) => {
                                                     handleUpdateFirestoreMember(member.id);
                                                   }}
@@ -408,7 +420,7 @@ export default function Overview() {
                                                   type="button"
                                                   name="deleteBtn"
                                                   id={member.id}
-                                                  className="deleteBtn formFields"
+                                                  className={`deleteBtn delete-${member.id} firestoreBtn`}
                                                   onClick={(event) => {
                                                     handleDeleteFirestoreMember(member.id);
                                                   }}
@@ -870,7 +882,7 @@ export default function Overview() {
                                                      </div>
 
                                                     <div className="kappe3-div uniformenAssets-divs einsatzAsset">
-                                                        <p>kappe3</p>   
+                                                        <p>Kappe</p>   
                                                   
                                                                 <input
                                                                       type='text'
