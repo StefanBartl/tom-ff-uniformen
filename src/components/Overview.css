@@ -4,14 +4,18 @@
     background-color: var(--wkd-red);
 }
 
-.main-logo {
-    width: 5rem;
-}
-
 .ov-main-title {
     color: var(--wkd-white);
     text-align: center;
     font-size: 3rem;
+  }
+
+/* ? New member section */
+
+  .imageNewBtn{
+    width: 2rem;
+    height: 2rem;
+    filter: invert(1);
   }
 
 .console{
@@ -40,32 +44,6 @@
   margin-left: 1.5rem;
 }
 
-.add90degAni{
-  animation: add90degAnimation .1s forwards 1 ease-in; 
-}
-
-.remove90degAni{
-  animation: remove90degAnimation .1s forwards 1 ease-in; 
-}
-
-@keyframes add90degAnimation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(90deg);
-  }
-}
-
-@keyframes remove90degAnimation {
-  0% {
-    transform: rotate(90deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .saveBtn{
   margin-left: .7rem;
 }
@@ -86,6 +64,94 @@
   width: 8rem;
   width: fit-content;
   visibility: hidden;
+}
+
+.notSelectedMember-div{
+  visibility: hidden;
+}
+
+.visibleMemberSection-div{
+  outline: solid 6px white;
+}
+
+.uniformenTypes-div{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: .5rem;
+  padding: .5rem;
+  text-align: center;
+}
+
+.uniformenLabels-div {
+  display: flex;
+  gap: 1rem;
+ }
+
+ /* .uniformenLabels-div > p { 
+ } */
+
+ .galaLabel-div .uLabelsP1 {
+    margin-left: 7ch;
+ }
+
+ .dienstbekleidungLabel-div .uLabelsP1 {
+  margin-left: 9ch;
+
+}
+
+.einsatzuniformenLabel-div .uLabelsP1 {
+  margin-left: 20ch;
+}
+
+ .uniformenLabels-div .uLabelsP2 {
+    margin-left: auto;
+}
+
+
+/* .galaLabel-div {
+
+} */
+
+/* .dienstbekleidungLabel-div  {
+
+} */
+
+/* .einsatzuniformLabel-div{
+ 
+} */
+
+ .uniformenAssets-divs {
+   display: flex;
+   gap: .5rem;
+ }
+
+ .uniformenAssets-divs > [type='checkbox'] {
+  margin-left: auto;
+}
+
+/* .galaAsset {
+
+} */
+
+.galaAsset > p {
+    width: 6ch;
+}
+
+/* .dienstAsset {
+
+} */
+
+.dienstAsset > p {
+  width: 8ch;
+}
+
+/* .einsatzAsset {
+
+} */
+
+.einsatzAsset > p {
+  width: 19ch;
 }
 
 /* ? classes for the input labels */
@@ -120,8 +186,35 @@
   width: 13ch;
 }
 
-.imageNewBtn{
-  width: 2rem;
-  height: 2rem;
-  filter: invert(1);
+
+
+
+
+
+/* ? Animations */
+
+.add90degAni{
+  animation: add90degAnimation .1s forwards 1 ease-in; 
+}
+
+.remove90degAni{
+  animation: remove90degAnimation .1s forwards 1 ease-in; 
+}
+
+@keyframes add90degAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes remove90degAnimation {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

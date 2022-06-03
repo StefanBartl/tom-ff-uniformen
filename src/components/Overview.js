@@ -1,4 +1,12 @@
-// TODO Toggle Animation without css
+// TODO Nice little pictures in uniformen types?
+// TODO useEffect nullentry needed?
+// TODO Toggle Animation without css and better effect?
+// TODO Titles and eye candy?
+// TODO Cllickung info arraow should focus element
+// TODO Finish: class test of needed?
+// TODO Bonus: Searchbar or smth?
+// TODO Bonus: Add new atribute?
+// TODO DEPLOY !!!
 
 // ? React and file imports
 import { useState, useEffect, Children } from "react";
@@ -10,88 +18,66 @@ import toggle90degAnimation from './Toggle90Animation';
 import { db } from "../firebase-config";
 import { collection, doc, getDocs, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
 
+
 export default function Overview() {
 
-  const options = [
-    { value: true, label: 'Ja' },
-    { value: false, label: 'Nein' }
-  ]
 
+  //#region React-Application logic
 
-  //#region Firebase firestore
-
-  // ? [....States]
+  // state to hold hold whole member data
   const [data, setData] = useState([]);
+  //  tracking state for add a new member input fields
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
   const [newPosition, setNewPosition] = useState("");
-  const [newTextarea, setNewTextarea] = useState("");
-  // Galauniformen state
-  const [newMantelS, setNewMantelS] = useState(0);
-  const [newMantelB, setNewMantelB] = useState(true);
-  const [newJackeS, setNewJackeN] = useState(0);
-  const [newJackeB, setNewJackeB] = useState(true);
-  const [newHoseS, setNewHoseS] = useState(0);
-  const [newHoseB, setNewHoseB] = useState(true);
-  const [newHemdS, setNewHemdS] = useState(0);
-  const [newHemdB, setNewHemdB] = useState(true);
-  const [newKappeS, setNewKappeS] = useState(0);
-  const [newKappeB, setNewKappeB] = useState(true);
 
+  // ? Handle state of member
+  function handleChange(event) {
 
-
-  // ? Fetch database from Firebase
-  useEffect(() => {
-    const dataCollectionRef = collection(db, "uniformen");
-    const getData = async function fetchingData() {
-      const fetchedData = await getDocs(dataCollectionRef);
-
-      setData(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-
-      setData(
-        fetchedData.docs.map((doc) => ({
-          ...doc.data(),
-          firstName: doc.firstName,
-        }))
-      );
-      setData(
-        fetchedData.docs.map((doc) => ({
-          ...doc.data(),
-          lastName: doc.lastName,
-        }))
-      );
-      setData(
-        fetchedData.docs.map((doc) => ({
-          ...doc.data(),
-          ffposition: doc.ffposition,
-        }))
-      );
-
-      setData(
-        fetchedData.docs.map((doc) => ({
-          ...doc.data(),
-          textarea: doc.textarea,
-        }))
-      );
-      setData(
-        fetchedData.docs.map((doc) => ({
-          ...doc.data(),
-          mantelN: doc.mantelN,
-        }))
-      );
-      setData(
-        fetchedData.docs.map((doc) => ({
-          ...doc.data(),
-          mantelB: doc.mantelB,
-        }))
-      );
-
-      setData(
-        fetchedData.docs.map((doc) => ({ ...doc.data(), nullentry: null }))
-      );
-    };
-    getData();
-  }, []);
+    // Get data from onChange event
+     const idForChange =  parseInt(event.target.id);
+     const nameForChange =  event.target.name;
+     const valueForChange =  event.target.value;
+  
+      // Update member in data summary state 'data'
+      const newData = [];
+  
+      // helper function
+      function updateDataState(){
+        for (let i = 0; i < data.length; i++) {
+          newData.push(data[i]);
+          if (i === idForChange) {
+            newData[i][nameForChange] = valueForChange;
+          };
+        };
+        setData(newData);
+        return;
+      };
+  
+      // handle checkbox exception
+      if(event.target.type === 'checkbox') {
+  
+          let newBool;
+          if(data[idForChange][nameForChange] === 'on' || data[idForChange][nameForChange] === true) {
+            newBool = false;
+          } else newBool = true;
+  
+          data[idForChange][nameForChange] = newBool;
+  
+          for (let i = 0; i < data.length; i++) {
+            newData.push(data[i]);
+            if (i === idForChange) {
+              newData[i][nameForChange] = newBool;
+            };
+          };
+          setData(newData);
+          return;
+      };
+  
+      // trigger data update
+      updateDataState();
+  
+  };
 
   // ? Create new form to add a new member
   function toggleNewMemberDiv(event) {
@@ -125,8 +111,109 @@ export default function Overview() {
 
   };
 
+  // ? Toggle the member info arrow
+  function toggleMemberInfo(index) {
+
+    // Get DOM-Element
+    const memberInfoBtn = document.getElementById(`memberInfoBtn-${index}`); 
+    const memberWholeSection = document.querySelector(`.formMemberDiv-${index}`); 
+    const memberInfoSection = document.getElementById(`infoSection-${index}`); 
+    const allMembersArray = document.querySelectorAll('.form-memberDiv');
+
+    // Toggle UI logic
+    if(memberInfoSection.style.display === 'none'){
+      toggle90degAnimation(memberInfoBtn);
+      memberInfoSection.style.display = 'flex'; 
+      memberWholeSection.classList.add('visibleMemberSection-div');
+      for(let i = 0; i < allMembersArray.length; i++){
+       if (allMembersArray[i].classList.contains('visibleMemberSection-div') === false) allMembersArray[i].classList.add('notSelectedMember-div'); // TODO Or hardcoded better?
+      };
+    } else {
+      toggle90degAnimation(memberInfoBtn);
+      memberInfoSection.style.display = 'none';
+      for(let i = 0; i < allMembersArray.length; i++){
+        if (allMembersArray[i].classList.contains('visibleMemberSection-div') == false) allMembersArray[i].classList.remove('notSelectedMember-div'); // TODO Or hardcoded better?
+       };
+       memberWholeSection.classList.remove('visibleMemberSection-div');
+    };
+
+  };
+
+//#endregion
+
+
+ //#region Firebase firestore
+
+  // ? Fetch database from Firebase
+  useEffect(() => {
+    const dataCollectionRef = collection(db, "uniformen");
+    const getData = async function fetchingData() {
+    const fetchedData = await getDocs(dataCollectionRef);
+
+      setData(
+        fetchedData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+          firstName: doc.firstName,
+          lastName: doc.lastName,
+          ffposition: doc.ffposition,
+          textarea: doc.textarea,
+
+          mantelN: doc.mantelN,
+          mantelB: doc.mantelB,
+          jackeN: doc.jackeN,
+          jackeB: doc.jackeB,
+          hoseN: doc.hoseN,
+          hoseB: doc.hoseB,
+          hemdN: doc.hemdN,
+          hemdB: doc.hemdB,
+          kappeN: doc.kappeN,
+          kappeB: doc.kappeB,
+
+          pulloverN: doc.pulloverN,
+          pulloverB: doc.pulloverB,
+          hose2N: doc.hose2N,
+          hose2B: doc.hose2B,
+          tshirtN: doc.tshirtN,
+          tshirtB: doc.tshirtB,
+          poloN: doc.poloN,
+          poloB: doc.poloB,
+          bluseN: doc.bluseN,
+          bluseB: doc.bluseB,
+          fleeceN: doc.fleeceN,
+          fleeceB: doc.fleeceB,
+
+          schutzjackeN: doc.schutzjackeN,
+          schutzjackeB: doc.schutzjackeB,
+          schutzhoseN: doc.schutzhoseN,
+          schutzhoseB: doc.schutzhoseB,
+          einsatzstiefelschwarz2N: doc.einsatzstiefelschwarz2N,
+          einsatzstiefelschwarz2B: doc.einsatzstiefelschwarz2B,
+          einsatzstiefelgelb2N: doc.einsatzstiefelgelb2N,
+          einsatzstiefelgelb2B: doc.einsatzstiefelgelb2B,
+          einsatzhandschuhe2N: doc.einsatzhandschuhe2N,
+          einsatzhandschuhe2B: doc.einsatzhandschuhe2B,
+          kappe3N: doc.kappe3N,
+          kappe3B: doc.kappe3B,
+          haubeN: doc.haubeN,
+          haubeB: doc.haubeB,
+          helmN: doc.helmN,
+          helmB: doc.helmB,
+          gurtN: doc.gurtN,
+          gurtB: doc.gurtB,
+
+        }))
+      );
+
+      setData(
+        fetchedData.docs.map((doc) => ({ ...doc.data(), nullentry: null }))
+      );
+    };
+    getData();
+  }, []);
+
   // ? Add a new member to the firestore database
-  const saveNewMember = async () => {
+  const handleSaveNewFirestoreMember = async () => {
     
     // Store new member in firestore database
     const dataCollectionRef = collection(db, "uniformen");
@@ -135,68 +222,14 @@ export default function Overview() {
       firstName: newFirstName,
       lastName: newLastName,
       ffposition: newPosition,
-      textarea: newTextarea,
-
-      mantelS: newMantelS,
-      mantelB: newMantelB,
-      jackeS: newJackeS,
-      jackeB: newJackeB,
-      hoseS: newHoseS,
-      hoseB: newHoseB,
-      hemdS: newHemdS,
-      hemdB: newHemdB,
-      kappeS: newKappeS,
-      kappeB: newKappeB,
-
     });
 
     window.location.reload();
 
   };
 
-  // ? Handle state of member
-  function handleChange(event) {
-
-    // Update member in state
-    const newData = [];
-    const updatingMember = data[parseInt(event.target.id)];
-
-
-    //#region Galauniformen boolean
-    if(event.target.name === "mantelB") {setNewMantelB(!newMantelB);
-    updatingMember[event.target.name] = newMantelB;
-    };
-
-    if(event.target.name === "JackeB") {setNewJackeB(!newJackeB);
-    updatingMember[event.target.name] = newJackeB;
-    };
-
-    if(event.target.name === "HoseB") {setNewHoseB(!newHoseB);
-    updatingMember[event.target.name] = newHoseB;
-    };
-
-    if(event.target.name === "HemdB") {setNewHemdB(!newHemdB);
-    updatingMember[event.target.name] = newHemdB;
-    };
-
-    if(event.target.name === "KappeB") {setNewKappeB(!newKappeB);
-      updatingMember[event.target.name] = newKappeB;
-    };
-    //#endregion
-
-    for (let i = 0; i < data.length; i++) {
-      newData.push(data[i]);
-      if (i === event.target.id) {
-        newData[i] = updatingMember;
-      }
-    }
-
-    setData(newData);
-
-  };
-
   // ? Update a member in the firestore database
-  const handleUpdate = async (id) => {
+  const handleUpdateFirestoreMember = async (id) => {
 
     // Update member in firestore database
     const updatingData = data[id];
@@ -221,7 +254,7 @@ export default function Overview() {
   };
 
   // ? Delete a memberr in the firestore database
-  const handleDelete = async (id) => {
+  const handleDeleteFirestoreMember = async (id) => {
 
     // Delete member in firestore database
     const docId = `${id}`;
@@ -230,27 +263,8 @@ export default function Overview() {
     window.location.reload();
 
   };
-
-  // ? Toggle the member info arrow
-  function toggleMemberInfo(index) {
-
-    // Get DOM-Element
-    const memberInfoBtn = document.getElementById(`memberInfoBtn-${index}`); 
-    const memberInfoSection = document.getElementById(`infoSection-${index}`); 
-
-    // Toggle UI logic
-    if(memberInfoSection.style.display === 'none'){
-      toggle90degAnimation(memberInfoBtn);
-      memberInfoSection.style.display = 'flex'; 
-    } else {
-      toggle90degAnimation(memberInfoBtn);
-      memberInfoSection.style.display = 'none';
-    };
-
-  };
-  
-
   //#endregion
+
 
   return (
     <div className="Overview">
@@ -272,7 +286,7 @@ export default function Overview() {
                   name="saveBtn"
                   id={`save`}
                   className="saveBtn manBtn formFields"
-                  onClick={saveNewMember}
+                  onClick={handleSaveNewFirestoreMember}
                   style={{display: 'none'}}
                   >
                   speichern
@@ -333,7 +347,7 @@ export default function Overview() {
                     {Children.toArray(
                       data.map((member, index) => (
 
-                            <div className="form-memberDiv">
+                            <div className={`form-memberDiv formMemberDiv-${index}`}>
 
                                   <form name="dataForm" className="data-form">
 
@@ -348,7 +362,7 @@ export default function Overview() {
                                                   name="firstName"
                                                   id={member.id}
                                                   className="inp-FN formFields"
-                                                  value={member.firstName}
+                                                  value={data[index].firstName}
                                                   onChange={handleChange}
                                                 />
 
@@ -357,7 +371,7 @@ export default function Overview() {
                                                   name="lastName"
                                                   id={member.id}
                                                   className="inp-LN formFields"
-                                                  value={member.lastName}
+                                                  value={data[index].lastName}
                                                   onChange={handleChange}
                                                 />
 
@@ -366,7 +380,7 @@ export default function Overview() {
                                                   name="ffposition"
                                                   id={member.id}
                                                   className="inp-PO formFields"
-                                                  value={member.ffposition}
+                                                  value={data[index].ffposition}
                                                   onChange={handleChange}
                                                 />
 
@@ -385,7 +399,7 @@ export default function Overview() {
                                                   id={member.id}
                                                   className={`updateBtn update-${member.id} formFields`}
                                                   onClick={(event) => {
-                                                    handleUpdate(member.id);
+                                                    handleUpdateFirestoreMember(member.id);
                                                   }}
                                                   defaultValue="update"
                                                 />
@@ -396,7 +410,7 @@ export default function Overview() {
                                                   id={member.id}
                                                   className="deleteBtn formFields"
                                                   onClick={(event) => {
-                                                    handleDelete(member.id);
+                                                    handleDeleteFirestoreMember(member.id);
                                                   }}
                                                   defaultValue="löschen"
                                                 />
@@ -415,16 +429,21 @@ export default function Overview() {
                                                       rows={7}
                                                       id={member.id}
                                                       className="inp-text formFields"
-                                                      value={member.textfield || ""}
+                                                      value={data[index].textarea || ""}
                                                       onChange={handleChange}
                                                     />
                                             </div>     
 
-                                            <div className="uniformen-div"> 
+                                            <div className="uniformenTypes-div"> 
         
-                                                  <h3>Galauniformen</h3>
+                                                <h3>Galauniformen</h3>
 
-                                                <div className="mantel-div uniformen-divs">
+                                                <div className="galaLabel-div uniformenLabels-div">
+                                                    <p className="galaP1 uLabelsP1">Größe</p>
+                                                    <p className="galaP2 uLabelsP2" title='Bereits ausgegeben?'>aus?</p>
+                                                </div>
+
+                                                <div className="mantel-div uniformenAssets-divs galaAsset">
                                                     <p>Mantel</p>   
                                               
                                                             <input
@@ -432,24 +451,22 @@ export default function Overview() {
                                                                   name="mantelS"
                                                                   id={member.id}
                                                                   className="inp-mantelS infoFields formFields"
-                                                                  value={member.mantelN}
+                                                                  value={data[index].mantelS}
                                                                   onChange={handleChange}
                                                             />                          
-                                                      
-                                                        <label htmlFor="mantelB"> ausgegeben?</label>   
 
                                                             <input
                                                                   type='checkbox'
                                                                   name="mantelB"
                                                                   id={member.id}
                                                                   className="inp-mantelB formFields"
-                                                                  checked={member.mantelB}
+                                                                  checked={data[index].mantelB || false}
                                                                   onChange={handleChange}
                                                             />         
 
                                                 </div>
 
-                                                <div className="jacke-div uniformen-divs">
+                                                <div className="jacke-div uniformenAssets-divs galaAsset">
                                                     <p>Jacke</p>   
                                               
                                                             <input
@@ -457,24 +474,22 @@ export default function Overview() {
                                                                   name="jackeS"
                                                                   id={member.id}
                                                                   className="inp-jackeS infoFields formFields"
-                                                                  value={member.jackeN}
+                                                                  value={data[index].jackeS}
                                                                   onChange={handleChange}
-                                                            />                          
-                                                      
-                                                        <label htmlFor="jackeB"> ausgegeben?</label>   
+                                                            />                         
 
                                                             <input
                                                                   type='checkbox'
                                                                   name="jackeB"
                                                                   id={member.id}
                                                                   className="inp-jackeB formFields"
-                                                                  checked={member.jackeB}
+                                                                  checked={data[index].jackeB || false}
                                                                   onChange={handleChange}
                                                             />         
 
                                                 </div>
 
-                                                <div className="hose-rock-div uniformen-divs">
+                                                <div className="hose-rock-div uniformenAssets-divs galaAsset">
                                                     <p>Hose</p>   
                                               
                                                             <input
@@ -482,24 +497,22 @@ export default function Overview() {
                                                                   name="hoseS"
                                                                   id={member.id}
                                                                   className="inp-hoseS infoFields formFields"
-                                                                  value={member.hoseN}
+                                                                  value={data[index].hoseS}
                                                                   onChange={handleChange}
-                                                            />                          
-                                                      
-                                                        <label htmlFor="hoseB"> ausgegeben?</label>   
+                                                            />                        
 
                                                             <input
                                                                   type='checkbox'
                                                                   name="hoseB"
                                                                   id={member.id}
                                                                   className="inp-hoseB formFields"
-                                                                  checked={member.hoseB}
+                                                                  checked={data[index].hoseB || false }
                                                                   onChange={handleChange}
                                                             />         
 
                                                 </div>
 
-                                                <div className="hemd-div uniformen-divs">
+                                                <div className="hemd-div uniformenAssets-divs galaAsset">
                                                     <p>Hemd</p>   
                                               
                                                             <input
@@ -507,24 +520,22 @@ export default function Overview() {
                                                                   name="hemdS"
                                                                   id={member.id}
                                                                   className="inp-hemdS infoFields formFields"
-                                                                  value={member.hemdN}
+                                                                  value={data[index].hemdS}
                                                                   onChange={handleChange}
-                                                            />                          
-                                                      
-                                                        <label htmlFor="hemdB"> ausgegeben?</label>   
+                                                            />                        
 
                                                             <input
                                                                   type='checkbox'
                                                                   name="hemdB"
                                                                   id={member.id}
                                                                   className="inp-hemdB formFields"
-                                                                  checked={member.hemdB}
+                                                                  checked={data[index].hemdB || false }
                                                                   onChange={handleChange}
                                                             />         
 
                                                 </div>
 
-                                                <div className="kappe-div uniformen-divs">
+                                                <div className="kappe-div uniformenAssets-divs galaAsset">
                                                     <p>Kappe</p>   
                                               
                                                             <input
@@ -532,24 +543,427 @@ export default function Overview() {
                                                                   name="kappeS"
                                                                   id={member.id}
                                                                   className="inp-kappeSb infoFields formFields"
-                                                                  value={member.kappeN}
+                                                                  value={data[index].kappeS}
                                                                   onChange={handleChange}
-                                                            />                          
-                                                      
-                                                        <label htmlFor="kappeB"> ausgegeben?</label>   
+                                                            />                         
 
                                                             <input
                                                                   type='checkbox'
                                                                   name="kappeB"
                                                                   id={member.id}
                                                                   className="inp-kappeB formFields"
-                                                                  checked={member.kappeB}
+                                                                  checked={data[index].kappeB || false}
                                                                   onChange={handleChange}
                                                             />         
 
                                                 </div>
 
 
+
+                                            </div>
+
+                                            <div className="uniformenTypes-div dienstbekleidung-div"> 
+        
+                                                  <h3>Dienstbekleidung</h3>
+
+                                                  <div className="dienstbekleidungLabel-div uniformenLabels-div">
+                                                      <p className="dienstbekleidungP1 uLabelsP1">Größe</p>
+                                                      <p className="dienstbekleidungP2 uLabelsP2" title='Bereits ausgegeben?'>aus?</p>
+                                                 </div>
+
+                                                  <div className="pullover-div uniformenAssets-divs dienstAsset">
+                                                      <p>Pullover</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="pulloverS"
+                                                                    id={member.id}
+                                                                    className="inp-pulloverS infoFields formFields"
+                                                                    value={data[index].pulloverS}
+                                                                    onChange={handleChange}
+                                                              />                          
+      
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="pulloverB"
+                                                                    id={member.id}
+                                                                    className="inp-pulloverB formFields"
+                                                                    checked={data[index].pulloverB || false}
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                  </div>
+
+                                                  <div className="hose2-div uniformenAssets-divs dienstAsset">
+                                                      <p>Hose</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="hose2S"
+                                                                    id={member.id}
+                                                                    className="inp-hose2S infoFields formFields"
+                                                                    value={data[index].hose2S}
+                                                                    onChange={handleChange}
+                                                              />                          
+
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="hose2B"
+                                                                    id={member.id}
+                                                                    className="inp-hose2B formFields"
+                                                                    checked={data[index].hose2B || false}
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                  </div>
+
+                                                  <div className="tshirt-div uniformenAssets-divs dienstAsset">
+                                                      <p>T-Shirt</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="tshirtS"
+                                                                    id={member.id}
+                                                                    className="inp-tshirtS infoFields formFields"
+                                                                    value={data[index].tshirtS}
+                                                                    onChange={handleChange}
+                                                              />                          
+  
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="tshirtB"
+                                                                    id={member.id}
+                                                                    className="inp-tshirtB formFields"
+                                                                    checked={data[index].tshirtB || false }
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                  </div>
+
+                                                  <div className="polo-div uniformenAssets-divs dienstAsset">
+                                                      <p>Polo</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="poloS"
+                                                                    id={member.id}
+                                                                    className="inp-poloS infoFields formFields"
+                                                                    value={data[index].poloS}
+                                                                    onChange={handleChange}
+                                                              />                          
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="poloB"
+                                                                    id={member.id}
+                                                                    className="inp-poloB formFields"
+                                                                    checked={data[index].poloB || false }
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                     </div>
+
+                                                    <div className="Bluse-div uniformenAssets-divs dienstAsset">
+                                                        <p>Bluse</p>   
+                                                  
+                                                                <input
+                                                                      type='text'
+                                                                      name="bluseS"
+                                                                      id={member.id}
+                                                                      className="inp-bluseSb infoFields formFields"
+                                                                      value={data[index].bluseS}
+                                                                      onChange={handleChange}
+                                                                />                          
+    
+
+                                                                <input
+                                                                      type='checkbox'
+                                                                      name="bluseB"
+                                                                      id={member.id}
+                                                                      className="inp-bluseB formFields"
+                                                                      checked={data[index].bluseB || false}
+                                                                      onChange={handleChange}
+                                                                />         
+
+                                                    </div>
+
+                                                    <div className="fleece-div uniformenAssets-divs dienstAsset">
+                                                        <p>Fleece</p>   
+                                                  
+                                                                <input
+                                                                      type='text'
+                                                                      name="fleeceS"
+                                                                      id={member.id}
+                                                                      className="inp-fleeceSb infoFields formFields"
+                                                                      value={data[index].fleeceS}
+                                                                      onChange={handleChange}
+                                                                />                          
+      
+
+                                                                <input
+                                                                      type='checkbox'
+                                                                      name="fleeceB"
+                                                                      id={member.id}
+                                                                      className="inp-fleeceB formFields"
+                                                                      checked={data[index].fleeceB || false}
+                                                                      onChange={handleChange}
+                                                                />         
+
+                                                    </div>
+
+                                            </div>
+
+                                            <div className="uniformenTypes-div einsatzuniform-div"> 
+        
+                                                  <h3>Einsatzuniform</h3>
+
+                                                  <div className="einsatzuniformenLabel-div uniformenLabels-div">
+                                                      <p className="einsatzuniformenP1 uLabelsP1">Größe</p>
+                                                      <p className="einsatzuniformenP2 uLabelsP2" title='Bereits ausgegeben?'>aus?</p>
+                                                 </div>
+
+                                                  <div className="schutzjacke-div uniformenAssets-divs einsatzAsset">
+                                                      <p>Schutzjacke</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="schutzjackeS"
+                                                                    id={member.id}
+                                                                    className="inp-schutzjackeS infoFields formFields"
+                                                                    value={data[index].schutzjackeS}
+                                                                    onChange={handleChange}
+                                                              />                          
+            
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="schutzjackeB"
+                                                                    id={member.id}
+                                                                    className="inp-schutzjackeB formFields"
+                                                                    checked={data[index].schutzjackeB || false}
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                  </div>
+
+                                                  <div className="schutzhose2-div uniformenAssets-divs einsatzAsset">
+                                                      <p>Schutzhose</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="schutzhose2S"
+                                                                    id={member.id}
+                                                                    className="inp-schutzhose2S infoFields formFields"
+                                                                    value={data[index].schutzhose2S}
+                                                                    onChange={handleChange}
+                                                              />                          
+            
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="schutzhose2B"
+                                                                    id={member.id}
+                                                                    className="inp-schutzhose2B formFields"
+                                                                    checked={data[index].schutzhose2B || false}
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                  </div>
+
+                                                  <div className="einsatzstiefelschwarz-div uniformenAssets-divs einsatzAsset">
+                                                      <p>Einsatzstiefel schwarz</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="einsatzstiefelschwarzS"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzstiefelschwarzS infoFields formFields"
+                                                                    value={data[index].einsatzstiefelschwarzS}
+                                                                    onChange={handleChange}
+                                                              />                          
+                                
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="einsatzstiefelschwarzB"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzstiefelschwarzB formFields"
+                                                                    checked={data[index].einsatzstiefelschwarzB || false }
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                  </div>
+
+                                                  <div className="einsatzstiefelgelb-div uniformenAssets-divs einsatzAsset">
+                                                      <p>Einsatzstiefel gelb</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="einsatzstiefelgelbS"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzstiefelgelbS infoFields formFields"
+                                                                    value={data[index].einsatzstiefelgelbS}
+                                                                    onChange={handleChange}
+                                                              />                          
+                          
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="einsatzstiefelgelbB"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzstiefelgelbB formFields"
+                                                                    checked={data[index].einsatzstiefelgelbB || false }
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                  </div>
+
+                                                  <div className="einsatzhandschuhe-div uniformenAssets-divs einsatzAsset">
+                                                      <p>Einsatzhandschuhe</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="einsatzhandschuheS"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzhandschuheS infoFields formFields"
+                                                                    value={data[index].einsatzhandschuheS}
+                                                                    onChange={handleChange}
+                                                              />                          
+                        
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="einsatzhandschuheB"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzhandschuheB formFields"
+                                                                    checked={data[index].einsatzhandschuheB || false }
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                     </div>
+
+                                                     <div className="einsatzstiefel-div uniformenAssets-divs einsatzAsset">
+                                                      <p>Einsatzstiefel</p>   
+                                                
+                                                              <input
+                                                                    type='text'
+                                                                    name="einsatzstiefelS"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzstiefelS infoFields formFields"
+                                                                    value={data[index].einsatzstiefelS}
+                                                                    onChange={handleChange}
+                                                              />                          
+                  
+
+                                                              <input
+                                                                    type='checkbox'
+                                                                    name="einsatzstiefelB"
+                                                                    id={member.id}
+                                                                    className="inp-einsatzstiefelB formFields"
+                                                                    checked={data[index].einsatzstiefelB || false }
+                                                                    onChange={handleChange}
+                                                              />         
+
+                                                     </div>
+
+                                                    <div className="kappe3-div uniformenAssets-divs einsatzAsset">
+                                                        <p>kappe3</p>   
+                                                  
+                                                                <input
+                                                                      type='text'
+                                                                      name="kappe3S"
+                                                                      id={member.id}
+                                                                      className="inp-kappe3Sb infoFields formFields"
+                                                                      value={data[index].kappe3S}
+                                                                      onChange={handleChange}
+                                                                />                          
+      
+
+                                                                <input
+                                                                      type='checkbox'
+                                                                      name="kappe3B"
+                                                                      id={member.id}
+                                                                      className="inp-kappe3B formFields"
+                                                                      checked={data[index].kappe3B || false}
+                                                                      onChange={handleChange}
+                                                                />         
+
+                                                    </div>
+
+                                                    <div className="haube-div uniformenAssets-divs einsatzAsset">
+                                                        <p>haube</p>   
+                                                  
+                                                                <input
+                                                                      type='text'
+                                                                      name="haubeS"
+                                                                      id={member.id}
+                                                                      className="inp-haubeSb infoFields formFields"
+                                                                      value={data[index].haubeS}
+                                                                      onChange={handleChange}
+                                                                />                          
+    
+
+                                                                <input
+                                                                      type='checkbox'
+                                                                      name="haubeB"
+                                                                      id={member.id}
+                                                                      className="inp-haubeB formFields"
+                                                                      checked={data[index].haubeB || false}
+                                                                      onChange={handleChange}
+                                                                />         
+
+                                                    </div>
+
+                                                    <div className="helm-div uniformenAssets-divs einsatzAsset">
+                                                        <p>Helm</p>   
+                                                  
+                                                                <input
+                                                                      type='text'
+                                                                      name="helmS"
+                                                                      id={member.id}
+                                                                      className="inp-helmSb infoFields formFields"
+                                                                      value={data[index].helmS}
+                                                                      onChange={handleChange}
+                                                                />                          
+  
+
+                                                                <input
+                                                                      type='checkbox'
+                                                                      name="helmB"
+                                                                      id={member.id}
+                                                                      className="inp-helmB formFields"
+                                                                      checked={data[index].helmB || false}
+                                                                      onChange={handleChange}
+                                                                />         
+
+                                                    </div>
+
+                                                    <div className="Gurt-div uniformenAssets-divs einsatzAsset">
+                                                        <p>Gurt</p>   
+                                                  
+                                                                <input
+                                                                      type='text'
+                                                                      name="GurtS"
+                                                                      id={member.id}
+                                                                      className="inp-GurtSb infoFields formFields"
+                                                                      value={data[index].GurtS}
+                                                                      onChange={handleChange}
+                                                                />                          
+  
+
+                                                                <input
+                                                                      type='checkbox'
+                                                                      name="GurtB"
+                                                                      id={member.id}
+                                                                      className="inp-GurtB formFields"
+                                                                      checked={data[index].GurtB || false}
+                                                                      onChange={handleChange}
+                                                                />         
+
+                                                    </div>
 
                                             </div>
 
