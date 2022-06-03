@@ -4,7 +4,18 @@
     background-color: var(--wkd-red);
 }
 
-.ov-main-title {
+.headline-div  {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+}
+
+.headline-a > img {
+  margin-top: .5rem;
+  height: 3rem;
+}
+
+.main-title {
     color: var(--wkd-white);
     text-align: center;
     font-size: 3rem;

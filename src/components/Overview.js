@@ -1,8 +1,13 @@
+// !                 === To-Do list ===
 // TODO Nice little pictures in uniformen types?
 // TODO useEffect nullentry needed?
 // TODO Toggle Animation without css and better effect?
 // TODO Titles and eye candy?
-// TODO Cllickung info arraow should focus element
+// TODO Clickung info arraow should focus element
+// TODO Kein aufrücken bei arroew click
+// TODO Function testing arguments
+// TODO Separation in components
+// TODO Login-System
 // TODO Finish: class test of needed?
 // TODO Bonus: Searchbar or smth?
 // TODO Bonus: Add new atribute?
@@ -22,7 +27,7 @@ import { collection, doc, getDocs, setDoc, updateDoc, deleteDoc } from "firebase
 export default function Overview() {
 
 
-  //#region React-Application logic
+ //#region React-Application logic
 
   // state to hold hold whole member data
   const [data, setData] = useState([]);
@@ -142,7 +147,7 @@ export default function Overview() {
 //#endregion
 
 
- //#region Firebase firestore
+//#region Firebase firestore
 
   // ? Fetch database from Firebase
   useEffect(() => {
@@ -215,6 +220,11 @@ export default function Overview() {
   // ? Add a new member to the firestore database
   const handleSaveNewFirestoreMember = async () => {
     
+    if(newFirstName === "" || newLastName === "" || newPosition === "") {
+      alert("Bitte gib Vorname, Nachname und Dienstgrad ein!");
+      return
+    };
+
     // Store new member in firestore database
     const dataCollectionRef = collection(db, "uniformen");
     await setDoc(doc(dataCollectionRef, `${data.length || 0}`), {
@@ -244,10 +254,13 @@ export default function Overview() {
   const handleDeleteFirestoreMember = async (id) => {
 
     // Delete member in firestore database
-    const docId = `${id}`;
-    await deleteDoc(doc(db, "uniformen", docId));
 
-   firestoreUIEffect('delete', id);
+    if(window.confirm(`Willst du ${data[id].ffposition} ${data[id].firstName} ${data[id].lastName} wirklich löschen? Der Datensatz kann nicht mehr hergestellt werden!`)){
+      const docId = `${id}`;
+      await deleteDoc(doc(db, "uniformen", docId));
+      firestoreUIEffect('delete', id);
+      return;
+    }; 
 
   };
 
@@ -273,16 +286,21 @@ export default function Overview() {
 
     setTimeout(()=>{    window.location.reload();},2000)
 
-};
+  };
 
-  //#endregion
+//#endregion
 
 
   return (
     <div className="Overview">
-      
-          <h1 className="ov-main-title">FF Kaltenleutgeb Uniformen-Datenbank</h1>
 
+            <div className="headline-div">
+                <a href="https://www.ff-kaltenleutgeben.at/" className="headline-a">
+                    <img src='https://drive.google.com/uc?export=download&id=17cEBOBeqlDBQDUqc3nAYnGMQgh6TGyFP' alt="Logo der FF-Kaltenleutgeben" title="Klicke um zur Website der FF-Kaltenleutgeben zu gelangen!" />
+                </a>
+                <h1 className="main-title">FF Kaltenleutgeb Uniformen-Datenbank</h1>
+            </div>
+      
           <div className="console">
 
               <img 
@@ -291,6 +309,7 @@ export default function Overview() {
                   id={`new`}
                   className="newBtn imageNewBtn"
                   alt="Arrow"
+                  title="Klicke um eine:n neue:n Kamerad:in anzulegen!"
                   onClick={toggleNewMemberDiv}
               />
 
@@ -300,6 +319,7 @@ export default function Overview() {
                   className="saveBtn firestoreBtn"
                   onClick={handleSaveNewFirestoreMember}
                   style={{display: 'none'}}
+                  title="Klicke um die/den neue:n Kamerad:in anzulegen!"
                   >
                   speichern
               </button>
@@ -321,6 +341,7 @@ export default function Overview() {
                 onChange={(event) => {
                   setNewFirstName(event.target.value);
                 }}
+                required
               />
 
               <input
@@ -333,11 +354,12 @@ export default function Overview() {
                 onChange={(event) => {
                   setNewLastName(event.target.value);
                 }}
+                required
               />
 
               <input
                 type="text"
-                placeholder="Position"
+                placeholder="Dienstgrad"
                 name="vorname"
                 id="newPO"
                 className="inp-PO formFields"
@@ -345,6 +367,7 @@ export default function Overview() {
                 onChange={(event) => {
                   setNewPosition(event.target.value);
                 }}
+                required
               />
 
           </div>
@@ -405,28 +428,6 @@ export default function Overview() {
                                                     onClick={()=>{toggleMemberInfo(index)}}
                                                 />
 
-                                                <input
-                                                  type="button"
-                                                  name="updateBtn"
-                                                  id={member.id}
-                                                  className={`updateBtn update-${member.id} firestoreBtn`}
-                                                  onClick={(event) => {
-                                                    handleUpdateFirestoreMember(member.id);
-                                                  }}
-                                                  defaultValue="update"
-                                                />
-
-                                                <input
-                                                  type="button"
-                                                  name="deleteBtn"
-                                                  id={member.id}
-                                                  className={`deleteBtn delete-${member.id} firestoreBtn`}
-                                                  onClick={(event) => {
-                                                    handleDeleteFirestoreMember(member.id);
-                                                  }}
-                                                  defaultValue="löschen"
-                                                />
-
                                        </section>
 
                                       {/* Member info Form fields */ }
@@ -444,6 +445,34 @@ export default function Overview() {
                                                       value={data[index].textarea || ""}
                                                       onChange={handleChange}
                                                     />
+
+
+                                                <div className="memberButtons-div">
+
+                                                <input
+                                                      type="button"
+                                                      name="deleteBtn"
+                                                      id={member.id}
+                                                      className={`deleteBtn delete-${member.id} firestoreBtn`}
+                                                      onClick={(event) => {
+                                                        handleDeleteFirestoreMember(member.id);
+                                                      }}
+                                                      defaultValue="löschen"
+                                                    />
+
+                                                    <input
+                                                      type="button"
+                                                      name="updateBtn"
+                                                      id={member.id}
+                                                      className={`updateBtn update-${member.id} firestoreBtn`}
+                                                      onClick={(event) => {
+                                                        handleUpdateFirestoreMember(member.id);
+                                                      }}
+                                                      defaultValue="update"
+                                                    />
+
+                                                </div>
+
                                             </div>     
 
                                             <div className="uniformenTypes-div"> 
