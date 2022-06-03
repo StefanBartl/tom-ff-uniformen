@@ -8,6 +8,7 @@
 // TODO Function testing arguments
 // TODO Separation in components
 // TODO Login-System
+// TODO Impressum?
 // TODO Finish: class test of needed?
 // TODO Bonus: Searchbar or smth?
 // TODO Bonus: Add new atribute?
@@ -100,6 +101,7 @@ export default function Overview() {
     // Toggle UI logic
     if(saveBtn.style.display === 'none'){
       toggle90degAnimation(newMemberBtn);
+      newMemberBtn.title = "Neu anlegen zuklappen";
       saveBtn.style.display = 'block'; 
       newMemberID.style.display = 'block';
       newMemberFN.style.display = 'block';
@@ -107,6 +109,7 @@ export default function Overview() {
       newMemberPO.style.display = 'block';
     } else {
       toggle90degAnimation(newMemberBtn);
+      newMemberBtn.title = "Klicke um eine:n neue:n Kamerad:in anzulegen!";
       saveBtn.style.display = 'none';
       newMemberID.style.display = 'none'; 
       newMemberFN.style.display = 'none';
@@ -129,6 +132,7 @@ export default function Overview() {
     // Toggle UI logic
     if(memberInfoSection.style.display === 'none'){
       toggle90degAnimation(memberInfoBtn);
+      memberInfoBtn.title = "Info zuklappen";
       memberInfoSection.style.display = 'flex'; 
       memberFireTruck.style.display = 'flex'; 
       memberWholeSection.classList.add('visibleMemberSection-div');
@@ -137,6 +141,7 @@ export default function Overview() {
       };
     } else {
       toggle90degAnimation(memberInfoBtn);
+      memberInfoBtn.title = "Info aufklappen";
       memberInfoSection.style.display = 'none';
       memberFireTruck.style.display = 'none';
       for(let i = 0; i < allMembersArray.length; i++){
@@ -426,6 +431,7 @@ export default function Overview() {
                                                     id={`memberInfoBtn-${index}`}
                                                     className="memberInfoBtn"
                                                     alt="Arrow"
+                                                    title="Info aufklappen"
                                                     onClick={()=>{toggleMemberInfo(index)}}
                                                 />
 
@@ -463,6 +469,7 @@ export default function Overview() {
                                                       type="button"
                                                       name="deleteBtn"
                                                       id={member.id}
+                                                      title="Kamerad:in unwiderruflich aus der Datenbank löschen"
                                                       className={`deleteBtn delete-${member.id} firestoreBtn`}
                                                       onClick={(event) => {
                                                         handleDeleteFirestoreMember(member.id);
@@ -474,6 +481,7 @@ export default function Overview() {
                                                       type="button"
                                                       name="updateBtn"
                                                       id={member.id}
+                                                      title="Update die Daten der/des Kamerad:in in der Datenbank"
                                                       className={`updateBtn update-${member.id} firestoreBtn`}
                                                       onClick={(event) => {
                                                         handleUpdateFirestoreMember(member.id);
