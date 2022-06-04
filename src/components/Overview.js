@@ -1,7 +1,6 @@
 // !                 === To-Do list ===
-// ? TODO TEST REWRITTENJ FUNCTION Toggle Animation without css and better effect 
-// TODO Function testing arguments
 // TODO Separation in components
+// TODO Implement Fullscreen option
 // TODO Login-System
 // TODO Finish: CSS for most devices & make app nice
 // TODO Finish: CSS & JS Guidelines check
@@ -9,6 +8,7 @@
 // TODO Bonus: Datenauswertung
 // TODO Bonus: Searchbar or smth
 // TODO Bonus: Adding new atributes
+// TODO Bonus: Function END-Testing!
 // TODO Why is  useEffect nullentry needed ?
 // TODO DEPLOY !!! :-)
 
@@ -28,7 +28,6 @@ import { CONSTANTS } from "@firebase/util";
 
 export default function Overview() {
 
-
  //#region React-Application logic
 
   // state to hold hold whole member data
@@ -46,10 +45,7 @@ export default function Overview() {
      const idForChange =  parseInt(event.target.id);
      const nameForChange =  event.target.name;
      const valueForChange =  event.target.value;
-  
-      // Update member in data summary state 'data'
-      const newData = [];
-  
+    
       // Get member index in data array
       const memberIndexToUpdate = FindMemberIndex(idForChange, data);
       if(memberIndexToUpdate === false) return; // If index was not correct found, return to prevent changing values accidentaly 

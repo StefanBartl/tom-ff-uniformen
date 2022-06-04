@@ -1,4 +1,6 @@
 export default function toggle90degAnimation (element) {
+  // Argument validation
+  if(typeof element !== 'object') throw new TypeError(`Argument 'element' must be type of 'object' `);
 
   //#region animation setting
 
@@ -24,9 +26,11 @@ export default function toggle90degAnimation (element) {
   if(element.getAttribute('data-toggled') === 'false' || element.getAttribute('data-toggled') === null){
         element.animate( buttonRotateDownSpinning, buttonRotateTiming )
         element.setAttribute('data-toggled', "true");
+        return;
   } else {
         element.animate( buttonRotateUpSpinning, buttonRotateTiming )
         element.setAttribute('data-toggled', "false")
+        return;
   };
-
+  
 };
