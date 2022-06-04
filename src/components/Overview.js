@@ -1,5 +1,4 @@
 // !                 === To-Do list ===
-// TODO Nice little pictures in uniformen types?
 // TODO useEffect nullentry needed?
 // TODO Toggle Animation without css and better effect?
 // TODO Titles and eye candy?
@@ -278,6 +277,7 @@ export default function Overview() {
 
   };
 
+
   // ? Update a member in the firestore database
   const handleUpdateFirestoreMember = async (id) => {
 
@@ -458,6 +458,12 @@ export default function Overview() {
                                                 />
 
                                                 <img 
+                                                  src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
+                                                  className={`fireTruck fireTruck-${index}`}
+                                                  style={{display: 'none'}}
+                                                />
+
+                                                <img 
                                                     src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"  
                                                     name="memberInfoBtn"
                                                     id={`memberInfoBtn-${index}`}
@@ -465,16 +471,10 @@ export default function Overview() {
                                                     alt="Arrow"
                                                     title="Info aufklappen"
                                                     onClick={()=>{
-                                                      toggleMemberInfo(index)
+                                                        toggleMemberInfo(index)
                                                         toggleFullscreen();                         
                                                         toggleFullscreen(this);
                                                     }}
-                                                />
-
-                                                <img 
-                                                  src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
-                                                  className={`fireTruck fireTruck-${index}`}
-                                                  style={{display: 'none'}}
                                                 />
 
                                        </section>

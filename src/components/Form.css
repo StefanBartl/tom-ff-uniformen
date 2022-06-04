@@ -16,7 +16,7 @@
     display: flex;
     padding: 1rem;
     margin-top: .5rem;
-    gap: .5rem
+    gap: .5rem;
 }
 
 .toggledMemberSections {
@@ -93,7 +93,7 @@
     width: 2rem;
     aspect-ratio: 1/1;
     margin-left: auto;
-    margin-right: -.5rem;
+    margin-right: .5rem;
 }
 
 .memberInfo-wrapper{
@@ -140,14 +140,6 @@
 .updateBtn {
     width: 8ch;
     outline: solid 4px goldenrod;
-    transition: .2s ease-in-out;
-    transition-property: background-color, color;
-}
-
-.deleteBtn:hover,
-.updateBtn:hover {
-    background-color: goldenrod;
-    color: white;
 }
 
 .notSelectedMember-div{
@@ -290,3 +282,19 @@ width: 17ch;
 .label-PO  {
 width: 13ch;
 }  
+
+
+
+/* ? Transitions */
+
+.deleteBtn,
+.updateBtn {
+    transition: .2s ease-in-out;
+    transition-property: background-color, color;
+}
+
+.deleteBtn:hover,
+.updateBtn:hover {
+    background-color: goldenrod;
+    color: white;
+}
