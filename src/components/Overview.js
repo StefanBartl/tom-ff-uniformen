@@ -1,5 +1,4 @@
 // !                 === To-Do list ===
-// TODO useEffect nullentry needed
 // TODO Toggle Animation without css and better effect
 // TODO Function testing arguments
 // TODO Separation in components
@@ -8,9 +7,11 @@
 // TODO Finish: class test of needed
 // TODO Finish: CSS for most devices
 // TODO Finish: CSS & JS Guidelines check
+// TODO Bonus: Whats about the google drive requests? Maybe await?
 // TODO Bonus: Datenauswertung
 // TODO Bonus: Searchbar or smth
 // TODO Bonus: Adding new atributes
+// TODO Why is  useEffect nullentry needed ?
 // TODO DEPLOY !!! :-)
 
 // ? React and file imports
@@ -264,8 +265,6 @@ export default function Overview() {
     getData();
   }, []);
 
-console.log(data)
-
   // ? Add a new member to the firestore database
   const handleSaveNewFirestoreMember = async () => {
     
@@ -277,7 +276,7 @@ console.log(data)
     // Store new member in firestore database
     const dataCollectionRef = collection(db, "uniformen");
     await setDoc(doc(dataCollectionRef, `${data[data.length -1].id + 1 || 0}`), {
-      id: Number(data.length),
+      id: Number(data[data.length -1].id + 1 || 0),
       firstName: newFirstName,
       lastName: newLastName,
       ffposition: newPosition,
