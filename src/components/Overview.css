@@ -1,3 +1,14 @@
+button,
+image{
+  border: none;
+  outline: none;
+}
+
+input {
+  border: none;
+  outline: none;
+  text-align: center;
+}
 
 .Overview {
     min-height: 100vh;
@@ -15,19 +26,13 @@
   height: 3rem;
 }
 
-.main-title {
+.headline-div > h1 {
     color: var(--wkd-white);
     text-align: center;
     font-size: 3rem;
   }
 
 /* ? New member section */
-
-  .imageNewBtn{
-    width: 2rem;
-    height: 2rem;
-    filter: invert(1);
-  }
 
 .console{
     display: flex;
@@ -43,6 +48,13 @@
   gap: .5rem;
 }
 
+#new {
+  width: 2rem;
+  height: 2rem;
+  filter: invert(1);
+  cursor: pointer;
+}
+
 .newMember-div{
   display: flex;
   padding: 1rem;
@@ -51,22 +63,24 @@
   margin-left: 1.5rem;
 }
 
-.firestoreBtn{
-  border: none;
-  outline: none;
-}
-
-.saveBtn{
+#save{
   width: 10ch;
   margin-left: .7rem;
   outline: solid 4px goldenrod;
+  cursor: pointer;
   transition: .2s ease-in-out;
   transition-property: background-color, color;
 }
 
-.saveBtn:hover {
+#save:hover {
   background-color: goldenrod;
   color: white;
+}
+
+.impressumLink {
+  width: 3rem;
+  aspect-ratio: 1/1;
+  margin-left: auto;
 }
 
 

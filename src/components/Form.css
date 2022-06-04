@@ -1,25 +1,20 @@
 /* ? data form */
-.data-form {
+.member-forms {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
 /* ? summary class for the form input fields */
-.formFields {
-    border: none;
-    outline: none;
-    text-align: center;
-}
 
-.visibleMemberSections {
+.member-section-visible {
     display: flex;
     padding: 1rem;
     margin-top: .5rem;
     gap: .5rem;
 }
 
-.toggledMemberSections {
+.member-section-toToggle {
     color: white;
     margin-top: .5rem;
     padding-bottom: .5rem;
@@ -47,25 +42,22 @@
     width: 8ch;
 }
 
-.infoFields  {
-    width: 5ch;
-}
 
 /* ? classes for the individual inputs  */
-.idVal  {
+.id-value  {
     color: white;
     width: 3ch;
 }
 
-.inp-FN  {
+.input-firstName  {
     width: 25ch;
 }
 
-.inp-LN  {
+.input-lastName  {
     width: 25ch;
 }
 
-.inp-PO  {
+.input-position  {
     width: 25ch;
 }
 
@@ -82,9 +74,10 @@
     width: 2rem;
     height: 2rem;
     filter: invert(1);
+    cursor: pointer;
 }
 
-.data-wrapper {
+.firestore-data-wrapper {
     margin: 1rem;
     border: dashed 2px white ;
 }
@@ -108,8 +101,8 @@
     padding-top: .5rem;
 }
 
-.inp-text {
-    height: 30ch;
+.input-textarea {
+    height: 50vh;
 }
 
 .memberInfo-wrapper:before{
@@ -131,7 +124,7 @@
     transform: rotateY(180deg);
 }
 
-.memberButtons-div {
+.firestore-manipulateMember-btn {
     display: flex;
     gap: 2rem;
 }
@@ -140,6 +133,7 @@
 .updateBtn {
     width: 8ch;
     outline: solid 4px goldenrod;
+    cursor: pointer;
 }
 
 .notSelectedMember-div{
@@ -154,10 +148,6 @@
     top: .5rem;
     left: .5rem;
     background-color: red;
-}
-
-.visibleMemberSection-div::backdrop{
-      background-color: aqua;
 }
 
 .uniformenTypes-div{
@@ -193,12 +183,11 @@
 }
 
 .dienstbekleidungLabel-div .uLabelsP1 {
-margin-left: 9ch;
-
+    margin-left: 9ch;
 }
 
 .einsatzuniformenLabel-div .uLabelsP1 {
-margin-left: 20ch;
+    margin-left: 20ch;
 }
 
 .uniformenLabels-div .uLabelsP2 {
@@ -223,17 +212,27 @@ margin-left: 20ch;
     gap: .5rem;
 }
 
+.uniformenAssets-divs > [type='text'] {
+    width: 6ch;
+}
+
 .uniformenAssets-divs > [type='checkbox'] {
-margin-left: auto;
+    margin-left: auto;
+    cursor: pointer;
 }
 
 /* .galaAsset {
 
 } */
 
+.galaP2 {
+    margin-left: auto;
+}
+
 .galaAsset > p {
     width: 6ch;
 }
+
 
 /* .dienstAsset {
 
@@ -253,34 +252,34 @@ width: 19ch;
 
 /* ? classes for the input labels */
 
-.label-form{
+.data-labels-div{
 display: flex;
 padding: .5rem;
 gap: .5rem;
 }
 
-.label-form > h3 {
+.data-labels-div > h3 {
 border: none;
 outline: none;
 text-align: center;
 color: white;
 }
 
-.label-ID  {
+.id-label  {
 color: white;
 width: 3ch;
 }
 
-.label-FN  {
-width: 16.5ch;
+.firstName-label  {
+width: 22ch;
 }
 
-.label-LN  {
-width: 17ch;
+.lastName-label  {
+width: 21ch;
 }
 
-.label-PO  {
-width: 13ch;
+.position-label  {
+width: 21ch;
 }  
 
 
