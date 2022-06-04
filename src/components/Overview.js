@@ -279,7 +279,7 @@ export default function Overview() {
       ffposition: newPosition,
     });
 
-    firestoreUIEffect('save');
+    firestoreUIEffect('save', data[data.length -1].id + 1 || 0);
 
   };
 
@@ -327,7 +327,7 @@ export default function Overview() {
     // get the correct btn element 
     let memberUpdateBtn;
     type === 'save' 
-      ?  memberUpdateBtn = document.querySelector(`.saveBtn`)
+      ?  memberUpdateBtn = document.querySelector(`#save`)
       : memberUpdateBtn = document.querySelector(`.${type}-${id}`); 
 
     // UI-Effect
@@ -341,6 +341,24 @@ export default function Overview() {
       iterations: 1,
     };    
     memberUpdateBtn.animate(updateUIEffect, updateUIEffectTiming, {easing: "ease-in-out"});
+
+    // Special Effect for update
+    if(type === 'update'){
+        const ovAniStyle = [
+            { backgroundColor: 'red'},
+            { backgroundColor: 'gray'},
+            { backgroundColor: 'red'}
+        ];
+
+        const ovAniTiming = { 
+          duration: 1000,
+          iterations: 1,
+          easing: 'ease-in-out', 
+        };
+
+        document.querySelector(`.member-formMID-${id}`).animate( ovAniStyle, ovAniTiming );
+        return;
+  };
 
     setTimeout(()=>{    window.location.reload();},2000)
 
@@ -436,7 +454,7 @@ export default function Overview() {
                     {Children.toArray(
                       data.map((member, index) => (
 
-                                  <form name={`memberForm-${index}`} id={index} className={`member-form-${index} member-forms`}>
+                                  <form name={`memberForm-${index}`} id={index} className={`member-form-${index} member-formMID-${member.id} member-forms`}>
 
                                       {/* Member form fields before toggling info visible  */ }
 
@@ -517,7 +535,7 @@ export default function Overview() {
                                                       name="deleteBtn"
                                                       id={member.id}
                                                       title="Kamerad:in unwiderruflich aus der Datenbank löschen"
-                                                      className={`deleteBtn`}
+                                                      className={`deleteBtn delete-${member.id}`}
                                                       onClick={(event) => {
                                                         handleDeleteFirestoreMember(member.id);
                                                       }}
@@ -529,7 +547,7 @@ export default function Overview() {
                                                       name="updateBtn"
                                                       id={member.id}
                                                       title="Update die Daten der/des Kamerad:in in der Datenbank"
-                                                      className={`updateBtn`}
+                                                      className={`updateBtn update-${member.id}`}
                                                       onClick={(event) => {
                                                         handleUpdateFirestoreMember(member.id);
                                                       }}
