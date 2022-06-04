@@ -17,6 +17,7 @@ import { useState, useEffect, Children } from "react";
 import "./Overview.css";
 import "./Form.css";
 import toggle90degAnimation from './Toggle90Animation';
+import FindMemberIndex from './FindMemberIndexInDataArray';
 
 // ? Firebase imports
 import { db } from "../firebase-config";
@@ -47,13 +48,7 @@ export default function Overview() {
       const newData = [];
   
     // Get member index in data array
-    let memberIndexToUpdate; 
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].id === idForChange) {
-        memberIndexToUpdate = i;
-        };
-      };
-
+    let memberIndexToUpdate = FindMemberIndex(idForChange, data);
       // helper function
       function updateDataState(){
         for (let i = 0; i < data.length; i++) {
@@ -162,28 +157,30 @@ export default function Overview() {
 
     // Get DOM-Element
     const memberInfoBtn = document.getElementById(`memberInfoBtn-${index}`); 
-    const memberWholeSection = document.querySelector(`.y${index}`); 
+    const memberWholeSection = document.querySelector(`.member-form-${index}`); 
     const memberInfoSection = document.getElementById(`infoSection-${index}`); 
     const memberFireTruck = document.querySelector(`.fireTruck-${index}`); 
-    const allMembersArray = document.querySelectorAll('.form-memberDiv');
+    const allMembersArray = document.querySelectorAll('.member-forms');
 
-    // Toggle UI logic
-    if(memberInfoSection.style.display === 'none'){
-      toggle90degAnimation(memberInfoBtn);
-      memberInfoBtn.title = "Info zuklappen";
-      memberInfoSection.style.display = 'flex'; 
-      memberFireTruck.style.display = 'flex'; 
-      memberWholeSection.classList.add('visibleMemberSection-div');
-      for(let i = 0; i < allMembersArray.length; i++){
-       if (allMembersArray[i].classList.contains('visibleMemberSection-div') === false) allMembersArray[i].classList.add('notSelectedMember-div'); // TODO Or hardcoded better?
+    // Toggle UI
+    if(memberInfoSection.style.display === 'none'){ // If info section of member is hided...
+      toggle90degAnimation(memberInfoBtn); // Initiate the 90deg turnaround animation of the button image element
+      memberInfoBtn.title = "Info zuklappen"; // Change the tile of the button element
+      memberInfoSection.style.display = 'flex'; // Display the info section
+      memberFireTruck.style.display = 'flex'; // Display the fire truck image
+      memberWholeSection.classList.add('visibleMemberSection-div'); // Add css-rules for the whole section (constant visible section + toggled section)
+      for(let i = 0; i < allMembersArray.length; i++){ // Loop trough all member forms
+       if (allMembersArray[i].classList.contains('visibleMemberSection-div') === false) { // display: none all elements which are not selected by user 
+            allMembersArray[i].classList.add('notSelectedMember-div'); 
+        };
       };
-    } else {
+    } else { // If info section of member is not hided,  the opposite of the above
       toggle90degAnimation(memberInfoBtn);
       memberInfoBtn.title = "Info aufklappen";
       memberInfoSection.style.display = 'none';
       memberFireTruck.style.display = 'none';
       for(let i = 0; i < allMembersArray.length; i++){
-        if (allMembersArray[i].classList.contains('visibleMemberSection-div') == false) allMembersArray[i].classList.remove('notSelectedMember-div'); // TODO Or hardcoded better?
+        if (allMembersArray[i].classList.contains('visibleMemberSection-div') === false) allMembersArray[i].classList.remove('notSelectedMember-div');
        };
        memberWholeSection.classList.remove('visibleMemberSection-div');
     };
@@ -352,7 +349,6 @@ export default function Overview() {
 
 //#endregion
 
-
   return (
     <div className="Overview">
 
@@ -441,7 +437,7 @@ export default function Overview() {
                     {Children.toArray(
                       data.map((member, index) => (
 
-                                  <form name={`memberForm-${index}` }className={`member-form-${index} member-forms`}>
+                                  <form name={`memberForm-${index}`} id={index} className={`member-form-${index} member-forms`}>
 
                                       {/* Member form fields before toggling info visible  */ }
 
@@ -478,7 +474,7 @@ export default function Overview() {
 
                                                 <img 
                                                   src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
-                                                  className='fireTruck'
+                                                  className={`fireTruck fireTruck-${index}`}
                                                   style={{display: 'none'}}
                                                 />
 
