@@ -47,8 +47,10 @@ export default function Overview() {
       // Update member in data summary state 'data'
       const newData = [];
   
-    // Get member index in data array
-    let memberIndexToUpdate = FindMemberIndex(idForChange, data);
+      // Get member index in data array
+      const memberIndexToUpdate = FindMemberIndex(idForChange, data);
+      if(memberIndexToUpdate === false) return; // If index was not correct found, return to prevent changing values accidentaly 
+    
       // helper function
       function updateDataState(){
         for (let i = 0; i < data.length; i++) {
@@ -284,37 +286,34 @@ export default function Overview() {
   // ? Update a member in the firestore database
   const handleUpdateFirestoreMember = async (id) => {
 
-    let updatingMemberObject;
-
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].id === id) {
-        updatingMemberObject = data[i];
-        };
-      };
+    // Get member index in data array
+    const memberIndexToUpdate = FindMemberIndex(id, data);
+    if(memberIndexToUpdate === false){
+        alert(`Update konnte leider nicht durchgeführt werden. Bitte kontaktieren Sie den technischen Support.`) // Inform user that the update cannot be performed, please contact support
+        return; // If index was not correct found, return to prevent updating member accidentaly 
+    };
+    const updatingMemberObject = data[memberIndexToUpdate];  // Get whole member object from data array
 
     // Update member in firestore database
     const updatingMemberFSDoc = doc(db, "uniformen", `${id}`);
     await updateDoc(updatingMemberFSDoc, updatingMemberObject);
     
-    // firestoreUIEffect('update', id);
+    firestoreUIEffect('update', id); // Initiate UI-Effect
 
+    return;
   };
 
   // ? Delete a memberr in the firestore database
   const handleDeleteFirestoreMember = async (id) => {
 
-    // Get Memeber information data via index of data state object
-    let updatingMemberIndex;
+    // Get member index in data array
+    const memberIndexToUpdate = FindMemberIndex(id, data);
+    if(memberIndexToUpdate === false){
+        alert(`Löschen konnte leider nicht durchgeführt werden. Bitte kontaktieren Sie den technischen Support.`) // Inform user that delete cannot be performed, please contact support
+        return; // If index was not correct found, return to prevent delete member accidentaly 
+    };
 
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].id === id) {
-        updatingMemberIndex = i;
-        };
-      };
-
-
-
-    if(window.confirm(`Willst du ${data[updatingMemberIndex].ffposition} ${data[updatingMemberIndex].firstName} ${data[updatingMemberIndex].lastName} wirklich löschen? Der Datensatz kann nicht mehr hergestellt werden!`)){
+    if(window.confirm(`Willst du ${data[memberIndexToUpdate].ffposition} ${data[memberIndexToUpdate].firstName} ${data[memberIndexToUpdate].lastName} wirklich löschen? Der Datensatz kann nicht mehr hergestellt werden!`)){
       // Delete member in firestore database
       await deleteDoc(doc(db, "uniformen", `${id}`));
       firestoreUIEffect('delete', id);

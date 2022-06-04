@@ -82,32 +82,3 @@ input {
   aspect-ratio: 1/1;
   margin-left: auto;
 }
-
-
-/* ? Animations */
-
-.add90degAni{
-  animation: add90degAnimation .1s forwards 1 ease-in; 
-}
-
-.remove90degAni{
-  animation: remove90degAnimation .1s forwards 1 ease-in; 
-}
-
-@keyframes add90degAnimation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(90deg);
-  }
-}
-
-@keyframes remove90degAnimation {
-  0% {
-    transform: rotate(90deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}

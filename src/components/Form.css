@@ -42,7 +42,6 @@
     width: 8ch;
 }
 
-
 /* ? classes for the individual inputs  */
 .id-value  {
     color: white;
@@ -119,14 +118,14 @@
     height: 5rem;
     justify-self: end;
     margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: -1rem;
+    margin-bottom: .5rem;
+    margin-left: -1.5rem;
     transform: rotateY(180deg);
 }
 
 .firestore-manipulateMember-btn {
     display: flex;
-    gap: 2rem;
+    gap: 4rem;
 }
 
 .deleteBtn,
@@ -137,7 +136,7 @@
 }
 
 .notSelectedMember-div{
-    visibility: hidden;
+   display: none;
 }
 
 .visibleMemberSection-div{
@@ -175,9 +174,6 @@
     gap: 1rem;
 }
 
-/* .uniformenLabels-div > p { 
-} */
-
 .galaLabel-div .uLabelsP1 {
     margin-left: 7ch;
 }
@@ -194,19 +190,6 @@
     margin-left: auto;
 }
 
-
-/* .galaLabel-div {
-
-} */
-
-/* .dienstbekleidungLabel-div  {
-
-} */
-
-/* .einsatzuniformLabel-div{
-
-} */
-
 .uniformenAssets-divs {
     display: flex;
     gap: .5rem;
@@ -221,10 +204,6 @@
     cursor: pointer;
 }
 
-/* .galaAsset {
-
-} */
-
 .galaP2 {
     margin-left: auto;
 }
@@ -233,18 +212,9 @@
     width: 6ch;
 }
 
-
-/* .dienstAsset {
-
-} */
-
 .dienstAsset > p {
 width: 8ch;
 }
-
-/* .einsatzAsset {
-
-} */
 
 .einsatzAsset > p {
 width: 19ch;
@@ -281,7 +251,6 @@ width: 21ch;
 .position-label  {
 width: 21ch;
 }  
-
 
 
 /* ? Transitions */
