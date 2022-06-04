@@ -358,7 +358,7 @@ export default function Overview() {
 
         document.querySelector(`.member-formMID-${id}`).animate( ovAniStyle, ovAniTiming );
         return;
-  };
+    };
 
     setTimeout(()=>{    window.location.reload();},2000)
 

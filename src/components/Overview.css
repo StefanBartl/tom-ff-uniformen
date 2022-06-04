@@ -12,7 +12,7 @@ input {
 
 .Overview {
     min-height: 100vh;
-    background-color: var(--wkd-red);
+    background-color: red;
 }
 
 .headline-div  {
