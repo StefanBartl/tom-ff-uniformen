@@ -124,7 +124,8 @@
 .memberInfo-fireImage{
     width: 5rem;
     height: 5rem;
-    margin-top: 55%;
+    justify-self: end;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: -1rem;
     transform: rotateY(180deg);
@@ -133,7 +134,6 @@
 .memberButtons-div {
     display: flex;
     gap: 2rem;
-    margin-bottom: .5rem;
 }
 
 .deleteBtn,

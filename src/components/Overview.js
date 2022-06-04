@@ -1,17 +1,17 @@
 // !                 === To-Do list ===
-// TODO useEffect nullentry needed?
-// TODO Toggle Animation without css and better effect?
-// TODO Titles and eye candy?
-// TODO Clickung info arraow should focus element
-// TODO Kein aufrücken bei arroew click
+// TODO useEffect nullentry needed
+// TODO Toggle Animation without css and better effect
 // TODO Function testing arguments
 // TODO Separation in components
 // TODO Login-System
-// TODO Impressum?
-// TODO Finish: class test of needed?
-// TODO Bonus: Searchbar or smth?
-// TODO Bonus: Add new atribute?
-// TODO DEPLOY !!!
+// TODO Impressum
+// TODO Finish: class test of needed
+// TODO Finish: CSS for most devices
+// TODO Finish: CSS & JS Guidelines check
+// TODO Bonus: Datenauswertung
+// TODO Bonus: Searchbar or smth
+// TODO Bonus: Adding new atributes
+// TODO DEPLOY !!! :-)
 
 // ? React and file imports
 import { useState, useEffect, Children } from "react";
@@ -209,49 +209,49 @@ export default function Overview() {
           firstName: doc.firstName,
           lastName: doc.lastName,
           ffposition: doc.ffposition,
-          textarea: doc.textarea,
+          textarea: doc.textarea || "",
 
-          mantelN: doc.mantelN,
+          mantelS: doc.mantelS,
           mantelB: doc.mantelB,
-          jackeN: doc.jackeN,
+          jackeS: doc.jackeS,
           jackeB: doc.jackeB,
-          hoseN: doc.hoseN,
+          hoseS: doc.hoseS,
           hoseB: doc.hoseB,
-          hemdN: doc.hemdN,
+          hemdS: doc.hemdS,
           hemdB: doc.hemdB,
-          kappeN: doc.kappeN,
+          kappeS: doc.kappeS,
           kappeB: doc.kappeB,
 
-          pulloverN: doc.pulloverN,
+          pulloverS: doc.pulloverS,
           pulloverB: doc.pulloverB,
-          hose2N: doc.hose2N,
+          hose2S: doc.hose2S,
           hose2B: doc.hose2B,
-          tshirtN: doc.tshirtN,
+          tshirtS: doc.tshirtS,
           tshirtB: doc.tshirtB,
-          poloN: doc.poloN,
+          poloS: doc.poloS,
           poloB: doc.poloB,
-          bluseN: doc.bluseN,
+          bluseS: doc.bluseS,
           bluseB: doc.bluseB,
-          fleeceN: doc.fleeceN,
+          fleeceS: doc.fleeceS,
           fleeceB: doc.fleeceB,
 
-          schutzjackeN: doc.schutzjackeN,
+          schutzjackeS: doc.schutzjackeS,
           schutzjackeB: doc.schutzjackeB,
-          schutzhoseN: doc.schutzhoseN,
+          schutzhoseS: doc.schutzhoseS,
           schutzhoseB: doc.schutzhoseB,
-          einsatzstiefelschwarz2N: doc.einsatzstiefelschwarz2N,
-          einsatzstiefelschwarz2B: doc.einsatzstiefelschwarz2B,
-          einsatzstiefelgelb2N: doc.einsatzstiefelgelb2N,
-          einsatzstiefelgelb2B: doc.einsatzstiefelgelb2B,
-          einsatzhandschuhe2N: doc.einsatzhandschuhe2N,
-          einsatzhandschuhe2B: doc.einsatzhandschuhe2B,
-          kappe3N: doc.kappe3N,
+          einsatzstiefelschwarzS: doc.einsatzstiefelschwarzS,
+          einsatzstiefelschwarzB: doc.einsatzstiefelschwarzB,
+          einsatzstiefelgelbS: doc.einsatzstiefelgelbS,
+          einsatzstiefelgelbB: doc.einsatzstiefelgelbB,
+          einsatzhandschuheS: doc.einsatzhandschuheS,
+          einsatzhandschuheB: doc.einsatzhandschuheB,
+          kappe3S: doc.kappe3S,
           kappe3B: doc.kappe3B,
-          haubeN: doc.haubeN,
+          haubeS: doc.haubeS,
           haubeB: doc.haubeB,
-          helmN: doc.helmN,
+          helmS: doc.helmS,
           helmB: doc.helmB,
-          gurtN: doc.gurtN,
+          gurtS: doc.gurtS,
           gurtB: doc.gurtB,
 
         }))
@@ -263,6 +263,8 @@ export default function Overview() {
     };
     getData();
   }, []);
+
+console.log(data)
 
   // ? Add a new member to the firestore database
   const handleSaveNewFirestoreMember = async () => {
@@ -866,25 +868,25 @@ export default function Overview() {
 
                                                   </div>
 
-                                                  <div className="schutzhose2-div uniformenAssets-divs einsatzAsset">
+                                                  <div className="schutzhose-div uniformenAssets-divs einsatzAsset">
                                                       <p>Schutzhose</p>   
                                                 
                                                               <input
                                                                     type='text'
-                                                                    name="schutzhose2S"
+                                                                    name="schutzhoseS"
                                                                     id={member.id}
-                                                                    className="inp-schutzhose2S infoFields formFields"
-                                                                    value={data[index].schutzhose2S}
+                                                                    className="inp-schutzhoseS infoFields formFields"
+                                                                    value={data[index].schutzhoseS}
                                                                     onChange={handleChange}
                                                               />                          
             
 
                                                               <input
                                                                     type='checkbox'
-                                                                    name="schutzhose2B"
+                                                                    name="schutzhoseB"
                                                                     id={member.id}
-                                                                    className="inp-schutzhose2B formFields"
-                                                                    checked={data[index].schutzhose2B || false}
+                                                                    className="inp-schutzhoseB formFields"
+                                                                    checked={data[index].schutzhoseB || false}
                                                                     onChange={handleChange}
                                                               />         
 
