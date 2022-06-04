@@ -47,11 +47,19 @@ export default function Overview() {
       // Update member in data summary state 'data'
       const newData = [];
   
+    // Get member index in data array
+    let memberIndexToUpdate; 
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === idForChange) {
+        memberIndexToUpdate = i;
+        };
+      };
+
       // helper function
       function updateDataState(){
         for (let i = 0; i < data.length; i++) {
           newData.push(data[i]);
-          if (i === idForChange) {
+          if (i === memberIndexToUpdate) {
             newData[i][nameForChange] = valueForChange;
           };
         };
@@ -63,15 +71,15 @@ export default function Overview() {
       if(event.target.type === 'checkbox') {
   
           let newBool;
-          if(data[idForChange][nameForChange] === 'on' || data[idForChange][nameForChange] === true) {
+          if(data[memberIndexToUpdate][nameForChange] === 'on' || data[memberIndexToUpdate][nameForChange] === true) {
             newBool = false;
           } else newBool = true;
   
-          data[idForChange][nameForChange] = newBool;
+          data[memberIndexToUpdate][nameForChange] = newBool;
   
           for (let i = 0; i < data.length; i++) {
             newData.push(data[i]);
-            if (i === idForChange) {
+            if (i === memberIndexToUpdate) {
               newData[i][nameForChange] = newBool;
             };
           };
@@ -124,30 +132,30 @@ export default function Overview() {
  //#region React-Application UI-helper functions
 
   function toggleFullscreen(elem) {
-    elem = elem || document.documentElement;
+    // elem = elem || document.documentElement;
   
-    if (!document.fullscreenElement && !document.mozFullScreenElement &&
-      !document.webkitFullscreenElement && !document.msFullscreenElement) {
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-      } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      }
-    }
+    // if (!document.fullscreenElement && !document.mozFullScreenElement &&
+    //   !document.webkitFullscreenElement && !document.msFullscreenElement) {
+    //   if (elem.requestFullscreen) {
+    //     elem.requestFullscreen();
+    //   } else if (elem.msRequestFullscreen) {
+    //     elem.msRequestFullscreen();
+    //   } else if (elem.mozRequestFullScreen) {
+    //     elem.mozRequestFullScreen();
+    //   } else if (elem.webkitRequestFullscreen) {
+    //     elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    //   }
+    // } else {
+    //   if (document.exitFullscreen) {
+    //     document.exitFullscreen();
+    //   } else if (document.msExitFullscreen) {
+    //     document.msExitFullscreen();
+    //   } else if (document.mozCancelFullScreen) {
+    //     document.mozCancelFullScreen();
+    //   } else if (document.webkitExitFullscreen) {
+    //     document.webkitExitFullscreen();
+    //   }
+    // }
  };
 
   // ? Toggle the member info arrow
@@ -266,7 +274,7 @@ export default function Overview() {
 
     // Store new member in firestore database
     const dataCollectionRef = collection(db, "uniformen");
-    await setDoc(doc(dataCollectionRef, `${data.length || 0}`), {
+    await setDoc(doc(dataCollectionRef, `${data[data.length -1].id + 1 || 0}`), {
       id: Number(data.length),
       firstName: newFirstName,
       lastName: newLastName,
@@ -277,23 +285,40 @@ export default function Overview() {
 
   };
 
-
   // ? Update a member in the firestore database
   const handleUpdateFirestoreMember = async (id) => {
 
+    let updatingMemberObject;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === id) {
+        updatingMemberObject = data[i];
+        };
+      };
+
     // Update member in firestore database
-    const updatingData = data[id];
-    const updatingMember = doc(db, "uniformen", `${id}`);
-    await updateDoc(updatingMember, updatingData);
+    const updatingMemberFSDoc = doc(db, "uniformen", `${id}`);
+    await updateDoc(updatingMemberFSDoc, updatingMemberObject);
     
-    firestoreUIEffect('update', id);
+    // firestoreUIEffect('update', id);
 
   };
 
   // ? Delete a memberr in the firestore database
   const handleDeleteFirestoreMember = async (id) => {
 
-    if(window.confirm(`Willst du ${data[id].ffposition} ${data[id].firstName} ${data[id].lastName} wirklich löschen? Der Datensatz kann nicht mehr hergestellt werden!`)){
+    // Get Memeber information data via index of data state object
+    let updatingMemberIndex;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === id) {
+        updatingMemberIndex = i;
+        };
+      };
+
+
+
+    if(window.confirm(`Willst du ${data[updatingMemberIndex].ffposition} ${data[updatingMemberIndex].firstName} ${data[updatingMemberIndex].lastName} wirklich löschen? Der Datensatz kann nicht mehr hergestellt werden!`)){
       // Delete member in firestore database
       await deleteDoc(doc(db, "uniformen", `${id}`));
       firestoreUIEffect('delete', id);
