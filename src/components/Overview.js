@@ -18,10 +18,12 @@ import "./Overview.css";
 import "./Form.css";
 import toggle90degAnimation from './Toggle90Animation';
 import FindMemberIndex from './FindMemberIndexInDataArray';
+import GetUpdatetDataArray from './GetUpdatetDataObject';
 
 // ? Firebase imports
 import { db } from "../firebase-config";
 import { collection, doc, getDocs, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { CONSTANTS } from "@firebase/util";
 
 
 export default function Overview() {
@@ -38,6 +40,7 @@ export default function Overview() {
 
   // ? Handle state of member
   function handleChange(event) {
+    event.preventDefault();
 
     // Get data from onChange event
      const idForChange =  parseInt(event.target.id);
@@ -50,18 +53,6 @@ export default function Overview() {
       // Get member index in data array
       const memberIndexToUpdate = FindMemberIndex(idForChange, data);
       if(memberIndexToUpdate === false) return; // If index was not correct found, return to prevent changing values accidentaly 
-    
-      // helper function
-      function updateDataState(){
-        for (let i = 0; i < data.length; i++) {
-          newData.push(data[i]);
-          if (i === memberIndexToUpdate) {
-            newData[i][nameForChange] = valueForChange;
-          };
-        };
-        setData(newData);
-        return;
-      };
   
       // handle checkbox exception
       if(event.target.type === 'checkbox') {
@@ -70,22 +61,16 @@ export default function Overview() {
           if(data[memberIndexToUpdate][nameForChange] === 'on' || data[memberIndexToUpdate][nameForChange] === true) {
             newBool = false;
           } else newBool = true;
-  
-          data[memberIndexToUpdate][nameForChange] = newBool;
-  
-          for (let i = 0; i < data.length; i++) {
-            newData.push(data[i]);
-            if (i === memberIndexToUpdate) {
-              newData[i][nameForChange] = newBool;
-            };
-          };
-          setData(newData);
+    
+          const newDataArray = GetUpdatetDataArray(memberIndexToUpdate, nameForChange, newBool, data);
+          setData(newDataArray);
           return;
+      } else {
+        const newDataArray = GetUpdatetDataArray(memberIndexToUpdate, nameForChange, valueForChange, data);
+        setData(newDataArray);
+        return;
       };
-  
-      // trigger data update
-      updateDataState();
-  
+    
   };
 
   // ? Create new form to add a new member
