@@ -1,3 +1,49 @@
+
+/* ? New member section */
+
+.console{
+    display: flex;
+    gap: .5rem;
+    margin-top: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.newBtn-div{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+#new {
+  width: 2rem;
+  height: 2rem;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.newMember-div{
+  display: flex;
+  padding: 1rem;
+  gap: .5rem;
+  padding: .5rem;
+  margin-left: 1.5rem;
+}
+
+#save{
+  width: 10ch;
+  margin-left: .7rem;
+  outline: solid 4px goldenrod;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+  transition-property: background-color, color;
+}
+
+#save:hover {
+  background-color: goldenrod;
+  color: white;
+}
+
 /* ? data form */
 .member-forms {
     display: flex;
