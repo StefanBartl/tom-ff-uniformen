@@ -1,7 +1,6 @@
 // !                 === To-Do list ===
-// TODO Separation in components
-// TODO Implement Fullscreen option
 // TODO Login-System
+// TODO Finish  CSS Form file ? 
 // TODO Finish: CSS for most devices & make app nice
 // TODO Finish: CSS & JS Guidelines check
 // TODO Bonus: Whats about the google drive requests? Maybe await?
@@ -17,13 +16,13 @@ import { useState, useEffect, Children } from "react";
 import "./Overview.css";
 import "./Form.css";
 import toggle90degAnimation from './Toggle90Animation';
+import ToggleFullScreen from './ToggleFullScreen';
 import FindMemberIndex from './FindMemberIndexInDataArray';
 import GetUpdatetDataArray from './GetUpdatetDataObject';
 
 // ? Firebase imports
 import { db } from "../firebase-config";
 import { collection, doc, getDocs, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
-import { CONSTANTS } from "@firebase/util";
 
 
 export default function Overview() {
@@ -108,33 +107,6 @@ export default function Overview() {
 
  //#region React-Application UI-helper functions
 
-  function toggleFullscreen(elem) {
-    // elem = elem || document.documentElement;
-  
-    // if (!document.fullscreenElement && !document.mozFullScreenElement &&
-    //   !document.webkitFullscreenElement && !document.msFullscreenElement) {
-    //   if (elem.requestFullscreen) {
-    //     elem.requestFullscreen();
-    //   } else if (elem.msRequestFullscreen) {
-    //     elem.msRequestFullscreen();
-    //   } else if (elem.mozRequestFullScreen) {
-    //     elem.mozRequestFullScreen();
-    //   } else if (elem.webkitRequestFullscreen) {
-    //     elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-    //   }
-    // } else {
-    //   if (document.exitFullscreen) {
-    //     document.exitFullscreen();
-    //   } else if (document.msExitFullscreen) {
-    //     document.msExitFullscreen();
-    //   } else if (document.mozCancelFullScreen) {
-    //     document.mozCancelFullScreen();
-    //   } else if (document.webkitExitFullscreen) {
-    //     document.webkitExitFullscreen();
-    //   }
-    // }
- };
-
   // ? Toggle the member info arrow
   function toggleMemberInfo(index) {
 
@@ -148,6 +120,7 @@ export default function Overview() {
     // Toggle UI
     if(memberInfoSection.style.display === 'none'){ // If info section of member is hided...
       toggle90degAnimation(memberInfoBtn); // Initiate the 90deg turnaround animation of the button image element
+      ToggleFullScreen();
       memberInfoBtn.title = "Info zuklappen"; // Change the tile of the button element
       memberInfoSection.style.display = 'flex'; // Display the info section
       memberFireTruck.style.display = 'flex'; // Display the fire truck image
@@ -164,8 +137,11 @@ export default function Overview() {
       memberFireTruck.style.display = 'none';
       for(let i = 0; i < allMembersArray.length; i++){
         if (allMembersArray[i].classList.contains('visibleMemberSection-div') === false) allMembersArray[i].classList.remove('notSelectedMember-div');
-       };
-       memberWholeSection.classList.remove('visibleMemberSection-div');
+      };
+      memberWholeSection.classList.remove('visibleMemberSection-div');
+      if (document.fullscreenElement) { // Prevent to trigger ToggleFullScreen() again if user exit the member info fullscrreen mode with ESC
+        ToggleFullScreen();
+      };
     };
 
   };
@@ -483,10 +459,8 @@ export default function Overview() {
                                                     className="memberInfoBtn"
                                                     alt="Arrow"
                                                     title="Info aufklappen"
-                                                    onClick={()=>{
+                                                    onClick={()=>{                     
                                                         toggleMemberInfo(index)
-                                                        toggleFullscreen();                         
-                                                        toggleFullscreen(this);
                                                     }}
                                                 />
 
