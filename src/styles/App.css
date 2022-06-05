@@ -1,4 +1,3 @@
-
 /*#region  CSS-Setup */
 
 /*? ===  font(s) === */
@@ -121,3 +120,19 @@ select {
 
 /* #endregion */
 
+button,
+image{
+  border: none;
+  outline: none;
+}
+
+input {
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.App {
+    min-height: 100vh;
+    background-color: red;
+}
