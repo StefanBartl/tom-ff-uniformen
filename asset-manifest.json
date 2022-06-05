@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/react-feiwea/static/css/main.4675b756.css",
-    "main.js": "/react-feiwea/static/js/main.7498867c.js",
-    "static/js/787.dad9133a.chunk.js": "/react-feiwea/static/js/787.dad9133a.chunk.js",
-    "index.html": "/react-feiwea/index.html",
-    "main.4675b756.css.map": "/react-feiwea/static/css/main.4675b756.css.map",
-    "main.7498867c.js.map": "/react-feiwea/static/js/main.7498867c.js.map",
-    "787.dad9133a.chunk.js.map": "/react-feiwea/static/js/787.dad9133a.chunk.js.map"
+    "main.css": "/tom-ff-uniformen/static/css/main.3da787d8.css",
+    "main.js": "/tom-ff-uniformen/static/js/main.1ad5b6a7.js",
+    "index.html": "/tom-ff-uniformen/index.html",
+    "main.3da787d8.css.map": "/tom-ff-uniformen/static/css/main.3da787d8.css.map",
+    "main.1ad5b6a7.js.map": "/tom-ff-uniformen/static/js/main.1ad5b6a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.4675b756.css",
-    "static/js/main.7498867c.js"
+    "static/css/main.3da787d8.css",
+    "static/js/main.1ad5b6a7.js"
   ]
 }
