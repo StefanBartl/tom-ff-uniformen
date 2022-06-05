@@ -1,4 +1,4 @@
-import "./Headline.css";
+import "../styles/Headline.css";
 
 export default function Overview() {
 

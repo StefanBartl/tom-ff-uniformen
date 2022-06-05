@@ -1,4 +1,4 @@
-import "./Contact.css";
+import "../styles/Contact.css";
 
 export default function Overview() {
 

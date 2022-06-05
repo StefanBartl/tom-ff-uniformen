@@ -1,10 +1,10 @@
 // ? CSS, React and function imports
-import "./Form.css";
+import "../styles/FirestoreDataForm.css";
 import { useState, useEffect, Children } from "react";
-import toggle90degAnimation from "./Toggle90Animation";
-import ToggleFullScreen from "./ToggleFullScreen";
-import FindMemberIndex from "./FindMemberIndexInDataArray";
-import GetUpdatetDataArray from "./GetUpdatetDataObject";
+import toggle90degAnimation from "../components/Toggle90Animation";
+import ToggleFullScreen from "../components/ToggleFullScreen";
+import FindMemberIndex from "../components/FindMemberIndexInDataArray";
+import GetUpdatetDataArray from "../components/GetUpdatetDataObject";
 
 // ? Firebasefirestore  imports
 import { db } from "../firebase-config";
