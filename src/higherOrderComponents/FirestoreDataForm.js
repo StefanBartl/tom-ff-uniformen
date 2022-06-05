@@ -463,7 +463,7 @@ export default function FirestoreDataForm() {
                             src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
                             className={`fireTruck fireTruck-${index}`}
                             style={{ display: "none" }}
-                            alt='Fire truck image'
+                            alt='Fire truck'
                         />
 
                         <img
@@ -499,6 +499,7 @@ export default function FirestoreDataForm() {
                             <img
                             src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
                             className="memberInfo-fireImage"
+                            alt="Fire distinguisher"
                             />
 
                             <div className="firestore-manipulateMember-btn">
