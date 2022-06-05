@@ -11,7 +11,7 @@ export default function Overview() {
             title="Klicke um zur Website der FF-Kaltenleutgeben zu gelangen!"
             />
         </a>
-        <h1>FF Kaltenleutgeb Uniformen-Datenbank</h1>
+        <h1>FF Kaltenleutgeben Uniformen-Datenbank</h1>
     </div>
   );
 

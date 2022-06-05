@@ -1,6 +1,5 @@
 // !                 === To-Do list ===
 // TODO Login-System
-// TODO Finish  CSS Form file ?
 // TODO Finish: CSS for most devices & make app nice
 // TODO Finish: CSS & JS Guidelines check
 // TODO Bonus: Whats about the google drive requests? Maybe await?
