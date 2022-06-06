@@ -2,6 +2,7 @@
 // TODO Login-System
 // TODO Finish: CSS for most devices & make app nice
 // TODO Finish: CSS & JS Guidelines check
+// TODO ID Warning
 // TODO Bonus: Whats about the google drive requests? Maybe await?
 // TODO Bonus: Datenauswertung
 // TODO Bonus: Searchbar or smth
@@ -11,6 +12,7 @@
 // TODO DEPLOY !!! :-)
 
 import "./styles/App.css";
+import Authentication from './higherOrderComponents/Aut';
 import Headline from './higherOrderComponents/Headline';
 import FirestoreDataForm from './higherOrderComponents/FirestoreDataForm';
 import Contact from './higherOrderComponents/Contact';
@@ -22,6 +24,7 @@ export default function App() {
         <Headline />
         <FirestoreDataForm /> 
         <Contact />
+        <Authentication />
     </div>
   );
 };

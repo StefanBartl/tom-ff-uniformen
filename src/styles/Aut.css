@@ -1,0 +1,111 @@
+.Aut{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    background-color:teal;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    outline: solid 2px white;
+}
+
+.login-form  > h2 {
+    text-align: center;
+    color: white;
+}
+
+.userLabelDiv {
+    margin-top: 5%;
+}
+
+.userLabelDiv,
+.passwordLabelDiv {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    color: white;
+}
+
+.userLabelDiv > label,
+.passwordLabelDiv > label {
+    width: 10ch;
+    text-align: end;
+}
+
+.userLabelDiv > input,
+.passwordLabelDiv  > input {
+    width: 15ch;
+}
+
+.login-form > button {  
+    width: 10rem;
+    margin-top: 5%;
+    align-self: center;
+    transition: all .5s ease-in-out;
+}
+
+.login-form > button:hover {
+    background-color: red;
+    color: white;
+    transform: scale(1.1);
+}
+
+.logout-button {
+    position: absolute;
+    bottom: .5rem;
+    left: .5rem;
+    width: fit-content;
+    border: none;
+    outline: solid 2px white;
+    color: white;
+    background-color: red;
+    transition: .2s ease-in-out;
+    transition-property: transform;
+}
+
+.logout-button:hover {
+    transform: scale(1.2);
+}
+
+.login-failMessage{
+    color: red;
+    animation: failMessageAnimation 3s normal ease-in-out;
+    text-align: center;
+}
+
+@keyframes failMessageAnimation {
+    0%{
+        filter: opacity(1);
+    }
+    15%{
+        filter: opacity(.5);
+    }
+    30%{
+        filter: opacity(1);
+    }
+    45%{
+        filter: opacity(.5);
+    }
+    60%{
+        filter: opacity(1);
+    }
+    75%{
+        filter: opacity(.5);
+    }
+    100%{
+        filter: opacity(1);
+    }
+}

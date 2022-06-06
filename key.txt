@@ -1,438 +1,17 @@
-// ? CSS, React and function imports
-import "../styles/FirestoreDataForm.css";
-import { useState, useEffect, Children } from "react";
-import toggle90degAnimation from "../components/Toggle90Animation";
-import ToggleFullScreen from "../components/ToggleFullScreen";
-import FindMemberIndex from "../components/FindMemberIndexInDataArray";
-import GetUpdatetDataArray from "../components/GetUpdatetDataObject";
-
-// ? Firebasefirestore  imports
-import { db } from "../firebase-config";
-import {
-  collection,
-  doc,
-  getDocs,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
-
-export default function FirestoreDataForm() {
-
-  //#region React-Application logic
-
-  // state to hold hold whole member data
-  const [data, setData] = useState([]);
-  //  tracking state for add a new member input fields
-  const [newFirstName, setNewFirstName] = useState("");
-  const [newLastName, setNewLastName] = useState("");
-  const [newPosition, setNewPosition] = useState("");
-
-  // ? Handle state of member
-  function handleChange(event) {
-    event.preventDefault();
-
-    // Get data from onChange event
-    const idForChange = parseInt(event.target.id);
-    const nameForChange = event.target.name;
-    const valueForChange = event.target.value;
-
-    // Get member index in data array
-    const memberIndexToUpdate = FindMemberIndex(idForChange, data);
-    if (memberIndexToUpdate === false) return; // If index was not correct found, return to prevent changing values accidentaly
-
-    // handle checkbox exception
-    if (event.target.type === "checkbox") {
-      let newBool;
-      if (
-        data[memberIndexToUpdate][nameForChange] === "on" ||
-        data[memberIndexToUpdate][nameForChange] === true
-      ) {
-        newBool = false;
-      } else newBool = true;
-
-      const newDataArray = GetUpdatetDataArray(
-        memberIndexToUpdate,
-        nameForChange,
-        newBool,
-        data
-      );
-      setData(newDataArray);
-      return;
-    } else {
-      const newDataArray = GetUpdatetDataArray(
-        memberIndexToUpdate,
-        nameForChange,
-        valueForChange,
-        data
-      );
-      setData(newDataArray);
-      return;
-    }
-  }
-
-  // ? Create new form to add a new member
-  function toggleNewMemberDiv(event) {
-    event.preventDefault();
-
-    // Toggle div, newButton image direction & save button
-    // Get DOM-Elements
-    const newMemberBtn = document.getElementById("new");
-    const saveBtn = document.getElementById("save");
-    const newMemberID = document.getElementById("newID");
-    const newMemberFN = document.getElementById("new-firstName");
-    const newMemberLN = document.getElementById("new-lastName");
-    const newMemberPO = document.getElementById("new-position");
-
-    // Toggle UI logic
-    if (saveBtn.style.display === "none") {
-      toggle90degAnimation(newMemberBtn);
-      newMemberBtn.title = "Neu anlegen zuklappen";
-      saveBtn.style.display = "block";
-      newMemberID.style.display = "block";
-      newMemberFN.style.display = "block";
-      newMemberLN.style.display = "block";
-      newMemberPO.style.display = "block";
-    } else {
-      toggle90degAnimation(newMemberBtn);
-      newMemberBtn.title = "Klicke um eine:n neue:n Kamerad:in anzulegen!";
-      saveBtn.style.display = "none";
-      newMemberID.style.display = "none";
-      newMemberFN.style.display = "none";
-      newMemberLN.style.display = "none";
-      newMemberPO.style.display = "none";
-    }
-  }
-
-  //#endregion
-
-  //#region React-Application UI-helper functions
-
-  // ? Toggle the member info arrow
-  function toggleMemberInfo(index) {
-    // Get DOM-Element
-    const memberInfoBtn = document.getElementById(`memberInfoBtn-${index}`);
-    const memberWholeSection = document.querySelector(`.member-form-${index}`);
-    const memberInfoSection = document.getElementById(`infoSection-${index}`);
-    const memberFireTruck = document.querySelector(`.fireTruck-${index}`);
-    const allMembersArray = document.querySelectorAll(".member-forms");
-
-    // Toggle UI
-    if (memberInfoSection.style.display === "none") {
-      // If info section of member is hided...
-      toggle90degAnimation(memberInfoBtn); // Initiate the 90deg turnaround animation of the button image element
-      ToggleFullScreen();
-      memberInfoBtn.title = "Info zuklappen"; // Change the tile of the button element
-      memberInfoSection.style.display = "flex"; // Display the info section
-      memberFireTruck.style.display = "flex"; // Display the fire truck image
-      memberWholeSection.classList.add("visibleMemberSection-div"); // Add css-rules for the whole section (constant visible section + toggled section)
-      for (let i = 0; i < allMembersArray.length; i++) {
-        // Loop trough all member forms
-        if (
-          allMembersArray[i].classList.contains("visibleMemberSection-div") ===
-          false
-        ) {
-          // display: none all elements which are not selected by user
-          allMembersArray[i].classList.add("notSelectedMember-div");
-        }
-      }
-    } else {
-      // If info section of member is not hided,  the opposite of the above
-      toggle90degAnimation(memberInfoBtn);
-      memberInfoBtn.title = "Info aufklappen";
-      memberInfoSection.style.display = "none";
-      memberFireTruck.style.display = "none";
-      for (let i = 0; i < allMembersArray.length; i++) {
-        if (
-          allMembersArray[i].classList.contains("visibleMemberSection-div") ===
-          false
-        )
-          allMembersArray[i].classList.remove("notSelectedMember-div");
-      }
-      memberWholeSection.classList.remove("visibleMemberSection-div");
-      if (document.fullscreenElement) {
-        // Prevent to trigger ToggleFullScreen() again if user exit the member info fullscrreen mode with ESC
-        ToggleFullScreen();
-      }
-    }
-  }
-
-  //#endregion
-
-  //#region Firebase firestore
-
-  // ? Fetch database from Firebase
-  useEffect(() => {
-    const dataCollectionRef = collection(db, "uniformen");
-    const getData = async function fetchingData() {
-      const fetchedData = await getDocs(dataCollectionRef);
-
-      setData(
-        fetchedData.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-          firstName: doc.firstName,
-          lastName: doc.lastName,
-          ffposition: doc.ffposition,
-          textarea: doc.textarea || "",
-
-          mantelS: doc.mantelS,
-          mantelB: doc.mantelB,
-          jackeS: doc.jackeS,
-          jackeB: doc.jackeB,
-          hoseS: doc.hoseS,
-          hoseB: doc.hoseB,
-          hemdS: doc.hemdS,
-          hemdB: doc.hemdB,
-          kappeS: doc.kappeS,
-          kappeB: doc.kappeB,
-
-          pulloverS: doc.pulloverS,
-          pulloverB: doc.pulloverB,
-          hose2S: doc.hose2S,
-          hose2B: doc.hose2B,
-          tshirtS: doc.tshirtS,
-          tshirtB: doc.tshirtB,
-          poloS: doc.poloS,
-          poloB: doc.poloB,
-          bluseS: doc.bluseS,
-          bluseB: doc.bluseB,
-          fleeceS: doc.fleeceS,
-          fleeceB: doc.fleeceB,
-
-          schutzjackeS: doc.schutzjackeS,
-          schutzjackeB: doc.schutzjackeB,
-          schutzhoseS: doc.schutzhoseS,
-          schutzhoseB: doc.schutzhoseB,
-          einsatzstiefelschwarzS: doc.einsatzstiefelschwarzS,
-          einsatzstiefelschwarzB: doc.einsatzstiefelschwarzB,
-          einsatzstiefelgelbS: doc.einsatzstiefelgelbS,
-          einsatzstiefelgelbB: doc.einsatzstiefelgelbB,
-          einsatzhandschuheS: doc.einsatzhandschuheS,
-          einsatzhandschuheB: doc.einsatzhandschuheB,
-          kappe3S: doc.kappe3S,
-          kappe3B: doc.kappe3B,
-          haubeS: doc.haubeS,
-          haubeB: doc.haubeB,
-          helmS: doc.helmS,
-          helmB: doc.helmB,
-          gurtS: doc.gurtS,
-          gurtB: doc.gurtB,
-        }))
-      );
-
-      setData(
-        fetchedData.docs.map((doc) => ({ ...doc.data(), nullentry: null }))
-      );
-    };
-    getData();
-  }, []);
-
-  // ? Add a new member to the firestore database
-  const handleSaveNewFirestoreMember = async () => {
-    if (newFirstName === "" || newLastName === "" || newPosition === "") {
-      alert("Bitte gib Vorname, Nachname und Dienstgrad ein!");
-      return;
-    }
-
-    // Store new member in firestore database
-    const dataCollectionRef = collection(db, "uniformen");
-    await setDoc(
-      doc(dataCollectionRef, `${data[data.length - 1].id + 1 || 0}`),
-      {
-        id: Number(data[data.length - 1].id + 1 || 0),
-        firstName: newFirstName,
-        lastName: newLastName,
-        ffposition: newPosition,
-      }
-    );
-
-    firestoreUIEffect("save", data[data.length - 1].id + 1 || 0);
-  };
-
-  // ? Update a member in the firestore database
-  const handleUpdateFirestoreMember = async (id) => {
-    // Get member index in data array
-    const memberIndexToUpdate = FindMemberIndex(id, data);
-    if (memberIndexToUpdate === false) {
-      alert(
-        `Update konnte leider nicht durchgeführt werden. Bitte kontaktieren Sie den technischen Support.`
-      ); // Inform user that the update cannot be performed, please contact support
-      return; // If index was not correct found, return to prevent updating member accidentaly
-    }
-    const updatingMemberObject = data[memberIndexToUpdate]; // Get whole member object from data array
-
-    // Update member in firestore database
-    const updatingMemberFSDoc = doc(db, "uniformen", `${id}`);
-    await updateDoc(updatingMemberFSDoc, updatingMemberObject);
-
-    firestoreUIEffect("update", id); // Initiate UI-Effect
-
-    return;
-  };
-
-  // ? Delete a memberr in the firestore database
-  const handleDeleteFirestoreMember = async (id) => {
-    // Get member index in data array
-    const memberIndexToUpdate = FindMemberIndex(id, data);
-    if (memberIndexToUpdate === false) {
-      alert(
-        `Löschen konnte leider nicht durchgeführt werden. Bitte kontaktieren Sie den technischen Support.`
-      ); // Inform user that delete cannot be performed, please contact support
-      return; // If index was not correct found, return to prevent delete member accidentaly
-    }
-
-    if (
-      window.confirm(
-        `Willst du ${data[memberIndexToUpdate].ffposition} ${data[memberIndexToUpdate].firstName} ${data[memberIndexToUpdate].lastName} wirklich löschen? Der Datensatz kann nicht mehr hergestellt werden!`
-      )
-    ) {
-      // Delete member in firestore database
-      await deleteDoc(doc(db, "uniformen", `${id}`));
-      firestoreUIEffect("delete", id);
-      return;
-    }
-  };
-
-  function firestoreUIEffect(type, id) {
-    // get the correct btn element
-    let memberUpdateBtn;
-    type === "save"
-      ? (memberUpdateBtn = document.querySelector(`#save`))
-      : (memberUpdateBtn = document.querySelector(`.${type}-${id}`));
-
-    // UI-Effect
-    const updateUIEffect = [
-      { backgroundColor: "white", color: "black" },
-      { backgroundColor: "green", color: "white" },
-      { backgroundColor: "white", color: "black" },
-    ];
-    const updateUIEffectTiming = {
-      duration: 2000,
-      iterations: 1,
-    };
-    memberUpdateBtn.animate(updateUIEffect, updateUIEffectTiming, {
-      easing: "ease-in-out",
-    });
-
-    // Special Effect for update
-    if (type === "update") {
-      const ovAniStyle = [
-        { backgroundColor: "red" },
-        { backgroundColor: "gray" },
-        { backgroundColor: "red" },
-      ];
-
-      const ovAniTiming = {
-        duration: 1000,
-        iterations: 1,
-        easing: "ease-in-out",
-      };
-
-      document
-        .querySelector(`.member-formMID-${id}`)
-        .animate(ovAniStyle, ovAniTiming);
-      return;
-    }
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
-  }
-
-  //#endregion
-
-  return (
-    <div className="FirestoreDataForm">
-
-            <div className="console">
-                <img
-                src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
-                name="newBtn"
-                id={`new`}
-                alt="Arrow"
-                title="Klicke um eine:n neue:n Kamerad:in anzulegen!"
-                onClick={toggleNewMemberDiv}
-                />
-
-                <button
-                name="saveBtn"
-                id={`save`}
-                onClick={handleSaveNewFirestoreMember}
-                style={{ display: "none" }}
-                title="Klicke um die/den neue:n Kamerad:in anzulegen!"
-                >
-                speichern
-                </button>
-            </div>
-
-            <div className="newMember-div">
-                <p className="id-value" id="newID" style={{ display: "none" }}>
-                {data.length || 0}.
-                </p>
-
-                <input
-                type="text"
-                placeholder="Vorname"
-                name="vorname"
-                id="new-firstName"
-                className="input-firstName"
-                style={{ display: "none" }}
-                onChange={(event) => {
-                    setNewFirstName(event.target.value);
-                }}
-                required
-                />
-
-                <input
-                type="text"
-                placeholder="Nachname"
-                name="vorname"
-                id="new-lastName"
-                className="input-lastName"
-                style={{ display: "none" }}
-                onChange={(event) => {
-                    setNewLastName(event.target.value);
-                }}
-                required
-                />
-
-                <input
-                type="text"
-                placeholder="Dienstgrad"
-                name="vorname"
-                id="new-position"
-                className="input-position"
-                style={{ display: "none" }}
-                onChange={(event) => {
-                    setNewPosition(event.target.value);
-                }}
-                required
-                />
-            </div>
-
-            <main className="firestore-data-wrapper">
-                <div className="data-labels-div">
-                <h3 className="label-ID">Nr.</h3>
-                <h3 className="label-FN">Vorname</h3>
-                <h3 className="label-LN">Nachname</h3>
-                <h3 className="label-PO">Dienstgrad</h3>
-                </div>
-
                 <div className="data-array-wrapper">
-                {Children.toArray(
-                    data.map((member, index) => (
+                {data.map((member, index) => (
                     <form
+                        key={`member${member.id}`}
                         name={`memberForm-${index}`}
                         id={index}
                         className={`member-form-${index} member-formMID-${member.id} member-forms`}
                     >
                         {/* Member form fields before toggling info visible  */}
-
-                        <section className="member-section-visible">
-                        <p className="id-value">{index}.</p>
+                        <section key={`sectionVisible${member.id}`} className="member-section-visible">
+                        <p key={`sectionp${member.id}`} className="id-value">{index}.</p>
 
                         <input
+                           key={`firstName${member.id}`}
                             type="text"
                             name="firstName"
                             id={member.id}
@@ -442,6 +21,7 @@ export default function FirestoreDataForm() {
                         />
 
                         <input
+                        key={`lastName${member.id}`}
                             type="text"
                             name="lastName"
                             id={member.id}
@@ -451,6 +31,7 @@ export default function FirestoreDataForm() {
                         />
 
                         <input
+                        key={`ffposition${member.id}`}
                             type="text"
                             name="ffposition"
                             id={member.id}
@@ -460,6 +41,7 @@ export default function FirestoreDataForm() {
                         />
 
                         <img
+                        key={`firetruck${member.id}`}
                             src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
                             className={`fireTruck fireTruck-${index}`}
                             style={{ display: "none" }}
@@ -467,6 +49,7 @@ export default function FirestoreDataForm() {
                         />
 
                         <img
+                        key={`memberInfoBtn${member.id}`}
                             src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
                             name="memberInfoBtn"
                             id={`memberInfoBtn-${index}`}
@@ -480,15 +63,17 @@ export default function FirestoreDataForm() {
                         </section>
 
                         {/* Member info Form fields */}
-
                         <section
+                        key={`section2${member.id}`}
                         id={`infoSection-${index}`}
                         className="member-section-toToggle"
                         style={{ display: "none" }}
                         >
                         <div className="memberInfo-wrapper">
+                        key={`memberInfoWarpper${member.id}`}
                             <h3 className="memberInfos-h3">Infos</h3>
                             <textarea
+                            key={`textarea${member.id}`}
                             name="textarea"
                             id={member.id}
                             className="input-textarea"
@@ -497,13 +82,15 @@ export default function FirestoreDataForm() {
                             />
 
                             <img
+                            key={`distinguihser${member.id}`}
                             src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
                             className="memberInfo-fireImage"
                             alt="Fire distinguisher"
                             />
 
-                            <div className="firestore-manipulateMember-btn">
+                            <div  key={`manipulate${member.id}`}className="firestore-manipulateMember-btn">
                             <input
+                            key={`delete${member.id}`}
                                 type="button"
                                 name="deleteBtn"
                                 id={member.id}
@@ -516,6 +103,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`update${member.id}`}
                                 type="button"
                                 name="updateBtn"
                                 id={member.id}
@@ -529,20 +117,21 @@ export default function FirestoreDataForm() {
                             </div>
                         </div>
 
-                        <div className="uniformenTypes-div">
-                            <h3>Galauniformen</h3>
+                        <div key={`gala${member.id}`} className="uniformenTypes-div">
+                            <h3 key={`galah3${member.id}`}>Galauniformen</h3>
 
-                            <div className="galaLabel-div uniformenLabels-div">
-                            <p className="galaP1">Größe</p>
-                            <p className="galaP2" title="Bereits ausgegeben?">
+                            <div key={`galalbaleDiv${member.id}`} className="galaLabel-div uniformenLabels-div">
+                            <p key={`galap1${member.id}`} className="galaP1">Größe</p>
+                            <p key={`galap2${member.id}`} className="galaP2" title="Bereits ausgegeben?">
                                 aus?
                             </p>
                             </div>
 
-                            <div className="mantel-div uniformenAssets-divs galaAsset">
-                            <p>Mantel</p>
+                            <div key={`galaAseet${member.id}`} className="mantel-div uniformenAssets-divs galaAsset">
+                            <p key={`mantelp${member.id}`}>Mantel</p>
 
                             <input
+                            key={`mantels${member.id}`}
                                 type="text"
                                 name="mantelS"
                                 id={member.id}
@@ -551,6 +140,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`mb${member.id}`}
                                 type="checkbox"
                                 name="mantelB"
                                 id={member.id}
@@ -559,10 +149,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="jacke-div uniformenAssets-divs galaAsset">
-                            <p>Jacke</p>
+                            <div  key={`j${member.id}`}className="jacke-div uniformenAssets-divs galaAsset">
+                            <p key={`jp${member.id}`}>Jacke</p>
 
                             <input
+                            key={`j${member.id}`}
                                 type="text"
                                 name="jackeS"
                                 id={member.id}
@@ -571,6 +162,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`jb${member.id}`}
                                 type="checkbox"
                                 name="jackeB"
                                 id={member.id}
@@ -579,10 +171,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="hose-rock-div uniformenAssets-divs galaAsset">
-                            <p>Hose</p>
+                            <div key={`h${member.id}`} className="hose-rock-div uniformenAssets-divs galaAsset">
+                            <p key={`hp${member.id}`}>Hose</p>
 
                             <input
+                            key={`hs${member.id}`}
                                 type="text"
                                 name="hoseS"
                                 id={member.id}
@@ -591,6 +184,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`hb${member.id}`}
                                 type="checkbox"
                                 name="hoseB"
                                 id={member.id}
@@ -599,10 +193,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="hemd-div uniformenAssets-divs galaAsset">
-                            <p>Hemd</p>
+                            <div key={`he${member.id}`} className="hemd-div uniformenAssets-divs galaAsset">
+                            <p key={`hep${member.id}`}>Hemd</p>
 
                             <input
+                            key={`hes${member.id}`}
                                 type="text"
                                 name="hemdS"
                                 id={member.id}
@@ -611,6 +206,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`heb${member.id}`}
                                 type="checkbox"
                                 name="hemdB"
                                 id={member.id}
@@ -619,10 +215,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="kappe-div uniformenAssets-divs galaAsset">
-                            <p>Kappe</p>
+                            <div key={`k${member.id}`} className="kappe-div uniformenAssets-divs galaAsset">
+                            <p key={`kp${member.id}`}>Kappe</p>
 
                             <input
+                            key={`ks${member.id}`}
                                 type="text"
                                 name="kappeS"
                                 id={member.id}
@@ -631,6 +228,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`kb${member.id}`}
                                 type="checkbox"
                                 name="kappeB"
                                 id={member.id}
@@ -640,20 +238,21 @@ export default function FirestoreDataForm() {
                             </div>
                         </div>
 
-                        <div className="uniformenTypes-div">
-                            <h3>Dienstbekleidung</h3>
+                        <div  key={`uni2${member.id}`} className="uniformenTypes-div">
+                            <h3 key={`uni2h3${member.id}`}>Dienstbekleidung</h3>
 
-                            <div className="dienstbekleidungLabel-div uniformenLabels-div">
-                            <p className="uLabelsP1">Größe</p>
-                            <p className="uLabelsP2" title="Bereits ausgegeben?">
+                            <div key={`dienstDiv${member.id}`} className="dienstbekleidungLabel-div uniformenLabels-div">
+                            <p key={`dienstP1${member.id}`} className="uLabelsP1">Größe</p>
+                            <p key={`dienstP2${member.id}`} className="uLabelsP2" title="Bereits ausgegeben?">
                                 aus?
                             </p>
                             </div>
 
-                            <div className="pullover-div uniformenAssets-divs dienstAsset">
-                            <p>Pullover</p>
+                            <div key={`pull${member.id}`} className="pullover-div uniformenAssets-divs dienstAsset">
+                            <p key={`pullP${member.id}`} >Pullover</p>
 
                             <input
+                            key={`pullS${member.id}`}
                                 type="text"
                                 name="pulloverS"
                                 id={member.id}
@@ -662,6 +261,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`pullB${member.id}`}
                                 type="checkbox"
                                 name="pulloverB"
                                 id={member.id}
@@ -670,10 +270,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="hose2-div uniformenAssets-divs dienstAsset">
-                            <p>Hose</p>
+                            <div key={`hose2Div${member.id}`} className="hose2-div uniformenAssets-divs dienstAsset">
+                            <p key={`hose2P${member.id}`}>Hose</p>
 
                             <input
+                            key={`hose2S${member.id}`}
                                 type="text"
                                 name="hose2S"
                                 id={member.id}
@@ -682,6 +283,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`hose2B${member.id}`}
                                 type="checkbox"
                                 name="hose2B"
                                 id={member.id}
@@ -690,10 +292,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="tshirt-div uniformenAssets-divs dienstAsset">
-                            <p>T-Shirt</p>
+                            <div key={`ts${member.id}`} className="tshirt-div uniformenAssets-divs dienstAsset">
+                            <p key={`tsP${member.id}`}>T-Shirt</p>
 
                             <input
+                            key={`tss${member.id}`}
                                 type="text"
                                 name="tshirtS"
                                 id={member.id}
@@ -702,6 +305,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                           key={`tsb${member.id}`} 
                                 type="checkbox"
                                 name="tshirtB"
                                 id={member.id}
@@ -710,10 +314,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="polo-div uniformenAssets-divs dienstAsset">
-                            <p>Polo</p>
+                            <div key={`po${member.id}`} className="polo-div uniformenAssets-divs dienstAsset">
+                            <p key={`poP${member.id}`}>Polo</p>
 
                             <input
+                            key={`poS${member.id}`}
                                 type="text"
                                 name="poloS"
                                 id={member.id}
@@ -722,6 +327,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`poB${member.id}`}
                                 type="checkbox"
                                 name="poloB"
                                 id={member.id}
@@ -730,10 +336,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="Bluse-div uniformenAssets-divs dienstAsset">
-                            <p>Bluse</p>
+                            <div key={`bl${member.id}`} className="Bluse-div uniformenAssets-divs dienstAsset">
+                            <p key={`blP${member.id}`}>Bluse</p>
 
                             <input
+                            key={`blS${member.id}`}
                                 type="text"
                                 name="bluseS"
                                 id={member.id}
@@ -742,6 +349,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`blB${member.id}`}
                                 type="checkbox"
                                 name="bluseB"
                                 id={member.id}
@@ -750,10 +358,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="fleece-div uniformenAssets-divs dienstAsset">
-                            <p>Fleece</p>
+                            <div key={`fl${member.id}`} className="fleece-div uniformenAssets-divs dienstAsset">
+                            <p key={`flP${member.id}`}>Fleece</p>
 
                             <input
+                            key={`flS${member.id}`}
                                 type="text"
                                 name="fleeceS"
                                 id={member.id}
@@ -762,6 +371,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`flB${member.id}`}
                                 type="checkbox"
                                 name="fleeceB"
                                 id={member.id}
@@ -771,20 +381,21 @@ export default function FirestoreDataForm() {
                             </div>
                         </div>
 
-                        <div className="uniformenTypes-div">
-                            <h3>Einsatzuniform</h3>
+                        <div key={`uni3${member.id}`} className="uniformenTypes-div">
+                            <h3 key={`uni3H3${member.id}`}>Einsatzuniform</h3>
 
-                            <div className="einsatzuniformenLabel-div uniformenLabels-div">
-                            <p className="uLabelsP1">Größe</p>
-                            <p className="uLabelsP2" title="Bereits ausgegeben?">
+                            <div key={`ei${member.id}`} className="einsatzuniformenLabel-div uniformenLabels-div">
+                            <p key={`eiP1${member.id}`} className="uLabelsP1">Größe</p>
+                            <p key={`eiP2${member.id}`} className="uLabelsP2" title="Bereits ausgegeben?">
                                 aus?
                             </p>
                             </div>
 
-                            <div className="schutzjacke-div uniformenAssets-divs einsatzAsset">
-                            <p>Schutzjacke</p>
+                            <div key={`schJ${member.id}`} className="schutzjacke-div uniformenAssets-divs einsatzAsset">
+                            <p key={`schJP${member.id}`}>Schutzjacke</p>
 
                             <input
+                            key={`schJS${member.id}`}
                                 type="text"
                                 name="schutzjackeS"
                                 id={member.id}
@@ -793,6 +404,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`schJB${member.id}`}
                                 type="checkbox"
                                 name="schutzjackeB"
                                 id={member.id}
@@ -801,10 +413,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="schutzhose-div uniformenAssets-divs einsatzAsset">
-                            <p>Schutzhose</p>
+                            <div key={`schH${member.id}`} className="schutzhose-div uniformenAssets-divs einsatzAsset">
+                            <p key={`schHP${member.id}`} >Schutzhose</p>
 
                             <input
+                            key={`schHS${member.id}`}
                                 type="text"
                                 name="schutzhoseS"
                                 id={member.id}
@@ -813,6 +426,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`schHB${member.id}`}
                                 type="checkbox"
                                 name="schutzhoseB"
                                 id={member.id}
@@ -821,10 +435,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="einsatzstiefelschwarz-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzstiefel schwarz</p>
+                            <div key={`ess${member.id}`} className="einsatzstiefelschwarz-div uniformenAssets-divs einsatzAsset">
+                            <p key={`essP${member.id}`}>Einsatzstiefel schwarz</p>
 
                             <input
+                            key={`essS${member.id}`}
                                 type="text"
                                 name="einsatzstiefelschwarzS"
                                 id={member.id}
@@ -833,6 +448,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`essB${member.id}`}
                                 type="checkbox"
                                 name="einsatzstiefelschwarzB"
                                 id={member.id}
@@ -841,10 +457,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="einsatzstiefelgelb-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzstiefel gelb</p>
+                            <div key={`essG${member.id}`} className="einsatzstiefelgelb-div uniformenAssets-divs einsatzAsset">
+                            <p key={`essGP${member.id}`} >Einsatzstiefel gelb</p>
 
                             <input
+                            key={`essGS${member.id}`} 
                                 type="text"
                                 name="einsatzstiefelgelbS"
                                 id={member.id}
@@ -853,6 +470,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`essGB${member.id}`} 
                                 type="checkbox"
                                 name="einsatzstiefelgelbB"
                                 id={member.id}
@@ -861,10 +479,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="einsatzhandschuhe-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzhandschuhe</p>
+                            <div key={`esHS${member.id}`}  className="einsatzhandschuhe-div uniformenAssets-divs einsatzAsset">
+                            <p key={`esHSP${member.id}`}>Einsatzhandschuhe</p>
 
                             <input
+                            key={`esHSS${member.id}`}
                                 type="text"
                                 name="einsatzhandschuheS"
                                 id={member.id}
@@ -873,6 +492,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`esHSB${member.id}`}
                                 type="checkbox"
                                 name="einsatzhandschuheB"
                                 id={member.id}
@@ -881,10 +501,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="einsatzstiefel-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzstiefel</p>
+                            <div key={`esST${member.id}`} className="einsatzstiefel-div uniformenAssets-divs einsatzAsset">
+                            <p key={`esSTP${member.id}`} >Einsatzstiefel</p>
 
                             <input
+                            key={`esSTS${member.id}`} 
                                 type="text"
                                 name="einsatzstiefelS"
                                 id={member.id}
@@ -893,6 +514,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`esSTB${member.id}`} 
                                 type="checkbox"
                                 name="einsatzstiefelB"
                                 id={member.id}
@@ -901,10 +523,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="kappe3-div uniformenAssets-divs einsatzAsset">
-                            <p>Kappe</p>
+                            <div key={`kappe3${member.id}`}  className="kappe3-div uniformenAssets-divs einsatzAsset">
+                            <p key={`kappe3P${member.id}`}>Kappe</p>
 
                             <input
+                            key={`kappe3S${member.id}`}
                                 type="text"
                                 name="kappe3S"
                                 id={member.id}
@@ -913,6 +536,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`kappe3B${member.id}`}
                                 type="checkbox"
                                 name="kappe3B"
                                 id={member.id}
@@ -921,10 +545,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="haube-div uniformenAssets-divs einsatzAsset">
-                            <p>haube</p>
+                            <div key={`haub${member.id}`} className="haube-div uniformenAssets-divs einsatzAsset">
+                            <p  key={`haubP${member.id}`}>haube</p>
 
                             <input
+                             key={`haubS${member.id}`}
                                 type="text"
                                 name="haubeS"
                                 id={member.id}
@@ -933,6 +558,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                             key={`haubB${member.id}`}
                                 type="checkbox"
                                 name="haubeB"
                                 id={member.id}
@@ -941,10 +567,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="helm-div uniformenAssets-divs einsatzAsset">
-                            <p>Helm</p>
+                            <div  key={`helm${member.id}`} className="helm-div uniformenAssets-divs einsatzAsset">
+                            <p key={`helmP${member.id}`} >Helm</p>
 
                             <input
+                            key={`helmS${member.id}`} 
                                 type="text"
                                 name="helmS"
                                 id={member.id}
@@ -953,6 +580,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`helmB${member.id}`} 
                                 type="checkbox"
                                 name="helmB"
                                 id={member.id}
@@ -961,10 +589,11 @@ export default function FirestoreDataForm() {
                             />
                             </div>
 
-                            <div className="Gurt-div uniformenAssets-divs einsatzAsset">
-                            <p>Gurt</p>
+                            <div key={`gurt${member.id}`}  className="Gurt-div uniformenAssets-divs einsatzAsset">
+                            <p key={`gurtP${member.id}`}>Gurt</p>
 
                             <input
+                            key={`gurtS${member.id}`}
                                 type="text"
                                 name="GurtS"
                                 id={member.id}
@@ -973,6 +602,7 @@ export default function FirestoreDataForm() {
                             />
 
                             <input
+                            key={`gurtB${member.id}`}
                                 type="checkbox"
                                 name="GurtB"
                                 id={member.id}
@@ -982,12 +612,6 @@ export default function FirestoreDataForm() {
                             </div>
                         </div>
                         </section>
-                    </form>
-                    ))
-                )}
-                </div>
-            </main>
 
-    </div>
-  );
-}
+                    </form>
+                    ))}
