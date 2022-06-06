@@ -11,6 +11,7 @@
 
 import "./styles/App.css";
 import LoginShield from './higherOrderComponents/LoginShield';
+import LogoutButton from './higherOrderComponents/LogoutButton';
 import Headline from './higherOrderComponents/Headline';
 import FirestoreDataForm from './higherOrderComponents/FirestoreDataForm';
 import Contact from './higherOrderComponents/Contact';
@@ -26,7 +27,10 @@ LocalStorageGetWithExpiry('loginKey');
           TestKey('loginKey') === true
 
           ? <div className="App">
-              <Headline />
+              <div className="headline-logout-div">
+                    <Headline />
+                    <LogoutButton />
+              </div>
               <FirestoreDataForm /> 
               <Contact />
             </div>

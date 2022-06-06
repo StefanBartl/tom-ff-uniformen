@@ -137,6 +137,10 @@ input {
     background-color: red;
 }
 
+.headline-logout-div{
+  display: flex;
+}
+
 .noData{
   margin-top: 35%;
   text-align: center;

@@ -342,24 +342,6 @@ export default function FirestoreDataForm() {
 
   //#endregion
 
-  //#region Login shield
-
-  // Logout button to delete session key & enable login shield 
-  function handleLogout (event) {
-    event.preventDefault();
-    // Ask user for logout
-    if (window.confirm("Willst du dich ausloggen?") === true) {
-        // If true, remove session key from local storage
-        localStorage.removeItem('loginKey');
-        // Reload lock app
-        window.location.reload();
-    } else {
-        return;
-    };
-  };
-
-  //#endregion
-
   return (
      <div className="FirestoreDataForm">
 
@@ -1009,8 +991,6 @@ export default function FirestoreDataForm() {
                   )}
                   </div>
               </main>
-
-              <button type='submit' className="logout-button" title="Ausloggen" onClick={handleLogout}>Logout</button>
       
       </div>
       

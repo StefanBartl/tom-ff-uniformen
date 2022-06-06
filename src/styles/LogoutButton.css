@@ -1,0 +1,21 @@
+.logout-button-div{
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+
+.logout-button {
+    width: 5rem;
+    font-size: larger;
+    border: none;
+    outline: solid 2px white;
+    color: white;
+    background-color: red;
+    transition: .2s ease-in-out;
+    transition-property: transform;
+}
+
+.logout-button:hover {
+    transform: scale(1.2);
+}
