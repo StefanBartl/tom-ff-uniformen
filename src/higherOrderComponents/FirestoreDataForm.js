@@ -353,7 +353,8 @@ export default function FirestoreDataForm() {
                   name="newBtn"
                   id={`new`}
                   alt="Arrow"
-                  title="Klicke um eine:n neue:n Kamerad:in anzulegen!"
+                  title={`Klicke um eine:n neue:n Kamerad:in anzulegen!
+                              ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
                   onClick={toggleNewMemberDiv}
                   />
 
@@ -466,6 +467,7 @@ export default function FirestoreDataForm() {
                               className={`fireTruck fireTruck-${index}`}
                               style={{ display: "none" }}
                               alt='Fire truck'
+                              title="©: freepik.com -  https://www.freepik.com/"
                           />
 
                           <img
@@ -474,7 +476,8 @@ export default function FirestoreDataForm() {
                               id={`memberInfoBtn-${index}`}
                               className="memberInfoBtn"
                               alt="Arrow"
-                              title="Info aufklappen"
+                              title={`Info aufklappen.
+                                          ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
                               onClick={() => {
                               toggleMemberInfo(index);
                               }}
@@ -502,6 +505,7 @@ export default function FirestoreDataForm() {
                               src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
                               className="memberInfo-fireImage"
                               alt="Fire distinguisher"
+                              title="©: BZZRINCANTATION - https://www.flaticon.com/authors/BZZRINCANTATION"
                               />
 
                               <div className="firestore-manipulateMember-btn">
