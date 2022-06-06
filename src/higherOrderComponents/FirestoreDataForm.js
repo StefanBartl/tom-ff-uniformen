@@ -5,6 +5,7 @@ import toggle90degAnimation from "../components/Toggle90Animation";
 import ToggleFullScreen from "../components/ToggleFullScreen";
 import FindMemberIndex from "../components/FindMemberIndexInDataArray";
 import GetUpdatetDataArray from "../components/GetUpdatetDataObject";
+import TestKey from '../components/TestKey';
 
 // ? Firebasefirestore  imports
 import { db } from "../firebase-config";
@@ -343,651 +344,653 @@ export default function FirestoreDataForm() {
   //#endregion
 
   return (
-    <div className="FirestoreDataForm">
-
-            <div className="console">
-                <img
-                src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
-                name="newBtn"
-                id={`new`}
-                alt="Arrow"
-                title="Klicke um eine:n neue:n Kamerad:in anzulegen!"
-                onClick={toggleNewMemberDiv}
-                />
-
-                <button
-                name="saveBtn"
-                id={`save`}
-                onClick={handleSaveNewFirestoreMember}
-                style={{ display: "none" }}
-                title="Klicke um die/den neue:n Kamerad:in anzulegen!"
-                >
-                speichern
-                </button>
-            </div>
-
-            <div className="newMember-div">
-                <p className="id-value" id="newID" style={{ display: "none" }}>
-                {data.length || 0}.
-                </p>
-
-                <input
-                type="text"
-                placeholder="Vorname"
-                name="vorname"
-                id="new-firstName"
-                className="input-firstName"
-                style={{ display: "none" }}
-                onChange={(event) => {
-                    setNewFirstName(event.target.value);
-                }}
-                required
-                />
-
-                <input
-                type="text"
-                placeholder="Nachname"
-                name="vorname"
-                id="new-lastName"
-                className="input-lastName"
-                style={{ display: "none" }}
-                onChange={(event) => {
-                    setNewLastName(event.target.value);
-                }}
-                required
-                />
-
-                <input
-                type="text"
-                placeholder="Dienstgrad"
-                name="vorname"
-                id="new-position"
-                className="input-position"
-                style={{ display: "none" }}
-                onChange={(event) => {
-                    setNewPosition(event.target.value);
-                }}
-                required
-                />
-            </div>
-
-            <main className="firestore-data-wrapper">
-                <div className="data-labels-div">
-                <h3 className="label-ID">Nr.</h3>
-                <h3 className="label-FN">Vorname</h3>
-                <h3 className="label-LN">Nachname</h3>
-                <h3 className="label-PO">Dienstgrad</h3>
-                </div>
-
-                <div className="data-array-wrapper">
-                {Children.toArray(
-                    data.map((member, index) => (
-                    <form
-                        name={`memberForm-${index}`}
-                        id={index}
-                        className={`member-form-${index} member-formMID-${member.id} member-forms`}
-                    >
-                        {/* Member form fields before toggling info visible  */}
-
-                        <section className="member-section-visible">
-                        <p className="id-value">{index}.</p>
-
-                        <input
-                            type="text"
-                            name="firstName"
-                            id={member.id}
-                            className="input-firstName"
-                            value={data[index].firstName}
-                            onChange={handleChange}
-                        />
-
-                        <input
-                            type="text"
-                            name="lastName"
-                            id={member.id}
-                            className="input-lastName"
-                            value={data[index].lastName}
-                            onChange={handleChange}
-                        />
-
-                        <input
-                            type="text"
-                            name="ffposition"
-                            id={member.id}
-                            className="input-position"
-                            value={data[index].ffposition}
-                            onChange={handleChange}
-                        />
-
-                        <img
-                            src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
-                            className={`fireTruck fireTruck-${index}`}
-                            style={{ display: "none" }}
-                            alt='Fire truck'
-                        />
-
-                        <img
-                            src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
-                            name="memberInfoBtn"
-                            id={`memberInfoBtn-${index}`}
-                            className="memberInfoBtn"
-                            alt="Arrow"
-                            title="Info aufklappen"
-                            onClick={() => {
-                            toggleMemberInfo(index);
-                            }}
-                        />
-                        </section>
-
-                        {/* Member info Form fields */}
-
-                        <section
-                        id={`infoSection-${index}`}
-                        className="member-section-toToggle"
-                        style={{ display: "none" }}
-                        >
-                        <div className="memberInfo-wrapper">
-                            <h3 className="memberInfos-h3">Infos</h3>
-                            <textarea
-                            name="textarea"
-                            id={member.id}
-                            className="input-textarea"
-                            value={data[index].textarea}
-                            onChange={handleChange}
-                            />
-
-                            <img
-                            src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
-                            className="memberInfo-fireImage"
-                            alt="Fire distinguisher"
-                            />
-
-                            <div className="firestore-manipulateMember-btn">
-                            <input
-                                type="button"
-                                name="deleteBtn"
-                                id={member.id}
-                                title="Kamerad:in unwiderruflich aus der Datenbank löschen"
-                                className={`deleteBtn delete-${member.id}`}
-                                onClick={(event) => {
-                                handleDeleteFirestoreMember(member.id);
-                                }}
-                                defaultValue="löschen"
-                            />
-
-                            <input
-                                type="button"
-                                name="updateBtn"
-                                id={member.id}
-                                title="Update die Daten der/des Kamerad:in in der Datenbank"
-                                className={`updateBtn update-${member.id}`}
-                                onClick={(event) => {
-                                handleUpdateFirestoreMember(member.id);
-                                }}
-                                defaultValue="update"
-                            />
-                            </div>
-                        </div>
-
-                        <div className="uniformenTypes-div">
-                            <h3>Galauniformen</h3>
-
-                            <div className="galaLabel-div uniformenLabels-div">
-                            <p className="galaP1">Größe</p>
-                            <p className="galaP2" title="Bereits ausgegeben?">
-                                aus?
-                            </p>
-                            </div>
-
-                            <div className="mantel-div uniformenAssets-divs galaAsset">
-                            <p>Mantel</p>
-
-                            <input
-                                type="text"
-                                name="mantelS"
-                                id={member.id}
-                                value={data[index].mantelS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="mantelB"
-                                id={member.id}
-                                checked={data[index].mantelB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="jacke-div uniformenAssets-divs galaAsset">
-                            <p>Jacke</p>
-
-                            <input
-                                type="text"
-                                name="jackeS"
-                                id={member.id}
-                                value={data[index].jackeS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="jackeB"
-                                id={member.id}
-                                checked={data[index].jackeB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="hose-rock-div uniformenAssets-divs galaAsset">
-                            <p>Hose</p>
-
-                            <input
-                                type="text"
-                                name="hoseS"
-                                id={member.id}
-                                value={data[index].hoseS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="hoseB"
-                                id={member.id}
-                                checked={data[index].hoseB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="hemd-div uniformenAssets-divs galaAsset">
-                            <p>Hemd</p>
-
-                            <input
-                                type="text"
-                                name="hemdS"
-                                id={member.id}
-                                value={data[index].hemdS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="hemdB"
-                                id={member.id}
-                                checked={data[index].hemdB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="kappe-div uniformenAssets-divs galaAsset">
-                            <p>Kappe</p>
-
-                            <input
-                                type="text"
-                                name="kappeS"
-                                id={member.id}
-                                value={data[index].kappeS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="kappeB"
-                                id={member.id}
-                                checked={data[index].kappeB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-                        </div>
-
-                        <div className="uniformenTypes-div">
-                            <h3>Dienstbekleidung</h3>
-
-                            <div className="dienstbekleidungLabel-div uniformenLabels-div">
-                            <p className="uLabelsP1">Größe</p>
-                            <p className="uLabelsP2" title="Bereits ausgegeben?">
-                                aus?
-                            </p>
-                            </div>
-
-                            <div className="pullover-div uniformenAssets-divs dienstAsset">
-                            <p>Pullover</p>
-
-                            <input
-                                type="text"
-                                name="pulloverS"
-                                id={member.id}
-                                value={data[index].pulloverS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="pulloverB"
-                                id={member.id}
-                                checked={data[index].pulloverB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="hose2-div uniformenAssets-divs dienstAsset">
-                            <p>Hose</p>
-
-                            <input
-                                type="text"
-                                name="hose2S"
-                                id={member.id}
-                                value={data[index].hose2S}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="hose2B"
-                                id={member.id}
-                                checked={data[index].hose2B || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="tshirt-div uniformenAssets-divs dienstAsset">
-                            <p>T-Shirt</p>
-
-                            <input
-                                type="text"
-                                name="tshirtS"
-                                id={member.id}
-                                value={data[index].tshirtS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="tshirtB"
-                                id={member.id}
-                                checked={data[index].tshirtB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="polo-div uniformenAssets-divs dienstAsset">
-                            <p>Polo</p>
-
-                            <input
-                                type="text"
-                                name="poloS"
-                                id={member.id}
-                                value={data[index].poloS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="poloB"
-                                id={member.id}
-                                checked={data[index].poloB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="Bluse-div uniformenAssets-divs dienstAsset">
-                            <p>Bluse</p>
-
-                            <input
-                                type="text"
-                                name="bluseS"
-                                id={member.id}
-                                value={data[index].bluseS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="bluseB"
-                                id={member.id}
-                                checked={data[index].bluseB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="fleece-div uniformenAssets-divs dienstAsset">
-                            <p>Fleece</p>
-
-                            <input
-                                type="text"
-                                name="fleeceS"
-                                id={member.id}
-                                value={data[index].fleeceS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="fleeceB"
-                                id={member.id}
-                                checked={data[index].fleeceB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-                        </div>
-
-                        <div className="uniformenTypes-div">
-                            <h3>Einsatzuniform</h3>
-
-                            <div className="einsatzuniformenLabel-div uniformenLabels-div">
-                            <p className="uLabelsP1">Größe</p>
-                            <p className="uLabelsP2" title="Bereits ausgegeben?">
-                                aus?
-                            </p>
-                            </div>
-
-                            <div className="schutzjacke-div uniformenAssets-divs einsatzAsset">
-                            <p>Schutzjacke</p>
-
-                            <input
-                                type="text"
-                                name="schutzjackeS"
-                                id={member.id}
-                                value={data[index].schutzjackeS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="schutzjackeB"
-                                id={member.id}
-                                checked={data[index].schutzjackeB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="schutzhose-div uniformenAssets-divs einsatzAsset">
-                            <p>Schutzhose</p>
-
-                            <input
-                                type="text"
-                                name="schutzhoseS"
-                                id={member.id}
-                                value={data[index].schutzhoseS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="schutzhoseB"
-                                id={member.id}
-                                checked={data[index].schutzhoseB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="einsatzstiefelschwarz-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzstiefel schwarz</p>
-
-                            <input
-                                type="text"
-                                name="einsatzstiefelschwarzS"
-                                id={member.id}
-                                value={data[index].einsatzstiefelschwarzS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="einsatzstiefelschwarzB"
-                                id={member.id}
-                                checked={data[index].einsatzstiefelschwarzB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="einsatzstiefelgelb-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzstiefel gelb</p>
-
-                            <input
-                                type="text"
-                                name="einsatzstiefelgelbS"
-                                id={member.id}
-                                value={data[index].einsatzstiefelgelbS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="einsatzstiefelgelbB"
-                                id={member.id}
-                                checked={data[index].einsatzstiefelgelbB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="einsatzhandschuhe-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzhandschuhe</p>
-
-                            <input
-                                type="text"
-                                name="einsatzhandschuheS"
-                                id={member.id}
-                                value={data[index].einsatzhandschuheS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="einsatzhandschuheB"
-                                id={member.id}
-                                checked={data[index].einsatzhandschuheB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="einsatzstiefel-div uniformenAssets-divs einsatzAsset">
-                            <p>Einsatzstiefel</p>
-
-                            <input
-                                type="text"
-                                name="einsatzstiefelS"
-                                id={member.id}
-                                value={data[index].einsatzstiefelS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="einsatzstiefelB"
-                                id={member.id}
-                                checked={data[index].einsatzstiefelB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="kappe3-div uniformenAssets-divs einsatzAsset">
-                            <p>Kappe</p>
-
-                            <input
-                                type="text"
-                                name="kappe3S"
-                                id={member.id}
-                                value={data[index].kappe3S}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="kappe3B"
-                                id={member.id}
-                                checked={data[index].kappe3B || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="haube-div uniformenAssets-divs einsatzAsset">
-                            <p>haube</p>
-
-                            <input
-                                type="text"
-                                name="haubeS"
-                                id={member.id}
-                                value={data[index].haubeS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="haubeB"
-                                id={member.id}
-                                checked={data[index].haubeB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="helm-div uniformenAssets-divs einsatzAsset">
-                            <p>Helm</p>
-
-                            <input
-                                type="text"
-                                name="helmS"
-                                id={member.id}
-                                value={data[index].helmS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="helmB"
-                                id={member.id}
-                                checked={data[index].helmB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-
-                            <div className="Gurt-div uniformenAssets-divs einsatzAsset">
-                            <p>Gurt</p>
-
-                            <input
-                                type="text"
-                                name="GurtS"
-                                id={member.id}
-                                value={data[index].GurtS}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="checkbox"
-                                name="GurtB"
-                                id={member.id}
-                                checked={data[index].GurtB || false}
-                                onChange={handleChange}
-                            />
-                            </div>
-                        </div>
-                        </section>
-                    </form>
-                    ))
-                )}
-                </div>
-            </main>
-
-    </div>
+    TestKey('loginKey') === true
+     ? <div className="FirestoreDataForm">
+
+              <div className="console">
+                  <img
+                  src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
+                  name="newBtn"
+                  id={`new`}
+                  alt="Arrow"
+                  title="Klicke um eine:n neue:n Kamerad:in anzulegen!"
+                  onClick={toggleNewMemberDiv}
+                  />
+
+                  <button
+                  name="saveBtn"
+                  id={`save`}
+                  onClick={handleSaveNewFirestoreMember}
+                  style={{ display: "none" }}
+                  title="Klicke um die/den neue:n Kamerad:in anzulegen!"
+                  >
+                  speichern
+                  </button>
+              </div>
+
+              <div className="newMember-div">
+                  <p className="id-value" id="newID" style={{ display: "none" }}>
+                  {data.length || 0}.
+                  </p>
+
+                  <input
+                  type="text"
+                  placeholder="Vorname"
+                  name="vorname"
+                  id="new-firstName"
+                  className="input-firstName"
+                  style={{ display: "none" }}
+                  onChange={(event) => {
+                      setNewFirstName(event.target.value);
+                  }}
+                  required
+                  />
+
+                  <input
+                  type="text"
+                  placeholder="Nachname"
+                  name="vorname"
+                  id="new-lastName"
+                  className="input-lastName"
+                  style={{ display: "none" }}
+                  onChange={(event) => {
+                      setNewLastName(event.target.value);
+                  }}
+                  required
+                  />
+
+                  <input
+                  type="text"
+                  placeholder="Dienstgrad"
+                  name="vorname"
+                  id="new-position"
+                  className="input-position"
+                  style={{ display: "none" }}
+                  onChange={(event) => {
+                      setNewPosition(event.target.value);
+                  }}
+                  required
+                  />
+              </div>
+
+              <main className="firestore-data-wrapper">
+                  <div className="data-labels-div">
+                  <h3 className="label-ID">Nr.</h3>
+                  <h3 className="label-FN">Vorname</h3>
+                  <h3 className="label-LN">Nachname</h3>
+                  <h3 className="label-PO">Dienstgrad</h3>
+                  </div>
+
+                  <div className="data-array-wrapper">
+                  {Children.toArray(
+                      data.map((member, index) => (
+                      <form
+                          name={`memberForm-${index}`}
+                          id={index}
+                          className={`member-form-${index} member-formMID-${member.id} member-forms`}
+                      >
+                          {/* Member form fields before toggling info visible  */}
+
+                          <section className="member-section-visible">
+                          <p className="id-value">{index}.</p>
+
+                          <input
+                              type="text"
+                              name="firstName"
+                              id={member.id}
+                              className="input-firstName"
+                              value={data[index].firstName}
+                              onChange={handleChange}
+                          />
+
+                          <input
+                              type="text"
+                              name="lastName"
+                              id={member.id}
+                              className="input-lastName"
+                              value={data[index].lastName}
+                              onChange={handleChange}
+                          />
+
+                          <input
+                              type="text"
+                              name="ffposition"
+                              id={member.id}
+                              className="input-position"
+                              value={data[index].ffposition}
+                              onChange={handleChange}
+                          />
+
+                          <img
+                              src="https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY"
+                              className={`fireTruck fireTruck-${index}`}
+                              style={{ display: "none" }}
+                              alt='Fire truck'
+                          />
+
+                          <img
+                              src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
+                              name="memberInfoBtn"
+                              id={`memberInfoBtn-${index}`}
+                              className="memberInfoBtn"
+                              alt="Arrow"
+                              title="Info aufklappen"
+                              onClick={() => {
+                              toggleMemberInfo(index);
+                              }}
+                          />
+                          </section>
+
+                          {/* Member info Form fields */}
+
+                          <section
+                          id={`infoSection-${index}`}
+                          className="member-section-toToggle"
+                          style={{ display: "none" }}
+                          >
+                          <div className="memberInfo-wrapper">
+                              <h3 className="memberInfos-h3">Infos</h3>
+                              <textarea
+                              name="textarea"
+                              id={member.id}
+                              className="input-textarea"
+                              value={data[index].textarea}
+                              onChange={handleChange}
+                              />
+
+                              <img
+                              src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
+                              className="memberInfo-fireImage"
+                              alt="Fire distinguisher"
+                              />
+
+                              <div className="firestore-manipulateMember-btn">
+                              <input
+                                  type="button"
+                                  name="deleteBtn"
+                                  id={member.id}
+                                  title="Kamerad:in unwiderruflich aus der Datenbank löschen"
+                                  className={`deleteBtn delete-${member.id}`}
+                                  onClick={(event) => {
+                                  handleDeleteFirestoreMember(member.id);
+                                  }}
+                                  defaultValue="löschen"
+                              />
+
+                              <input
+                                  type="button"
+                                  name="updateBtn"
+                                  id={member.id}
+                                  title="Update die Daten der/des Kamerad:in in der Datenbank"
+                                  className={`updateBtn update-${member.id}`}
+                                  onClick={(event) => {
+                                  handleUpdateFirestoreMember(member.id);
+                                  }}
+                                  defaultValue="update"
+                              />
+                              </div>
+                          </div>
+
+                          <div className="uniformenTypes-div">
+                              <h3>Galauniformen</h3>
+
+                              <div className="galaLabel-div uniformenLabels-div">
+                              <p className="galaP1">Größe</p>
+                              <p className="galaP2" title="Bereits ausgegeben?">
+                                  aus?
+                              </p>
+                              </div>
+
+                              <div className="mantel-div uniformenAssets-divs galaAsset">
+                              <p>Mantel</p>
+
+                              <input
+                                  type="text"
+                                  name="mantelS"
+                                  id={member.id}
+                                  value={data[index].mantelS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="mantelB"
+                                  id={member.id}
+                                  checked={data[index].mantelB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="jacke-div uniformenAssets-divs galaAsset">
+                              <p>Jacke</p>
+
+                              <input
+                                  type="text"
+                                  name="jackeS"
+                                  id={member.id}
+                                  value={data[index].jackeS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="jackeB"
+                                  id={member.id}
+                                  checked={data[index].jackeB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="hose-rock-div uniformenAssets-divs galaAsset">
+                              <p>Hose</p>
+
+                              <input
+                                  type="text"
+                                  name="hoseS"
+                                  id={member.id}
+                                  value={data[index].hoseS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="hoseB"
+                                  id={member.id}
+                                  checked={data[index].hoseB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="hemd-div uniformenAssets-divs galaAsset">
+                              <p>Hemd</p>
+
+                              <input
+                                  type="text"
+                                  name="hemdS"
+                                  id={member.id}
+                                  value={data[index].hemdS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="hemdB"
+                                  id={member.id}
+                                  checked={data[index].hemdB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="kappe-div uniformenAssets-divs galaAsset">
+                              <p>Kappe</p>
+
+                              <input
+                                  type="text"
+                                  name="kappeS"
+                                  id={member.id}
+                                  value={data[index].kappeS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="kappeB"
+                                  id={member.id}
+                                  checked={data[index].kappeB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+                          </div>
+
+                          <div className="uniformenTypes-div">
+                              <h3>Dienstbekleidung</h3>
+
+                              <div className="dienstbekleidungLabel-div uniformenLabels-div">
+                              <p className="uLabelsP1">Größe</p>
+                              <p className="uLabelsP2" title="Bereits ausgegeben?">
+                                  aus?
+                              </p>
+                              </div>
+
+                              <div className="pullover-div uniformenAssets-divs dienstAsset">
+                              <p>Pullover</p>
+
+                              <input
+                                  type="text"
+                                  name="pulloverS"
+                                  id={member.id}
+                                  value={data[index].pulloverS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="pulloverB"
+                                  id={member.id}
+                                  checked={data[index].pulloverB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="hose2-div uniformenAssets-divs dienstAsset">
+                              <p>Hose</p>
+
+                              <input
+                                  type="text"
+                                  name="hose2S"
+                                  id={member.id}
+                                  value={data[index].hose2S}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="hose2B"
+                                  id={member.id}
+                                  checked={data[index].hose2B || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="tshirt-div uniformenAssets-divs dienstAsset">
+                              <p>T-Shirt</p>
+
+                              <input
+                                  type="text"
+                                  name="tshirtS"
+                                  id={member.id}
+                                  value={data[index].tshirtS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="tshirtB"
+                                  id={member.id}
+                                  checked={data[index].tshirtB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="polo-div uniformenAssets-divs dienstAsset">
+                              <p>Polo</p>
+
+                              <input
+                                  type="text"
+                                  name="poloS"
+                                  id={member.id}
+                                  value={data[index].poloS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="poloB"
+                                  id={member.id}
+                                  checked={data[index].poloB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="Bluse-div uniformenAssets-divs dienstAsset">
+                              <p>Bluse</p>
+
+                              <input
+                                  type="text"
+                                  name="bluseS"
+                                  id={member.id}
+                                  value={data[index].bluseS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="bluseB"
+                                  id={member.id}
+                                  checked={data[index].bluseB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="fleece-div uniformenAssets-divs dienstAsset">
+                              <p>Fleece</p>
+
+                              <input
+                                  type="text"
+                                  name="fleeceS"
+                                  id={member.id}
+                                  value={data[index].fleeceS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="fleeceB"
+                                  id={member.id}
+                                  checked={data[index].fleeceB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+                          </div>
+
+                          <div className="uniformenTypes-div">
+                              <h3>Einsatzuniform</h3>
+
+                              <div className="einsatzuniformenLabel-div uniformenLabels-div">
+                              <p className="uLabelsP1">Größe</p>
+                              <p className="uLabelsP2" title="Bereits ausgegeben?">
+                                  aus?
+                              </p>
+                              </div>
+
+                              <div className="schutzjacke-div uniformenAssets-divs einsatzAsset">
+                              <p>Schutzjacke</p>
+
+                              <input
+                                  type="text"
+                                  name="schutzjackeS"
+                                  id={member.id}
+                                  value={data[index].schutzjackeS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="schutzjackeB"
+                                  id={member.id}
+                                  checked={data[index].schutzjackeB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="schutzhose-div uniformenAssets-divs einsatzAsset">
+                              <p>Schutzhose</p>
+
+                              <input
+                                  type="text"
+                                  name="schutzhoseS"
+                                  id={member.id}
+                                  value={data[index].schutzhoseS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="schutzhoseB"
+                                  id={member.id}
+                                  checked={data[index].schutzhoseB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="einsatzstiefelschwarz-div uniformenAssets-divs einsatzAsset">
+                              <p>Einsatzstiefel schwarz</p>
+
+                              <input
+                                  type="text"
+                                  name="einsatzstiefelschwarzS"
+                                  id={member.id}
+                                  value={data[index].einsatzstiefelschwarzS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="einsatzstiefelschwarzB"
+                                  id={member.id}
+                                  checked={data[index].einsatzstiefelschwarzB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="einsatzstiefelgelb-div uniformenAssets-divs einsatzAsset">
+                              <p>Einsatzstiefel gelb</p>
+
+                              <input
+                                  type="text"
+                                  name="einsatzstiefelgelbS"
+                                  id={member.id}
+                                  value={data[index].einsatzstiefelgelbS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="einsatzstiefelgelbB"
+                                  id={member.id}
+                                  checked={data[index].einsatzstiefelgelbB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="einsatzhandschuhe-div uniformenAssets-divs einsatzAsset">
+                              <p>Einsatzhandschuhe</p>
+
+                              <input
+                                  type="text"
+                                  name="einsatzhandschuheS"
+                                  id={member.id}
+                                  value={data[index].einsatzhandschuheS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="einsatzhandschuheB"
+                                  id={member.id}
+                                  checked={data[index].einsatzhandschuheB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="einsatzstiefel-div uniformenAssets-divs einsatzAsset">
+                              <p>Einsatzstiefel</p>
+
+                              <input
+                                  type="text"
+                                  name="einsatzstiefelS"
+                                  id={member.id}
+                                  value={data[index].einsatzstiefelS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="einsatzstiefelB"
+                                  id={member.id}
+                                  checked={data[index].einsatzstiefelB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="kappe3-div uniformenAssets-divs einsatzAsset">
+                              <p>Kappe</p>
+
+                              <input
+                                  type="text"
+                                  name="kappe3S"
+                                  id={member.id}
+                                  value={data[index].kappe3S}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="kappe3B"
+                                  id={member.id}
+                                  checked={data[index].kappe3B || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="haube-div uniformenAssets-divs einsatzAsset">
+                              <p>haube</p>
+
+                              <input
+                                  type="text"
+                                  name="haubeS"
+                                  id={member.id}
+                                  value={data[index].haubeS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="haubeB"
+                                  id={member.id}
+                                  checked={data[index].haubeB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="helm-div uniformenAssets-divs einsatzAsset">
+                              <p>Helm</p>
+
+                              <input
+                                  type="text"
+                                  name="helmS"
+                                  id={member.id}
+                                  value={data[index].helmS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="helmB"
+                                  id={member.id}
+                                  checked={data[index].helmB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+
+                              <div className="Gurt-div uniformenAssets-divs einsatzAsset">
+                              <p>Gurt</p>
+
+                              <input
+                                  type="text"
+                                  name="GurtS"
+                                  id={member.id}
+                                  value={data[index].GurtS}
+                                  onChange={handleChange}
+                              />
+
+                              <input
+                                  type="checkbox"
+                                  name="GurtB"
+                                  id={member.id}
+                                  checked={data[index].GurtB || false}
+                                  onChange={handleChange}
+                              />
+                              </div>
+                          </div>
+                          </section>
+                      </form>
+                      ))
+                  )}
+                  </div>
+              </main>
+
+      </div>
+      : <h3 className="noData">No data if not logged in!</h3>
   );
 }

@@ -1,4 +1,4 @@
-.Aut{
+.login-shield{
     position: absolute;
     top: 0;
     left: 0;
@@ -61,23 +61,6 @@
     background-color: red;
     color: white;
     transform: scale(1.1);
-}
-
-.logout-button {
-    position: absolute;
-    bottom: .5rem;
-    left: .5rem;
-    width: fit-content;
-    border: none;
-    outline: solid 2px white;
-    color: white;
-    background-color: red;
-    transition: .2s ease-in-out;
-    transition-property: transform;
-}
-
-.logout-button:hover {
-    transform: scale(1.2);
 }
 
 .login-failMessage{
