@@ -1,4 +1,5 @@
 export default function LocalStorageGetWithExpiry(key) {
+
 	const itemStr = localStorage.getItem(key);
 	// if the item doesn't exist, return false
 	if (!itemStr) {
@@ -18,4 +19,5 @@ export default function LocalStorageGetWithExpiry(key) {
 	};
 
 	return true; // if value should returned => item.value
+	
 };
