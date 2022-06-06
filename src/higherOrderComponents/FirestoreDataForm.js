@@ -5,7 +5,6 @@ import toggle90degAnimation from "../components/Toggle90Animation";
 import ToggleFullScreen from "../components/ToggleFullScreen";
 import FindMemberIndex from "../components/FindMemberIndexInDataArray";
 import GetUpdatetDataArray from "../components/GetUpdatetDataObject";
-import TestKey from '../components/TestKey';
 
 // ? Firebasefirestore  imports
 import { db } from "../firebase-config";
@@ -343,9 +342,26 @@ export default function FirestoreDataForm() {
 
   //#endregion
 
+  //#region Login shield
+
+  // Logout button to delete session key & enable login shield 
+  function handleLogout (event) {
+    event.preventDefault();
+    // Ask user for logout
+    if (window.confirm("Willst du dich ausloggen?") === true) {
+        // If true, remove session key from local storage
+        localStorage.removeItem('loginKey');
+        // Reload lock app
+        window.location.reload();
+    } else {
+        return;
+    };
+  };
+
+  //#endregion
+
   return (
-    TestKey('loginKey') === true
-     ? <div className="FirestoreDataForm">
+     <div className="FirestoreDataForm">
 
               <div className="console">
                   <img
@@ -994,7 +1010,9 @@ export default function FirestoreDataForm() {
                   </div>
               </main>
 
+              <button type='submit' className="logout-button" title="Ausloggen" onClick={handleLogout}>Logout</button>
+      
       </div>
-      : <h3 className="noData">No data if not logged in!</h3>
+      
   );
-}
+};
