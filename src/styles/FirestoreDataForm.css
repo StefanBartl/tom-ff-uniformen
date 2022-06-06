@@ -1,10 +1,17 @@
 
+.FirestoreDataForm {
+    height: 80vh;
+    margin: 1rem;
+    padding: .5rem;
+    background-color: #01D101;
+    outline: solid 2px white;
+}
+
 /* ? New member section */
 
 .console{
     display: flex;
     gap: .5rem;
-    margin-top: 3rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -16,9 +23,9 @@
 }
 
 #new {
-  width: 2rem;
-  height: 2rem;
-  filter: invert(1);
+  width: 3rem;
+  height: 3rem;
+  filter: invert(13%) sepia(100%) saturate(6216%) hue-rotate(359deg) brightness(94%) contrast(106%);
   cursor: pointer;
 }
 
@@ -30,43 +37,62 @@
   margin-left: 1.5rem;
 }
 
-#save{
-  width: 10ch;
-  margin-left: .7rem;
-  outline: solid 4px goldenrod;
-  cursor: pointer;
-  transition: .2s ease-in-out;
-  transition-property: background-color, color;
-}
-
-#save:hover {
-  background-color: goldenrod;
-  color: white;
-}
 
 /* ? data form */
 .member-forms {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    background-color: lightgray;
 }
 
 /* ? summary class for the form input fields */
 
+.data-labels-div{
+    display: flex;
+    padding: 1rem;
+    padding-left: 3rem;
+    background-color: lightgray;
+    gap: 1rem;
+}
+
+.data-labels-div > h3 {
+    border: none;
+    outline: none;
+    text-align: center;
+    color: #01D101;
+}
+
+/* .label-FN{
+}
+
+.label-LN{
+}
+
+.label-PO{
+} */
+
 .member-section-visible {
+    height: 10%;
     display: flex;
     padding: 1rem;
     margin-top: .5rem;
-    gap: .5rem;
+    margin-left: 2rem;
+    gap: 1rem;
 }
 
 .member-section-toToggle {
-    color: white;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
     margin-top: .5rem;
-    padding-bottom: .5rem;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
     gap: .5rem;
+    color: white;
+    background-color: #01D101;
 }
 
 .uniformen-div{
@@ -90,8 +116,10 @@
 
 /* ? classes for the individual inputs  */
 .id-value  {
+    font-size: xx-large;
+    font-weight: bolder;
     color: white;
-    width: 3ch;
+    align-self:flex-end
 }
 
 .input-firstName  {
@@ -107,7 +135,7 @@
 }
 
 .memberInfo-wrapper{
-    margin-left: 1rem;
+    margin-left: 5%;
     margin-bottom: .5rem;
 }
 
@@ -116,28 +144,27 @@
 }
 
 .memberInfoBtn{
-    width: 2rem;
-    height: 2rem;
+    width: 4rem;
+    height: 4rem;
     filter: invert(1);
     cursor: pointer;
+    margin-left: auto;
+    margin-right: 1rem;
 }
 
 .firestore-data-wrapper {
     margin: 1rem;
-    border: dashed 2px white ;
+    outline: dashed 4px white;
+    outline-width: 8px;
+    outline-offset: 2px;
 }
   
-.fireTruck {
-    width: 2rem;
-    aspect-ratio: 1/1;
-    margin-left: auto;
-    margin-right: .5rem;
-}
-
 .memberInfo-wrapper{
     display: flex;
     flex-direction: column;
     height: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
     position: relative;
     text-align: center;
 }
@@ -147,7 +174,9 @@
 }
 
 .input-textarea {
-    height: 50vh;
+    height: 50%;
+    width: 15vw;
+    font-size: larger;
 }
 
 .memberInfo-wrapper:before{
@@ -157,28 +186,6 @@
     left: 10%;
     width: 80%;
     border: solid 1px white;
-}
-
-.memberInfo-fireImage{
-    width: 5rem;
-    height: 5rem;
-    justify-self: end;
-    margin-top: 1rem;
-    margin-bottom: .5rem;
-    margin-left: -1.5rem;
-    transform: rotateY(180deg);
-}
-
-.firestore-manipulateMember-btn {
-    display: flex;
-    gap: 4rem;
-}
-
-.deleteBtn,
-.updateBtn {
-    width: 8ch;
-    outline: solid 4px goldenrod;
-    cursor: pointer;
 }
 
 .notSelectedMember-div{
@@ -198,9 +205,10 @@
 .uniformenTypes-div{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: fit-content;
     height: fit-content;
-    gap: .5rem;
+    gap: 1rem;
+    margin-top: 1rem;
     padding: .5rem;
     text-align: center;
     position: relative;
@@ -220,16 +228,21 @@
     gap: 1rem;
 }
 
+.memberInfo-wrapper > h3,
+.uniformenTypes-div > h3 {
+    font-size: x-large;
+}
+
 .galaLabel-div .uLabelsP1 {
-    margin-left: 7ch;
+    margin-left: 13ch;
 }
 
 .dienstbekleidungLabel-div .uLabelsP1 {
-    margin-left: 9ch;
+    margin-left: 16ch;
 }
 
 .einsatzuniformenLabel-div .uLabelsP1 {
-    margin-left: 20ch;
+    margin-left: 33ch;
 }
 
 .uniformenLabels-div .uLabelsP2 {
@@ -238,7 +251,11 @@
 
 .uniformenAssets-divs {
     display: flex;
-    gap: .5rem;
+    gap: 1.5rem;
+}
+
+.uniformenAssets-divs > p {
+    font-size: x-large;
 }
 
 .uniformenAssets-divs > [type='text'] {
@@ -248,11 +265,9 @@
 .uniformenAssets-divs > [type='checkbox'] {
     margin-left: auto;
     cursor: pointer;
+    width: 1rem;
 }
 
-.galaP2 {
-    margin-left: auto;
-}
 
 .galaAsset > p {
     width: 6ch;
@@ -268,22 +283,9 @@ width: 19ch;
 
 /* ? classes for the input labels */
 
-.data-labels-div{
-display: flex;
-padding: .5rem;
-gap: .5rem;
-}
-
-.data-labels-div > h3 {
-border: none;
-outline: none;
-text-align: center;
-color: white;
-}
-
 .id-label  {
-color: white;
-width: 3ch;
+    color: white;
+    width: 3ch;
 }
 
 .firstName-label  {
@@ -296,7 +298,58 @@ width: 21ch;
 
 .position-label  {
 width: 21ch;
-}  
+}
+
+#save{
+    width: 10ch;
+    margin-left: .5rem;
+    cursor: pointer;
+    outline: solid 4px red;
+
+    transition: .2s ease-in-out;
+    transition-property: background-color, color;
+  }
+  
+  #save:hover {
+    background-color: goldenrod;
+    color: white;
+  }
+
+.firestore-manipulate-div{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: -1rem;
+}
+
+.deleteBtn,
+.updateBtn {
+    width: 8ch;
+    outline: solid 4px red;
+    cursor: pointer;
+}
+
+.fireTruck {
+    width: 10vw;
+    height:  10vw;
+    margin-left: auto;
+    margin-right: .5rem;
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    transform: rotateY(180deg);
+}
+
+.memberInfo-fireImage{
+    width: 5rem;
+    height: 5rem;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
 
 /* ? Transitions */
 

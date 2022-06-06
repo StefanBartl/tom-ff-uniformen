@@ -355,16 +355,6 @@ export default function FirestoreDataForm() {
                               ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
                   onClick={toggleNewMemberDiv}
                   />
-
-                  <button
-                  name="saveBtn"
-                  id={`save`}
-                  onClick={handleSaveNewFirestoreMember}
-                  style={{ display: "none" }}
-                  title="Klicke um die/den neue:n Kamerad:in anzulegen!"
-                  >
-                  speichern
-                  </button>
               </div>
 
               <div className="newMember-div">
@@ -410,14 +400,24 @@ export default function FirestoreDataForm() {
                   }}
                   required
                   />
+
+                <button
+                  name="saveBtn"
+                  id={`save`}
+                  onClick={handleSaveNewFirestoreMember}
+                  style={{ display: "none" }}
+                  title="Klicke um die/den neue:n Kamerad:in anzulegen!"
+                  >
+                  speichern
+                  </button>
               </div>
 
               <main className="firestore-data-wrapper">
                   <div className="data-labels-div">
-                  <h3 className="label-ID">Nr.</h3>
-                  <h3 className="label-FN">Vorname</h3>
-                  <h3 className="label-LN">Nachname</h3>
-                  <h3 className="label-PO">Dienstgrad</h3>
+                  <h3 className="label-ID">Nr. -</h3>
+                      <h3 className="label-FN">Vorname,</h3>
+                      <h3 className="label-LN">Nachname,</h3>
+                      <h3 className="label-PO">Dienstgrad</h3>
                   </div>
 
                   <div className="data-array-wrapper">
@@ -499,46 +499,14 @@ export default function FirestoreDataForm() {
                               onChange={handleChange}
                               />
 
-                              <img
-                              src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
-                              className="memberInfo-fireImage"
-                              alt="Fire distinguisher"
-                              title="©: BZZRINCANTATION - https://www.flaticon.com/authors/BZZRINCANTATION"
-                              />
-
-                              <div className="firestore-manipulateMember-btn">
-                              <input
-                                  type="button"
-                                  name="deleteBtn"
-                                  id={member.id}
-                                  title="Kamerad:in unwiderruflich aus der Datenbank löschen"
-                                  className={`deleteBtn delete-${member.id}`}
-                                  onClick={(event) => {
-                                  handleDeleteFirestoreMember(member.id);
-                                  }}
-                                  defaultValue="löschen"
-                              />
-
-                              <input
-                                  type="button"
-                                  name="updateBtn"
-                                  id={member.id}
-                                  title="Update die Daten der/des Kamerad:in in der Datenbank"
-                                  className={`updateBtn update-${member.id}`}
-                                  onClick={(event) => {
-                                  handleUpdateFirestoreMember(member.id);
-                                  }}
-                                  defaultValue="update"
-                              />
-                              </div>
                           </div>
 
-                          <div className="uniformenTypes-div">
+                          <div className="uniformenTypes-div gala-wrapper">
                               <h3>Galauniformen</h3>
 
                               <div className="galaLabel-div uniformenLabels-div">
-                              <p className="galaP1">Größe</p>
-                              <p className="galaP2" title="Bereits ausgegeben?">
+                              <p className="uLabelsP1">Größe</p>
+                              <p className=".uLabelsP2" title="Bereits ausgegeben?">
                                   aus?
                               </p>
                               </div>
@@ -644,7 +612,7 @@ export default function FirestoreDataForm() {
                               </div>
                           </div>
 
-                          <div className="uniformenTypes-div">
+                          <div className="uniformenTypes-div dienst-wrapper">
                               <h3>Dienstbekleidung</h3>
 
                               <div className="dienstbekleidungLabel-div uniformenLabels-div">
@@ -775,7 +743,7 @@ export default function FirestoreDataForm() {
                               </div>
                           </div>
 
-                          <div className="uniformenTypes-div">
+                          <div className="uniformenTypes-div einsatz-wrapper">
                               <h3>Einsatzuniform</h3>
 
                               <div className="einsatzuniformenLabel-div uniformenLabels-div">
@@ -984,6 +952,40 @@ export default function FirestoreDataForm() {
                                   onChange={handleChange}
                               />
                               </div>
+                          </div>
+
+                          <div className="firestore-manipulate-div">
+
+                                  <input
+                                      type="button"
+                                      name="updateBtn"
+                                      id={member.id}
+                                      title="Update die Daten der/des Kamerad:in in der Datenbank"
+                                      className={`updateBtn update-${member.id}`}
+                                      onClick={(event) => {
+                                      handleUpdateFirestoreMember(member.id);
+                                      }}
+                                      defaultValue="update"
+                                  />
+
+                              <img
+                                  src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
+                                  className="memberInfo-fireImage"
+                                  alt="Fire distinguisher"
+                                  title="©: BZZRINCANTATION - https://www.flaticon.com/authors/BZZRINCANTATION"
+                                  />
+
+                                  <input
+                                      type="button"
+                                      name="deleteBtn"
+                                      id={member.id}
+                                      title="Kamerad:in unwiderruflich aus der Datenbank löschen"
+                                      className={`deleteBtn delete-${member.id}`}
+                                      onClick={(event) => {
+                                      handleDeleteFirestoreMember(member.id);
+                                      }}
+                                      defaultValue="löschen"
+                                  />
                           </div>
                           </section>
                       </form>
