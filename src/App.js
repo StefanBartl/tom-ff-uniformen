@@ -10,7 +10,6 @@
 // TODO DEPLOY !!! :-)
 
 import "./styles/App.css";
-import Authentication from './higherOrderComponents/Authentication';
 import LoginShield from './higherOrderComponents/LoginShield';
 import Headline from './higherOrderComponents/Headline';
 import FirestoreDataForm from './higherOrderComponents/FirestoreDataForm';
@@ -32,7 +31,10 @@ LocalStorageGetWithExpiry('loginKey');
               <Contact />
             </div>
 
-          : <LoginShield />
+          : <div>
+                <h3 className="noData" title="Click to go back" onClick={()=>{window.location.reload()}}>No data if not logged in!</h3>
+                <LoginShield />
+          </div> 
     
   );
 };

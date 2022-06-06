@@ -298,12 +298,6 @@ width: 21ch;
 width: 21ch;
 }  
 
-.noData{
-    text-align: center;
-    color: white;
-    text-transform: uppercase;
-}
-
 .logout-button {
     position: absolute;
     bottom: .5rem;
