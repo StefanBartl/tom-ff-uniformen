@@ -1,5 +1,6 @@
-import { doc } from "firebase/firestore";
 import { useState } from "react";
+import  ToggleElementDisplay from "../components/ToggleElementDisplay";
+
 
 export default function Searchbar(props){
 
@@ -30,11 +31,11 @@ export default function Searchbar(props){
             // Hide every no matches 
             const allFormsArr = document.querySelectorAll('.member-forms');
             for (const form of allFormsArr) {
-                    form.classList.add('noMatches');
+                    form.classList.add('displayNone');
             };
             // Show match 
             for(let i = 0; i < matchingObjects.length; i++){
-                document.querySelector(`.member-formMID-${matchingObjects[i].id}`).classList.remove('noMatches');
+                document.querySelector(`.member-formMID-${matchingObjects[i].id}`).classList.remove('displayNone');
             };
 
         } else { // Remove no matches class to make sure class is removed if seacrhbar strings are deleted 
@@ -42,7 +43,7 @@ export default function Searchbar(props){
             matchingObjects = [];
             const allFormsArr = document.querySelectorAll('.member-forms');
             for (const form of allFormsArr) {
-                    form.classList.remove('noMatches');
+                    form.classList.remove('displayNone');
             };
 
         };
@@ -59,24 +60,12 @@ export default function Searchbar(props){
             setSearchPosition('');
             const allFormsArr = document.querySelectorAll('.member-forms');
             for (const form of allFormsArr) {
-                    form.classList.remove('noMatches');
+                    form.classList.remove('displayNone');
             };
         };
 
     };
 
-    function toggleSearchbar(){
-
-        const allSearchbarArray = document.querySelectorAll('.searchbarToggle');
-        for (const form of allSearchbarArray) {
-            if(form.classList.contains('noMatches')){
-                form.classList.remove('noMatches');
-            }else{
-                form.classList.add('noMatches');
-            };
-        };
-
-    };
 
     return (
             <div className="Searchbar">
@@ -87,7 +76,7 @@ export default function Searchbar(props){
                     alt="Arrow"
                     title={`Klicke um die Suchbar anzuzeigen / zu verstecken!
                                 ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
-                    onClick={toggleSearchbar}
+                    onClick={() => {ToggleElementDisplay('searchbarToggle')}}
                     />
                     <input type='text' name="firstName" className='searchbarFN-input searchbarInputs searchbarToggle' value={searchFirstName} onChange={handleChange} />
                     <input type='text' name="lastName" className='searchbarLN-input searchbarInputs searchbarToggle' value={searchLastName} onChange={handleChange} />

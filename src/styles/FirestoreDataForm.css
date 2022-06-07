@@ -317,12 +317,8 @@ width: 21ch;
     border: solid 1px black;
 }
 
-  
-.noMatches {
-    display: none;
-}
-
 .searchBtn{
+    width: fit-content;
     height: 5ch;
     outline: solid 4px red;
     cursor: pointer;

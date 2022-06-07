@@ -2,6 +2,7 @@
 import "../styles/FirestoreDataForm.css";
 import { useState, useEffect, Children } from "react";
 import Searchbar from "./Searchbar";
+import  ToggleElementDisplay from "../components/ToggleElementDisplay";
 import toggle90degAnimation from "../components/Toggle90Animation";
 import ToggleFullScreen from "../components/ToggleFullScreen";
 import FindMemberIndex from "../components/FindMemberIndexInDataArray";
@@ -86,22 +87,22 @@ export default function FirestoreDataForm() {
     const newMemberPO = document.getElementById("new-position");
 
     // Toggle UI logic
-    if (saveBtn.style.display === "none") {
+    if (saveBtn.classList.contains('displayNone')) {
       toggle90degAnimation(newMemberBtn);
       newMemberBtn.title = "Neu anlegen zuklappen";
-      saveBtn.style.display = "block";
-      newMemberID.style.display = "block";
-      newMemberFN.style.display = "block";
-      newMemberLN.style.display = "block";
-      newMemberPO.style.display = "block";
+      saveBtn.classList.remove('displayNone');
+      newMemberID.classList.remove('displayNone');
+      newMemberFN.classList.remove('displayNone');
+      newMemberLN.classList.remove('displayNone');
+      newMemberPO.classList.remove('displayNone');
     } else {
       toggle90degAnimation(newMemberBtn);
       newMemberBtn.title = "Klicke um eine:n neue:n Kamerad:in anzulegen!";
-      saveBtn.style.display = "none";
-      newMemberID.style.display = "none";
-      newMemberFN.style.display = "none";
-      newMemberLN.style.display = "none";
-      newMemberPO.style.display = "none";
+      saveBtn.classList.add('displayNone');
+      newMemberID.classList.add('displayNone');
+      newMemberFN.classList.add('displayNone');
+      newMemberLN.classList.add('displayNone');
+      newMemberPO.classList.add('displayNone');
     }
   }
 
@@ -359,7 +360,7 @@ export default function FirestoreDataForm() {
               </div>
 
               <div className="newMember-div">
-                  <p className="id-value" id="newID" style={{ display: "none" }}>
+                  <p className="id-value displayNone" id="newID">
                   {data.length || 0}.
                   </p>
 
@@ -368,8 +369,7 @@ export default function FirestoreDataForm() {
                   placeholder="Vorname"
                   name="vorname"
                   id="new-firstName"
-                  className="input-firstName"
-                  style={{ display: "none" }}
+                  className="input-firstName displayNone"
                   onChange={(event) => {
                       setNewFirstName(event.target.value);
                   }}
@@ -381,8 +381,7 @@ export default function FirestoreDataForm() {
                   placeholder="Nachname"
                   name="vorname"
                   id="new-lastName"
-                  className="input-lastName"
-                  style={{ display: "none" }}
+                  className="input-lastName displayNone"
                   onChange={(event) => {
                       setNewLastName(event.target.value);
                   }}
@@ -394,8 +393,7 @@ export default function FirestoreDataForm() {
                   placeholder="Dienstgrad"
                   name="vorname"
                   id="new-position"
-                  className="input-position"
-                  style={{ display: "none" }}
+                  className="input-position displayNone"
                   onChange={(event) => {
                       setNewPosition(event.target.value);
                   }}
@@ -405,8 +403,8 @@ export default function FirestoreDataForm() {
                 <button
                   name="saveBtn"
                   id={`save`}
+                  className='displayNone'
                   onClick={handleSaveNewFirestoreMember}
-                  style={{ display: "none" }}
                   title="Klicke um die/den neue:n Kamerad:in anzulegen!"
                   >
                   speichern
@@ -997,7 +995,7 @@ export default function FirestoreDataForm() {
       
             <Searchbar data={data} />
 
-      </div>
+     </div>
       
   );
 };
