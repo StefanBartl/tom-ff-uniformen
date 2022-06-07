@@ -1,41 +1,46 @@
 
 .FirestoreDataForm {
-    height: 90vh;
+    height: fit-content;
     margin: 1rem;
     padding: .5rem;
     background-color: #01D101;
     outline: solid 2px white;
 }
 
-/* ? New member section */
-
 .console{
-    display: flex;
-    gap: .5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    min-height: 3rem;
+    transition: all .5s ease-in-out;
 }
 
-.newBtn-div{
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
+.console:hover > .newMember-div,
+.console:hover > .Searchbar {
+    display: flex;
+}
+
+/* ? New member section */
+
+.newMember-div{
+    display: none;
+    width: 67%;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20%;
+}
+
+.newMember-div > input {
+    width: 20ch;
+    height: 5ch;
 }
 
 #new,
 #search {
   width: 3rem;
   height: 3rem;
+  transform: rotate(90deg);
   filter: invert(13%) sepia(100%) saturate(6216%) hue-rotate(359deg) brightness(94%) contrast(106%);
   cursor: pointer;
-}
-
-.newMember-div{
-  display: flex;
-  padding: 1rem;
-  gap: .5rem;
-  padding: .5rem;
-  margin-left: 1.5rem;
 }
 
 
@@ -43,6 +48,7 @@
 .member-forms {
     display: flex;
     flex-direction: column;
+    padding-bottom: 1rem;
     gap: 1rem;
     background-color: lightgray;
 }
@@ -301,51 +307,6 @@ width: 21ch;
 width: 21ch;
 }
 
-/* ? Searchbar section */
-
-.Searchbar {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    justify-content: space-between;
-    margin-right: 20%;
-}
-
-.searchbarInputs {
-    width: 20ch;
-    height: 5ch;
-    border: solid 1px black;
-}
-
-.searchBtn{
-    width: fit-content;
-    height: 5ch;
-    outline: solid 4px red;
-    cursor: pointer;
-}
-
-.removeBtn {
-    height: 5ch;
-    outline: solid 4px red;
-    cursor: pointer;
-}
-
-
-#save{
-    width: 10ch;
-    margin-left: .5rem;
-    cursor: pointer;
-    outline: solid 4px red;
-
-    transition: .2s ease-in-out;
-    transition-property: background-color, color;
-  }
-  
-  #save:hover {
-    background-color: goldenrod;
-    color: white;
-  }
-
 .firestore-manipulate-div{
     display: flex;
     flex-direction: column;
@@ -382,6 +343,20 @@ width: 21ch;
     margin-bottom: 1rem;
 }
 
+#save{
+    width: 15ch;
+    height: 5ch;
+    outline: solid 4px red;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    transition-property: background-color, color;
+  }
+  
+  #save:hover {
+    background-color: goldenrod;
+    color: white;
+  }
+
 /* ? Transitions */
 
 .deleteBtn,
@@ -394,15 +369,4 @@ width: 21ch;
 .updateBtn:hover {
     background-color: goldenrod;
     color: white;
-}
-
-.removeBtn,
-.searchBtn {
-    transition: .2s ease-in-out;
-    transition-property: transform;
-}
-
-.removeBtn:hover,
-.searchBtn:hover {
-    transform: scale(1.2);
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import  ToggleElementDisplay from "../components/ToggleElementDisplay";
-
+import Toggle90degAnimation from "../components/Toggle90Animation";
+import '../styles/Searchbar.css';
+import { doc } from "firebase/firestore";
 
 export default function Searchbar(props){
 
@@ -76,13 +78,13 @@ export default function Searchbar(props){
                     alt="Arrow"
                     title={`Klicke um die Suchbar anzuzeigen / zu verstecken!
                                 ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
-                    onClick={() => {ToggleElementDisplay('searchbarToggle')}}
+                    onClick={() => {ToggleElementDisplay('searchbarToggle'); Toggle90degAnimation(document.querySelector('#search'));}}
                     />
-                    <input type='text' name="firstName" className='searchbarFN-input searchbarInputs searchbarToggle' value={searchFirstName} onChange={handleChange} />
-                    <input type='text' name="lastName" className='searchbarLN-input searchbarInputs searchbarToggle' value={searchLastName} onChange={handleChange} />
-                    <input type='text' name="ffposition" className='searchbarPO-input searchbarInputs searchbarToggle' value={searchPosition} onChange={handleChange} />
-                    <button name="search" className="searchBtn searchbarToggle" onClick={handleClick}>Suche starten</button>
-                    <button name="remove" className="removeBtn searchbarToggle" onClick={handleClick}>Löschen</button>
+                    <input type='text' name="firstName" placeholder="Vorname" className='searchbarFN-input searchbarInputs searchbarToggle displayNone' value={searchFirstName} onChange={handleChange} />
+                    <input type='text' name="lastName" placeholder="Nachname" className='searchbarLN-input searchbarInputs searchbarToggle displayNone' value={searchLastName} onChange={handleChange} />
+                    <input type='text' name="ffposition" placeholder="Dienstgrad" className='searchbarPO-input searchbarInputs searchbarToggle displayNone' value={searchPosition} onChange={handleChange} />
+                    <button name="search" className="searchBtn searchbarToggle displayNone" onClick={handleClick}>Suche starten</button>
+                    <button name="remove" className="removeBtn searchbarToggle displayNone" onClick={handleClick}>Löschen</button>
             </div>
     );
 };

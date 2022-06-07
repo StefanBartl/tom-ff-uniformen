@@ -1,0 +1,31 @@
+
+/* ? Searchbar section */
+
+.Searchbar {
+    display: none;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20%;
+}                
+
+.searchbarInputs {
+    width: 20ch;
+    height: 5ch;
+}
+
+.removeBtn,
+.searchBtn {
+    width: 15ch;
+    height: 5ch;
+    outline: solid 4px red;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    transition-property: transform;
+}
+
+.removeBtn:hover,
+.searchBtn:hover {
+    transform: scale(1.2);
+}

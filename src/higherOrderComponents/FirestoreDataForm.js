@@ -2,7 +2,6 @@
 import "../styles/FirestoreDataForm.css";
 import { useState, useEffect, Children } from "react";
 import Searchbar from "./Searchbar";
-import  ToggleElementDisplay from "../components/ToggleElementDisplay";
 import toggle90degAnimation from "../components/Toggle90Animation";
 import ToggleFullScreen from "../components/ToggleFullScreen";
 import FindMemberIndex from "../components/FindMemberIndexInDataArray";
@@ -91,7 +90,6 @@ export default function FirestoreDataForm() {
       toggle90degAnimation(newMemberBtn);
       newMemberBtn.title = "Neu anlegen zuklappen";
       saveBtn.classList.remove('displayNone');
-      newMemberID.classList.remove('displayNone');
       newMemberFN.classList.remove('displayNone');
       newMemberLN.classList.remove('displayNone');
       newMemberPO.classList.remove('displayNone');
@@ -99,7 +97,6 @@ export default function FirestoreDataForm() {
       toggle90degAnimation(newMemberBtn);
       newMemberBtn.title = "Klicke um eine:n neue:n Kamerad:in anzulegen!";
       saveBtn.classList.add('displayNone');
-      newMemberID.classList.add('displayNone');
       newMemberFN.classList.add('displayNone');
       newMemberLN.classList.add('displayNone');
       newMemberPO.classList.add('displayNone');
@@ -347,71 +344,76 @@ export default function FirestoreDataForm() {
   return (
      <div className="FirestoreDataForm">
 
-              <div className="console">
-                  <img
-                  src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
-                  name="newBtn"
-                  id={`new`}
-                  alt="Arrow"
-                  title={`Klicke um eine:n neue:n Kamerad:in anzulegen!
-                              ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
-                  onClick={toggleNewMemberDiv}
-                  />
-              </div>
+                <div className="console">
 
-              <div className="newMember-div">
-                  <p className="id-value displayNone" id="newID">
-                  {data.length || 0}.
-                  </p>
+                      <div className="newMember-div">
+                        <img
+                        src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
+                        name="newBtn"
+                        id={`new`}
+                        alt="Arrow"
+                        title={`Klicke um eine:n neue:n Kamerad:in anzulegen! 
+                        ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
+                        onClick={toggleNewMemberDiv}
+                        />
 
-                  <input
-                  type="text"
-                  placeholder="Vorname"
-                  name="vorname"
-                  id="new-firstName"
-                  className="input-firstName displayNone"
-                  onChange={(event) => {
-                      setNewFirstName(event.target.value);
-                  }}
-                  required
-                  />
 
-                  <input
-                  type="text"
-                  placeholder="Nachname"
-                  name="vorname"
-                  id="new-lastName"
-                  className="input-lastName displayNone"
-                  onChange={(event) => {
-                      setNewLastName(event.target.value);
-                  }}
-                  required
-                  />
+                        <input
+                        type="text"
+                        placeholder="Vorname"
+                        name="vorname"
+                        id="new-firstName"
+                        className="displayNone"
+                        onChange={(event) => {
+                            setNewFirstName(event.target.value);
+                        }}
+                        required
+                        />
 
-                  <input
-                  type="text"
-                  placeholder="Dienstgrad"
-                  name="vorname"
-                  id="new-position"
-                  className="input-position displayNone"
-                  onChange={(event) => {
-                      setNewPosition(event.target.value);
-                  }}
-                  required
-                  />
+                        <input
+                        type="text"
+                        placeholder="Nachname"
+                        name="vorname"
+                        id="new-lastName"
+                        className="displayNone"
+                        onChange={(event) => {
+                            setNewLastName(event.target.value);
+                        }}
+                        required
+                        />
 
-                <button
-                  name="saveBtn"
-                  id={`save`}
-                  className='displayNone'
-                  onClick={handleSaveNewFirestoreMember}
-                  title="Klicke um die/den neue:n Kamerad:in anzulegen!"
-                  >
-                  speichern
-                  </button>
-              </div>
+                        <input
+                        type="text"
+                        placeholder="Dienstgrad"
+                        name="vorname"
+                        id="new-position"
+                        className="displayNone"
+                        onChange={(event) => {
+                            setNewPosition(event.target.value);
+                        }}
+                        required
+                        />
+
+                      <button
+                        name="saveBtn"
+                        id={`save`}
+                        className='displayNone'
+                        onClick={handleSaveNewFirestoreMember}
+                        title="Klicke um die/den neue:n Kamerad:in anzulegen!"
+                        >
+                        speichern
+                        </button>
+                        
+                      </div>
+
+                      <Searchbar data={data} />
+
+                </div>
+
+
 
               <main className="firestore-data-wrapper">
+
                   <div className="data-labels-div">
                   <h3 className="label-ID">Nr. -</h3>
                       <h3 className="label-FN">Vorname,</h3>
@@ -991,10 +993,9 @@ export default function FirestoreDataForm() {
                       ))
                   )}
                   </div>
+
               </main>
       
-            <Searchbar data={data} />
-
      </div>
       
   );

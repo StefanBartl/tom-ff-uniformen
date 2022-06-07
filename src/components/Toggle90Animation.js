@@ -5,13 +5,13 @@ export default function toggle90degAnimation (element) {
   //#region animation setting
 
   const buttonRotateDownSpinning = [
-    { transform: 'rotate(0deg) '},
-    { transform: 'rotate(90deg)'}
+    { transform: 'rotate(90deg) '},
+    { transform: 'rotate(0deg)'}
   ];
 
   const buttonRotateUpSpinning = [
-      { transform: 'rotate(90deg)' },
-      { transform: 'rotate(0deg) '}
+      { transform: 'rotate(0deg)' },
+      { transform: 'rotate(90deg) '}
   ];
 
   const buttonRotateTiming = { 
