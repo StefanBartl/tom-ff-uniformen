@@ -2,14 +2,13 @@ import { useState } from "react";
 import  ToggleElementDisplay from "../components/ToggleElementDisplay";
 import Toggle90degAnimation from "../components/Toggle90Animation";
 import '../styles/Searchbar.css';
-import { doc } from "firebase/firestore";
 
 export default function Searchbar(props){
 
     const [ searchFirstName, setSearchFirstName ] = useState('');
     const [ searchLastName, setSearchLastName ] = useState('');
     const [ searchPosition, setSearchPosition ] = useState('');
-    const [ matchingObject, setMatchingObject ] = useState({});
+    // const [ matchingObject, setMatchingObject ] = useState({});
 
     function handleChange(event){
         event.preventDefault();

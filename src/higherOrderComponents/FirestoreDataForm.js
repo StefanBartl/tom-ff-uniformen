@@ -80,7 +80,6 @@ export default function FirestoreDataForm() {
     // Get DOM-Elements
     const newMemberBtn = document.getElementById("new");
     const saveBtn = document.getElementById("save");
-    const newMemberID = document.getElementById("newID");
     const newMemberFN = document.getElementById("new-firstName");
     const newMemberLN = document.getElementById("new-lastName");
     const newMemberPO = document.getElementById("new-position");
