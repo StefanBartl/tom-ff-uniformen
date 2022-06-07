@@ -75,7 +75,7 @@ export default function Searchbar(props){
                     name="searchbarBtn"
                     id={`search`}
                     alt="Arrow"
-                    title={`Klicke um die Suchbar anzuzeigen / zu verstecken!
+                    title={`Klicke um die Suchkonsole anzuzeigen / zu verstecken
                                 ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
                     onClick={() => {ToggleElementDisplay('searchbarToggle'); Toggle90degAnimation(document.querySelector('#search'));}}
                     />

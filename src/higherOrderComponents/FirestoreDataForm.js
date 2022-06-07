@@ -347,7 +347,7 @@ export default function FirestoreDataForm() {
 
      <div className="FirestoreDataForm">
 
-                <button className="consoleToggle" data-visible='false' onClick={ToggleConsole} >v</button>
+                <button className="consoleToggle" data-visible='false' onClick={ToggleConsole} title={`Klicke um die Konsole einzublenden`} >*</button>
 
                 <div className="console" style={{height: '0vh'}} >
 
@@ -357,7 +357,7 @@ export default function FirestoreDataForm() {
                         name="newBtn"
                         id={`new`}
                         alt="Arrow"
-                        title={`Klicke um eine:n neue:n Kamerad:in anzulegen! 
+                        title={`Klicke um eine:n neue:n Kamerad:in anzulegen 
                         ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
                         onClick={toggleNewMemberDiv}
                         />

@@ -347,8 +347,6 @@ width: 21ch;
     color: white;
   }
 
-/* ? Transitions */
-
 .deleteBtn,
 .updateBtn {
     transition: .2s ease-in-out;
@@ -358,5 +356,18 @@ width: 21ch;
 .deleteBtn:hover,
 .updateBtn:hover {
     background-color: goldenrod;
+    color: white;
+}
+
+.consoleToggle{
+    width: 2rem;
+    margin-left: 1rem;
+    margin-bottom: .5rem;
+    border-radius: 50%;
+    transition: all .2s ease-in-out;
+}
+
+.consoleToggle:hover{
+    background-color: red;
     color: white;
 }
