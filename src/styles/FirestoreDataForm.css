@@ -11,6 +11,7 @@
 /* ? New member section */
 
 .newMember-div{
+    display: flex;
     width: 67%;
     gap: 1rem;
     padding: 1rem;
@@ -76,6 +77,11 @@
     margin-top: .5rem;
     margin-left: 2rem;
     gap: 1rem;
+    align-items: center;
+}
+
+.member-section-visible input {
+    height: 3rem;
 }
 
 .member-section-toToggle {
@@ -116,7 +122,6 @@
     font-size: xx-large;
     font-weight: bolder;
     color: white;
-    align-self:flex-end
 }
 
 .input-firstName  {

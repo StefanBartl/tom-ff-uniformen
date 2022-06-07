@@ -1,6 +1,7 @@
 // !                 === To-Do list ===
 // TODO Finish: CSS for most devices & make app nice
 // TODO Finish: Get rid of ""
+// TODO Bonus: Get file from data to print
 // TODO Bonus: Adding new atributes in dataform by user
 // TODO Bonus: Data filter and export function
 // TODO Bonus: Function END-Testing!
@@ -22,12 +23,14 @@ export default function App() {
 // Check if loginKey is expired
 LocalStorageGetWithExpiry('loginKey');
 
+
   return (
     
           TestKey('loginKey') === true
 
           ? <div className="App">
               <div className="headline-logout-div">
+                <button className="printBtn" onClick={()=>{window.print()}}>Print</button>
                     <Headline />
                     <LogoutButton />
               </div>
