@@ -1,6 +1,7 @@
 // ? CSS, React and function imports
 import "../styles/FirestoreDataForm.css";
 import { useState, useEffect, Children } from "react";
+import Searchbar from "./Searchbar";
 import toggle90degAnimation from "../components/Toggle90Animation";
 import ToggleFullScreen from "../components/ToggleFullScreen";
 import FindMemberIndex from "../components/FindMemberIndexInDataArray";
@@ -994,6 +995,8 @@ export default function FirestoreDataForm() {
                   </div>
               </main>
       
+            <Searchbar data={data} />
+
       </div>
       
   );

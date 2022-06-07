@@ -1,6 +1,6 @@
 
 .FirestoreDataForm {
-    height: 80vh;
+    height: 90vh;
     margin: 1rem;
     padding: .5rem;
     background-color: #01D101;
@@ -22,7 +22,8 @@
   gap: .5rem;
 }
 
-#new {
+#new,
+#search {
   width: 3rem;
   height: 3rem;
   filter: invert(13%) sepia(100%) saturate(6216%) hue-rotate(359deg) brightness(94%) contrast(106%);
@@ -300,6 +301,40 @@ width: 21ch;
 width: 21ch;
 }
 
+/* ? Searchbar section */
+
+.Searchbar {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: space-between;
+    margin-right: 20%;
+}
+
+.searchbarInputs {
+    width: 20ch;
+    height: 5ch;
+    border: solid 1px black;
+}
+
+  
+.noMatches {
+    display: none;
+}
+
+.searchBtn{
+    height: 5ch;
+    outline: solid 4px red;
+    cursor: pointer;
+}
+
+.removeBtn {
+    height: 5ch;
+    outline: solid 4px red;
+    cursor: pointer;
+}
+
+
 #save{
     width: 10ch;
     margin-left: .5rem;
@@ -363,4 +398,15 @@ width: 21ch;
 .updateBtn:hover {
     background-color: goldenrod;
     color: white;
+}
+
+.removeBtn,
+.searchBtn {
+    transition: .2s ease-in-out;
+    transition-property: transform;
+}
+
+.removeBtn:hover,
+.searchBtn:hover {
+    transform: scale(1.2);
 }

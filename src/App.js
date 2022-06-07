@@ -1,7 +1,6 @@
 // !                 === To-Do list ===
 // TODO Finish: CSS for most devices & make app nice
 // TODO Bonus: Data filter function
-// TODO Bonus: Searchbar or smth similar
 // TODO Bonus: Adding new atributes in dataform by user
 // TODO Bonus: Function END-Testing!
 // TODO Bonus: CSS & JS Guidelines check
