@@ -311,6 +311,13 @@ width: 21ch;
     margin-right: -1rem;
 }
 
+.firestore-manipulate-div  .print-button {
+    width: 8ch;
+    margin-top: 1rem;
+    outline: solid 4px red;
+    cursor: pointer;
+}
+
 .deleteBtn,
 .updateBtn {
     width: 8ch;

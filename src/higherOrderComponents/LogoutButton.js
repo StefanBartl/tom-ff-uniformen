@@ -18,7 +18,7 @@ export default function LogoutButton(){
 
   return (
             <div className="logout-button-div">
-                  <button type='submit' className="logout-button" title="Ausloggen" onClick={handleLogout}>Logout</button>
+                  <button type='submit' className="logout-button" title="Ausloggen" onClick={handleLogout}>logout</button>
             </div>
   );
 

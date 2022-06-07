@@ -7,6 +7,7 @@ import ToggleFullScreen from "../components/ToggleFullScreen";
 import FindMemberIndex from "../components/FindMemberIndexInDataArray";
 import GetUpdatetDataArray from "../components/GetUpdatetDataObject";
 import ToggleConsole from '../components/ToggleConsole'; 
+import PrintButton from '../higherOrderComponents/PrintButton';
 
 // ? Firebasefirestore  imports
 import { db } from "../firebase-config";
@@ -972,6 +973,8 @@ export default function FirestoreDataForm() {
                                       defaultValue="update"
                                   />
 
+                              <PrintButton />
+
                               <img
                                   src="https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c"
                                   className="memberInfo-fireImage"
@@ -992,6 +995,7 @@ export default function FirestoreDataForm() {
                                   />
                           </div>
                           </section>
+
                       </form>
                       ))
                   )}

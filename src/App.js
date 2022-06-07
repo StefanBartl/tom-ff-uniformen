@@ -18,6 +18,8 @@ import FirestoreDataForm from './higherOrderComponents/FirestoreDataForm';
 import Contact from './higherOrderComponents/Contact';
 import LocalStorageGetWithExpiry from "./components/LocalStorageGetWithExpiry";
 import TestKey from './components/TestKey';
+import PrintButton from './higherOrderComponents/PrintButton';
+
 
 export default function App() {
 // Check if loginKey is expired
@@ -30,7 +32,7 @@ LocalStorageGetWithExpiry('loginKey');
 
           ? <div className="App">
               <div className="headline-logout-div">
-                <button className="printBtn" onClick={()=>{window.print()}}>Print</button>
+                    <PrintButton  />
                     <Headline />
                     <LogoutButton />
               </div>

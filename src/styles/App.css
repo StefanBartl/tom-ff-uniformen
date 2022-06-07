@@ -142,7 +142,7 @@ input {
   display: flex;
 }
 
-.printBtn {
+.headline-logout-div .print-button {
     width: fit-content;
     height: fit-content;
     margin-left: 1rem;
@@ -153,6 +153,7 @@ input {
     background-color: red;
     transition: .2s ease-in-out;
     transition-property: transform;
+    cursor: pointer;
 }
 
 .printBtn:hover {
