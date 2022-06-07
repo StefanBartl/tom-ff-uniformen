@@ -2,7 +2,6 @@
 /* ? Searchbar section */
 
 .Searchbar {
-    display: none;
     gap: 1rem;
     padding: 1rem;
     justify-content: space-between;

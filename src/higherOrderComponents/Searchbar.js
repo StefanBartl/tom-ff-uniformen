@@ -69,7 +69,7 @@ export default function Searchbar(props){
 
 
     return (
-            <div className="Searchbar">
+            <div className="Searchbar"  style={{transform: 'scale(0)'}}>
                     <img
                     src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
                     name="searchbarBtn"

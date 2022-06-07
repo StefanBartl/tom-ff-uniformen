@@ -7,20 +7,10 @@
     outline: solid 2px white;
 }
 
-.console{
-    min-height: 3rem;
-    transition: all .5s ease-in-out;
-}
-
-.console:hover > .newMember-div,
-.console:hover > .Searchbar {
-    display: flex;
-}
 
 /* ? New member section */
 
 .newMember-div{
-    display: none;
     width: 67%;
     gap: 1rem;
     padding: 1rem;

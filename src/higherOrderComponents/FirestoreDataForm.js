@@ -6,6 +6,7 @@ import toggle90degAnimation from "../components/Toggle90Animation";
 import ToggleFullScreen from "../components/ToggleFullScreen";
 import FindMemberIndex from "../components/FindMemberIndexInDataArray";
 import GetUpdatetDataArray from "../components/GetUpdatetDataObject";
+import ToggleConsole from '../components/ToggleConsole'; 
 
 // ? Firebasefirestore  imports
 import { db } from "../firebase-config";
@@ -340,12 +341,17 @@ export default function FirestoreDataForm() {
 
   //#endregion
 
+
+
   return (
+
      <div className="FirestoreDataForm">
 
-                <div className="console">
+                <button className="consoleToggle" data-visible='false' onClick={ToggleConsole} >v</button>
 
-                      <div className="newMember-div">
+                <div className="console" style={{height: '0vh'}} >
+
+                      <div className="newMember-div" style={{transform: 'scale(0)'}} >
                         <img
                         src="https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl"
                         name="newBtn"
@@ -408,8 +414,6 @@ export default function FirestoreDataForm() {
                       <Searchbar data={data} />
 
                 </div>
-
-
 
               <main className="firestore-data-wrapper">
 
@@ -996,6 +1000,6 @@ export default function FirestoreDataForm() {
               </main>
       
      </div>
-      
+
   );
 };

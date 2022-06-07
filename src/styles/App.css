@@ -160,3 +160,12 @@ input {
 .displayNone {
   display: none;
 }
+
+/* ? Toggling consolre*/ 
+
+.console {
+    min-height: 0vh;
+    flex-direction: column;
+}
+
+

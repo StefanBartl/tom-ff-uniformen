@@ -1,7 +1,8 @@
 // !                 === To-Do list ===
 // TODO Finish: CSS for most devices & make app nice
-// TODO Bonus: Data filter function
+// TODO Finish: Get rid of ""
 // TODO Bonus: Adding new atributes in dataform by user
+// TODO Bonus: Data filter and export function
 // TODO Bonus: Function END-Testing!
 // TODO Bonus: CSS & JS Guidelines check
 // TODO Bonus: Whats about the google drive requests? Maybe await?
