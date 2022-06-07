@@ -8,6 +8,7 @@ import FindMemberIndex from "../components/FindMemberIndexInDataArray";
 import GetUpdatetDataArray from "../components/GetUpdatetDataObject";
 import ToggleConsole from '../components/ToggleConsole'; 
 import PrintButton from '../higherOrderComponents/PrintButton';
+import ExportButton from "./ExportButton";
 
 // ? Firebasefirestore  imports
 import { db } from "../firebase-config";
@@ -218,9 +219,8 @@ export default function FirestoreDataForm() {
           helmB: doc.helmB,
           gurtS: doc.gurtS,
           gurtB: doc.gurtB,
-        }))
+        }))        
       );
-
       setData(
         fetchedData.docs.map((doc) => ({ ...doc.data(), nullentry: null }))
       );
@@ -342,13 +342,13 @@ export default function FirestoreDataForm() {
 
   //#endregion
 
-
-
   return (
 
      <div className="FirestoreDataForm">
-
-                <button className="consoleToggle" data-visible='false' onClick={ToggleConsole} title={`Klicke um die Konsole einzublenden`} >*</button>
+                <div className="console-buttons">
+                    <button className="consoleToggle" data-visible='false' onClick={ToggleConsole} title={`Klicke um die Konsole einzublenden`} >*</button>
+                    <ExportButton data={data} />
+                </div>
 
                 <div className="console" style={{height: '0vh'}} >
 

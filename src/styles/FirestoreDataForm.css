@@ -302,6 +302,12 @@ width: 21ch;
 width: 21ch;
 }
 
+.console-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .firestore-manipulate-div{
     display: flex;
     flex-direction: column;
