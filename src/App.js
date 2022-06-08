@@ -1,10 +1,7 @@
-// !                 === To-Do list ===
+// !                 === known issues list ===
 // TODO Finish: CSS for most devices & make app nice
-// TODO Finish: Get rid of ""
-// TODO Bonus: Function END-Testing!
-// TODO Bonus: CSS & JS Guidelines check
 // TODO Bonus: Whats about the google drive requests? Maybe await?
-// TODO Why is useEffect nullentry needed ?
+// TODO Why is a 'null-entry' fetch needed when fetching data from firebase ?
 // TODO DEPLOY !!! :-)
 
 import "./styles/App.css";

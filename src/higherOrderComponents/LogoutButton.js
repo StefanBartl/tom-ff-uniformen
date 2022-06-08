@@ -1,4 +1,4 @@
-import "../styles/LogoutButton.css";
+import '../styles/LogoutButton.css';
 
 export default function LogoutButton(){
 
@@ -6,7 +6,7 @@ export default function LogoutButton(){
   function handleLogout (event) {
     event.preventDefault();
     // Ask user for logout
-    if (window.confirm("Willst du dich ausloggen?") === true) {
+    if (window.confirm('Willst du dich ausloggen?') === true) {
         // If true, remove session key from local storage
         localStorage.removeItem('loginKey');
         // Reload lock app
@@ -17,8 +17,8 @@ export default function LogoutButton(){
   };
 
   return (
-            <div className="logout-button-div">
-                  <button type='submit' className="logout-button" title="Ausloggen" onClick={handleLogout}>logout</button>
+            <div className='logout-button-div'>
+                  <button type='submit' className='logout-button' title='Ausloggen' onClick={handleLogout}>logout</button>
             </div>
   );
 

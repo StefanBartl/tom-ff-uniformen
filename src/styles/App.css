@@ -156,7 +156,8 @@ input {
     cursor: pointer;
 }
 
-.printBtn:hover {
+
+.headline-logout-div .print-button:hover {
     transform: scale(1.2);
 }
 

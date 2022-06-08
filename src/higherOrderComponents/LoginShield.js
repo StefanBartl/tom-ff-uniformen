@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import SetSessionKey from '../components/LocalStorageSetWithExpiry';
 import TestKey from '../components/TestKey';
 import '../styles/LoginShield.css';
@@ -39,18 +39,18 @@ export default function LoginShield(){
      };
  
     return (TestKey('loginKey') !== true ?     
-            <div className="login-shield">
-            <form className="login-form">
+            <div className='login-shield'>
+            <form className='login-form'>
                 <h2>FF-Kaltenleutgeben</h2>
                 <h2>Uniformen-Datenbank</h2>
                 <h2>Login</h2>
-                <div className="userLabelDiv">
-                        <label htmlFor="user">User: </label>
-                        <input type='text' name='user' placeholder="user" value={user}onChange={handleChange} />
+                <div className='userLabelDiv'>
+                        <label htmlFor='user'>User: </label>
+                        <input type='text' name='user' placeholder='user' value={user}onChange={handleChange} />
                 </div>
-                <div className="passwordLabelDiv">
-                        <label htmlFor="password">Password: </label>
-                        <input type='password' name='password' placeholder="password" value={password} onChange={handleChange}  />
+                <div className='passwordLabelDiv'>
+                        <label htmlFor='password'>Password: </label>
+                        <input type='password' name='password' placeholder='password' value={password} onChange={handleChange}  />
                 </div>
                 <button onClick={handleLog}>OK</button>
             </form>
