@@ -3,10 +3,13 @@ import '../styles/FirestoreDataForm.css';
 import { useState, useEffect, Children } from 'react';
 import Searchbar from './Searchbar';
 import toggle90degAnimation from '../components/Toggle90Animation';
-import ToggleFullScreen from '../components/ToggleFullScreen';
+import toggleMemberInfo from '../components/ToggleMemberInfo';
 import FindMemberIndex from '../components/FindMemberIndexInDataArray';
 import GetUpdatetDataArray from '../components/GetUpdatetDataObject';
-import ToggleConsole from '../components/ToggleConsole'; 
+import firestoreUIEffect from '../components/FirestoreUIEffect';
+import ToggleConsole from '../components/ToggleConsole';
+import ToggleNewMember from '../components/ToggleNewMember';
+import NewMember from '../higherOrderComponents/NewMember';
 import PrintButton from '../higherOrderComponents/PrintButton';
 import ExportButton from './ExportButton';
 
@@ -27,10 +30,6 @@ export default function FirestoreDataForm() {
 
   // state to hold hold whole member data
   const [data, setData] = useState([]);
-  //  tracking state for add a new member input fields
-  const [newFirstName, setNewFirstName] = useState('');
-  const [newLastName, setNewLastName] = useState('');
-  const [newPosition, setNewPosition] = useState('');
 
   // ? Handle state of member
   function handleChange(event) {
@@ -75,90 +74,8 @@ export default function FirestoreDataForm() {
     }
   }
 
-  // ? Create new form to add a new member
-  function toggleNewMemberDiv(event) {
-    event.preventDefault();
-
-    // Toggle div, newButton image direction & save button
-    // Get DOM-Elements
-    const newMemberBtn = document.getElementById('new');
-    const saveBtn = document.getElementById('save');
-    const newMemberFN = document.getElementById('new-firstName');
-    const newMemberLN = document.getElementById('new-lastName');
-    const newMemberPO = document.getElementById('new-position');
-
-    // Toggle UI logic
-    if (saveBtn.classList.contains('displayNone')) {
-      toggle90degAnimation(newMemberBtn);
-      newMemberBtn.title = 'Neu anlegen zuklappen';
-      saveBtn.classList.remove('displayNone');
-      newMemberFN.classList.remove('displayNone');
-      newMemberLN.classList.remove('displayNone');
-      newMemberPO.classList.remove('displayNone');
-    } else {
-      toggle90degAnimation(newMemberBtn);
-      newMemberBtn.title = 'Klicke um eine:n neue:n Kamerad:in anzulegen!';
-      saveBtn.classList.add('displayNone');
-      newMemberFN.classList.add('displayNone');
-      newMemberLN.classList.add('displayNone');
-      newMemberPO.classList.add('displayNone');
-    }
-  }
-
   //#endregion
 
-  //#region React-Application UI-helper functions
-
-  // ? Toggle the member info arrow
-  function toggleMemberInfo(index) {
-    // Get DOM-Element
-    const memberInfoBtn = document.getElementById(`memberInfoBtn-${index}`);
-    const memberWholeSection = document.querySelector(`.member-form-${index}`);
-    const memberInfoSection = document.getElementById(`infoSection-${index}`);
-    const memberFireTruck = document.querySelector(`.fireTruck-${index}`);
-    const allMembersArray = document.querySelectorAll('.member-forms');
-
-    // Toggle UI
-    if (memberInfoSection.style.display === 'none') {
-      // If info section of member is hided...
-      toggle90degAnimation(memberInfoBtn); // Initiate the 90deg turnaround animation of the button image element
-      ToggleFullScreen();
-      memberInfoBtn.title = 'Info zuklappen'; // Change the tile of the button element
-      memberInfoSection.style.display = 'flex'; // Display the info section
-      memberFireTruck.style.display = 'flex'; // Display the fire truck image
-      memberWholeSection.classList.add('visibleMemberSection-div'); // Add css-rules for the whole section (constant visible section + toggled section)
-      for (let i = 0; i < allMembersArray.length; i++) {
-        // Loop trough all member forms
-        if (
-          allMembersArray[i].classList.contains('visibleMemberSection-div') ===
-          false
-        ) {
-          // display: none all elements which are not selected by user
-          allMembersArray[i].classList.add('notSelectedMember-div');
-        }
-      }
-    } else {
-      // If info section of member is not hided,  the opposite of the above
-      toggle90degAnimation(memberInfoBtn);
-      memberInfoBtn.title = 'Info aufklappen';
-      memberInfoSection.style.display = 'none';
-      memberFireTruck.style.display = 'none';
-      for (let i = 0; i < allMembersArray.length; i++) {
-        if (
-          allMembersArray[i].classList.contains('visibleMemberSection-div') ===
-          false
-        )
-          allMembersArray[i].classList.remove('notSelectedMember-div');
-      }
-      memberWholeSection.classList.remove('visibleMemberSection-div');
-      if (document.fullscreenElement) {
-        // Prevent to trigger ToggleFullScreen() again if user exit the member info fullscrreen mode with ESC
-        ToggleFullScreen();
-      }
-    }
-  }
-
-  //#endregion
 
   //#region Firebase firestore
 
@@ -228,27 +145,7 @@ export default function FirestoreDataForm() {
     getData();
   }, []);
 
-  // ? Add a new member to the firestore database
-  const handleSaveNewFirestoreMember = async () => {
-    if (newFirstName === '' || newLastName === '' || newPosition === '') {
-      alert('Bitte gib Vorname, Nachname und Dienstgrad ein!');
-      return;
-    }
 
-    // Store new member in firestore database
-    const dataCollectionRef = collection(db, 'uniformen');
-    await setDoc(
-      doc(dataCollectionRef, `${data[data.length - 1].id + 1 || 0}`),
-      {
-        id: Number(data[data.length - 1].id + 1 || 0),
-        firstName: newFirstName,
-        lastName: newLastName,
-        ffposition: newPosition,
-      }
-    );
-
-    firestoreUIEffect('save', data[data.length - 1].id + 1 || 0);
-  };
 
   // ? Update a member in the firestore database
   const handleUpdateFirestoreMember = async (id) => {
@@ -294,125 +191,25 @@ export default function FirestoreDataForm() {
     }
   };
 
-  function firestoreUIEffect(type, id) {
-    // get the correct btn element
-    let memberUpdateBtn;
-    type === 'save'
-      ? (memberUpdateBtn = document.querySelector(`#save`))
-      : (memberUpdateBtn = document.querySelector(`.${type}-${id}`));
 
-    // UI-Effect
-    const updateUIEffect = [
-      { backgroundColor: 'white', color: 'black' },
-      { backgroundColor: 'green', color: 'white' },
-      { backgroundColor: 'white', color: 'black' },
-    ];
-    const updateUIEffectTiming = {
-      duration: 2000,
-      iterations: 1,
-    };
-    memberUpdateBtn.animate(updateUIEffect, updateUIEffectTiming, {
-      easing: 'ease-in-out',
-    });
-
-    // Special Effect for update
-    if (type === 'update') {
-      const ovAniStyle = [
-        { backgroundColor: 'red' },
-        { backgroundColor: 'gray' },
-        { backgroundColor: 'red' },
-      ];
-
-      const ovAniTiming = {
-        duration: 1000,
-        iterations: 1,
-        easing: 'ease-in-out',
-      };
-
-      document
-        .querySelector(`.member-formMID-${id}`)
-        .animate(ovAniStyle, ovAniTiming);
-      return;
-    }
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
-  }
 
   //#endregion
 
   return (
 
      <div className='FirestoreDataForm'>
-                <div className='console-buttons'>
-                    <button className='consoleToggle' data-visible='false' onClick={ToggleConsole} title={`Klicke um die Konsole einzublenden`} >*</button>
-                    <ExportButton data={data} />
-                </div>
 
-                <div className='console' style={{height: '0vh'}} >
+                <div className='console' style={{height: '5vh'}} >
 
-                      <div className='newMember-div' style={{transform: 'scale(0)'}} >
-                        <img
-                        src='https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl'
-                        name='newBtn'
-                        id={`new`}
-                        alt='Arrow'
-                        title={`Klicke um eine:n neue:n Kamerad:in anzulegen 
-                        ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
-                        onClick={toggleNewMemberDiv}
-                        />
+                    <button className='newMemberToggle' data-visible='false' onClick={ToggleNewMember} >Neu anlegen</button>
 
+                    <button className='consoleToggle' data-visible='false' onClick={ToggleConsole} title={`Klicke um die Konsole einzublenden`} >konsole</button>
 
-                        <input
-                        type='text'
-                        placeholder='Vorname'
-                        name='vorname'
-                        id='new-firstName'
-                        className='displayNone'
-                        onChange={(event) => {
-                            setNewFirstName(event.target.value);
-                        }}
-                        required
-                        />
-
-                        <input
-                        type='text'
-                        placeholder='Nachname'
-                        name='vorname'
-                        id='new-lastName'
-                        className='displayNone'
-                        onChange={(event) => {
-                            setNewLastName(event.target.value);
-                        }}
-                        required
-                        />
-
-                        <input
-                        type='text'
-                        placeholder='Dienstgrad'
-                        name='vorname'
-                        id='new-position'
-                        className='displayNone'
-                        onChange={(event) => {
-                            setNewPosition(event.target.value);
-                        }}
-                        required
-                        />
-
-                      <button
-                        name='saveBtn'
-                        id={`save`}
-                        className='displayNone'
-                        onClick={handleSaveNewFirestoreMember}
-                        title='Klicke um die/den neue:n Kamerad:in anzulegen!'
-                        >
-                        speichern
-                        </button>
-                        
-                      </div>
-
+                      <NewMember data={data} />
+                      
                       <Searchbar data={data} />
+
+                      <ExportButton data={data} />
 
                 </div>
 

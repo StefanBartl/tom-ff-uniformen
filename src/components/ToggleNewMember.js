@@ -1,5 +1,5 @@
   // Toggle the console for the database
-  export default function ToggleConsole(){
+  export default function ToggleNewMember(){
 
     const animationTime = 1000;
     const  toggleTiming  = { 
@@ -11,7 +11,7 @@
 
 //#region toggle console
 
-  let toggleState = document.querySelector('.consoleToggle').getAttribute('data-visible');
+  let toggleState = document.querySelector('.newMemberToggle').getAttribute('data-visible');
 
   let toggleConsoleKeyframes;
 
@@ -52,20 +52,19 @@ let toggleConsoleFieldsKeyframes;
     // Trigger animations
     document.querySelector('.console').animate(toggleConsoleKeyframes, toggleTiming);
     document.querySelector('.newMember-div').animate(toggleConsoleFieldsKeyframes, toggleTiming);
-    document.querySelector('.Searchbar').animate(toggleConsoleFieldsKeyframes, toggleTiming);
     
     // Toggle data-attribute
-    document.querySelector('.consoleToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.consoleToggle').setAttribute('data-visible', 'true')
-      :  document.querySelector('.consoleToggle').setAttribute('data-visible', 'false');
+    document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
+      ?  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'true')
+      :  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'false');
 
     // Toggle console title
-    document.querySelector('.consoleToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.consoleToggle').title=`Klicke um die Konsole einzublenden`
-      :  document.querySelector('.consoleToggle').title=`Klicke um die Konsole auszublenden`;
+    document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
+      ?  document.querySelector('.newMemberToggle').title=`Klicke um die Konsole einzublenden`
+      :  document.querySelector('.newMemberToggle').title=`Klicke um die Konsole auszublenden`;
 
     // Make button after uncklickable/clickable to secure 'animation triggering overflow'
-    document.querySelector('.consoleToggle').style.pointerEvents = 'none';
-    setTimeout(() => {document.querySelector('.consoleToggle').style.pointerEvents = 'all';},  animationTime);
+    document.querySelector('.newMemberToggle').style.pointerEvents = 'none';
+    setTimeout(() => {document.querySelector('.newMemberToggle').style.pointerEvents = 'all';},  animationTime);
 
   };

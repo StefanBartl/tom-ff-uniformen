@@ -135,7 +135,7 @@ input {
 .App {
     min-height: 100vh;
     padding: 1rem;
-    background-color: red;
+    background-color: grey;
 }
 
 .headline-logout-div{
@@ -183,8 +183,9 @@ input {
 /* ? Toggling console*/ 
 
 .console {
-    min-height: 0vh;
-    flex-direction: column;
+    min-height: 5vh;
+    display: flex;
+    gap: 1rem;
 }
 
 
