@@ -9,7 +9,6 @@ export default function GetFileCSV(data){
     });
     
     // The download function takes a CSV string, the filename and mimeType as parameters
-    // Scroll/look down at the bottom of this snippet to see how download is called
     var download = function(content, fileName, mimeType) {
       var a = document.createElement('a');
       mimeType = mimeType || 'application/octet-stream';
@@ -31,5 +30,5 @@ export default function GetFileCSV(data){
       }
     }
     
-    download(csvContent, 'dowload.csv', 'text/csv;encoding:utf-8');
+    download(csvContent, 'uniformen.csv', 'text/csv;encoding:utf-8');
   };
