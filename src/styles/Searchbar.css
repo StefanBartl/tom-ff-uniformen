@@ -3,9 +3,9 @@
 
 .Searchbar {
     display: flex;
+    width: 100%;
     gap: 1rem;
-    padding: .5rem;
-    justify-content: space-between;
+    margin-left: 1.5rem;
     align-items: center;
 }                
 
@@ -13,6 +13,7 @@
     width: 20ch;
     height: 5ch;
     margin-bottom: .5rem;
+    outline: solid 1px black;
 }
 
 .removeBtn,
@@ -20,6 +21,7 @@
     width: fit-content;
     height: 5ch;
     cursor: pointer;
+    outline: solid 1px black;
     transition: .2s ease-in-out;
     transition-property: transform;
 }
@@ -27,4 +29,9 @@
 .removeBtn:hover,
 .searchBtn:hover {
     transform: scale(1.2);
+    outline: none;
+}
+
+.removeBtn{
+    margin-left: auto;
 }

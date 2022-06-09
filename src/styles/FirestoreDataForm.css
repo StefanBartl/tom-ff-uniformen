@@ -5,7 +5,7 @@
     gap: .5rem;
     height: fit-content;
     width: fit-content;
-    margin: 1rem;
+    margin: .5rem;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
@@ -64,6 +64,7 @@
 
 .member-section-visible input {
     height: 3rem;
+    outline: solid 1px black;
 }
 
 .member-section-toToggle {
@@ -103,7 +104,7 @@
 .id-value  {
     font-size: xx-large;
     font-weight: bolder;
-    color: white;
+    color: #01D101;
 }
 
 .input-firstName  {
@@ -141,7 +142,8 @@
 }
 
 .firestore-data-wrapper {
-    margin: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     outline: dashed 4px white;
     outline-width: 8px;
     outline-offset: 2px;
@@ -337,13 +339,15 @@ width: 21ch;
     width: 15ch;
     height: 5ch;
     cursor: pointer;
+    outline: solid 1px black;
     transition: .2s ease-in-out;
     transition-property: background-color, color;
   }
   
   #save:hover {
-    background-color: goldenrod;
+    background-color: red;
     color: white;
+    outline: none;
   }
 
 .deleteBtn,
@@ -364,11 +368,12 @@ width: 21ch;
 .console {
     display: flex;
     flex-direction: column;
-
+    margin-bottom: .5rem;
 }
 
 .consoleButtons {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     gap: .5rem;
 }
@@ -393,6 +398,7 @@ width: 21ch;
     width: fit-content;
     height: fit-content;
     margin-bottom: .5rem;
+    margin-right: auto;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
@@ -401,6 +407,7 @@ width: 21ch;
     width: fit-content;
     height: fit-content;
     margin-bottom: .5rem;
+    margin-right: .5rem;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
@@ -419,12 +426,12 @@ width: 21ch;
 .newMember-div{
     display: flex;
     gap: 1rem;
-    padding: .5rem;
+    margin-left: 1.5rem;
     align-items: center;
-    margin-right: auto;
 }
 
 .newMember-div > input {
     width: 20ch;
     height: 5ch;
+    outline: solid 1px black;
 }

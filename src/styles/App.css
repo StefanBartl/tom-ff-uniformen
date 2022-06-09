@@ -138,29 +138,6 @@ input {
     background-color: grey;
 }
 
-.headline-logout-div{
-  display: flex;
-}
-
-.headline-logout-div .print-button {
-    width: fit-content;
-    height: fit-content;
-    margin-left: 1rem;
-    font-size: larger;
-    border: none;
-    outline: solid 2px white;
-    color: white;
-    background-color: red;
-    transition: .2s ease-in-out;
-    transition-property: transform;
-    cursor: pointer;
-}
-
-
-.headline-logout-div .print-button:hover {
-    transform: scale(1.2);
-}
-
 .noData{
   margin-top: 35%;
   text-align: center;
@@ -188,9 +165,4 @@ input {
     min-height: 5vh;
     display: flex;
     gap: 1rem;
-}
-
-.imgA{
-  width: 2rem;
-  height: 2rem;
 }
