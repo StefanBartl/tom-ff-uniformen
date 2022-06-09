@@ -1,12 +1,21 @@
-export default function ToggleElementDisplay(element){
+export default function ToggleElementDisplay(element, solo){
 
-    const allElementsArray = document.querySelectorAll(`.${element}`);
-    for (const form of allElementsArray) {
-        if(form.classList.contains('displayNone')){
-            form.classList.remove('displayNone');
-        }else{
-            form.classList.add('displayNone');
+    if(solo === true){
+        const elementToToggle = document.querySelector(`.${element}`);
+            if(elementToToggle.classList.contains('displayNone')){
+                elementToToggle.classList.remove('displayNone');
+            }else{
+                elementToToggle.classList.add('displayNone');
+            };
+        } else {
+            const allElementsArray = document.querySelectorAll(`.${element}`);
+            for (const elementToToggle of allElementsArray) {
+                if(elementToToggle.classList.contains('displayNone')){
+                    elementToToggle.classList.remove('displayNone');
+                }else{
+                    elementToToggle.classList.add('displayNone');
+                };
+            };
         };
-    };
 
 };

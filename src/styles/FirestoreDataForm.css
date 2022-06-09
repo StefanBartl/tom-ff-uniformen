@@ -8,33 +8,6 @@
 }
 
 
-/* ? New member section */
-
-.newMember-div{
-    display: flex;
-    width: 67%;
-    gap: 1rem;
-    padding: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 20%;
-}
-
-.newMember-div > input {
-    width: 20ch;
-    height: 5ch;
-}
-
-#new,
-#search {
-  width: 3rem;
-  height: 3rem;
-  transform: rotate(90deg);
-  filter: invert(13%) sepia(100%) saturate(6216%) hue-rotate(359deg) brightness(94%) contrast(106%);
-  cursor: pointer;
-}
-
-
 /* ? data form */
 .member-forms {
     display: flex;
@@ -302,11 +275,6 @@ width: 21ch;
 width: 21ch;
 }
 
-.console-buttons {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
 
 .firestore-manipulate-div{
     display: flex;
@@ -354,7 +322,6 @@ width: 21ch;
 #save{
     width: 15ch;
     height: 5ch;
-    outline: solid 4px red;
     cursor: pointer;
     transition: .2s ease-in-out;
     transition-property: background-color, color;
@@ -377,14 +344,72 @@ width: 21ch;
     color: white;
 }
 
-.consoleToggle{
+
+/* ? Console elements */
+
+.console {
+    display: flex;
+    flex-direction: column;
+}
+
+.consoleButtons {
+    display: flex;
+    width: 100%;
+    gap: .5rem;
+}
+
+.consoleBars {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    height: fit-content;
+}
+
+.newMemberToggle {
     width: fit-content;
-    margin-left: 1rem;
+    height: fit-content;
+    margin-left: .5rem;
     margin-bottom: .5rem;
+    cursor: pointer;
     transition: all .2s ease-in-out;
 }
 
-.consoleToggle:hover{
+.searchbarToggle{
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.export-button {
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.newMemberToggle:hover,
+.export-button:hover{
     background-color: red;
     color: white;
+}
+
+.searchbarToggle:hover{
+    background-color: red;
+    color: white;
+}
+
+.newMember-div{
+    display: flex;
+    gap: 1rem;
+    padding: .5rem;
+    align-items: center;
+    margin-right: auto;
+}
+
+.newMember-div > input {
+    width: 20ch;
+    height: 5ch;
 }

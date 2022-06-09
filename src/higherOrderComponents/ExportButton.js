@@ -1,4 +1,3 @@
-import '../styles/Export.css'
 import GetFileCSV from '../components/GetFileCSV';
 
 export default function Export(props){

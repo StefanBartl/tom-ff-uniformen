@@ -7,7 +7,7 @@ import toggleMemberInfo from '../components/ToggleMemberInfo';
 import FindMemberIndex from '../components/FindMemberIndexInDataArray';
 import GetUpdatetDataArray from '../components/GetUpdatetDataObject';
 import firestoreUIEffect from '../components/FirestoreUIEffect';
-import ToggleConsole from '../components/ToggleConsole';
+import ToggleSearchbar from '../components/ToggleSearchbar';
 import ToggleNewMember from '../components/ToggleNewMember';
 import NewMember from '../higherOrderComponents/NewMember';
 import PrintButton from '../higherOrderComponents/PrintButton';
@@ -201,15 +201,24 @@ export default function FirestoreDataForm() {
 
                 <div className='console' style={{height: '5vh'}} >
 
-                    <button className='newMemberToggle' data-visible='false' onClick={ToggleNewMember} >Neu anlegen</button>
+                      <div className='consoleButtons'>
 
-                    <button className='consoleToggle' data-visible='false' onClick={ToggleConsole} title={`Klicke um die Konsole einzublenden`} >konsole</button>
+                              <button className='newMemberToggle' data-visible='false' onClick={ToggleNewMember}  title={`Klicke um einen Kamerad neu anzulegen`} >Neu&nbsp;anlegen</button>
 
-                      <NewMember data={data} />
-                      
-                      <Searchbar data={data} />
+                              <button className='searchbarToggle' data-visible='false' onClick={ToggleSearchbar} title={`Klicke um das Suchfeld einzublenden`}>Suchfeld</button>
 
-                      <ExportButton data={data} />
+                              <ExportButton data={data} />
+
+                      </div>
+
+                      <div  className='consoleBars'>
+
+                          <NewMember data={data} />
+                          
+                          <Searchbar data={data} />
+
+                      </div>
+
 
                 </div>
 

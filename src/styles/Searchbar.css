@@ -2,25 +2,23 @@
 /* ? Searchbar section */
 
 .Searchbar {
+    display: flex;
     gap: 1rem;
-    padding: 1rem;
+    padding: .5rem;
     justify-content: space-between;
     align-items: center;
-    margin-right: 20%;
-    display: flex;
-
 }                
 
 .searchbarInputs {
     width: 20ch;
     height: 5ch;
+    margin-bottom: .5rem;
 }
 
 .removeBtn,
 .searchBtn {
-    width: 15ch;
+    width: fit-content;
     height: 5ch;
-    outline: solid 4px red;
     cursor: pointer;
     transition: .2s ease-in-out;
     transition-property: transform;

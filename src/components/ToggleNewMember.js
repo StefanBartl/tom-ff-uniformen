@@ -1,5 +1,6 @@
-  // Toggle the console for the database
-  export default function ToggleNewMember(){
+import ToggleElementDisplay from "./ToggleElementDisplay";
+ 
+ export default function ToggleNewMember(){
 
     const animationTime = 1000;
     const  toggleTiming  = { 
@@ -18,11 +19,11 @@
     if(toggleState === 'false'){
           toggleConsoleKeyframes = [
               { height: '0vh'},
-              { height: '30vh'}
+              { height: '20vh'}
             ];
     } else {
       toggleConsoleKeyframes = [
-        { height: '30vh'},
+        { height: '20vh'},
         { height: '0vh'}
       ];
     };
@@ -58,10 +59,25 @@ let toggleConsoleFieldsKeyframes;
       ?  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'true')
       :  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'false');
 
+   // Toggle display
+   document.querySelector('.searchbarToggle').getAttribute('data-visible') === 'false'
+   ?  ToggleElementDisplay('newMember-div')
+   :  ToggleElementDisplay('newMember-div');
+
     // Toggle console title
     document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
       ?  document.querySelector('.newMemberToggle').title=`Klicke um die Konsole einzublenden`
       :  document.querySelector('.newMemberToggle').title=`Klicke um die Konsole auszublenden`;
+
+    // Toggle pointer events
+    document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
+      ?  document.querySelector('.searchbarToggle').style.pointerEvents = 'all'
+      :  document.querySelector('.searchbarToggle').style.pointerEvents = 'none';
+      
+      // Toggle blur other console button 
+      document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
+      ?  document.querySelector('.searchbarToggle').style.filter = 'blur(0)'
+      :  document.querySelector('.searchbarToggle').style.filter = 'blur(.1rem)';
 
     // Make button after uncklickable/clickable to secure 'animation triggering overflow'
     document.querySelector('.newMemberToggle').style.pointerEvents = 'none';

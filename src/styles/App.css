@@ -178,6 +178,8 @@ input {
 
 .displayNone {
   display: none;
+  width: 0rem;
+  height: 0rem;
 }
 
 /* ? Toggling console*/ 
