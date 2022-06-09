@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import  ToggleElementDisplay from '../components/ToggleElementDisplay';
-import Toggle90degAnimation from '../components/Toggle90Animation';
 import '../styles/Searchbar.css';
 
 export default function Searchbar(props){

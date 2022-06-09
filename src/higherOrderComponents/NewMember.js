@@ -2,7 +2,6 @@
 import '../styles/FirestoreDataForm.css';
 import { useState } from 'react';
 import firestoreUIEffect from '../components/FirestoreUIEffect';
-import toggle90degAnimation from '../components/Toggle90Animation';
 
 // ? Firebasefirestore  imports
 import { db } from '../firebase-config';

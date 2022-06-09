@@ -2,7 +2,6 @@
 import '../styles/FirestoreDataForm.css';
 import { useState, useEffect, Children } from 'react';
 import Searchbar from './Searchbar';
-import toggle90degAnimation from '../components/Toggle90Animation';
 import toggleMemberInfo from '../components/ToggleMemberInfo';
 import FindMemberIndex from '../components/FindMemberIndexInDataArray';
 import GetUpdatetDataArray from '../components/GetUpdatetDataObject';
@@ -19,7 +18,6 @@ import {
   collection,
   doc,
   getDocs,
-  setDoc,
   updateDoc,
   deleteDoc,
 } from 'firebase/firestore';
