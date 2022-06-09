@@ -22,7 +22,7 @@ export default function LoginShield(){
          ||   (user === process.env.REACT_APP_USER_TOM && password === process.env.REACT_APP_USER_TOMPW)
          ){
              // Set session key
-             SetSessionKey('loginKey', process.env.REACT_APP_USER_KEY, 36000000);// 36000000 => 10 hours max
+             SetSessionKey('loginKey', process.env.REACT_APP_USER_KEY, 7200000); // 2 hours
              // Remove login wrapper
              window.location.reload();
          } else {
