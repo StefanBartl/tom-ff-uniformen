@@ -81,7 +81,7 @@ export default function FirestoreDataForm() {
   useEffect(() => {
     const dataCollectionRef = collection(db, 'uniformen');
     const getData = async function fetchingData() {
-      const fetchedData = await getDocs(dataCollectionRef);
+    const fetchedData = await getDocs(dataCollectionRef);
 
       setData(
         fetchedData.docs.map((doc) => ({
@@ -136,13 +136,16 @@ export default function FirestoreDataForm() {
           gurtB: doc.gurtB,
         }))        
       );
+
       setData(
-        fetchedData.docs.map((doc) => ({ ...doc.data(), nullentry: null }))
+        fetchedData.docs.map((doc) => ({
+          ...doc.data(),
+        }))        
       );
     };
+    
     getData();
   }, []);
-
 
 
   // ? Update a member in the firestore database
@@ -188,8 +191,6 @@ export default function FirestoreDataForm() {
       return;
     }
   };
-
-
 
   //#endregion
 

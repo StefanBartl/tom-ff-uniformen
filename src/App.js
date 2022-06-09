@@ -1,7 +1,6 @@
 // !                 === known issues list ===
 // TODO Finish: CSS for most devices & make app nice
-// TODO Bonus: Whats about the google drive requests? Maybe await?
-// TODO Why is a 'null-entry' fetch needed when fetching data from firebase ?
+// TODO Finish: Better CSS-Separation and React components
 // TODO DEPLOY !!! :-)
 
 import "./styles/App.css";
