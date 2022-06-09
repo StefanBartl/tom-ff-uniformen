@@ -196,14 +196,14 @@ export default function FirestoreDataForm() {
   return (
 
      <div className='FirestoreDataForm'>
-
+         
                 <div className='console' style={{height: '5vh'}} >
 
                       <div className='consoleButtons'>
 
-                              <button className='newMemberToggle' data-visible='false' onClick={ToggleNewMember}  title={`Klicke um einen Kamerad neu anzulegen`} >Neu&nbsp;anlegen</button>
+                              <button className='newMemberToggle' data-visible='false' onClick={ToggleNewMember}  title={`Klicke um einen Kamerad neu anzulegen`} >neu&nbsp;anlegen</button>
 
-                              <button className='searchbarToggle' data-visible='false' onClick={ToggleSearchbar} title={`Klicke um das Suchfeld einzublenden`}>Suchfeld</button>
+                              <button className='searchbarToggle' data-visible='false' onClick={ToggleSearchbar} title={`Klicke um das Suchfeld einzublenden`}>suchen</button>
 
                               <ExportButton data={data} />
 
@@ -223,9 +223,9 @@ export default function FirestoreDataForm() {
               <main className='firestore-data-wrapper'>
 
                   <div className='data-labels-div'>
-                  <h3 className='label-ID'>Nr. -</h3>
-                      <h3 className='label-FN'>Vorname,</h3>
-                      <h3 className='label-LN'>Nachname,</h3>
+                  <h3 className='label-ID'>Nr.</h3>
+                      <h3 className='label-FN'>Vorname</h3>
+                      <h3 className='label-LN'>Nachname</h3>
                       <h3 className='label-PO'>Dienstgrad</h3>
                   </div>
 

@@ -1,8 +1,14 @@
 
 .FirestoreDataForm {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
     height: fit-content;
+    width: fit-content;
     margin: 1rem;
-    padding: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
     background-color: #01D101;
     outline: solid 2px white;
 }
@@ -22,7 +28,7 @@
 .data-labels-div{
     display: flex;
     padding: 1rem;
-    padding-left: 3rem;
+    padding-left: 1rem;
     background-color: lightgray;
     gap: 1rem;
 }
@@ -34,14 +40,17 @@
     color: #01D101;
 }
 
-/* .label-FN{
+.label-ID{
+    margin-left: 2rem;
 }
 
-.label-LN{
-}
-
+.label-FN,
+.label-LN,
 .label-PO{
-} */
+    margin-left: 1rem;
+    width: 19ch;
+}
+
 
 .member-section-visible {
     height: 10%;
@@ -123,8 +132,12 @@
     height: 4rem;
     filter: invert(1);
     cursor: pointer;
-    margin-left: auto;
+    margin-left: 2rem;
     margin-right: 1rem;
+}
+
+.memberInfoBtn:hover {
+    filter: invert(14%) sepia(75%) saturate(5779%) hue-rotate(357deg) brightness(102%) contrast(118%);
 }
 
 .firestore-data-wrapper {
@@ -132,6 +145,7 @@
     outline: dashed 4px white;
     outline-width: 8px;
     outline-offset: 2px;
+    padding: .5rem;
 }
   
 .memberInfo-wrapper{
@@ -350,6 +364,7 @@ width: 21ch;
 .console {
     display: flex;
     flex-direction: column;
+
 }
 
 .consoleButtons {
