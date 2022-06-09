@@ -18,6 +18,7 @@
 
 .headline-logout-div{
     display: flex;
+    margin-bottom: 1rem;
   }
   
   .headline-logout-div .print-button {

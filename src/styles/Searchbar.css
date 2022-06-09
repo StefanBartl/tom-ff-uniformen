@@ -48,3 +48,8 @@
 .removeBtn{
     margin-left: 1rem;
 }
+
+.noMatch-class{
+    margin-left: auto;
+    margin-right: 1rem;
+}

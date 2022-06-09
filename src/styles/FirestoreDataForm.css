@@ -405,7 +405,7 @@ width: 21ch;
 
 .newMember-div{
     display: flex;
-    gap: 1rem;
+    gap: 1rem#;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
