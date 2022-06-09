@@ -1,5 +1,3 @@
-import ToggleElementDisplay from "./ToggleElementDisplay";
-
 export default function ToggleNewMember(){
 
     const animationTime = 1000;

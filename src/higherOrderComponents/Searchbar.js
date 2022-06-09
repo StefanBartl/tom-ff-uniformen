@@ -38,6 +38,7 @@ export default function Searchbar(props){
                     // Push object to array
                 matchingObjects.push(el);
                 };   
+                return true;
             });
         };
 
@@ -46,6 +47,7 @@ export default function Searchbar(props){
                 if(el.lastName.indexOf(searchLastName) !== -1){
                 matchingObjects.push(el);
                 };   
+                return true;
             });
         };
 
@@ -54,6 +56,7 @@ export default function Searchbar(props){
                 if(el.ffposition.indexOf(searchPosition) !== -1){
                 matchingObjects.push(el);
                 };   
+                return true;
             });
         };
 
@@ -63,6 +66,7 @@ export default function Searchbar(props){
                 if(el.firstName.indexOf(searchFirstName) !== -1 && el.lastName.indexOf(searchLastName) !== -1 &&  el.ffposition.indexOf(searchPosition) !== -1){
                 matchingObjects.push(el);
                 };   
+                return true;
             });
         };
 
@@ -72,6 +76,7 @@ export default function Searchbar(props){
                 if(el.firstName.indexOf(searchFirstName) !== -1 && el.lastName.indexOf(searchLastName) !== -1){
                 matchingObjects.push(el);
                 };   
+                return true;
             });
         };
 
@@ -80,6 +85,7 @@ export default function Searchbar(props){
                 if(el.firstName.indexOf(searchFirstName) !== -1 &&  el.ffposition.indexOf(searchPosition) !== -1){
                 matchingObjects.push(el);
                 };   
+                return true;
             });
         };
 
@@ -88,6 +94,7 @@ export default function Searchbar(props){
                 if(el.lastName.indexOf(searchLastName) !== -1 &&  el.ffposition.indexOf(searchPosition) !== -1){
                 matchingObjects.push(el);
                 };   
+                return true;
             });
         };
 
