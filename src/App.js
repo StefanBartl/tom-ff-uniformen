@@ -1,7 +1,6 @@
 // !                 === known issues list ===
 // TODO Finish: CSS for most devices & make app nice
 // TODO Finish: Better CSS-Separation and React components
-// TODO DEPLOY !!! :-)
 
 import "./styles/App.css";
 import LoginShield from './higherOrderComponents/LoginShield';
