@@ -2,12 +2,21 @@
 /* ? Searchbar section */
 
 .Searchbar {
-    display: flex;
-    width: 100%;
-    gap: 1rem;
-    margin-left: 1.5rem;
-    align-items: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }                
+
+.searchbarFN-input {
+
+}
+.searchbarLN-input  {
+    margin-left: 1rem;
+}
+
+.searchbarPO-input  {
+    margin-left: 1rem;
+}
 
 .searchbarInputs {
     width: 20ch;
@@ -32,6 +41,10 @@
     outline: none;
 }
 
+.searchBtn {
+    margin-left: 1rem;
+}
+
 .removeBtn{
-    margin-left: auto;
+    margin-left: 1rem;
 }

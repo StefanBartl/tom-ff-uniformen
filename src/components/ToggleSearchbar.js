@@ -59,11 +59,6 @@ let toggleConsoleFieldsKeyframes;
       ?  document.querySelector('.searchbarToggle').setAttribute('data-visible', 'true')
       :  document.querySelector('.searchbarToggle').setAttribute('data-visible', 'false');
 
-      // Toggle display
-    document.querySelector('.searchbarToggle').getAttribute('data-visible') === 'false'
-    ?  ToggleElementDisplay('Searchbar', true)
-    :  ToggleElementDisplay('Searchbar', true);
-
     // Toggle searchbar button title
     document.querySelector('.searchbarToggle').getAttribute('data-visible') === 'false'
       ?  document.querySelector('.searchbarToggle').title=`Klicke um das Suchfeld einzublenden`

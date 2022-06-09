@@ -20,20 +20,21 @@
     display: flex;
   }
   
-.headline-logout-div .print-button {
-    width: fit-content;
-    height: fit-content;
-    margin-left: 1rem;
+  .headline-logout-div .print-button {
+    width: 5rem;
     font-size: larger;
     border: none;
+    cursor: pointer;
     outline: solid 2px white;
-    color: white;
-    background-color: red;
     transition: .2s ease-in-out;
-    transition-property: transform;
+    transition-property: transform, background-color, color;
     cursor: pointer;
 }
 
+
 .headline-logout-div .print-button:hover {
-    transform: scale(1.2);
+transform: scale(1.2);
+background-color: red;
+color: white;
+outline: none;
 }

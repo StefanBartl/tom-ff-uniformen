@@ -59,11 +59,6 @@ let toggleConsoleFieldsKeyframes;
       ?  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'true')
       :  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'false');
 
-   // Toggle display
-   document.querySelector('.searchbarToggle').getAttribute('data-visible') === 'false'
-   ?  ToggleElementDisplay('newMember-div')
-   :  ToggleElementDisplay('newMember-div');
-
     // Toggle console title
     document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
       ?  document.querySelector('.newMemberToggle').title=`Klicke um die Konsole einzublenden`

@@ -196,7 +196,7 @@ export default function FirestoreDataForm() {
   return (
 
      <div className='FirestoreDataForm'>
-         
+
                 <div className='console' style={{height: '5vh'}} >
 
                       <div className='consoleButtons'>
@@ -270,20 +270,12 @@ export default function FirestoreDataForm() {
                           />
 
                           <img
-                              src='https://drive.google.com/uc?export=download&id=15q0SsoW8GseByceDXJxG7UaclNQYBVJY'
-                              className={`fireTruck fireTruck-${index}`}
-                              style={{ display: 'none' }}
-                              alt='Fire truck'
-                              title='©: freepik.com -  https://www.freepik.com/'
-                          />
-
-                          <img
                               src='https://drive.google.com/uc?export=download&id=1u2Eib4hTRffN1aaTLscKze-L6dLN0RKl'
                               name='memberInfoBtn'
                               id={`memberInfoBtn-${index}`}
                               className='memberInfoBtn'
                               alt='Arrow'
-                              title={`Info aufklappen.
+                              title={`Info aufklappen
                                           ©: deemakdaksina - https://www.flaticon.com/authors/deemakdaksina `}
                               onClick={() => {
                               toggleMemberInfo(index);
@@ -777,15 +769,6 @@ export default function FirestoreDataForm() {
                                       defaultValue='update'
                                   />
 
-                              <PrintButton />
-
-                              <img
-                                  src='https://drive.google.com/uc?export=download&id=1L1sxkr7IVMtQEHTjFgWudgX7jWbLJ8-c'
-                                  className='memberInfo-fireImage'
-                                  alt='Fire distinguisher'
-                                  title='©: BZZRINCANTATION - https://www.flaticon.com/authors/BZZRINCANTATION'
-                                  />
-
                                   <input
                                       type='button'
                                       name='deleteBtn'
@@ -797,6 +780,9 @@ export default function FirestoreDataForm() {
                                       }}
                                       defaultValue='löschen'
                                   />
+
+                                <PrintButton />
+
                           </div>
                           </section>
 

@@ -38,19 +38,20 @@
     outline: none;
     text-align: center;
     color: #01D101;
+    font-size: xx-large;
+    font-weight: bolder;
 }
 
 .label-ID{
-    margin-left: 2rem;
+    margin-left: 1rem;
+    color: #01D101;
 }
 
 .label-FN,
 .label-LN,
 .label-PO{
-    margin-left: 1rem;
-    width: 19ch;
+    margin-left: 3rem;
 }
-
 
 .member-section-visible {
     height: 10%;
@@ -78,7 +79,7 @@
     margin-bottom: 2rem;
     gap: .5rem;
     color: white;
-    background-color: #01D101;
+    background-color: lightgray;
 }
 
 .uniformen-div{
@@ -138,7 +139,7 @@
 }
 
 .memberInfoBtn:hover {
-    filter: invert(14%) sepia(75%) saturate(5779%) hue-rotate(357deg) brightness(102%) contrast(118%);
+    filter: invert(44%) sepia(85%) saturate(870%) hue-rotate(82deg) brightness(106%) contrast(114%);
 }
 
 .firestore-data-wrapper {
@@ -296,14 +297,13 @@ width: 21ch;
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
-    margin-bottom: 2rem;
     margin-left: 1rem;
-    margin-right: -1rem;
+    margin-right: 1rem;
+    gap: 2rem;
 }
 
 .firestore-manipulate-div  .print-button {
     width: 8ch;
-    margin-top: 1rem;
     outline: solid 4px red;
     cursor: pointer;
 }
@@ -313,26 +313,6 @@ width: 21ch;
     width: 8ch;
     outline: solid 4px red;
     cursor: pointer;
-}
-
-.fireTruck {
-    width: 10vw;
-    height:  10vw;
-    margin-left: auto;
-    margin-right: .5rem;
-    position: absolute;
-    bottom: 5%;
-    left: 10%;
-    transform: rotateY(180deg);
-}
-
-.memberInfo-fireImage{
-    width: 5rem;
-    height: 5rem;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
 }
 
 #save{
@@ -426,8 +406,9 @@ width: 21ch;
 .newMember-div{
     display: flex;
     gap: 1rem;
-    margin-left: 1.5rem;
-    align-items: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .newMember-div > input {

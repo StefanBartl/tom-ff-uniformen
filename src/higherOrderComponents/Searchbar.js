@@ -30,11 +30,11 @@ export default function Searchbar(props){
             // Hide every no matches 
             const allFormsArr = document.querySelectorAll('.member-forms');
             for (const form of allFormsArr) {
-                    form.classList.add('displayNone');
+                    form.style.display = 'none';
             };
             // Show match 
             for(let i = 0; i < matchingObjects.length; i++){
-                document.querySelector(`.member-formMID-${matchingObjects[i].id}`).classList.remove('displayNone');
+                document.querySelector(`.member-formMID-${matchingObjects[i].id}`).style.display = 'flex';
             };
 
         } else { // Remove no matches class to make sure class is removed if seacrhbar strings are deleted 
@@ -42,7 +42,7 @@ export default function Searchbar(props){
             matchingObjects = [];
             const allFormsArr = document.querySelectorAll('.member-forms');
             for (const form of allFormsArr) {
-                    form.classList.remove('displayNone');
+                    form.style.display = 'flex';
             };
 
         };
@@ -54,12 +54,13 @@ export default function Searchbar(props){
         if(event.target.name === 'search'){
             getSearchedObject();
         } else if(event.target.name === 'remove'){
+            // Set back input fields
             setSearchFirstName('');
             setSearchLastName('');
             setSearchPosition('');
             const allFormsArr = document.querySelectorAll('.member-forms');
             for (const form of allFormsArr) {
-                    form.classList.remove('displayNone');
+                    form.style.display = 'flex';
             };
         };
 
@@ -67,7 +68,7 @@ export default function Searchbar(props){
 
 
     return (
-            <div className='Searchbar displayNone'  style={{transform: 'scale(0)'}}>
+            <div className='Searchbar'  style={{transform: 'scale(0)'}}>
                     <input type='text' name='firstName' placeholder='Vorname' className='searchbarFN-input searchbarInputs ' value={searchFirstName} onChange={handleChange} />
                     <input type='text' name='lastName' placeholder='Nachname' className='searchbarLN-input searchbarInputs ' value={searchLastName} onChange={handleChange} />
                     <input type='text' name='ffposition' placeholder='Dienstgrad' className='searchbarPO-input searchbarInputs ' value={searchPosition} onChange={handleChange} />
