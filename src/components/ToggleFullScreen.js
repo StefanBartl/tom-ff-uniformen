@@ -1,4 +1,10 @@
 export default function ToggleFullScreen(elem) {
+
+  // Only toggle fullscreen if user isn't on mobile/small devices
+  if(window.innerWidth < 576){
+    return;
+  }
+
     elem = elem || document.documentElement;
   
     if (!document.fullscreenElement && !document.mozFullScreenElement &&

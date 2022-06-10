@@ -501,17 +501,19 @@ width: 21ch;
     }
     
     .member-section-toToggle {
-        height: 100%;
-        justify-content: space-between;
+        height: fit-content;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         margin-top: .5rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        margin-bottom: 2rem;
-        gap: .5rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0rem;
+        gap: 1rem;
         color: white;
-        background-color: lightgray;
+        background-color: red;
     }
     
     .uniformen-div{
@@ -535,26 +537,33 @@ width: 21ch;
     
     /* ? classes for the individual inputs  */
     .id-value  {
-        font-size: large;
+        font-size: medium;
         font-weight: bolder;
-        color: #01D101;
+        margin-left: .5rem;
+        color: white;
     }
     
     .input-firstName  {
         width: 11ch;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .input-lastName  {
         width: 11ch;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .input-position  {
         width: 11ch;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .memberInfo-wrapper{
-        margin-left: 5%;
-        margin-bottom: .5rem;
+        margin-left: 0%;
+        margin-bottom: 0rem;
     }
     
     .memberInfo-wrapper > h3{
@@ -571,7 +580,7 @@ width: 21ch;
     }
     
     .memberInfoBtn:hover {
-        filter: invert(44%) sepia(85%) saturate(870%) hue-rotate(82deg) brightness(106%) contrast(114%);
+        filter: invert(1)
     }
     
     .firestore-data-wrapper {
@@ -589,18 +598,19 @@ width: 21ch;
         height: 100%;
         gap: 1rem;
         margin-top: 1rem;
-        position: relative;
-        text-align: center;
+        text-align: left;
     }
     
     .memberInfo-wrapper > h3{
         padding-top: .5rem;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .input-textarea {
         height: 50%;
-        width: 15vw;
-        font-size: larger;
+        width: 80vw;
+        font-size: medium;
     }
     
     .memberInfo-wrapper:before{
@@ -617,12 +627,13 @@ width: 21ch;
     }
     
     .visibleMemberSection-div{
-        outline: solid 15px white;   
-        width: 98vw;
-        height: 98vh;
+        outline: solid 2px white;   
+        width: 100vw;
+        height: fit-content;
         position: absolute;
-        top: .5rem;
-        left: .5rem;
+        top: 0;
+        left: 0;
+        padding: .5rem;
         background-color: red;
     }
     
@@ -751,8 +762,7 @@ width: 21ch;
         height: 5ch;
         cursor: pointer;
         outline: solid 1px black;
-        transition: .2s ease-in-out;
-        transition-property: background-color, color;
+        transition: none;
       }
       
       #save:hover {
@@ -763,8 +773,7 @@ width: 21ch;
     
     .deleteBtn,
     .updateBtn {
-        transition: .2s ease-in-out;
-        transition-property: background-color, color;
+        transition: none;
     }
     
     .deleteBtn:hover,
