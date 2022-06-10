@@ -8,3 +8,11 @@
   .impressumLink:hover {
     filter: brightness(0) saturate(100%) invert(14%) sepia(75%) saturate(5779%) hue-rotate(357deg) brightness(102%) contrast(118%);
   }
+
+  @media (max-width: 576px) {
+
+    .impressumLink {
+      margin-top: 2rem;
+    }
+
+  }
