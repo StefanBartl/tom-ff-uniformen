@@ -1,6 +1,8 @@
 // !                 === known issues list ===
-// TODO Finish: CSS for most devices & make app nice & Cleanout
-// TODO Finish: Better CSS-Separation and React components
+// TODO Finishing: Detailed search possibility
+// TODO Finishing: Separations in React-Components
+// TODO Finishing: CSS for most devices & make app nice 
+// TODO Finishing: CSS Cleanout / CSS-Separation 
 
 import "./styles/App.css";
 import LoginShield from './higherOrderComponents/LoginShield';
@@ -15,9 +17,9 @@ import PrintButton from "./higherOrderComponents/PrintButton";
 
 
 export default function App() {
+
 // Check if loginKey is expired
 LocalStorageGetWithExpiry('loginKey');
-
 
   return (
     
