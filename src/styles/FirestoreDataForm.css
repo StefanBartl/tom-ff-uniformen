@@ -21,6 +21,28 @@
     gap: 1rem;
 }
 
+/* ? Console elements */
+
+.console {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+}
+
+.consoleButtons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: .5rem;
+}
+
+.consoleBars {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    height: fit-content;
+}
+
 /* ? All individual data member form */
 .member-forms {
     display: flex;
@@ -127,28 +149,6 @@
     width: 25ch;
 }
 
-.memberInfo-wrapper{
-    margin-left: 5%;
-    margin-bottom: .5rem;
-}
-
-.memberInfo-wrapper > h3{
-    color: white;
-}
-
-.memberInfoBtn{
-    width: 4rem;
-    height: 4rem;
-    filter: invert(1);
-    cursor: pointer;
-    margin-left: 2rem;
-    margin-right: 1rem;
-}
-
-.memberInfoBtn:hover {
-    filter: invert(44%) sepia(85%) saturate(870%) hue-rotate(82deg) brightness(106%) contrast(114%);
-}
-
 .firestore-data-wrapper {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -161,14 +161,15 @@
 .memberInfo-wrapper{
     display: flex;
     flex-direction: column;
-    height: 100%;
     gap: 1rem;
+    margin-left: 5%;
     margin-top: 1rem;
     position: relative;
     text-align: center;
 }
 
 .memberInfo-wrapper > h3{
+    color: white;
     padding-top: .5rem;
 }
 
@@ -176,6 +177,7 @@
     height: 50%;
     width: 15vw;
     font-size: larger;
+    padding: .5rem;
 }
 
 .memberInfo-wrapper:before{
@@ -194,7 +196,6 @@
 .visibleMemberSection-div{
     outline: solid 15px white;   
     width: 98vw;
-    height: 98vh;
     position: absolute;
     top: .5rem;
     left: .5rem;
@@ -309,126 +310,15 @@ width: 21ch;
     gap: 2rem;
 }
 
-.firestore-manipulate-div  .print-button {
-    width: 8ch;
-    outline: solid 4px red;
-    cursor: pointer;
-}
-
-.deleteBtn,
-.updateBtn {
-    width: 8ch;
-    outline: solid 4px red;
-    cursor: pointer;
-}
-
-#save{
-    width: 15ch;
-    height: 5ch;
-    cursor: pointer;
-    outline: solid 1px black;
-    transition: .2s ease-in-out;
-    transition-property: background-color, color;
-  }
-  
-  #save:hover {
-    background-color: red;
-    color: white;
-    outline: none;
-  }
-
-.deleteBtn,
-.updateBtn {
-    transition: .2s ease-in-out;
-    transition-property: background-color, color;
-}
-
-.deleteBtn:hover,
-.updateBtn:hover {
-    background-color: goldenrod;
-    color: white;
-}
-
-
-/* ? Console elements */
-
-.console {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: .5rem;
-}
-
-.consoleButtons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: .5rem;
-}
-
-.consoleBars {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    height: fit-content;
-}
-
-.newMemberToggle {
-    width: fit-content;
-    height: fit-content;
-    margin-left: .5rem;
-    margin-bottom: .5rem;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-}
-
-.searchbarToggle{
-    width: fit-content;
-    height: fit-content;
-    margin-bottom: .5rem;
-    margin-right: auto;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-}
-
-.export-button {
-    width: fit-content;
-    height: fit-content;
-    margin-bottom: .5rem;
-    margin-right: .5rem;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-}
-
-.newMemberToggle:hover,
-.export-button:hover{
-    background-color: red;
-    color: white;
-}
-
-.searchbarToggle:hover{
-    background-color: red;
-    color: white;
-}
-
-.newMember-div{
-    display: flex;
-    gap: 1rem;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.newMember-div > input {
-    width: 20ch;
-    height: 5ch;
-    outline: solid 1px black;
-}
+/*!= = Nomal Devices end = = !*/
 
 
 
 
 
 
+/*!= = = = = = = = = = = = = = !*/
+        /* ? Small devices  */
 
 @media (max-width: 576px) {
 
@@ -445,7 +335,29 @@ width: 21ch;
         outline: none;
     }
     
+        /* ? Console elements */
     
+        .console {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: .5rem;
+        }
+        
+        .consoleButtons {
+            display: flex;
+            margin-top: .5rem;
+            justify-content: space-between;
+            width: 100%;
+            gap: .5rem;
+        }
+        
+        .consoleBars {
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            height: fit-content;
+        }
+
     /* ? All individual data member form */
     .member-forms {
         display: flex;
@@ -464,7 +376,6 @@ width: 21ch;
         gap: 0rem;
     }
     
-    /* ? */
     .data-labels-div > h3 {
         border: none;
         outline: none;
@@ -569,19 +480,6 @@ width: 21ch;
     
     .memberInfo-wrapper > h3{
         color: white;
-    }
-    
-    .memberInfoBtn{
-        width: 1rem;
-        height: 1rem;
-        filter: invert(1);
-        cursor: pointer;
-        margin-left: auto;
-        margin-right: .5rem;
-    }
-    
-    .memberInfoBtn:hover {
-        filter: invert(1)
     }
     
     .firestore-data-wrapper {
@@ -745,116 +643,4 @@ width: 21ch;
         gap: 2rem;
     }
     
-    .firestore-manipulate-div  .print-button {
-       display: none;
-    }
-    
-    .deleteBtn,
-    .updateBtn {
-        width: 8ch;
-        outline: solid 4px red;
-        cursor: pointer;
-    }
-    
-    #save{
-        width: fit-content;
-        height: 2rem;
-        cursor: pointer;
-        outline: solid 1px black;
-        transition: none;
-      }
-      
-      #save:hover {
-        background-color: red;
-        color: white;
-        outline: none;
-      }
-    
-    .deleteBtn,
-    .updateBtn {
-        transition: none;
-    }
-    
-    .deleteBtn:hover,
-    .updateBtn:hover {
-        background-color: goldenrod;
-        color: white;
-    }
-    
-    
-    /* ? Console elements */
-    
-    .console {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: .5rem;
-    }
-    
-    .consoleButtons {
-        display: flex;
-        margin-top: .5rem;
-        justify-content: space-between;
-        width: 100%;
-        gap: .5rem;
-    }
-    
-    .consoleBars {
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        height: fit-content;
-    }
-    
-    .newMemberToggle {
-        width: fit-content;
-        height: fit-content;
-        margin-left: .5rem;
-        margin-bottom: .5rem;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-    }
-    
-    .searchbarToggle{
-        width: fit-content;
-        height: fit-content;
-        margin-bottom: .5rem;
-        margin-right: auto;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-    }
-    
-    .export-button {
-        width: fit-content;
-        height: fit-content;
-        margin-bottom: .5rem;
-        margin-right: .5rem;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-    }
-    
-    .newMemberToggle:hover,
-    .export-button:hover{
-        background-color: red;
-        color: white;
-    }
-    
-    .searchbarToggle:hover{
-        background-color: red;
-        color: white;
-    }
-    
-    .newMember-div{
-        display: flex;
-        gap: .5rem;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .newMember-div > input {
-        width: 11ch;
-        height: 2rem;
-        outline: solid 1px black;
-    }
-
 }

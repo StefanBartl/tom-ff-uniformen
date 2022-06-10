@@ -160,11 +160,247 @@ input {
   height: 0rem;
 }
 
+
+/* ! = = = = = = = = = = = = = = =  !*/
+/* ! ALL Buttons elements of page */
+
+
+.memberInfoBtn{
+  width: 40px;
+  height: 40px;
+  transform: rotate(90deg);
+  filter: invert(1);
+  margin-left: 1rem;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.memberInfoBtn:hover {
+  filter: invert(44%) sepia(85%) saturate(870%) hue-rotate(82deg) brightness(106%) contrast(114%);
+}
+
+.deleteBtn,
+.updateBtn,
+.firestore-manipulate-div  .print-button {
+  width: 8ch;
+  outline: solid 4px red;
+  cursor: pointer;
+}
+
+#save{
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  outline: solid 1px black;
+}
+
+
+.newMemberToggle,
+.searchbarToggle,
+.export-button  {
+    width: fit-content;
+    height: fit-content;
+    margin-left: .5rem;
+    margin-bottom: .5rem;
+    cursor: pointer;
+}
+
+.searchbarToggle {
+    margin-right: auto;
+}
+
+.logout-button {
+  width: 5rem;
+  font-size: larger;
+  border: none;
+  cursor: pointer;
+  outline: solid 2px white;
+  transition: .2s ease-in-out;
+  transition-property: transform, background-color, color;
+}
+
+.logout-button:hover {
+  transform: scale(1.2);
+  background-color: red;
+  color: white;
+  outline: none;
+}
+ 
+#save:hover,
+.deleteBtn:hover,
+.updateBtn:hover,
+.firestore-manipulate-div  .print-button:hover,
+.newMemberToggle:hover,
+.searchbarToggle:hover,
+.export-button:hover{
+    background-color: red;
+    color: white;
+}
+
+#save,
+.deleteBtn,
+.updateBtn,
+.firestore-manipulate-div  .print-button,
+.newMemberToggle,
+.searchbarToggle,
+.export-button{
+position: relative;
+border: none;
+text-align: center;
+-webkit-transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+text-decoration: none;
+overflow: hidden;
+}
+
+#save:hover,
+.deleteBtn:hover,
+.updateBtn:hover,
+.firestore-manipulate-div  .print-button:hover,
+.newMemberToggle:hover,
+.export-button:hover,
+.searchbarToggle:hover{
+background:#fff;
+box-shadow:0px 2px 10px 5px #97B1BF;
+color:#000;
+}
+
+#save:after,
+.deleteBtn:after,
+.updateBtn:after,
+.firestore-manipulate-div  .print-button:after,
+.newMemberToggle:after,
+.export-button:after,
+.searchbarToggle:after {
+content: "";
+background: red;
+display: block;
+position: absolute;
+padding-top: 300%;
+padding-left: 350%;
+margin-left: -20px !important;
+margin-top: -120%;
+opacity: 0;
+transition: all 0.8s
+}
+
+#save:active::after
+.deleteBtn:active::after
+.updateBtn:active::after
+.firestore-manipulate-div  .print-button:active::after
+.newMemberToggle:active:after,
+.export-button:active:after,
+.searchbarToggle:active:after {
+padding: 0;
+margin: 0;
+opacity: 1;
+transition: 0s
+}
+
+
 @media (max-width: 576px) {
 
   .App {
     min-width: 100vw;
     padding: 0rem;
 }
+
+.logout-button {
+  width: fit-content;
+  font-size: medium;
+  transition: none;
+}
+
+.logout-button:hover {
+  transform: none;
+}
+
+.memberInfoBtn{
+  width: 1rem;
+  height: 1rem;
+  filter: invert(1);
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: .5rem;
+}
+
+.memberInfoBtn:hover {
+  filter: invert(1)
+}
+    
+.newMemberToggle {
+  width: fit-content;
+  height: fit-content;
+  margin-left: .5rem;
+  margin-bottom: .5rem;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.searchbarToggle{
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: .5rem;
+  margin-right: auto;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.export-button {
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: .5rem;
+  margin-right: .5rem;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.newMemberToggle:hover,
+.export-button:hover{
+  background-color: red;
+  color: white;
+}
+
+.searchbarToggle:hover{
+  background-color: red;
+  color: white;
+}
+
+.firestore-manipulate-div  .print-button {
+  display: none;
+}
+
+.deleteBtn,
+.updateBtn {
+   width: 8ch;
+   outline: solid 4px red;
+   cursor: pointer;
+}
+
+#save{
+   width: fit-content;
+   height: 2rem;
+   cursor: pointer;
+   outline: solid 1px black;
+   transition: none;
+ }
+ 
+ #save:hover {
+   background-color: red;
+   color: white;
+   outline: none;
+ }
+
+.deleteBtn,
+.updateBtn {
+   transition: none;
+}
+
+.deleteBtn:hover,
+.updateBtn:hover {
+   background-color: goldenrod;
+   color: white;
+}
+
 
 }

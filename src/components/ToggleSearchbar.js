@@ -19,11 +19,11 @@ export default function ToggleNewMember(){
       if(toggleState === 'false'){
         toggleConsoleKeyframes = [
             { height: '0vh'},
-            { height: '10vh'}
+            { height: '15vh'}
           ];
   } else {
     toggleConsoleKeyframes = [
-      { height: '10vh'},
+      { height: '15vh'},
       { height: '0vh'}
     ];
   };

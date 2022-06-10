@@ -1,0 +1,37 @@
+/* ? Add new member */
+
+.newMember-div{
+    display: flex;
+    gap: 1rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newMember-div > input {
+    width: 20ch;
+    height: fit-content;
+    outline: solid 1px black;
+}
+
+
+
+
+
+@media (max-width: 576px) {
+
+    .newMember-div{
+        display: flex;
+        gap: .5rem;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .newMember-div > input {
+        width: 11ch;
+        height: 2rem;
+        outline: solid 1px black;
+    }
+    
+}

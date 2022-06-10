@@ -1,5 +1,5 @@
 // !                 === known issues list ===
-// TODO Finish: CSS for most devices & make app nice
+// TODO Finish: CSS for most devices & make app nice & Cleanout
 // TODO Finish: Better CSS-Separation and React components
 
 import "./styles/App.css";

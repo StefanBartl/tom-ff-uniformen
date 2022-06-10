@@ -1,5 +1,6 @@
 // ? CSS, React and function imports
 import '../styles/FirestoreDataForm.css';
+import '../styles/NewMember.css'
 import { useState } from 'react';
 import firestoreUIEffect from '../components/FirestoreUIEffect';
 
@@ -11,7 +12,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
-export default function ToggleNewMember(props){
+export default function NewMember(props){
 
   //  tracking state for add a new member input fields
   const [newFirstName, setNewFirstName] = useState('');
