@@ -47,7 +47,6 @@
 .member-forms {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
     gap: 1rem;
     background-color: lightgray;
 }
@@ -55,25 +54,24 @@
 /* ? summary class for the form input fields */
 .data-labels-div{
     display: flex;
-    padding: 1rem;
     padding-left: 1rem;
     background-color: lightgray;
     gap: 1rem;
 }
 
-/* ? */
+/* ? Labels  for the member input fields in start view */
+
 .data-labels-div > h3 {
     border: none;
     outline: none;
     text-align: center;
-    color: #01D101;
+    color: white;
     font-size: xx-large;
     font-weight: bolder;
 }
 
 .label-ID{
     margin-left: 1rem;
-    color: #01D101;
 }
 
 .label-FN,
@@ -93,7 +91,7 @@
 }
 
 .member-section-visible input {
-    height: 3rem;
+    height: fit-content;
     outline: solid 1px black;
 }
 
@@ -134,7 +132,7 @@
 .id-value  {
     font-size: xx-large;
     font-weight: bolder;
-    color: #01D101;
+    color: white;
 }
 
 .input-firstName  {

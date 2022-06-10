@@ -20,33 +20,9 @@
 
 .searchbarInputs {
     width: 20ch;
-    height: 5ch;
+    height: fit-content;
     margin-bottom: .5rem;
     outline: solid 1px black;
-}
-
-.removeBtn,
-.searchBtn {
-    width: fit-content;
-    height: 5ch;
-    cursor: pointer;
-    outline: solid 1px black;
-    transition: .2s ease-in-out;
-    transition-property: transform;
-}
-
-.removeBtn:hover,
-.searchBtn:hover {
-    transform: scale(1.2);
-    outline: none;
-}
-
-.searchBtn {
-    margin-left: 1rem;
-}
-
-.removeBtn{
-    margin-left: 1rem;
 }
 
 .noMatch-class{
@@ -82,30 +58,6 @@
     height: 2rem;
     margin-bottom: .5rem;
     outline: solid 1px black;
-}
-
-.removeBtn,
-.searchBtn {
-    width: fit-content;
-    height: 2rem;
-    cursor: pointer;
-    outline: solid 1px black;
-    transition: .2s ease-in-out;
-    transition-property: transform;
-}
-
-.removeBtn:hover,
-.searchBtn:hover {
-    transform: scale(1.2);
-    outline: none;
-}
-
-.searchBtn {
-    margin-left: .5rem;
-}
-
-.removeBtn{
-    margin-left: .5rem;
 }
 
 .noMatch-class{
