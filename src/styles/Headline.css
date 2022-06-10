@@ -32,7 +32,6 @@
     cursor: pointer;
 }
 
-
 .headline-logout-div .print-button:hover {
 transform: scale(1.2);
 background-color: red;
@@ -40,4 +39,28 @@ color: white;
 outline: none;
 }
 
-@media (min-width: 576px) {}
+@media (max-width: 576px) {
+
+    .headline-a > img {
+        display: none;
+    }
+    
+    .headline-div > h1 {
+        color: var(--wkd-white);
+        text-align: center;
+        font-size: large;
+        margin-right: 1rem;
+    }
+    
+    .headline-logout-div{
+        display: flex;
+        margin-bottom: 1rem;
+        align-items: center;
+      }
+      
+      .headline-logout-div .print-button {
+        display: none;
+    }
+    
+
+}

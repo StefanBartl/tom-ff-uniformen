@@ -20,4 +20,22 @@
     color: white;
     outline: none;
 }
-@media (min-width: 576px) {}
+
+@media (max-width: 576px) {
+
+    .logout-button-div{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .logout-button {
+        width: fit-content;
+        font-size: medium;
+        transition: none;
+    }
+    
+    .logout-button:hover {
+        transform: none;
+    }
+
+}

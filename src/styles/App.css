@@ -159,12 +159,11 @@ input {
   height: 0rem;
 }
 
-/* ? Toggling console*/ 
+@media (max-width: 576px) {
 
-.console {
-    min-height: 5vh;
-    display: flex;
-    gap: 1rem;
+  .App {
+    max-width: 100vw;
+    padding: 1rem;
 }
 
-@media (min-width: 576px) {}
+}

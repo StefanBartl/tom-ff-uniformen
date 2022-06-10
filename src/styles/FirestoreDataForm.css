@@ -13,8 +13,15 @@
     outline: solid 2px white;
 }
 
+/* ? console with buttons */ 
 
-/* ? data form */
+.console {
+    min-height: 5vh;
+    display: flex;
+    gap: 1rem;
+}
+
+/* ? All individual data member form */
 .member-forms {
     display: flex;
     flex-direction: column;
@@ -24,7 +31,6 @@
 }
 
 /* ? summary class for the form input fields */
-
 .data-labels-div{
     display: flex;
     padding: 1rem;
@@ -33,6 +39,7 @@
     gap: 1rem;
 }
 
+/* ? */
 .data-labels-div > h3 {
     border: none;
     outline: none;
@@ -417,4 +424,430 @@ width: 21ch;
     outline: solid 1px black;
 }
 
-@media (min-width: 576px) {}
+
+
+
+
+
+
+@media (max-width: 576px) {
+
+    .FirestoreDataForm {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        height: fit-content;
+        width: fit-content;
+        margin: 0rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+        background-color: #01D101;
+        outline: solid 2px white;
+    }
+    
+    
+    /* ? All individual data member form */
+    .member-forms {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+        gap: 1rem;
+        background-color: lightgray;
+    }
+    
+    /* ? summary class for the form input fields */
+    .data-labels-div{
+        display: flex;
+        padding: 1rem;
+        padding-left: 1rem;
+        background-color: lightgray;
+        gap: 1rem;
+    }
+    
+    /* ? */
+    .data-labels-div > h3 {
+        border: none;
+        outline: none;
+        text-align: center;
+        color: #01D101;
+        font-size: xx-large;
+        font-weight: bolder;
+    }
+    
+    .label-ID{
+        margin-left: 1rem;
+        color: #01D101;
+    }
+    
+    .label-FN,
+    .label-LN,
+    .label-PO{
+        margin-left: 3rem;
+    }
+    
+    .member-section-visible {
+        height: 10%;
+        display: flex;
+        padding: 1rem;
+        margin-top: .5rem;
+        margin-left: 2rem;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .member-section-visible input {
+        height: 3rem;
+        outline: solid 1px black;
+    }
+    
+    .member-section-toToggle {
+        height: 100%;
+        justify-content: space-between;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: .5rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+        gap: .5rem;
+        color: white;
+        background-color: lightgray;
+    }
+    
+    .uniformen-div{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+    
+    .uniformen-div > h3 {
+        text-align: center;
+    }
+    
+    .uniformen-divs {
+        display: flex;
+        gap: .5rem;
+    }
+    
+    .uniformen-divs > p{
+        width: 8ch;
+    }
+    
+    /* ? classes for the individual inputs  */
+    .id-value  {
+        font-size: xx-large;
+        font-weight: bolder;
+        color: #01D101;
+    }
+    
+    .input-firstName  {
+        width: 25ch;
+    }
+    
+    .input-lastName  {
+        width: 25ch;
+    }
+    
+    .input-position  {
+        width: 25ch;
+    }
+    
+    .memberInfo-wrapper{
+        margin-left: 5%;
+        margin-bottom: .5rem;
+    }
+    
+    .memberInfo-wrapper > h3{
+        color: white;
+    }
+    
+    .memberInfoBtn{
+        width: 4rem;
+        height: 4rem;
+        filter: invert(1);
+        cursor: pointer;
+        margin-left: 2rem;
+        margin-right: 1rem;
+    }
+    
+    .memberInfoBtn:hover {
+        filter: invert(44%) sepia(85%) saturate(870%) hue-rotate(82deg) brightness(106%) contrast(114%);
+    }
+    
+    .firestore-data-wrapper {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        outline: dashed 4px white;
+        outline-width: 8px;
+        outline-offset: 2px;
+        padding: .5rem;
+    }
+      
+    .memberInfo-wrapper{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        gap: 1rem;
+        margin-top: 1rem;
+        position: relative;
+        text-align: center;
+    }
+    
+    .memberInfo-wrapper > h3{
+        padding-top: .5rem;
+    }
+    
+    .input-textarea {
+        height: 50%;
+        width: 15vw;
+        font-size: larger;
+    }
+    
+    .memberInfo-wrapper:before{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 10%;
+        width: 80%;
+        border: solid 1px white;
+    }
+    
+    .notSelectedMember-div{
+       display: none;
+    }
+    
+    .visibleMemberSection-div{
+        outline: solid 15px white;   
+        width: 98vw;
+        height: 98vh;
+        position: absolute;
+        top: .5rem;
+        left: .5rem;
+        background-color: red;
+    }
+    
+    .uniformenTypes-div{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        height: fit-content;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding: .5rem;
+        text-align: center;
+        position: relative;
+    }
+    
+    .uniformenTypes-div::before{ 
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 10%;
+        width: 80%;
+        border: solid 1px white;
+    }
+    
+    .uniformenLabels-div {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .memberInfo-wrapper > h3,
+    .uniformenTypes-div > h3 {
+        font-size: x-large;
+    }
+    
+    .galaLabel-div .uLabelsP1 {
+        margin-left: 13ch;
+    }
+    
+    .dienstbekleidungLabel-div .uLabelsP1 {
+        margin-left: 16ch;
+    }
+    
+    .einsatzuniformenLabel-div .uLabelsP1 {
+        margin-left: 33ch;
+    }
+    
+    .uniformenLabels-div .uLabelsP2 {
+        margin-left: auto;
+    }
+    
+    .uniformenAssets-divs {
+        display: flex;
+        gap: 1.5rem;
+    }
+    
+    .uniformenAssets-divs > p {
+        font-size: x-large;
+    }
+    
+    .uniformenAssets-divs > [type='text'] {
+        width: 6ch;
+    }
+    
+    .uniformenAssets-divs > [type='checkbox'] {
+        margin-left: auto;
+        cursor: pointer;
+        width: 1rem;
+    }
+    
+    
+    .galaAsset > p {
+        width: 6ch;
+    }
+    
+    .dienstAsset > p {
+    width: 8ch;
+    }
+    
+    .einsatzAsset > p {
+    width: 19ch;
+    }
+    
+    /* ? classes for the input labels */
+    
+    .id-label  {
+        color: white;
+        width: 3ch;
+    }
+    
+    .firstName-label  {
+    width: 22ch;
+    }
+    
+    .lastName-label  {
+    width: 21ch;
+    }
+    
+    .position-label  {
+    width: 21ch;
+    }
+    
+    
+    .firestore-manipulate-div{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        gap: 2rem;
+    }
+    
+    .firestore-manipulate-div  .print-button {
+        width: 8ch;
+        outline: solid 4px red;
+        cursor: pointer;
+    }
+    
+    .deleteBtn,
+    .updateBtn {
+        width: 8ch;
+        outline: solid 4px red;
+        cursor: pointer;
+    }
+    
+    #save{
+        width: 15ch;
+        height: 5ch;
+        cursor: pointer;
+        outline: solid 1px black;
+        transition: .2s ease-in-out;
+        transition-property: background-color, color;
+      }
+      
+      #save:hover {
+        background-color: red;
+        color: white;
+        outline: none;
+      }
+    
+    .deleteBtn,
+    .updateBtn {
+        transition: .2s ease-in-out;
+        transition-property: background-color, color;
+    }
+    
+    .deleteBtn:hover,
+    .updateBtn:hover {
+        background-color: goldenrod;
+        color: white;
+    }
+    
+    
+    /* ? Console elements */
+    
+    .console {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+    
+    .consoleButtons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: .5rem;
+    }
+    
+    .consoleBars {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        height: fit-content;
+    }
+    
+    .newMemberToggle {
+        width: fit-content;
+        height: fit-content;
+        margin-left: .5rem;
+        margin-bottom: .5rem;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+    
+    .searchbarToggle{
+        width: fit-content;
+        height: fit-content;
+        margin-bottom: .5rem;
+        margin-right: auto;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+    
+    .export-button {
+        width: fit-content;
+        height: fit-content;
+        margin-bottom: .5rem;
+        margin-right: .5rem;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+    
+    .newMemberToggle:hover,
+    .export-button:hover{
+        background-color: red;
+        color: white;
+    }
+    
+    .searchbarToggle:hover{
+        background-color: red;
+        color: white;
+    }
+    
+    .newMember-div{
+        display: flex;
+        gap: 1rem;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .newMember-div > input {
+        width: 20ch;
+        height: 5ch;
+        outline: solid 1px black;
+    }
+
+}
