@@ -435,15 +435,14 @@ width: 21ch;
     .FirestoreDataForm {
         display: flex;
         flex-direction: column;
+        max-width: 100vw;
         gap: .5rem;
-        height: fit-content;
-        width: fit-content;
         margin: 0rem;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0rem;
         background-color: #01D101;
-        outline: solid 2px white;
+        outline: none;
     }
     
     
@@ -451,7 +450,7 @@ width: 21ch;
     .member-forms {
         display: flex;
         flex-direction: column;
-        padding-bottom: 1rem;
+        padding-bottom: 0rem;
         gap: 1rem;
         background-color: lightgray;
     }
@@ -459,10 +458,10 @@ width: 21ch;
     /* ? summary class for the form input fields */
     .data-labels-div{
         display: flex;
-        padding: 1rem;
-        padding-left: 1rem;
+        padding: 0rem;
+        padding-left: 0rem;
         background-color: lightgray;
-        gap: 1rem;
+        gap: 0rem;
     }
     
     /* ? */
@@ -471,33 +470,33 @@ width: 21ch;
         outline: none;
         text-align: center;
         color: #01D101;
-        font-size: xx-large;
+        font-size: large;
         font-weight: bolder;
     }
     
     .label-ID{
-        margin-left: 1rem;
+        margin-left: 0rem;
         color: #01D101;
     }
     
     .label-FN,
     .label-LN,
     .label-PO{
-        margin-left: 3rem;
+        margin-left: 1rem;
     }
     
     .member-section-visible {
         height: 10%;
         display: flex;
-        padding: 1rem;
-        margin-top: .5rem;
-        margin-left: 2rem;
-        gap: 1rem;
+        padding: 0em;
+        margin-top: 0rem;
+        margin-left: 0rem;
+        gap: .3rem;
         align-items: center;
     }
     
     .member-section-visible input {
-        height: 3rem;
+        height: 1rem;
         outline: solid 1px black;
     }
     
@@ -536,21 +535,21 @@ width: 21ch;
     
     /* ? classes for the individual inputs  */
     .id-value  {
-        font-size: xx-large;
+        font-size: large;
         font-weight: bolder;
         color: #01D101;
     }
     
     .input-firstName  {
-        width: 25ch;
+        width: 11ch;
     }
     
     .input-lastName  {
-        width: 25ch;
+        width: 11ch;
     }
     
     .input-position  {
-        width: 25ch;
+        width: 11ch;
     }
     
     .memberInfo-wrapper{
@@ -563,12 +562,12 @@ width: 21ch;
     }
     
     .memberInfoBtn{
-        width: 4rem;
-        height: 4rem;
+        width: 1rem;
+        height: 1rem;
         filter: invert(1);
         cursor: pointer;
-        margin-left: 2rem;
-        margin-right: 1rem;
+        margin-left: auto;
+        margin-right: .5rem;
     }
     
     .memberInfoBtn:hover {
@@ -576,12 +575,12 @@ width: 21ch;
     }
     
     .firestore-data-wrapper {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        outline: dashed 4px white;
-        outline-width: 8px;
-        outline-offset: 2px;
-        padding: .5rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
+        outline: none;
+        outline-width: 0;
+        outline-offset: 0;
+        padding: 0rem;
     }
       
     .memberInfo-wrapper{
@@ -725,7 +724,6 @@ width: 21ch;
     width: 21ch;
     }
     
-    
     .firestore-manipulate-div{
         display: flex;
         flex-direction: column;
@@ -786,6 +784,7 @@ width: 21ch;
     
     .consoleButtons {
         display: flex;
+        margin-top: .5rem;
         justify-content: space-between;
         width: 100%;
         gap: .5rem;
