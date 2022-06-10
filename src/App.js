@@ -10,6 +10,7 @@ import FirestoreDataForm from './higherOrderComponents/FirestoreDataForm';
 import Contact from './higherOrderComponents/Contact';
 import LocalStorageGetWithExpiry from "./components/LocalStorageGetWithExpiry";
 import TestKey from './components/TestKey';
+import PrintButton from "./higherOrderComponents/PrintButton";
 // import PrintButton from './higherOrderComponents/PrintButton';
 
 
@@ -29,6 +30,7 @@ LocalStorageGetWithExpiry('loginKey');
               </div>
               <FirestoreDataForm /> 
               <Contact />
+              <PrintButton />
             </div>
 
           : <div>

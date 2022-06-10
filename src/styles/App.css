@@ -126,23 +126,6 @@ input {
 /* ! = = = = = = = = = = = = = = =  !*/
 /* ! ALL Buttons elements of page */
 
-.headline-logout-div .print-button {
-  width: 5rem;
-  font-size: larger;
-  border: none;
-  cursor: pointer;
-  outline: solid 2px white;
-  transition: .2s ease-in-out;
-  transition-property: transform, background-color, color;
-  cursor: pointer;
-}
-
-.headline-logout-div .print-button:hover {
-transform: scale(1.2);
-background-color:  var(--counter-colour);
-color: white;
-outline: none;
-}
 
 .logout-button {
   width: 5rem;
@@ -282,6 +265,24 @@ opacity: 1;
 transition: 0s
 }
 
+.print-button {
+  width: 5rem;
+  font-size: larger;
+  border: none;
+  cursor: pointer;
+  outline: solid 2px white;
+  transition: .2s ease-in-out;
+  transition-property: transform, background-color, color;
+  cursor: pointer;
+}
+
+.print-button:hover {
+transform: scale(1.2);
+background-color:  var(--counter-colour);
+color: white;
+outline: none;
+}
+
 
 /* #endregion */
 
@@ -293,10 +294,6 @@ transition: 0s
   .App {
     min-width: 100vw;
     padding: 0rem;
-}
-
-.headline-logout-div .print-button {
-  display: none;
 }
 
 .logout-button {
@@ -347,6 +344,10 @@ transition: 0s
 .deleteBtn,
 .updateBtn {
    width: 8ch;
+}
+
+.print-button {
+  display: none;
 }
 
 }
