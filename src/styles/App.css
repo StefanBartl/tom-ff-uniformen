@@ -16,57 +16,14 @@
   font-weight: 400;
   font-style: normal; 
 
-  --fs-400: 1rem;
-  --fs-500: 1.125rem;
-  --fs-600: 1.375rem;
-  --fs-700: 2rem;
-
-  /* ! test that out if it is working */
-  @media (min-width: 45em){
-  --fs-400: 1.125rem;
-  --fs-500: 1.375rem;
-  --fs-600: 2.75rem;
-  --fs-700: 4.125rem;
-  }
-
-  /* ==================  
-?    ===  Colour-Palette  ===
-.     ================== */
-  --wkd-black: rgb(0, 0, 0);
-  --wkd-darkgrey: rgb(29, 29, 29);
-  --wkd-midgrey: rgb(61, 61, 61);
-  --wkd-grey: rgb(107, 106, 106);
-  --wkd-lightgrey: rgb(178, 182, 160);
-  --wkd-white: rgb(255, 255, 255);
-  --wkd-red: rgb(255, 0, 0);
-  --wkd-green: rgb(82, 150, 34);
-  --wkd-intense-blue: rgb(0, 0, 250);
-  --wkd-pastell-blue: rgb(25, 145, 210);
-  --wkd-torquise: rgb(8, 253, 216);
-  --wkd-blueviolett: rgb(21, 23, 76);
-  --wkd-yellow: rgb(255, 255, 0);
-  --wkd-yellow-dark: rgb(255, 183, 0);
-  --wkd-orange: rgb(255, 102, 0); /* filter: brightness(0) saturate(100%) invert(44%) sepia(24%) saturate(4068%) hue-rotate(1deg) brightness(98%) contrast(106%); */
-  --wkd-grapefruit: rgb(239, 95, 87);
-  --wkd-pink: rgb(255, 0, 128);
-  --wkd-pinkviolett: rgb(255, 0, 255);  /* filter: brightness(0) saturate(100%) invert(19%) sepia(63%) saturate(4179%) hue-rotate(293deg) brightness(123%) contrast(136%); */
-  --wkd-darkviolett: rgb(102, 0, 102); 
-  --wkd-manner: rgb(235, 184, 173);
-}
-
-:root.theme_prime{
-
-/*? === design === */
---main-colour: var(--wkd-darkgrey);
---counter-colour: var(--wkd-orange);
---design-strokes-colour: var(--wkd-grey);
---design-strokes-accent-colour: var(--wkd-pinkviolett);
---shadows: var(--wkd-white);
+  /*? === design === */
+--main-colour: #01D101;
+--counter-colour: red;
+--design-colour: white;
 
 /*? === text === */
 --text-optimal-width: clamp(45ch, 50%, 75ch);
---text-main-colour: var(--wkd-white);
---link-hover-color: var(--wkd-red);
+
 }
 
 /* #endregion */
@@ -168,6 +125,24 @@ input {
 
 /* ! = = = = = = = = = = = = = = =  !*/
 /* ! ALL Buttons elements of page */
+
+.headline-logout-div .print-button {
+  width: 5rem;
+  font-size: larger;
+  border: none;
+  cursor: pointer;
+  outline: solid 2px white;
+  transition: .2s ease-in-out;
+  transition-property: transform, background-color, color;
+  cursor: pointer;
+}
+
+.headline-logout-div .print-button:hover {
+transform: scale(1.2);
+background-color:  var(--counter-colour);
+color: white;
+outline: none;
+}
 
 .logout-button {
   width: 5rem;
@@ -318,6 +293,10 @@ transition: 0s
   .App {
     min-width: 100vw;
     padding: 0rem;
+}
+
+.headline-logout-div .print-button {
+  display: none;
 }
 
 .logout-button {

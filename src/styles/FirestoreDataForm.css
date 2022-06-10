@@ -9,8 +9,8 @@
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
-    background-color: #01D101;
-    outline: solid 2px white;
+    background-color:  var(--main-colour);
+    outline: solid 2px  var(--design-colour);
 }
 
 /* ? console with buttons */ 
@@ -65,7 +65,7 @@
     border: none;
     outline: none;
     text-align: center;
-    color: white;
+    color:  var(--design-colour);
     font-size: xx-large;
     font-weight: bolder;
 }
@@ -105,7 +105,7 @@
     margin-right: 2rem;
     margin-bottom: 2rem;
     gap: .5rem;
-    color: white;
+    color:  var(--design-colour);
     background-color: lightgray;
 }
 
@@ -132,7 +132,7 @@
 .id-value  {
     font-size: xx-large;
     font-weight: bolder;
-    color: white;
+    color:  var(--design-colour);
 }
 
 .input-firstName  {
@@ -150,7 +150,7 @@
 .firestore-data-wrapper {
     margin-left: 1rem;
     margin-right: 1rem;
-    outline: dashed 4px white;
+    outline: dashed 4px  var(--design-colour);
     outline-width: 8px;
     outline-offset: 2px;
     padding: .5rem;
@@ -167,7 +167,7 @@
 }
 
 .memberInfo-wrapper > h3{
-    color: white;
+    color:  var(--design-colour);
     padding-top: .5rem;
 }
 
@@ -184,7 +184,7 @@
     top: 0;
     left: 10%;
     width: 80%;
-    border: solid 1px white;
+    border: solid 1px  var(--design-colour);
 }
 
 .notSelectedMember-div{
@@ -192,12 +192,12 @@
 }
 
 .visibleMemberSection-div{
-    outline: solid 15px white;   
+    outline: solid 15px  var(--design-colour);   
     width: 98vw;
     position: absolute;
     top: .5rem;
     left: .5rem;
-    background-color: red;
+    background-color:  var(--counter-colour);
 }
 
 .uniformenTypes-div{
@@ -218,7 +218,7 @@
     top: 0;
     left: 10%;
     width: 80%;
-    border: solid 1px white;
+    border: solid 1px  var(--design-colour);
 }
 
 .uniformenLabels-div {
@@ -282,7 +282,7 @@ width: 19ch;
 /* ? classes for the input labels */
 
 .id-label  {
-    color: white;
+    color:  var(--design-colour);
     width: 3ch;
 }
 
@@ -329,7 +329,7 @@ width: 21ch;
         margin-left: 0;
         margin-right: 0;
         padding: 0rem;
-        background-color: #01D101;
+        background-color:  var(--main-colour);
         outline: none;
     }
     
@@ -378,14 +378,14 @@ width: 21ch;
         border: none;
         outline: none;
         text-align: center;
-        color: #01D101;
+        color:  var(--main-colour);
         font-size: large;
         font-weight: bolder;
     }
     
     .label-ID{
         margin-left: 0rem;
-        color: #01D101;
+        color:  var(--main-colour);
     }
     
     .label-FN,
@@ -422,8 +422,8 @@ width: 21ch;
         margin-right: auto;
         margin-bottom: 0rem;
         gap: 1rem;
-        color: white;
-        background-color: red;
+        color:  var(--design-colour);
+        background-color:  var(--counter-colour);
     }
     
     .uniformen-div{
@@ -450,7 +450,7 @@ width: 21ch;
         font-size: medium;
         font-weight: bolder;
         margin-left: .5rem;
-        color: white;
+        color:  var(--design-colour);
     }
     
     .input-firstName  {
@@ -477,7 +477,7 @@ width: 21ch;
     }
     
     .memberInfo-wrapper > h3{
-        color: white;
+        color:  var(--design-colour);
     }
     
     .firestore-data-wrapper {
@@ -516,7 +516,7 @@ width: 21ch;
         top: 0;
         left: 10%;
         width: 80%;
-        border: solid 1px white;
+        border: solid 1px  var(--design-colour);
     }
     
     .notSelectedMember-div{
@@ -524,14 +524,14 @@ width: 21ch;
     }
     
     .visibleMemberSection-div{
-        outline: solid 2px white;   
+        outline: solid 2px  var(--design-colour);   
         width: 100vw;
         height: fit-content;
         position: absolute;
         top: 0;
         left: 0;
         padding: .5rem;
-        background-color: red;
+        background-color:  var(--counter-colour);
     }
     
     .uniformenTypes-div{
@@ -552,7 +552,7 @@ width: 21ch;
         top: 0;
         left: 10%;
         width: 80%;
-        border: solid 1px white;
+        border: solid 1px  var(--design-colour);
     }
     
     .uniformenLabels-div {
@@ -616,7 +616,7 @@ width: 21ch;
     /* ? classes for the input labels */
     
     .id-label  {
-        color: white;
+        color:  var(--design-colour);
         width: 3ch;
     }
     

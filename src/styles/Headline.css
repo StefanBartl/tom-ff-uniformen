@@ -11,7 +11,7 @@
 }
 
 .headline-div > h1 {
-    color: var(--wkd-white);
+    color: var(--design-colour);
     text-align: center;
     font-size: 3rem;
 }
@@ -21,23 +21,7 @@
     margin-bottom: 1rem;
   }
   
-  .headline-logout-div .print-button {
-    width: 5rem;
-    font-size: larger;
-    border: none;
-    cursor: pointer;
-    outline: solid 2px white;
-    transition: .2s ease-in-out;
-    transition-property: transform, background-color, color;
-    cursor: pointer;
-}
 
-.headline-logout-div .print-button:hover {
-transform: scale(1.2);
-background-color: red;
-color: white;
-outline: none;
-}
 
 @media (max-width: 576px) {
 
@@ -46,7 +30,7 @@ outline: none;
     }
     
     .headline-div > h1 {
-        color: var(--wkd-white);
+        color: var(--design-colour);
         text-align: center;
         font-size: large;
         margin-right: 1rem;
@@ -59,10 +43,6 @@ outline: none;
         margin-left: .5rem;
         align-items: center;
       }
-      
-      .headline-logout-div .print-button {
-        display: none;
-    }
-    
+
 
 }
