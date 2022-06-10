@@ -14,17 +14,35 @@
 
   let toggleConsoleKeyframes;
 
+  if(window.innerWidth > 576){
+
     if(toggleState === 'false'){
-          toggleConsoleKeyframes = [
-              { height: '0vh'},
-              { height: '10vh'}
-            ];
-    } else {
       toggleConsoleKeyframes = [
-        { height: '10vh'},
-        { height: '0vh'}
-      ];
-    };
+          { height: '0vh'},
+          { height: '10vh'}
+        ];
+} else {
+  toggleConsoleKeyframes = [
+    { height: '10vh'},
+    { height: '0vh'}
+  ];
+};
+
+  } else {
+
+    if(toggleState === 'false'){
+      toggleConsoleKeyframes = [
+          { height: '0vh'},
+          { height: '20vh'}
+        ];
+} else {
+  toggleConsoleKeyframes = [
+    { height: '20vh'},
+    { height: '0vh'}
+  ];
+};
+
+  };
   
    
 //#endregion
