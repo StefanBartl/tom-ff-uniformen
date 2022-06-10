@@ -54,4 +54,63 @@
     margin-right: 1rem;
 }
 
-@media (min-width: 576px) {}
+@media (max-width: 576px) {
+
+
+/* ? Searchbar section */
+
+.Searchbar {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}                
+
+.searchbarFN-input {
+    margin-left: .5rem;
+
+}
+.searchbarLN-input  {
+    margin-left: .5rem;
+}
+
+.searchbarPO-input  {
+    margin-left: .5rem;
+}
+
+.searchbarInputs {
+    width: 11ch;
+    height: 2rem;
+    margin-bottom: .5rem;
+    outline: solid 1px black;
+}
+
+.removeBtn,
+.searchBtn {
+    width: fit-content;
+    height: 2rem;
+    cursor: pointer;
+    outline: solid 1px black;
+    transition: .2s ease-in-out;
+    transition-property: transform;
+}
+
+.removeBtn:hover,
+.searchBtn:hover {
+    transform: scale(1.2);
+    outline: none;
+}
+
+.searchBtn {
+    margin-left: .5rem;
+}
+
+.removeBtn{
+    margin-left: .5rem;
+}
+
+.noMatch-class{
+    margin-left: auto;
+    margin-right: 1rem;
+}
+    
+}

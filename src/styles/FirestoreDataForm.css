@@ -758,8 +758,8 @@ width: 21ch;
     }
     
     #save{
-        width: 15ch;
-        height: 5ch;
+        width: fit-content;
+        height: 2rem;
         cursor: pointer;
         outline: solid 1px black;
         transition: none;
@@ -846,15 +846,15 @@ width: 21ch;
     
     .newMember-div{
         display: flex;
-        gap: 1rem;
+        gap: .5rem;
         width: fit-content;
         margin-left: auto;
         margin-right: auto;
     }
     
     .newMember-div > input {
-        width: 20ch;
-        height: 5ch;
+        width: 11ch;
+        height: 2rem;
         outline: solid 1px black;
     }
 
