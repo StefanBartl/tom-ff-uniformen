@@ -161,6 +161,7 @@ input {
 
 .newMemberToggle,
 .searchbarToggle,
+.detailedSearchbarToggle,
 .export-button  {
     width: fit-content;
     height: fit-content;
@@ -169,8 +170,12 @@ input {
     cursor: pointer;
 }
 
-.searchbarToggle {
-    margin-right: auto;
+.detailedSearchbarToggle {
+  margin-right: auto;
+}
+
+.export-button {
+  margin-right: .5rem;
 }
 
 .removeBtn,
@@ -206,6 +211,7 @@ input {
 .firestore-manipulate-div  .print-button,
 .newMemberToggle,
 .searchbarToggle,
+.detailedSearchbarToggle,
 .export-button{
 position: relative;
 border: none;
@@ -224,7 +230,10 @@ overflow: hidden;
 .firestore-manipulate-div  .print-button:hover,
 .newMemberToggle:hover,
 .export-button:hover,
-.searchbarToggle:hover{
+.searchbarToggle:hover,
+.detailedSearchbarToggle:hover,
+.dSearchSearchBtn:hover,
+.dSearchDeleteBtn:hover {
 background:#fff;
 box-shadow:0px 2px 10px 5px #97B1BF;
 color:#000;
@@ -238,7 +247,10 @@ color:#000;
 .firestore-manipulate-div  .print-button:after,
 .newMemberToggle:after,
 .export-button:after,
-.searchbarToggle:after {
+.searchbarToggle:after,
+.detailedSearchbarToggle::after,
+.dSearchSearchBtn::after,
+.dSearchDeleteBtn::after {
 content: "";
 background: red;
 display: block;
@@ -259,11 +271,24 @@ transition: all 0.8s
 .firestore-manipulate-div  .print-button:active::after
 .newMemberToggle:active:after,
 .export-button:active:after,
-.searchbarToggle:active:after {
+.searchbarToggle:active:after
+.detailedSearchbarToggle:active::after,
+.dSearchSearchBtn:active::after,
+.dSearchDeleteBtn:active::after {
 padding: 0;
 margin: 0;
 opacity: 1;
 transition: 0s
+}
+
+.dSearchSearchBtn,
+.dSearchDeleteBtn {
+    border: none;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
 }
 
 .print-button {

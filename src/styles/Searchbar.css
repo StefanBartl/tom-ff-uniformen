@@ -25,11 +25,6 @@
     outline: solid 1px black;
 }
 
-.noMatch-class{
-    margin-left: auto;
-    margin-right: 1rem;
-}
-
 @media (max-width: 576px) {
 
 
@@ -60,9 +55,4 @@
     outline: solid 1px black;
 }
 
-.noMatch-class{
-    margin-left: auto;
-    margin-right: 1rem;
-}
-    
 }

@@ -1,0 +1,30 @@
+.DetailedSearchbar{
+    position: absolute;
+    min-height: 60vh;
+    min-width: 70vw;
+    justify-self: center;
+    align-self: center;
+    padding: 1rem;
+    z-index: 9999;
+    display: flex;
+    background-color: teal;
+}
+
+.dSearchUniformen-Sections{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dSearchUniformen-Sections > h3 {
+    color: var(--design-colour);
+}
+
+.dSearchButtons{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 1rem;
+}

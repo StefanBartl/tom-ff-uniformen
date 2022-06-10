@@ -89,6 +89,9 @@ let toggleConsoleFieldsKeyframes;
       document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
       ?  document.querySelector('.searchbarToggle').style.filter = 'blur(0)'
       :  document.querySelector('.searchbarToggle').style.filter = 'blur(.1rem)';
+      document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
+      ?  document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(0)'
+      :  document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(.1rem)';
 
     // Make button after uncklickable/clickable to secure 'animation triggering overflow'
     document.querySelector('.newMemberToggle').style.pointerEvents = 'none';

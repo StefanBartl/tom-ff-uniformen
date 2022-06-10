@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import InsertElementAfterNode from '../components/InsertElementAfterNode';
 import '../styles/Searchbar.css';
 
 export default function Searchbar(props){
@@ -112,41 +111,10 @@ export default function Searchbar(props){
                 document.querySelector(`.member-formMID-${matchingObjects[i].id}`).style.display = 'flex';
             };
 
-        } else { // Show no match
-            // Lock search button 
-            document.querySelector('.searchBtn').style.pointerEvents = 'none';
+        } else { // Alert no match
 
-            // Create element
-            const noMatch = document.createElement('div');
-            noMatch.classList.add('noMatch-class');
-            noMatch.innerText = `Leider kein Treffer!`;
-            noMatch.id = 'noMatch-Div';
-            // Insert it in DOM
-            InsertElementAfterNode(document.querySelector('.searchbarToggle'), noMatch);
-            // Create and appen animation
-            const noMatchEffect = [
-                { opacity: '0'},
-                { opacity: '1'},
-                { opacity: '0'},
-                { opacity: '1'},
-                { opacity: '0'},
-                { opacity: '1'},
-                { opacity: '0'}
-              ];
+            window.alert(`Die Suche war leider nicht erolgreich`);
             
-              const noMatchTiming = { 
-                  duration: 2000,
-                  iterations: 1,
-                  fill: 'forwards' ,
-                  easing: 'ease-in', 
-              };
-            document.getElementById('noMatch-Div').animate(noMatchEffect, noMatchTiming);
-            // set search button active again and remove element from dom after 2 seconds
-            setTimeout(() => {
-                document.getElementById('noMatch-Div').remove();
-                document.querySelector('.searchBtn').style.pointerEvents = 'all';
-        }, 2000);
-
         };
 
     };

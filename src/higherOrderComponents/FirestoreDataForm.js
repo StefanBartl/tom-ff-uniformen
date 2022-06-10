@@ -2,12 +2,14 @@
 import '../styles/FirestoreDataForm.css';
 import { useState, useEffect, Children } from 'react';
 import Searchbar from './Searchbar';
+import DetailedSearchbar from './DetailedSearchbar';
 import toggleMemberInfo from '../components/ToggleMemberInfo';
 import FindMemberIndex from '../components/FindMemberIndexInDataArray';
 import GetUpdatetDataArray from '../components/GetUpdatetDataObject';
 import firestoreUIEffect from '../components/FirestoreUIEffect';
 import ToggleSearchbar from '../components/ToggleSearchbar';
 import ToggleNewMember from '../components/ToggleNewMember';
+import ToggleDetailedSearchbar from '../components/ToggleDetailedSearchbar';
 import NewMember from '../higherOrderComponents/NewMember';
 import PrintButton from '../higherOrderComponents/PrintButton';
 import ExportButton from './ExportButton';
@@ -206,6 +208,8 @@ export default function FirestoreDataForm() {
 
                               <button className='searchbarToggle' data-visible='false' onClick={ToggleSearchbar} title={`Klicke um das Suchfeld einzublenden`}>suchen</button>
 
+                              <button className='detailedSearchbarToggle' data-visible='false' onClick={ToggleDetailedSearchbar} title={`Klicke um das detailierte Suchfeld einzublenden`}>detail&nbsp;suchen</button>
+
                               <ExportButton data={data} />
 
                       </div>
@@ -215,6 +219,8 @@ export default function FirestoreDataForm() {
                           <NewMember data={data} />
                           
                           <Searchbar data={data} />
+
+                          <DetailedSearchbar data={data} />
 
                       </div>
 
