@@ -12,7 +12,7 @@
   @media (max-width: 576px) {
 
     .impressumLink {
-      margin-top: 2rem;
+      display: none;
     }
 
   }

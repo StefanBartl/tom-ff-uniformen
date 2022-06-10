@@ -491,12 +491,13 @@ width: 21ch;
         padding: 0em;
         margin-top: 0rem;
         margin-left: 0rem;
+        margin-bottom: 1rem;
         gap: .3rem;
         align-items: center;
     }
     
     .member-section-visible input {
-        height: 1rem;
+        height: 2rem;
         outline: solid 1px black;
     }
     
@@ -745,9 +746,7 @@ width: 21ch;
     }
     
     .firestore-manipulate-div  .print-button {
-        width: 8ch;
-        outline: solid 4px red;
-        cursor: pointer;
+       display: none;
     }
     
     .deleteBtn,
