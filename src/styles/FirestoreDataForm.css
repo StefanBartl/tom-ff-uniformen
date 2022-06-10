@@ -416,3 +416,5 @@ width: 21ch;
     height: 5ch;
     outline: solid 1px black;
 }
+
+@media (min-width: 576px) {}

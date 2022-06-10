@@ -224,7 +224,7 @@ export default function FirestoreDataForm() {
               <main className='firestore-data-wrapper'>
 
                   <div className='data-labels-div'>
-                  <h3 className='label-ID'>Nr.</h3>
+                       <h3 className='label-ID'>Nr.</h3>
                       <h3 className='label-FN'>Vorname</h3>
                       <h3 className='label-LN'>Nachname</h3>
                       <h3 className='label-PO'>Dienstgrad</h3>
