@@ -1,5 +1,5 @@
 import '../styles/DetailedSearchbar.css';
-import React, { useState, Component, useEffect } from 'react'
+import React, { useState } from 'react'
 import Select from 'react-select'
 import DeleteSearchResult from '../components/DeleteSearchResult';
 
