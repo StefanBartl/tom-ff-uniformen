@@ -233,7 +233,8 @@ overflow: hidden;
 .searchbarToggle:hover,
 .detailedSearchbarToggle:hover,
 .dSearchSearchBtn:hover,
-.dSearchDeleteBtn:hover {
+.dSearchDeleteBtn:hover,
+.dSearchToggleBtn:hover {
 background:#fff;
 box-shadow:0px 2px 10px 5px #97B1BF;
 color:#000;
@@ -248,9 +249,7 @@ color:#000;
 .newMemberToggle:after,
 .export-button:after,
 .searchbarToggle:after,
-.detailedSearchbarToggle::after,
-.dSearchSearchBtn::after,
-.dSearchDeleteBtn::after {
+.detailedSearchbarToggle::after{
 content: "";
 background: red;
 display: block;
@@ -272,9 +271,7 @@ transition: all 0.8s
 .newMemberToggle:active:after,
 .export-button:active:after,
 .searchbarToggle:active:after
-.detailedSearchbarToggle:active::after,
-.dSearchSearchBtn:active::after,
-.dSearchDeleteBtn:active::after {
+.detailedSearchbarToggle:active::after {
 padding: 0;
 margin: 0;
 opacity: 1;
@@ -282,7 +279,9 @@ transition: 0s
 }
 
 .dSearchSearchBtn,
-.dSearchDeleteBtn {
+.dSearchDeleteBtn,
+.dSearchToggleBtn,
+.dSearchToggleBtn   {
     border: none;
     text-align: center;
     -webkit-transition-duration: 0.4s; /* Safari */

@@ -220,7 +220,7 @@ export default function FirestoreDataForm() {
                           
                           <Searchbar data={data} />
 
-                          <DetailedSearchbar data={data} />
+                          <DetailedSearchbar data={data} toggle={ToggleDetailedSearchbar}  />
 
                       </div>
 
