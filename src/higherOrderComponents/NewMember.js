@@ -22,6 +22,7 @@ export default function NewMember(props){
 
   // ? Add a new member to the firestore database
   const handleSaveNewFirestoreMember = async () => {
+
     if (newFirstName === '' || newLastName === '' || newPosition === '') {
       alert('Bitte gib Vorname, Nachname und Dienstgrad ein!');
       return;
@@ -30,16 +31,59 @@ export default function NewMember(props){
     // Store new member in firestore database
     const dataCollectionRef = collection(db, 'uniformen');
     await setDoc(
-      doc(dataCollectionRef, `${props.data[props.data.length - 1].id + 1 || 0}`),
+      doc(dataCollectionRef,  `${props.data.length + 1}`),
       {
-        id: Number(props.data[props.data.length - 1].id + 1 || 0),
+        id: props.data.length + 1,
         firstName: newFirstName,
         lastName: newLastName,
         ffposition: newPosition,
+        textarea: '',
+        mantelS: '',
+        mantelB: false,
+        jackeS: '',
+        jackeB: false,
+        hoseS: '',
+        hoseB: false,
+        hemdS: '',
+        hemdB: false,
+        kappeS: '',
+        kappeB: false,
+
+        pulloverS: '',
+        pulloverB: false,
+        hose2S: '',
+        hose2B: false,
+        tshirtS: '',
+        tshirtB: false,
+        poloS: '',
+        poloB: false,
+        bluseS: '',
+        bluseB: false,
+        fleeceS: '',
+        fleeceB: false,
+
+        schutzjackeS: '',
+        schutzjackeB: false,
+        schutzhoseS: '',
+        schutzhoseB: false,
+        einsatzstiefelschwarzS: '',
+        einsatzstiefelschwarzB: false,
+        einsatzstiefelgelbS: '',
+        einsatzstiefelgelbB: false,
+        einsatzhandschuheS: '',
+        einsatzhandschuheB: false,
+        kappe3S: '',
+        kappe3B: false,
+        haubeS: '',
+        haubeB: false,
+        helmS: '',
+        helmB: false,
+        gurtS: '',
+        gurtB: false,
       }
     );
 
-    firestoreUIEffect('save', props.data[props.data.length - 1].id + 1 || 0);
+    firestoreUIEffect('save', props.data.length);
   };
 
   

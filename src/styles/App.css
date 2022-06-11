@@ -162,6 +162,7 @@ input {
 .newMemberToggle,
 .searchbarToggle,
 .detailedSearchbarToggle,
+.removeSearch,
 .export-button  {
     width: fit-content;
     height: fit-content;
@@ -170,7 +171,7 @@ input {
     cursor: pointer;
 }
 
-.detailedSearchbarToggle {
+.removeSearch {
   margin-right: auto;
 }
 
@@ -212,6 +213,7 @@ input {
 .newMemberToggle,
 .searchbarToggle,
 .detailedSearchbarToggle,
+.removeSearch,
 .export-button{
 position: relative;
 border: none;
@@ -231,6 +233,7 @@ overflow: hidden;
 .newMemberToggle:hover,
 .export-button:hover,
 .searchbarToggle:hover,
+.removeSearch:hover
 .detailedSearchbarToggle:hover,
 .dSearchSearchBtn:hover,
 .dSearchDeleteBtn:hover,
@@ -249,7 +252,8 @@ color:#000;
 .newMemberToggle:after,
 .export-button:after,
 .searchbarToggle:after,
-.detailedSearchbarToggle::after{
+.detailedSearchbarToggle:after,
+.removeSearch::after {
 content: "";
 background: red;
 display: block;
@@ -271,7 +275,8 @@ transition: all 0.8s
 .newMemberToggle:active:after,
 .export-button:active:after,
 .searchbarToggle:active:after
-.detailedSearchbarToggle:active::after {
+.detailedSearchbarToggle:active::after
+.removeSearch:active::after {
 padding: 0;
 margin: 0;
 opacity: 1;
@@ -290,7 +295,7 @@ transition: 0s
     overflow: hidden;
 }
 
-.print-button {
+.App > .print-button {
   width: 5rem;
   font-size: larger;
   border: none;
@@ -301,7 +306,7 @@ transition: 0s
   cursor: pointer;
 }
 
-.print-button:hover {
+.App > .print-button:hover {
 transform: scale(1.2);
 background-color:  var(--counter-colour);
 color: white;

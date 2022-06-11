@@ -1,6 +1,7 @@
 import '../styles/DetailedSearchbar.css';
 import React, { useState, Component, useEffect } from 'react'
 import Select from 'react-select'
+import DeleteSearchResult from '../components/DeleteSearchResult';
 
 export default function DetailedSearchbar(props){
      
@@ -70,9 +71,9 @@ export default function DetailedSearchbar(props){
           if (Object.hasOwnProperty.call(searchParameters, key)) {
                const element = searchParameters[key];
                // If ffposition is selected, push key and element to array
-               if(key === 'ffposition' && element !== ""){selectedParameters.push([key, element])};
+               if(key === 'ffposition' && element !== ""){selectedParameters.push([key, element, true])};
                // if any parameter is true, push key to array
-               if(element === true) selectedParameters.push(key)
+               if(element === true || element === false) selectedParameters.push([key, element])
           }
        }
 
@@ -82,32 +83,57 @@ export default function DetailedSearchbar(props){
        for (const member of props.data) {
           // loop trough member object
          for (const key in member) {
-          // get all keys and elemnts from member
+          // get all keys and elements from member
           if (Object.hasOwnProperty.call(member, key)) {
                     // loop trough trough selected parammeters
                     selectedParameters.forEach(e => {
                          // If key matches with a selected parameter its a match, but...
-                         if(e === key) {
+                         if(e[0] === key) {
                     // Testing if the corresponnend boolean parameter must be done, to check if the paramater is setted true and not false 
-                    // Get the boolean key string without last char
+                    // Get the boolean key string without last charswqA
                     let getBool = key.slice(0, -1);
                     // replace it with B
                     getBool += 'B';
+                    // if search parameter is true & not ffposition
+                    if(e[1] === true && e.length !== 3){          
                     // if the boolean value of the matched parameter of this member is set true, match is perfect, push it to the foundMembers array. except...
                     if(member[getBool]=== true){
                          // exception: if position parameter is given, check if the found  member match with it
-                         if(ffposition !== ''){
+                         if(key === 'ffposition' && ffposition !== ''){
                               if(member.ffposition === ffposition){
                                    foundMembers.push(member.id);
                               } else {return;};
                          }
                          foundMembers.push(member.id);
                     };
+
+               } else if (e[1] === false && e.length !== 3){
+               
+                    // if the boolean value of the matched parameter of this member is set not true, match is perfect,...
+                    if(member[getBool] === false){
+                         
+                         // exception: if position parameter is given, check if the found  member match with it
+                         if(key === 'ffposition' && ffposition === ''){
+                              if(member.ffposition === ffposition){
+                                   foundMembers.push(member.id);
+                              } else {return;};
+                         }
+                         foundMembers.push(member.id);
+                    };
+                         // If ffposition is the only parameter, key and value matches, match is perfect 
+               } else if (selectedParameters.length === 1 && key === 'ffposition' && member.ffposition === ffposition){
+                    foundMembers.push(member.id);
+               };
                   };
                });
             };
          };
        }; 
+
+          // Remove double matches from IDArray (if one member matched with more than 1 parameter, his ID would be more than once in foundMembers)
+          let uniqueIDArray = foundMembers.filter((element, index) => {
+               return foundMembers.indexOf(element) === index;
+          });
 
           // Hide every no matches 
           const allFormsArr = document.querySelectorAll('.member-forms');
@@ -115,25 +141,24 @@ export default function DetailedSearchbar(props){
                     form.style.display = 'none';
           };
           // Show match 
-          for(let i = 0; i < foundMembers.length; i++){
-               document.querySelector(`.member-formMID-${foundMembers[i]}`).style.display = 'flex';
+          for(let i = 0; i < uniqueIDArray.length; i++){
+               document.querySelector(`.member-formMID-${uniqueIDArray[i]}`).style.display = 'flex';
           };
 
-          // If no match result, notificate user
-          if(foundMembers.length < 1)window.alert(`Die Suche war leider nicht erfolgreich`);
+          // notificate user about match result
+          if(uniqueIDArray.length < 1){
+               window.alert(`Die Suche war leider nicht erfolgreich...`);
+               DeleteSearchResult();
+          } else {window.alert(`Die Suche war erfolgreich!`);}; //  
 
-       console.log(foundMembers);
+       console.log(uniqueIDArray);
 
     };
 
     function handleDelete () {
             // Set back input fields
             setffposition('');
-            const allFormsArr = document.querySelectorAll('.member-forms');
-            for (const form of allFormsArr) {
-                    form.style.display = 'flex';
-            };
-        
+            DeleteSearchResult();        
     };
 
     return (

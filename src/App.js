@@ -1,11 +1,12 @@
 // !                 === known issues list ===
 // TODO Finishing: Detailed search possibility
-// TODO LOGIN . FULLSCREEN
+// TODO LOGIN . FULLSCREEN; BETTER New Member
 // TODO Finishing: ToggleMember/Search... cutting & regioning
 // TODO Finishing: Regioning
 // TODO Finishing: Separations in React-Components
 // TODO Finishing: CSS for most devices & make app nice 
 // TODO Finishing: CSS Cleanout / CSS-Separation 
+// TODO CHECK EVERY FUNCTION
 // ! Abklären: Position select?
 
 import "./styles/App.css";

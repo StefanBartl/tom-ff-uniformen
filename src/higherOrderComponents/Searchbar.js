@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../styles/Searchbar.css';
-
+import DeleteSearchResult
+ from '../components/DeleteSearchResult';
 export default function Searchbar(props){
 
     const [ searchFirstName, setSearchFirstName ] = useState('');
@@ -114,7 +115,7 @@ export default function Searchbar(props){
         } else { // Alert no match
 
             window.alert(`Die Suche war leider nicht erolgreich`);
-            
+            DeleteSearchResult();
         };
 
     };
@@ -129,10 +130,7 @@ export default function Searchbar(props){
             setSearchFirstName('');
             setSearchLastName('');
             setSearchPosition('');
-            const allFormsArr = document.querySelectorAll('.member-forms');
-            for (const form of allFormsArr) {
-                    form.style.display = 'flex';
-            };
+            DeleteSearchResult();
         };
 
     };

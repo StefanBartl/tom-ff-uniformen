@@ -13,6 +13,7 @@ import ToggleDetailedSearchbar from '../components/ToggleDetailedSearchbar';
 import NewMember from '../higherOrderComponents/NewMember';
 import PrintButton from '../higherOrderComponents/PrintButton';
 import ExportButton from './ExportButton';
+import DeleteSearchResult from '../components/DeleteSearchResult';
 
 // ? Firebasefirestore  imports
 import { db } from '../firebase-config';
@@ -210,6 +211,8 @@ export default function FirestoreDataForm() {
 
                               <button className='detailedSearchbarToggle' data-visible='false' onClick={ToggleDetailedSearchbar} title={`Klicke um das detailierte Suchfeld einzublenden`}>detail&nbsp;suchen</button>
 
+                              <button className='removeSearch' onClick={DeleteSearchResult} title={`Klicke um das Suchergebniss zu löschen`}>suche&nbsp;löschen</button>
+
                               <ExportButton data={data} />
 
                       </div>
@@ -220,7 +223,9 @@ export default function FirestoreDataForm() {
                           
                           <Searchbar data={data} />
 
-                          <DetailedSearchbar data={data} toggle={ToggleDetailedSearchbar}  />
+                          <DetailedSearchbar data={data} toggle={ToggleDetailedSearchbar} />
+
+
 
                       </div>
 
@@ -247,7 +252,7 @@ export default function FirestoreDataForm() {
                           {/* Member form fields before toggling info visible  */}
 
                           <section className='member-section-visible'>
-                          <p className='id-value'>{index}.</p>
+                          <p className='id-value'>{index + 1}.</p>
 
                           <input
                               type='text'
