@@ -1,24 +1,22 @@
 import '../styles/DetailedSearchbar.css';
-import React, { useState, Component } from 'react'
+import React, { useState, Component, useEffect } from 'react'
 import Select from 'react-select'
 
 export default function DetailedSearchbar(props){
-
+     
+     // set state
     const [ ffposition, setffposition ] = useState('');
-
     const [ mantelB, setMantelB ] = useState('');
     const [ jackeB, setJackeB ] = useState('');
     const [ hoseB, setHoseB ] = useState('');
     const [ hemdB, setHemdB ] = useState('');
     const [ kappeB, setKappeB ] = useState('');
-
     const [ pulloverB, setPulloverB ] = useState('');
     const [ hose2B, setHose2B ] = useState('');
     const [ tshirtB, setTshirtB ] = useState('');
     const [ poloB, setPoloB ] = useState('');
     const [ bluseB, setBluseB ] = useState('');
     const [ fleeceB, setFleeceB ] = useState('');
-
     const [ schutzjackeB, setSchutzjackeB ] = useState('');
     const [ schutzhoseB, setSchutzhoseB ] = useState('');
     const [ einsatzstiefelschwarzB, setEinsatzstiefelschwarzB ] = useState('');
@@ -122,7 +120,7 @@ export default function DetailedSearchbar(props){
           };
 
           // If no match result, notificate user
-          if(foundMembers.length < 1)window.alert(`Die Suche war leider nicht erolgreich`);
+          if(foundMembers.length < 1)window.alert(`Die Suche war leider nicht erfolgreich`);
 
        console.log(foundMembers);
 
@@ -141,15 +139,14 @@ export default function DetailedSearchbar(props){
     return (
 
             <div className='DetailedSearchbar'  style={{transform: 'scale(0)'}}>
-
                     <section className='leftSection'>
-                            <h4>Position</h4>
+                            <h3>Dienstgrad</h3>
                             <input className='dffposition-input' onChange={(event) => {setffposition(event.target.value)}} value={ffposition} />
                     
                             <div className='dSearchButtons'>
                                 <button className='dSearchSearchBtn' onClick={handleSearch}>suchen</button>
                                 <button className='dSearchDeleteBtn' onClick={handleDelete}>löschen</button>
-                                <button className='dSearchToggleBtn' onClick={props.toggle}>zurück</button>
+                                <button className='dSearchToggleBtn' onClick={() => {props.toggle(true)}}>zurück</button>
                             </div>
                     </section>
 

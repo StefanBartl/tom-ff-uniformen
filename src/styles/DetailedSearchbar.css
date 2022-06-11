@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     min-height: 100vh;
-    min-width: 100vw;
+    min-width: 98vw;
     padding: 1rem;
     z-index: 9999;
     display: flex;
@@ -13,11 +13,10 @@
 .leftSection{
     display: flex;
     flex-direction: column;
-    color: white;
     margin-right: .5rem;
 }
 
-.dSearchPosition-input {
+.dffposition-input {
     width: 15ch;
 }
 
@@ -38,12 +37,18 @@
     margin-left: auto;
     margin-right: auto;
     align-items: center;
-    outline: solid white 2px; /*! GET RID*/
 }
 
+.leftSection > h3,
 .dSearchUniformen-Sections > h3 {
     color: var(--design-colour);
     margin-bottom: .5rem;
+}
+
+.leftSection > h3 {
+    color: var(--design-colour);
+    margin-bottom: .5rem;
+    align-self: center;
 }
 
 .dSearch-assets {
