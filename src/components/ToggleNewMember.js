@@ -1,5 +1,7 @@
  export default function ToggleNewMember(){
 
+//#region animations
+
     const animationTime = 1000;
     const  toggleTiming  = { 
       duration: animationTime,
@@ -48,7 +50,7 @@
 //#endregion
 
 
-//#region togle console fields
+//#region toggle console fields
 
 let toggleConsoleFieldsKeyframes;
 
@@ -69,35 +71,31 @@ let toggleConsoleFieldsKeyframes;
     // Trigger animations
     document.querySelector('.console').animate(toggleConsoleKeyframes, toggleTiming);
     document.querySelector('.newMember-div').animate(toggleConsoleFieldsKeyframes, toggleTiming);
-    
-    // Toggle data-attribute
-    document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'true')
-      :  document.querySelector('.newMemberToggle').setAttribute('data-visible', 'false');
-
-    // Toggle console title
-    document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.newMemberToggle').title=`Klicke um die Konsole einzublenden`
-      :  document.querySelector('.newMemberToggle').title=`Klicke um die Konsole auszublenden`;
-
-    // Toggle pointer events
-    document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.searchbarToggle').style.pointerEvents = 'all'
-      :  document.querySelector('.searchbarToggle').style.pointerEvents = 'none';
-      
-      // Toggle blur other console button 
-      document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.searchbarToggle').style.filter = 'blur(0)'
-      :  document.querySelector('.searchbarToggle').style.filter = 'blur(.1rem)';
-      document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(0)'
-      :  document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(.1rem)';
-      document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'
-      ?  document.querySelector('.removeSearch').style.filter = 'blur(0)'
-      :  document.querySelector('.removeSearch').style.filter = 'blur(.1rem)';
-
-    // Make button after uncklickable/clickable to secure 'animation triggering overflow'
-    document.querySelector('.newMemberToggle').style.pointerEvents = 'none';
     setTimeout(() => {document.querySelector('.newMemberToggle').style.pointerEvents = 'all';},  animationTime);
 
-  };
+//#endregion
+
+//#region toggle elements
+
+    if(document.querySelector('.newMemberToggle').getAttribute('data-visible') === 'false'){
+        document.querySelector('.newMemberToggle').setAttribute('data-visible', 'true'); // Toggle data-attribute
+        document.querySelector('.newMemberToggle').title=`Klicke um die Konsole auszublenden`; // Toggle console title
+        document.querySelector('.searchbarToggle').style.pointerEvents = 'none';// Toggle pointer events
+        document.querySelector('.searchbarToggle').style.filter = 'blur(.1rem)';// Toggle blur other console buttons...
+        document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(.1rem)';
+        document.querySelector('.removeSearch').style.filter = 'blur(.1rem)';
+    } else {
+      document.querySelector('.newMemberToggle').setAttribute('data-visible', 'false');
+      document.querySelector('.newMemberToggle').title=`Klicke um die Konsole einzublenden`; 
+      document.querySelector('.searchbarToggle').style.pointerEvents = 'all'; 
+      document.querySelector('.searchbarToggle').style.filter = 'blur(0)';  
+      document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(0)';
+      document.querySelector('.removeSearch').style.filter = 'blur(0)';
+    };
+
+//#endregion
+
+  // Make button after uncklickable/clickable to secure 'animation triggering overflow'
+  document.querySelector('.newMemberToggle').style.pointerEvents = 'none';
+
+};

@@ -1,13 +1,10 @@
 // !                 === known issues list ===
-// TODO Finishing: Detailed search possibility
-// TODO LOGIN . FULLSCREEN; BETTER New Member
-// TODO Finishing: ToggleMember/Search... cutting & regioning
 // TODO Finishing: Regioning
 // TODO Finishing: Separations in React-Components
 // TODO Finishing: CSS for most devices & make app nice 
 // TODO Finishing: CSS Cleanout / CSS-Separation 
 // TODO CHECK EVERY FUNCTION
-// ! Abklären: Position select?
+// ! Abklären: Position select? Select bei member info statt string? Detaillierte new member anlegen function?
 
 import "./styles/App.css";
 import LoginShield from './higherOrderComponents/LoginShield';

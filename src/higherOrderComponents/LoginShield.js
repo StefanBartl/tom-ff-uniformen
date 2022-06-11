@@ -7,6 +7,7 @@ export default function LoginShield(){
 
     const [ user, setUser ] = useState('');
     const [ password, setPassword ] = useState('');
+
  
      function handleChange (event){
      event.target.name === 'user'

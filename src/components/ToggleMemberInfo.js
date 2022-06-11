@@ -43,7 +43,6 @@ import toggle90degAnimation from '../components/Toggle90Animation';
 
       // If info section of member is not hided,  the opposite of the above
       document.querySelector('.member-forms').style.backgroundColor = 'lightgray';
-      document.querySelector('.id-value').style.color = '#01D101';
       toggle90degAnimation(memberInfoBtn);
       if (document.fullscreenElement) {
         // Prevent to trigger ToggleFullScreen() again if user exit the member info fullscrreen mode with ESC

@@ -219,7 +219,7 @@ export default function FirestoreDataForm() {
 
                       <div  className='consoleBars'>
 
-                          <NewMember data={data} />
+                          <NewMember data={data} toggle={ToggleNewMember} />
                           
                           <Searchbar data={data} />
 

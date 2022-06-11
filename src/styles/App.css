@@ -100,7 +100,7 @@ input {
 }
 
 .noData{
-  margin-top: 35%;
+  height: 100%;
   text-align: center;
   font-size: xx-large;
   color: red;
