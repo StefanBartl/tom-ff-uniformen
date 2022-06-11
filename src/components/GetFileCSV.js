@@ -27,8 +27,9 @@ export default function GetFileCSV(data){
         document.body.removeChild(a);
       } else {
         window.location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
-      }
-    }
+      };
+    };
     
     download(csvContent, 'uniformen.csv', 'text/csv;encoding:utf-8');
+
   };

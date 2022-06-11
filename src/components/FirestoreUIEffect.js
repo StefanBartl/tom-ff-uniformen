@@ -1,8 +1,9 @@
 export default function firestoreUIEffect(type, id) {
-    // get the correct btn element
+
+    // get the correct button element
     let memberUpdateBtn;
     type === 'save'
-      ? (memberUpdateBtn = document.querySelector(`#save`))
+      ? (memberUpdateBtn = document.querySelector(`#save`)) 
       : (memberUpdateBtn = document.querySelector(`.${type}-${id}`));
 
     // UI-Effect
@@ -23,7 +24,7 @@ export default function firestoreUIEffect(type, id) {
     if (type === 'update') {
       const ovAniStyle = [
         { backgroundColor: 'red' },
-        { backgroundColor: 'gray' },
+        { backgroundColor: '#01D101' },
         { backgroundColor: 'red' },
       ];
 
@@ -42,4 +43,5 @@ export default function firestoreUIEffect(type, id) {
     setTimeout(() => {
       window.location.reload();
     }, 2000);
-  }
+
+  };

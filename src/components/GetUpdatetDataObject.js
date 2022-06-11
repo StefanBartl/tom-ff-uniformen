@@ -1,4 +1,5 @@
 export default function GetUpdatetDataArray(memberIndex, keyToUpdate, valueToUpdate, dataStateArray){
+
   // Argument validation
   if(typeof memberIndex !== 'number' || typeof keyToUpdate !== 'string' || Array.isArray(dataStateArray) === false ) throw new TypeError(`Please provide correct types for all of the arguments 'memberIndex', 'keyToUpdate' & 'dataStateArray' `);
   if(typeof valueToUpdate !== 'string' && typeof valueToUpdate !== 'number' && typeof valueToUpdate !== 'boolean') throw new TypeError(`Argument 'valueToUpdate' has no the correct type`);
@@ -14,4 +15,5 @@ export default function GetUpdatetDataArray(memberIndex, keyToUpdate, valueToUpd
   };
 
   return newData;
+  
 };

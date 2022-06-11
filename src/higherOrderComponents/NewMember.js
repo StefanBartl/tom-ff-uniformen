@@ -87,55 +87,54 @@ export default function NewMember(props){
   };
 
   
-return (
+  return (
 
-    <div className='newMember-div displayNone' style={{transform: 'scale(0)'}} >
+      <div className='newMember-div displayNone' style={{transform: 'scale(0)'}} >
 
+                      <input
+                      type='text'
+                      placeholder='Vorname'
+                      name='vorname'
+                      id='new-firstName'
+                      onChange={(event) => {
+                          setNewFirstName(event.target.value);
+                      }}
+                      required
+                      />
 
-                    <input
-                    type='text'
-                    placeholder='Vorname'
-                    name='vorname'
-                    id='new-firstName'
-                    onChange={(event) => {
-                        setNewFirstName(event.target.value);
-                    }}
-                    required
-                    />
+                      <input
+                      type='text'
+                      placeholder='Nachname'
+                      name='vorname'
+                      id='new-lastName'
+                      onChange={(event) => {
+                          setNewLastName(event.target.value);
+                      }}
+                      required
+                      />
 
-                    <input
-                    type='text'
-                    placeholder='Nachname'
-                    name='vorname'
-                    id='new-lastName'
-                    onChange={(event) => {
-                        setNewLastName(event.target.value);
-                    }}
-                    required
-                    />
+                      <input
+                      type='text'
+                      placeholder='Dienstgrad'
+                      name='vorname'
+                      id='new-position'
+                      onChange={(event) => {
+                          setNewPosition(event.target.value);
+                      }}
+                      required
+                      />
 
-                    <input
-                    type='text'
-                    placeholder='Dienstgrad'
-                    name='vorname'
-                    id='new-position'
-                    onChange={(event) => {
-                        setNewPosition(event.target.value);
-                    }}
-                    required
-                    />
+                  <button
+                      name='saveBtn'
+                      id={`save`}
+                      onClick={handleSaveNewFirestoreMember}
+                      title='Klicke um die/den neue:n Kamerad:in anzulegen!'
+                      >
+                      speichern
+                      </button>
+      
+      </div>
 
-                <button
-                    name='saveBtn'
-                    id={`save`}
-                    onClick={handleSaveNewFirestoreMember}
-                    title='Klicke um die/den neue:n Kamerad:in anzulegen!'
-                    >
-                    speichern
-                    </button>
-    
-    </div>
-
-);
+  );
 
 };

@@ -1,4 +1,5 @@
 export default function toggle90degAnimation (element) {
+  
   // Argument validation
   if(typeof element !== 'object') throw new TypeError(`Argument 'element' must be type of 'object' `);
 

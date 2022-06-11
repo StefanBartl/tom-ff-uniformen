@@ -5,7 +5,7 @@ import DeleteSearchResult from '../components/DeleteSearchResult';
 
 export default function DetailedSearchbar(props){
      
-     // set state
+  //#region state
     const [ ffposition, setffposition ] = useState('');
     const [ mantelB, setMantelB ] = useState('');
     const [ jackeB, setJackeB ] = useState('');
@@ -27,7 +27,9 @@ export default function DetailedSearchbar(props){
     const [ haubeB, setHaubeB ] = useState('');
     const [ helmB, setHelmB ] = useState('');
     const [ gurtB, setGurtB ] = useState('');
+//#endregion
 
+   // react-select options
     const options = [
         { value: true, label: 'Ja' },
         { value: false, label: 'Nein' }

@@ -1,9 +1,7 @@
 // !                 === known issues list ===
-// TODO Finishing: Regioning
-// TODO Finishing: Separations in React-Components
 // TODO Finishing: CSS for most devices & make app nice 
 // TODO Finishing: CSS Cleanout / CSS-Separation 
-// TODO CHECK EVERY FUNCTION
+// TODO CHECK EVERY FUNCTION & test arguments etc..
 // ! Abklären: Position select? Select bei member info statt string? Detaillierte new member anlegen function?
 
 import "./styles/App.css";

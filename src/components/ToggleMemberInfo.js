@@ -62,8 +62,5 @@ import toggle90degAnimation from '../components/Toggle90Animation';
       memberWholeSection.classList.remove('visibleMemberSection-div');
 
     };
+    
   };
-
-
-// .member-section-toToggle {
-// }

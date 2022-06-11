@@ -1,4 +1,5 @@
 export default function FindMemberIndexInDataArray(firestorID, data){
+
   // Argument validation
   if( typeof firestorID !== 'number' ) throw new TypeError(`Argument 'firestoreID' must be type of 'number'.`);
   if( Array.isArray(data) === false ) throw new TypeError(`Argument 'data' must be type of 'object' & an array.`);
@@ -14,6 +15,7 @@ export default function FindMemberIndexInDataArray(firestorID, data){
 
   if(memberIndexToUpdate === undefined) return false;
   return memberIndexToUpdate;
+  
 };
 
 //! Returns false if it cannot find an matching index with given ID in submitted data array

@@ -57,7 +57,10 @@ export default function Export(props){
 
             // Get sorted array with the member values
             for (const [i, member] of props.data.entries()) { // .entries() to make destructoring possible (to get the a increasing index) in a for / of loop
+    
                 const memberObject = [];
+
+                //#region  member values
 
                 memberObject.push(`${i + 1}.`);
                 member.firstName ? memberObject.push(member.firstName) :  memberObject.push('');
@@ -114,11 +117,14 @@ export default function Export(props){
                 memberObject.push(''); 
                };
 
+               //#endregion
+
                csvArray.push(memberObject);
 
             };
 
             GetFileCSV(csvArray);
+
     };
 
     return (

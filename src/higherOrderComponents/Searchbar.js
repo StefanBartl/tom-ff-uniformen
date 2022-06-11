@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../styles/Searchbar.css';
 import DeleteSearchResult
  from '../components/DeleteSearchResult';
+ 
 export default function Searchbar(props){
 
     const [ searchFirstName, setSearchFirstName ] = useState('');
