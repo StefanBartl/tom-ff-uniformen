@@ -34,13 +34,13 @@ export default function ToggleSearchbar(){
 
           if(toggleState === 'false'){
             toggleConsoleKeyframes = [
-                { height: '0vh'},
+                { height: '10vh'},
                 { height: '20vh'}
               ];
       } else {
         toggleConsoleKeyframes = [
           { height: '20vh'},
-          { height: '0vh'}
+          { height: '10vh'}
         ];
       };
 

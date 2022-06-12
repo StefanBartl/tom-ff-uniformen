@@ -341,6 +341,7 @@ width: 19ch;
     
     .consoleButtons {
         display: flex;
+        flex-wrap: wrap;        
         margin-top: .5rem;
         justify-content: space-between;
         width: 100%;

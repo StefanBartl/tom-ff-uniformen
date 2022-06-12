@@ -27,7 +27,6 @@
 
 @media (max-width: 576px) {
 
-
 /* ? Searchbar section */
 
 .Searchbar {
@@ -37,8 +36,7 @@
 }                
 
 .searchbarFN-input {
-    margin-left: .5rem;
-
+    margin-left: 0rem;
 }
 .searchbarLN-input  {
     margin-left: .5rem;
@@ -49,8 +47,8 @@
 }
 
 .searchbarInputs {
-    width: 11ch;
-    height: 2rem;
+    width: 7ch;
+    height: fit-content;
     margin-bottom: .5rem;
     outline: solid 1px black;
 }

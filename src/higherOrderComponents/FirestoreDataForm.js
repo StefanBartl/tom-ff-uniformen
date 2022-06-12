@@ -197,11 +197,22 @@ export default function FirestoreDataForm() {
 
   //#endregion
 
+  // css class depend on screen size
+  useEffect(()=>{
+
+    if(window.innerWidth < 576){
+        document.querySelector('.console').style.height = '10vh';
+      }else {
+        document.querySelector('.console').style.height = '5vh';
+      };
+
+  }, []);
+  
   return (
 
      <div className='FirestoreDataForm'>
 
-                <div className='console' style={{height: '5vh'}} >
+                <div className='console' >
 
                       <div className='consoleButtons'>
 
@@ -224,8 +235,6 @@ export default function FirestoreDataForm() {
                           <Searchbar data={data} />
 
                           <DetailedSearchbar data={data} toggle={ToggleDetailedSearchbar} />
-
-
 
                       </div>
 

@@ -11,11 +11,15 @@ export default function ToggleDetailedSearchbar(back){
         // To prevent double TogglingFullscreen, only invoke ToggleFullScreen if browser is in fullscree mode
         if (window.innerHeight === window.screen.height) {
           ToggleFullScreen(document.querySelector('.DetailedSearchbar'));
-          ToggleOverflow('show');
+          if(window.innerWidth > 576){
+            ToggleOverflow('show');
+          };
         };
       } else {  // if function is invoked from 'detailsuche' button invoke Fullscreen anyway
         ToggleFullScreen(document.querySelector('.DetailedSearchbar'));
-        ToggleOverflow('hide');
+        if(window.innerWidth > 576){
+          ToggleOverflow('hide');
+        };
       };
 
   //#endregion
@@ -23,56 +27,15 @@ export default function ToggleDetailedSearchbar(back){
 
   //#region Animation
 
-      const animationTime = 1000;
-      const  toggleTiming  = { 
-        duration: animationTime,
-        iterations: 1,
-        fill: 'forwards' ,
-        easing: 'ease-in', 
-    };
-
-  //#region toggle console
-
-    let toggleState = document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible');
-
-    let toggleConsoleKeyframes;
-
-    if(window.innerWidth > 576){
-
-      if(toggleState === 'false'){
-        toggleConsoleKeyframes = [
-            { height: '0vh'},
-            { height: '1vh'}
-          ];
-  } else {
-    toggleConsoleKeyframes = [
-      { height: '1vh'},
-      { height: '0vh'}
-    ];
+    const animationTime = 1000;
+    const  toggleTiming  = { 
+      duration: animationTime,
+      iterations: 1,
+      fill: 'forwards' ,
+      easing: 'ease-in', 
   };
 
-    } else {
-
-      if(toggleState === 'false'){
-        toggleConsoleKeyframes = [
-            { height: '0vh'},
-            { height: '1vh'}
-          ];
-  } else {
-    toggleConsoleKeyframes = [
-      { height: '1vh'},
-      { height: '0vh'}
-    ];
-  };
-
-    };
-    
-    
-  //#endregion
-
-
-  //#region toggle console fields
-
+  let toggleState = document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible');
   let toggleConsoleFieldsKeyframes;
 
   if(toggleState === 'false'){
@@ -86,40 +49,21 @@ export default function ToggleDetailedSearchbar(back){
       { transform: 'scale(0)', opacity: '0' }
     ];
   };
-
-  //#endregion
-
       // Trigger animations
-      document.querySelector('.console').animate(toggleConsoleKeyframes, toggleTiming);
       document.querySelector('.DetailedSearchbar').animate(toggleConsoleFieldsKeyframes, toggleTiming);
-      
   //#endregion
 
 
   //#region Toggling
 
-      // Toggle data-attribute
-      document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible') === 'false'
-        ?  document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'true')
-        :  document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'false');
-
-      // Toggle console title
-      document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible') === 'false'
-        ?  document.querySelector('.detailedSearchbarToggle').title=`Klicke um das detailierte Suchfeld einzublenden`
-        :  document.querySelector('.detailedSearchbarToggle').title=`Klicke um das detailierte Suchfeld auszublenden`;
-
-      // Toggle pointer events
-      document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible') === 'false'
-        ?  document.querySelector('.searchbarToggle').style.pointerEvents = 'all'
-        :  document.querySelector('.searchbarToggle').style.pointerEvents = 'none';
-        
-        // Toggle blur other console button 
-        document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible') === 'false'
-        ?  document.querySelector('.searchbarToggle').style.filter = 'blur(0)'
-        :  document.querySelector('.searchbarToggle').style.filter = 'blur(.1rem)';
-        document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible') === 'false'
-        ?  document.querySelector('.newMemberToggle').style.filter = 'blur(0)'
-        :  document.querySelector('.newMemberToggle').style.filter = 'blur(.1rem)';
+      
+      if(document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible') === 'true'){
+        document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'false'); // Toggle data-attribute
+        document.querySelector('.detailedSearchbarToggle').title=`Klicke um das detailierte Suchfeld auszublenden`;// Toggle console title
+      } else {
+        document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'true'); 
+        document.querySelector('.detailedSearchbarToggle').title=`Klicke um das detailierte Suchfeld einzublenden`;
+      };
 
   //#endregion
 

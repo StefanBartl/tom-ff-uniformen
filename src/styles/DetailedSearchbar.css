@@ -65,3 +65,92 @@
 .dSearch-select {
     color: black;
 }
+
+@media (max-width: 576px) {
+
+.DetailedSearchbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.leftSection{
+    margin-right: 0rem;
+    gap: .5rem;
+    /* flex-direction: column-reverse; */
+    display: grid;
+    grid-template-areas: 
+    'one'
+    'two'
+    'three';
+    
+}
+
+.dffposition-input {
+    width: 15ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dSearchButtons{
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    grid-area: one;
+}
+
+.dSearchButtons::after {
+    position: absolute;
+    bottom: -.5rem;
+    left: 0;
+    width: 100%;
+    content: "";
+    border: solid 2px white;
+}
+
+.dSearchUniformen-Sections{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+.leftSection > h3,
+.dSearchUniformen-Sections > h3 {
+    color: var(--design-colour);
+    margin-bottom: .5rem;
+}
+
+.leftSection > h3 {
+    color: var(--design-colour);
+    margin-bottom: .5rem;
+    align-self: center;
+    grid-area: two;
+}
+
+.dffposition-input{
+    grid-area: three;
+}
+
+.dSearch-assets {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    color: var(--design-colour);
+}
+
+.dSearch-assets > h4 {
+    width: 17ch;
+}
+
+.dSearch-select {
+    color: black;
+}
+
+}
