@@ -1,7 +1,6 @@
 import '../styles/DetailedNewMember.css';
 import React, { useState } from 'react'
 import Select from 'react-select'
-import DeleteSearchResult from '../components/DeleteSearchResult';
 import firestoreUIEffect from '../components/FirestoreUIEffect';
 
 // ? Firebasefirestore  imports for add new member
