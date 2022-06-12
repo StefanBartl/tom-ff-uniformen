@@ -155,7 +155,9 @@
 
 .dNewMember-anlegen-button,
 .dNewMember-back-button {
-    width: 10ch;
+    width: 13ch;
+    color: teal;
 }
+
 
 }
