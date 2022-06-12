@@ -58,11 +58,9 @@ export default function ToggleDetailedSearchbar(back){
 
       
       if(document.querySelector('.detailedSearchbarToggle').getAttribute('data-visible') === 'true'){
-        document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'false'); // Toggle data-attribute
-        document.querySelector('.detailedSearchbarToggle').title=`Klicke um das detailierte Suchfeld auszublenden`;// Toggle console title
+         document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'false'); // Toggle data-attribute
       } else {
-        document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'true'); 
-        document.querySelector('.detailedSearchbarToggle').title=`Klicke um das detailierte Suchfeld einzublenden`;
+         document.querySelector('.detailedSearchbarToggle').setAttribute('data-visible', 'true'); 
       };
 
   //#endregion

@@ -6,27 +6,53 @@ import DeleteSearchResult from '../components/DeleteSearchResult';
 export default function DetailedNewMember (props) {
 
   //#region state
+  const [ firstname, setFirstName ] = useState('');
+  const [ lastname, setLastName ] = useState('');
   const [ ffposition, setffposition ] = useState('');
-  const [ mantelB, setMantelB ] = useState('');
-  const [ jackeB, setJackeB ] = useState('');
-  const [ hoseB, setHoseB ] = useState('');
-  const [ hemdB, setHemdB ] = useState('');
-  const [ kappeB, setKappeB ] = useState('');
-  const [ pulloverB, setPulloverB ] = useState('');
-  const [ hose2B, setHose2B ] = useState('');
-  const [ tshirtB, setTshirtB ] = useState('');
-  const [ poloB, setPoloB ] = useState('');
-  const [ bluseB, setBluseB ] = useState('');
-  const [ fleeceB, setFleeceB ] = useState('');
-  const [ schutzjackeB, setSchutzjackeB ] = useState('');
-  const [ schutzhoseB, setSchutzhoseB ] = useState('');
-  const [ einsatzstiefelschwarzB, setEinsatzstiefelschwarzB ] = useState('');
-  const [ einsatzstiefelgelbB, setEinsatzstiefelgelbB ] = useState('');
-  const [ einsatzhandschuheB, setEinsatzhandschuheB ] = useState('');
-  const [ kappe3B, setKappe3B ] = useState('');
-  const [ haubeB, setHaubeB ] = useState('');
-  const [ helmB, setHelmB ] = useState('');
-  const [ gurtB, setGurtB ] = useState('');
+  const [ textarea, setTextarea ] = useState('');
+
+  const [ mantelB, setMantelB ] = useState(false);
+  const [ jackeB, setJackeB ] = useState(false);
+  const [ hoseB, setHoseB ] = useState(false);
+  const [ hemdB, setHemdB ] = useState(false);
+  const [ kappeB, setKappeB ] = useState(false);
+  const [ pulloverB, setPulloverB ] = useState(false);
+  const [ hose2B, setHose2B ] = useState(false);
+  const [ tshirtB, setTshirtB ] = useState(false);
+  const [ poloB, setPoloB ] = useState(false);
+  const [ bluseB, setBluseB ] = useState(false);
+  const [ fleeceB, setFleeceB ] = useState(false);
+  const [ schutzjackeB, setSchutzjackeB ] = useState(false);
+  const [ schutzhoseB, setSchutzhoseB ] = useState(false);
+  const [ einsatzstiefelschwarzB, setEinsatzstiefelschwarzB ] = useState(false);
+  const [ einsatzstiefelgelbB, setEinsatzstiefelgelbB ] = useState(false);
+  const [ einsatzhandschuheB, setEinsatzhandschuheB ] = useState(false);
+  const [ kappe3B, setKappe3B ] = useState(false);
+  const [ haubeB, setHaubeB ] = useState(false);
+  const [ helmB, setHelmB ] = useState(false);
+  const [ gurtB, setGurtB ] = useState(false);
+
+  const [ mantelS, setMantelS ] = useState('');
+  const [ jackeS, setJackeS ] = useState('');
+  const [ hoseS, setHoseS ] = useState('');
+  const [ hemdS, setHemdS ] = useState('');
+  const [ kappeS, setKappeS ] = useState('');
+  const [ pulloverS, setPulloverS ] = useState('');
+  const [ hose2S, setHose2S ] = useState('');
+  const [ tshirtS, setTshirtS ] = useState('');
+  const [ poloS, setPoloS ] = useState('');
+  const [ bluseS, setBluseS ] = useState('');
+  const [ fleeceS, setFleeceS ] = useState('');
+  const [ schutzjackeS, setSchutzjackeS ] = useState('');
+  const [ schutzhoseS, setSchutzhoseS ] = useState('');
+  const [ einsatzstiefelschwarzS, setEinsatzstiefelschwarzS ] = useState('');
+  const [ einsatzstiefelgelbS, setEinsatzstiefelgelbS ] = useState('');
+  const [ einsatzhandschuheS, setEinsatzhandschuheS ] = useState('');
+  const [ kappe3S, setKappe3S ] = useState('');
+  const [ haubeS, setHaubeS ] = useState('');
+  const [ helmS, setHelmS ] = useState('');
+  const [ gurtS, setGurtS ] = useState('');
+
 //#endregion
 
  // react-select options
@@ -39,7 +65,8 @@ export default function DetailedNewMember (props) {
 
       // Get all paramters from Detailed-new-Member()
       const searchParameters = {
-
+        firstname: firstname,
+        lastname: lastname,
         ffposition: ffposition,
 
         mantelB: mantelB,
@@ -157,114 +184,136 @@ export default function DetailedNewMember (props) {
 
   };
 
-  function handleDelete () {
-          // Set back input fields
-          setffposition('');
-          DeleteSearchResult();        
-  };
 
   return (
 
     <div className='Detailed-new-Member'  style={{transform: 'scale(0)'}}>
+        
             <section className='leftSection'>
+                     <h3>Vorname</h3>
+                    <input name='firstName' className='dNM-text-input' onChange={(event) => {setFirstName(event.target.value)}} value={ffposition} />
+                    <h3>Nachname</h3>
+                    <input name='lastName' className='dNM-text-input' onChange={(event) => {setLastName(event.target.value)}} value={ffposition} />
                     <h3>Dienstgrad</h3>
-                    <input className='dffposition-input' onChange={(event) => {setffposition(event.target.value)}} value={ffposition} />
-            
+                    <input name='ffposition' className='dNM-text-input' onChange={(event) => {setffposition(event.target.value)}} value={ffposition} />
+                    <h3>Infos</h3>
+                    <textarea name='textarea' className='dNM-text-input' onChange={(event) => {setTextarea(event.target.value)}} value={textarea}   />         
+
                     <div className='dNewMember-Buttons'>
                         <button className='dNewMember-anlegen-button' onClick={handleSearch}>anlegen</button>
                         <button className='dNewMember-back-button' onClick={() => {props.toggle(true)}}>zurück</button>
                     </div>
             </section>
 
-            <section className='dSearchGalauniformen dSearchUniformen-Sections'>
+            <section className='dNMGalauniformen dNMUniformen-Sections'>
                 <h3>Galauniformen</h3>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Mantel</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setMantelB(undefined): setMantelB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setMantelS(event.target.value)}} value={mantelS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setMantelB(undefined): setMantelB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Jacke</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setJackeB(undefined): setJackeB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setJackeS(event.target.value)}} value={jackeS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setJackeB(undefined): setJackeB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Hose</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setHoseB(undefined): setHoseB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setHoseS(event.target.value)}} value={hoseS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setHoseB(undefined): setHoseB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Hemd</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setHemdB(undefined): setHemdB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setHemdS(event.target.value)}} value={hemdS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setHemdB(undefined): setHemdB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Kappe</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setKappeB(undefined): setKappeB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setKappeS(event.target.value)}} value={kappeS}   /> 
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setKappeB(undefined): setKappeB(choice.value) }} />
                 </div>
             </section>        
 
-            <section className='dSearchDienstuniformen dSearchUniformen-Sections'>
+            <section className='dNMDienstuniformen dNMUniformen-Sections'>
                 <h3>Dienstuniformen</h3>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Pullover</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setPulloverB(undefined): setPulloverB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setPulloverS(event.target.value)}} value={pulloverS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setPulloverB(undefined): setPulloverB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Hose</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setHose2B(undefined): setHose2B(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setHose2S(event.target.value)}} value={hose2S}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setHose2B(undefined): setHose2B(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>T-Shirt</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setTshirtB(undefined): setTshirtB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setTshirtS(event.target.value)}} value={tshirtS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setTshirtB(undefined): setTshirtB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Polo</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setPoloB(undefined): setPoloB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setPoloS(event.target.value)}} value={poloS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setPoloB(undefined): setPoloB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Bluse</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setBluseB(undefined): setBluseB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setBluseS(event.target.value)}} value={bluseS}   />     
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setBluseB(undefined): setBluseB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Fleece</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setFleeceB(undefined): setFleeceB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setFleeceS(event.target.value)}} value={fleeceS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setFleeceB(undefined): setFleeceB(choice.value) }} />
                 </div>
             </section>        
 
-            <section className='dSearchEinsatzuniformen dSearchUniformen-Sections'>
+            <section className='dNMEinsatzuniformen dNMUniformen-Sections'>
                 <h3>Einsatzuniformen</h3>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Schutzjacke</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setSchutzjackeB(undefined): setSchutzjackeB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setSchutzjackeS(event.target.value)}} value={schutzjackeS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setSchutzjackeB(undefined): setSchutzjackeB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Schutzhose</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setSchutzhoseB(undefined): setSchutzhoseB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setSchutzhoseS(event.target.value)}} value={schutzhoseS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setSchutzhoseB(undefined): setSchutzhoseB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Einsatzstiefel schwarz</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setEinsatzstiefelschwarzB(undefined): setEinsatzstiefelschwarzB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setEinsatzstiefelschwarzS(event.target.value)}} value={einsatzstiefelschwarzS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setEinsatzstiefelschwarzB(undefined): setEinsatzstiefelschwarzB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Einsatzstiefel gelb</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setEinsatzstiefelgelbB(undefined): setEinsatzstiefelgelbB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setEinsatzstiefelgelbS(event.target.value)}} value={einsatzstiefelgelbS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setEinsatzstiefelgelbB(undefined): setEinsatzstiefelgelbB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Einsatzhandschuhe</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setEinsatzhandschuheB(undefined): setEinsatzhandschuheB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setEinsatzhandschuheS(event.target.value)}} value={einsatzhandschuheS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setEinsatzhandschuheB(undefined): setEinsatzhandschuheB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Kappe</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setKappe3B(undefined): setKappe3B(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setKappe3S(event.target.value)}} value={kappe3S}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setKappe3B(undefined): setKappe3B(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Haube</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setHaubeB(undefined): setHaubeB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setHaubeS(event.target.value)}} value={haubeS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setHaubeB(undefined): setHaubeB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Helm</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setHelmB(undefined): setHelmB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setHelmS(event.target.value)}} value={helmS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setHelmB(undefined): setHelmB(choice.value) }} />
                 </div>
-                <div className='dSearch-assets'>
+                <div className='dNM-assets'>
                     <h4>Gurt</h4>
-                    <Select options={options} className='dSearch-select' isClearable='true' onChange={(choice) => { choice === null ? setGurtB(undefined): setGurtB(choice.value) }} />
+                    <input type='text' className='dNM-text-input-uniforms' onChange={(event) => {setGurtS(event.target.value)}} value={gurtS}   />         
+                    <Select options={options} className='dNM-select' isClearable='true' onChange={(choice) => { choice === null ? setGurtB(undefined): setGurtB(choice.value) }} />
                 </div>
             </section>        
 
