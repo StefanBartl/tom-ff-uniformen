@@ -40,7 +40,7 @@ import ToggleOverflow from './ToggleOverflow';
     } else {
 
       // If info section of member is not hided,  the opposite of the above
-      document.querySelector('.member-forms').style.backgroundColor = 'lightgray';
+      document.querySelector('.member-forms').style.backgroundColor = 'gray';
       toggle90degAnimation(memberInfoBtn);
       if (document.fullscreenElement) {
         // Prevent to trigger ToggleFullScreen() again if user exit the member info fullscrreen mode with ESC

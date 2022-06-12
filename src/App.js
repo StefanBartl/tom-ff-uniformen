@@ -1,9 +1,11 @@
 // !                 === known issues list ===
 // TODO Finishing: CSS for most devices & make app nice
 // TODO Finishing: CSS Cleanout / CSS-Separation
-// TODO CHECK EVERY FUNCTION & test arguments etc..
-// ! Abklären: Position select? Select bei member info statt string? Detaillierte new member anlegen function? Tablet ???
+// TODO CHECKING EVERY FUNCTION & test arguments etc..
+// ! Abklären: Position select? Select bei member info statt string?Tablet ???
 // ! Firestore database must have at least 1 pre-attached member to make the app work
+// ! If some want change color of the memberInfo in fullscreen, go to ToggleMemberInfo! 
+
 import "./styles/App.css";
 import LoginShield from "./higherOrderComponents/LoginShield";
 import LogoutButton from "./higherOrderComponents/LogoutButton";

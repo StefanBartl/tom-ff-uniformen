@@ -293,6 +293,11 @@ color: white;
 outline: none;
 }
 
+.dNewMember-anlegen-button,
+.dNewMember-back-button {
+  width: 9ch;
+}
+
 /* #endregion */
 
 

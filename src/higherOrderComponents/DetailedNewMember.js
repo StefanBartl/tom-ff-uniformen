@@ -2,6 +2,15 @@ import '../styles/DetailedNewMember.css';
 import React, { useState } from 'react'
 import Select from 'react-select'
 import DeleteSearchResult from '../components/DeleteSearchResult';
+import firestoreUIEffect from '../components/FirestoreUIEffect';
+
+// ? Firebasefirestore  imports for add new member
+import { db } from '../firebase-config';
+import {
+  collection,
+  doc,
+  setDoc,
+} from 'firebase/firestore';
 
 export default function DetailedNewMember (props) {
 
@@ -61,147 +70,91 @@ export default function DetailedNewMember (props) {
       { value: false, label: 'Nein' }
     ];
 
-  function handleSearch (){
 
-      // Get all paramters from Detailed-new-Member()
-      const searchParameters = {
-        firstname: firstname,
-        lastname: lastname,
+  // Add a new member to the firestore database
+  const handleSaveNewFirestoreMember = async () => {
+
+    if (firstname === '' || lastname === '' || ffposition === '') {
+      alert('Bitte gib Vorname, Nachname und Dienstgrad ein!');
+      document.querySelector('.dNewMember-back-button').click();
+      return;
+    }
+
+    // Store new member in firestore database
+    const dataCollectionRef = collection(db, 'uniformen');
+    await setDoc(
+      doc(dataCollectionRef,  `${props.data.length + 1}`),
+      {
+        id: props.data.length + 1,
+        firstName: firstname,
+        lastName: lastname,
         ffposition: ffposition,
-
+        textarea: textarea,
+        mantelS: mantelS,
         mantelB: mantelB,
+        jackeS: jackeS,
         jackeB: jackeB,
+        hoseS: hoseS,
         hoseB: hoseB,
+        hemdS: hemdS,
         hemdB: hemdB,
+        kappeS: kappeS,
         kappeB: kappeB,
 
+        pulloverS: pulloverS,
         pulloverB: pulloverB,
+        hose2S: hose2S,
         hose2B: hose2B,
+        tshirtS: tshirtS,
         tshirtB: tshirtB,
+        poloS: poloS,
         poloB: poloB,
+        bluseS: bluseS,
         bluseB: bluseB,
+        fleeceS: fleeceS,
         fleeceB: fleeceB,
 
+        schutzjackeS: schutzjackeS,
         schutzjackeB: schutzjackeB,
+        schutzhoseS: schutzhoseS,
         schutzhoseB: schutzhoseB,
+        einsatzstiefelschwarzS: einsatzstiefelschwarzS,
         einsatzstiefelschwarzB: einsatzstiefelschwarzB,
+        einsatzstiefelgelbS: einsatzstiefelgelbS,
         einsatzstiefelgelbB: einsatzstiefelgelbB,
+        einsatzhandschuheS: einsatzhandschuheS,
         einsatzhandschuheB: einsatzhandschuheB,
+        kappe3S: kappe3S,
         kappe3B: kappe3B,
+        haubeS: haubeS,
         haubeB: haubeB,
+        helmS: helmS,
         helmB: helmB,
+        gurtS: gurtS,
         gurtB: gurtB,
-
-      };
-
-      let selectedParameters = [];
-      // iterate trough all parameters
-     for (const key in searchParameters) {
-        if (Object.hasOwnProperty.call(searchParameters, key)) {
-             const element = searchParameters[key];
-             // If ffposition is selected, push key and element to array
-             if(key === 'ffposition' && element !== ""){selectedParameters.push([key, element, true])};
-             // if any parameter is true, push key to array
-             if(element === true || element === false) selectedParameters.push([key, element])
-        }
-     }
-
-     let foundMembers = [];
-
-     // loop trough data
-     for (const member of props.data) {
-        // loop trough member object
-       for (const key in member) {
-        // get all keys and elements from member
-        if (Object.hasOwnProperty.call(member, key)) {
-                  // loop trough trough selected parammeters
-                  selectedParameters.forEach(e => {
-                       // If key matches with a selected parameter its a match, but...
-                       if(e[0] === key) {
-                  // Testing if the corresponnend boolean parameter must be done, to check if the paramater is setted true and not false 
-                  // Get the boolean key string without last charswqA
-                  let getBool = key.slice(0, -1);
-                  // replace it with B
-                  getBool += 'B';
-                  // if search parameter is true & not ffposition
-                  if(e[1] === true && e.length !== 3){          
-                  // if the boolean value of the matched parameter of this member is set true, match is perfect, push it to the foundMembers array. except...
-                  if(member[getBool]=== true){
-                       // exception: if position parameter is given, check if the found  member match with it
-                       if(key === 'ffposition' && ffposition !== ''){
-                            if(member.ffposition === ffposition){
-                                 foundMembers.push(member.id);
-                            } else {return;};
-                       }
-                       foundMembers.push(member.id);
-                  };
-
-             } else if (e[1] === false && e.length !== 3){
-             
-                  // if the boolean value of the matched parameter of this member is set not true, match is perfect,...
-                  if(member[getBool] === false){
-                       
-                       // exception: if position parameter is given, check if the found  member match with it
-                       if(key === 'ffposition' && ffposition === ''){
-                            if(member.ffposition === ffposition){
-                                 foundMembers.push(member.id);
-                            } else {return;};
-                       }
-                       foundMembers.push(member.id);
-                  };
-                       // If ffposition is the only parameter, key and value matches, match is perfect 
-             } else if (selectedParameters.length === 1 && key === 'ffposition' && member.ffposition === ffposition){
-                  foundMembers.push(member.id);
-             };
-                };
-             });
-          };
-       };
-     }; 
-
-        // Remove double matches from IDArray (if one member matched with more than 1 parameter, his ID would be more than once in foundMembers)
-        let uniqueIDArray = foundMembers.filter((element, index) => {
-             return foundMembers.indexOf(element) === index;
-        });
-
-        // Hide every no matches 
-        const allFormsArr = document.querySelectorAll('.member-forms');
-        for (const form of allFormsArr) {
-                  form.style.display = 'none';
-        };
-        // Show match 
-        for(let i = 0; i < uniqueIDArray.length; i++){
-             document.querySelector(`.member-formMID-${uniqueIDArray[i]}`).style.display = 'flex';
-        };
-
-        // notificate user about match result
-        if(uniqueIDArray.length < 1){
-             window.alert(`Die Suche war leider nicht erfolgreich...`);
-             DeleteSearchResult();
-        } else {window.alert(`Die Suche war erfolgreich!`);}; //  
-
-     console.log(uniqueIDArray);
-
+      }
+    );
+    firestoreUIEffect('save', props.data.length);
   };
 
 
   return (
 
     <div className='Detailed-new-Member'  style={{transform: 'scale(0)'}}>
-        
+
             <section className='leftSection'>
                      <h3>Vorname</h3>
-                    <input name='firstName' className='dNM-text-input' onChange={(event) => {setFirstName(event.target.value)}} value={ffposition} />
+                    <input name='firstName' className='dNM-text-input' onChange={(event) => {setFirstName(event.target.value)}} value={firstname} />
                     <h3>Nachname</h3>
-                    <input name='lastName' className='dNM-text-input' onChange={(event) => {setLastName(event.target.value)}} value={ffposition} />
+                    <input name='lastName' className='dNM-text-input' onChange={(event) => {setLastName(event.target.value)}} value={lastname} />
                     <h3>Dienstgrad</h3>
                     <input name='ffposition' className='dNM-text-input' onChange={(event) => {setffposition(event.target.value)}} value={ffposition} />
                     <h3>Infos</h3>
                     <textarea name='textarea' className='dNM-text-input' onChange={(event) => {setTextarea(event.target.value)}} value={textarea}   />         
 
                     <div className='dNewMember-Buttons'>
-                        <button className='dNewMember-anlegen-button' onClick={handleSearch}>anlegen</button>
-                        <button className='dNewMember-back-button' onClick={() => {props.toggle(true)}}>zurück</button>
+                        <button className='dNewMember-anlegen-button consoleBtn' onClick={handleSaveNewFirestoreMember}>anlegen</button>
+                        <button className='dNewMember-back-button consoleBtn' onClick={() => {props.toggle(true)}}>zurück</button>
                     </div>
             </section>
 
