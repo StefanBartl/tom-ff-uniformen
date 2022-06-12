@@ -129,7 +129,7 @@ export default function Export(props){
 
     return (
         <div>
-                <button className='export-button' onClick={handleExport} title='Exportiere die Datenbank in eine CSV Datei'>export</button>
+                <button className='export-button consoleBtn' onClick={handleExport} title='Exportiere die Datenbank in eine CSV Datei'>export</button>
         </div>
     )
 };

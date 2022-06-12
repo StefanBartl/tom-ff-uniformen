@@ -1,19 +1,22 @@
 // ? CSS, React and function imports
-import '../styles/FirestoreDataForm.css';
+import '../styles/MainSection.css';
 import { useState, useEffect, Children } from 'react';
-import Searchbar from './Searchbar';
-import DetailedSearchbar from './DetailedSearchbar';
 import toggleMemberInfo from '../components/ToggleMemberInfo';
 import FindMemberIndex from '../components/FindMemberIndexInDataArray';
 import GetUpdatetDataArray from '../components/GetUpdatetDataObject';
 import firestoreUIEffect from '../components/FirestoreUIEffect';
-import ToggleSearchbar from '../components/ToggleSearchbar';
+import NewMember from './NewMember';
 import ToggleNewMember from '../components/ToggleNewMember';
+import DetailedNewMember from './DetailedNewMember';
+import ToggleDetailedNewMember from '../components/ToggleDetailedNewMember';
+import Searchbar from './Searchbar';
+import ToggleSearchbar from '../components/ToggleSearchbar';
+import DetailedSearchbar from './DetailedSearchbar';
 import ToggleDetailedSearchbar from '../components/ToggleDetailedSearchbar';
-import NewMember from '../higherOrderComponents/NewMember';
-import PrintButton from '../higherOrderComponents/PrintButton';
+import PrintButton from './PrintButton';
 import ExportButton from './ExportButton';
 import DeleteSearchResult from '../components/DeleteSearchResult';
+
 
 // ? Firebasefirestore  imports
 import { db } from '../firebase-config';
@@ -25,7 +28,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 
-export default function FirestoreDataForm() {
+export default function MainSection() {
 
   //#region React-Application logic
 
@@ -210,19 +213,21 @@ export default function FirestoreDataForm() {
   
   return (
 
-     <div className='FirestoreDataForm'>
+     <div className='MainSection'>
 
                 <div className='console' >
 
                       <div className='consoleButtons'>
 
-                              <button className='newMemberToggle' data-visible='false' onClick={ToggleNewMember}  title={`Klicke um einen Kamerad neu anzulegen`} >neu&nbsp;anlegen</button>
+                              <button className='newMemberToggle consoleBtn' data-visible='false' onClick={ToggleNewMember}  title={`Klicke um einen Kamerad neu anzulegen`} >neu&nbsp;anlegen</button>
 
-                              <button className='searchbarToggle' data-visible='false' onClick={ToggleSearchbar} title={`Klicke um das Suchfeld einzublenden`}>suchen</button>
+                              <button className='detailMemberToggle consoleBtn' data-visible='false' onClick={ToggleDetailedNewMember}  title={`Klicke um einen Kamerad detailiert neu anzulegen`} >detail&nbsp;anlegen</button>
 
-                              <button className='detailedSearchbarToggle' data-visible='false' onClick={ToggleDetailedSearchbar} title={`Klicke um das detailierte Suchfeld einzublenden`}>detail&nbsp;suchen</button>
+                              <button className='searchbarToggle consoleBtn' data-visible='false' onClick={ToggleSearchbar} title={`Klicke um das Suchfeld einzublenden`}>suchen</button>
 
-                              <button className='removeSearch' onClick={DeleteSearchResult} title={`Klicke um das Suchergebniss zu löschen`}>suche&nbsp;löschen</button>
+                              <button className='detailedSearchbarToggle consoleBtn' data-visible='false' onClick={ToggleDetailedSearchbar} title={`Klicke um das detailierte Suchfeld einzublenden`}>detail&nbsp;suchen</button>
+
+                              <button className='removeSearch consoleBtn' onClick={DeleteSearchResult} title={`Klicke um das Suchergebniss zu löschen`}>suche&nbsp;löschen</button>
 
                               <ExportButton data={data} />
 
@@ -231,6 +236,8 @@ export default function FirestoreDataForm() {
                       <div  className='consoleBars'>
 
                           <NewMember data={data} toggle={ToggleNewMember} />
+
+                          <DetailedNewMember data={data} toggle={ToggleDetailedNewMember} />
                           
                           <Searchbar data={data} />
 
@@ -783,7 +790,7 @@ export default function FirestoreDataForm() {
                                       name='updateBtn'
                                       id={member.id}
                                       title='Update die Daten der/des Kamerad:in in der Datenbank'
-                                      className={`updateBtn update-${member.id}`}
+                                      className={`update-member-btn update-${member.id}`}
                                       onClick={(event) => {
                                       handleUpdateFirestoreMember(member.id);
                                       }}
@@ -795,7 +802,7 @@ export default function FirestoreDataForm() {
                                       name='deleteBtn'
                                       id={member.id}
                                       title='Kamerad:in unwiderruflich aus der Datenbank löschen'
-                                      className={`deleteBtn delete-${member.id}`}
+                                      className={`delete-member-btn delete-${member.id}`}
                                       onClick={(event) => {
                                       handleDeleteFirestoreMember(member.id);
                                       }}

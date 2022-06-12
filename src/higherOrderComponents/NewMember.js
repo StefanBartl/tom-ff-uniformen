@@ -1,5 +1,5 @@
 // ? CSS, React and function imports
-import '../styles/FirestoreDataForm.css';
+import '../styles/MainSection.css';
 import '../styles/NewMember.css'
 import { useState } from 'react';
 import firestoreUIEffect from '../components/FirestoreUIEffect';

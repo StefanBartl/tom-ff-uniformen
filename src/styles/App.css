@@ -159,11 +159,7 @@ input {
   filter: invert(44%) sepia(85%) saturate(870%) hue-rotate(82deg) brightness(106%) contrast(114%);
 }
 
-.newMemberToggle,
-.searchbarToggle,
-.detailedSearchbarToggle,
-.removeSearch,
-.export-button  {
+.consoleBtn  {
     width: fit-content;
     height: fit-content;
     margin-left: .5rem;
@@ -179,8 +175,8 @@ input {
   margin-right: .5rem;
 }
 
-.removeBtn,
-.searchBtn,
+.remove-search-toggle,
+.remove-search-toggle,
 #save{
   width: fit-content;
   height: fit-content;
@@ -188,33 +184,29 @@ input {
   outline: solid 1px black;
 }
 
-.searchBtn {
+.remove-search-toggle {
     margin-left: 1rem;
 }
 
-.removeBtn{
+.remove-search-toggle{
     margin-left: 1rem;
 }
 
-.deleteBtn,
-.updateBtn,
+.delete-member-btn,
+.update-member-btn,
 .firestore-manipulate-div  .print-button {
   width: 8ch;
   outline: solid 4px red;
   cursor: pointer;
 }
 
-.removeBtn,
-.searchBtn,
+.remove-search-toggle,
+.remove-search-toggle,
 #save,
-.deleteBtn,
-.updateBtn,
+.delete-member-btn,
+.update-member-btn,
 .firestore-manipulate-div  .print-button,
-.newMemberToggle,
-.searchbarToggle,
-.detailedSearchbarToggle,
-.removeSearch,
-.export-button{
+.consoleBtn{
 position: relative;
 border: none;
 text-align: center;
@@ -224,36 +216,28 @@ text-decoration: none;
 overflow: hidden;
 }
 
-.removeBtn:hover,
-.searchBtn:hover,
+.remove-search-toggle:hover,
+.remove-search-toggle:hover,
 #save:hover,
-.deleteBtn:hover,
-.updateBtn:hover,
+.delete-member-btn:hover,
+.update-member-btn:hover,
 .firestore-manipulate-div  .print-button:hover,
-.newMemberToggle:hover,
-.export-button:hover,
-.searchbarToggle:hover,
-.removeSearch:hover,
-.detailedSearchbarToggle:hover,
-.dSearchSearchBtn:hover,
-.dSearchDeleteBtn:hover,
+.consoleBtn:hover,
+.dSearchremove-search-toggle:hover,
+.dSearchdelete-member-btn:hover,
 .dSearchToggleBtn:hover {
 background:#fff;
 box-shadow:0px 2px 10px 5px #97B1BF;
 color:#000;
 }
 
-.removeBtn:after,
-.searchBtn:after,
+.remove-search-toggle:after,
+.remove-search-toggle:after,
 #save:after,
-.deleteBtn:after,
-.updateBtn:after,
+.delete-member-btn:after,
+.update-member-btn:after,
 .firestore-manipulate-div  .print-button:after,
-.newMemberToggle:after,
-.export-button:after,
-.searchbarToggle:after,
-.detailedSearchbarToggle:after,
-.removeSearch::after {
+.consoleBtn:after {
 content: "";
 background: red;
 display: block;
@@ -266,25 +250,21 @@ opacity: 0;
 transition: all 0.8s
 }
 
-.removeBtn:active::after,
-.searchBtn:active::after,
+.remove-search-toggle:active::after,
+.remove-search-toggle:active::after,
 #save:active::after
-.deleteBtn:active::after
-.updateBtn:active::after
-.firestore-manipulate-div  .print-button:active::after
-.newMemberToggle:active:after,
-.export-button:active:after,
-.searchbarToggle:active:after
-.detailedSearchbarToggle:active::after
-.removeSearch:active::after {
+.delete-member-btn:active::after
+.update-member-btn:active::after
+.firestore-manipulate-div  .print-button:active::after,
+.consoleBtn:active::after {
 padding: 0;
 margin: 0;
 opacity: 1;
 transition: 0s
 }
 
-.dSearchSearchBtn,
-.dSearchDeleteBtn,
+.dSearchremove-search-toggle,
+.dSearchdelete-member-btn,
 .dSearchToggleBtn,
 .dSearchToggleBtn   {
     border: none;
@@ -312,7 +292,6 @@ background-color:  var(--counter-colour);
 color: white;
 outline: none;
 }
-
 
 /* #endregion */
 
@@ -360,11 +339,11 @@ outline: none;
 }
 
 
-.searchBtn {
+.remove-search-toggle {
     margin-left: .5rem;
 }
 
-.removeBtn{
+.remove-search-toggle{
     margin-left: .5rem;
 }
 
@@ -372,8 +351,8 @@ outline: none;
   display: none;
 }
 
-.deleteBtn,
-.updateBtn {
+.delete-member-btn,
+.update-member-btn {
    width: 8ch;
 }
 

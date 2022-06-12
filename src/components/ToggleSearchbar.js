@@ -82,6 +82,7 @@ export default function ToggleSearchbar(){
       document.querySelector('.newMemberToggle').style.filter = 'blur(.1rem)'; // Toggle blur other console buttons... 
       document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(.1rem)';
       document.querySelector('.removeSearch').style.filter = 'blur(.1rem)';
+      document.querySelector('.detailMemberToggle').style.filter = 'blur(.1rem)';
     } else {
       document.querySelector('.searchbarToggle').setAttribute('data-visible', 'false');
       document.querySelector('.searchbarToggle').title=`Klicke um das Suchfeld einzublenden`; 
@@ -89,6 +90,7 @@ export default function ToggleSearchbar(){
       document.querySelector('.newMemberToggle').style.filter = 'blur(0)'; 
       document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(0)';
       document.querySelector('.removeSearch').style.filter = 'blur(0)';
+      document.querySelector('.detailMemberToggle').style.filter = 'blur(0rem)';
     };
 
 //#endregion

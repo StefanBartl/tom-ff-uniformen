@@ -31,15 +31,12 @@ import ToggleOverflow from './ToggleOverflow';
 
       for (let i = 0; i < allMembersArray.length; i++) {
         // Loop trough all member forms
-        if (
-          allMembersArray[i].classList.contains('visibleMemberSection-div') ===
-          false
-        ) {
+        if ( allMembersArray[i].classList.contains('visibleMemberSection-div') === false) {
           // display: none all elements which are not selected by user
           allMembersArray[i].classList.add('notSelectedMember-div');
-        }
-      }
-      ToggleOverflow('hide');
+        };
+      };
+      if(window.innerWidth > 576){ToggleOverflow('hide');};
     } else {
 
       // If info section of member is not hided,  the opposite of the above
@@ -61,7 +58,7 @@ import ToggleOverflow from './ToggleOverflow';
       };
 
       memberWholeSection.classList.remove('visibleMemberSection-div');
-      ToggleOverflow('show');
+      if(window.innerWidth > 576){ToggleOverflow('show');};
 
     };
     

@@ -141,8 +141,8 @@ export default function Searchbar(props){
                     <input type='text' name='firstName' placeholder='Vorname' className='searchbarFN-input searchbarInputs ' value={searchFirstName} onChange={handleChange} />
                     <input type='text' name='lastName' placeholder='Nachname' className='searchbarLN-input searchbarInputs ' value={searchLastName} onChange={handleChange} />
                     <input type='text' name='ffposition' placeholder='Dienstgrad' className='searchbarPO-input searchbarInputs ' value={searchPosition} onChange={handleChange} />
-                    <button name='search' className='searchBtn searchbarToggle' onClick={handleClick}>Suche&nbsp;starten</button>
-                    <button name='remove' className='removeBtn searchbarToggle' onClick={handleClick}>Löschen</button>
+                    <button name='search' className='remove-search-toggle consoleBtn' onClick={handleClick}>Suche&nbsp;starten</button>
+                    <button name='remove' className='remove-search-toggle consoleBtn' onClick={handleClick}>Löschen</button>
             </div>
     );
     

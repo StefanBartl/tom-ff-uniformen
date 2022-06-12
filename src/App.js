@@ -8,7 +8,7 @@ import "./styles/App.css";
 import LoginShield from "./higherOrderComponents/LoginShield";
 import LogoutButton from "./higherOrderComponents/LogoutButton";
 import Headline from "./higherOrderComponents/Headline";
-import FirestoreDataForm from "./higherOrderComponents/FirestoreDataForm";
+import MainSection from "./higherOrderComponents/MainSection";
 import Contact from "./higherOrderComponents/Contact";
 import LocalStorageGetWithExpiry from "./components/LocalStorageGetWithExpiry";
 import TestKey from "./components/TestKey";
@@ -25,7 +25,7 @@ export default function App() {
         <Headline />
         <LogoutButton />
       </div>
-      <FirestoreDataForm />
+      <MainSection />
       <Contact />
       <PrintButton />
     </div>

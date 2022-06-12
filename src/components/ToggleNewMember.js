@@ -84,6 +84,8 @@ let toggleConsoleFieldsKeyframes;
         document.querySelector('.searchbarToggle').style.filter = 'blur(.1rem)';// Toggle blur other console buttons...
         document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(.1rem)';
         document.querySelector('.removeSearch').style.filter = 'blur(.1rem)';
+        document.querySelector('.removeSearch').style.filter = 'blur(.1rem)';
+        document.querySelector('.detailMemberToggle').style.filter = 'blur(.1rem)';
     } else {
       document.querySelector('.newMemberToggle').setAttribute('data-visible', 'false');
       document.querySelector('.newMemberToggle').title=`Klicke um die Konsole einzublenden`; 
@@ -91,6 +93,7 @@ let toggleConsoleFieldsKeyframes;
       document.querySelector('.searchbarToggle').style.filter = 'blur(0)';  
       document.querySelector('.detailedSearchbarToggle').style.filter = 'blur(0)';
       document.querySelector('.removeSearch').style.filter = 'blur(0)';
+      document.querySelector('.detailMemberToggle').style.filter = 'blur(0rem)';
     };
 
 //#endregion
