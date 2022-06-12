@@ -4,7 +4,6 @@ export default function ToggleFullScreen(elem) {
   if(window.innerWidth < 576){
     return;
   };
-
     elem = elem || document.documentElement;
   
     if (!document.fullscreenElement && !document.mozFullScreenElement &&

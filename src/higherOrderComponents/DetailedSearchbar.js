@@ -4,7 +4,7 @@ import Select from 'react-select'
 import DeleteSearchResult from '../components/DeleteSearchResult';
 
 export default function DetailedSearchbar(props){
-     
+
   //#region state
     const [ ffposition, setffposition ] = useState('');
     const [ mantelB, setMantelB ] = useState('');

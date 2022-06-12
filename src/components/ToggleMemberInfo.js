@@ -1,5 +1,6 @@
 import ToggleFullScreen from '../components/ToggleFullScreen';
 import toggle90degAnimation from '../components/Toggle90Animation';
+import ToggleOverflow from './ToggleOverflow';
 
 // ? Toggle the member info arrow
   export default function toggleMemberInfo(index) {
@@ -38,7 +39,7 @@ import toggle90degAnimation from '../components/Toggle90Animation';
           allMembersArray[i].classList.add('notSelectedMember-div');
         }
       }
-
+      ToggleOverflow('hide');
     } else {
 
       // If info section of member is not hided,  the opposite of the above
@@ -60,6 +61,7 @@ import toggle90degAnimation from '../components/Toggle90Animation';
       };
 
       memberWholeSection.classList.remove('visibleMemberSection-div');
+      ToggleOverflow('show');
 
     };
     

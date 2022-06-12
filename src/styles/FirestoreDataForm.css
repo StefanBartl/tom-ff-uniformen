@@ -43,12 +43,15 @@
     height: fit-content;
 }
 
-/* ? All individual data member form */
-.member-forms {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: lightgray;
+/* ? firestore wrapper for labels and data, without console */
+
+.firestore-data-wrapper {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    outline: dashed 4px  var(--design-colour);
+    outline-width: 8px;
+    outline-offset: 2px;
+    padding: .5rem;
 }
 
 /* ? summary class for the form input fields */
@@ -78,6 +81,14 @@
 .label-LN,
 .label-PO{
     margin-left: 3rem;
+}
+
+/* ? All individual data member form */
+.member-forms {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: lightgray;
 }
 
 .member-section-visible {
@@ -147,15 +158,30 @@
     width: 25ch;
 }
 
-.firestore-data-wrapper {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    outline: dashed 4px  var(--design-colour);
-    outline-width: 8px;
-    outline-offset: 2px;
-    padding: .5rem;
+
+
+/* ? Class which get added if memberInfo is selected */
+
+.visibleMemberSection-div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color:  var(--counter-colour);
 }
+
+/* ? All not selected members if one member div is selected to show up */
+
+.notSelectedMember-div{
+    display: none;
+ }
+
   
+/* #region toggled info section */
+
+/* ? textarea info section */
+
 .memberInfo-wrapper{
     display: flex;
     flex-direction: column;
@@ -168,7 +194,7 @@
 
 .memberInfo-wrapper > h3{
     color:  var(--design-colour);
-    padding-top: .5rem;
+    margin-top: .5rem;
 }
 
 .input-textarea {
@@ -187,16 +213,322 @@
     border: solid 1px  var(--design-colour);
 }
 
+/* ? different 'uniformen' sections */
+
+.uniformenTypes-div{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    gap: .5rem;
+    margin-top: 1rem;
+    padding: .5rem;
+    text-align: center;
+    position: relative;
+}
+
+.uniformenTypes-div::before{ 
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 10%;
+    width: 80%;
+    border: solid 1px  var(--design-colour);
+}
+
+.uniformenLabels-div {
+    display: flex;
+}
+
+.memberInfo-wrapper > h3,
+.uniformenTypes-div > h3 {
+    font-size: x-large;
+}
+
+/* ? p before input fields  */
+
+.uLabelsP1 {
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.uLabelsP2 {
+    width: 2rem;
+    cursor: pointer;
+}
+
+/* ? divs for the inputs  */
+
+.uniformenAssets-divs {
+    display: flex;
+    gap: .5rem;
+}
+
+/* ? input elemnts  */
+
+.uniformenAssets-divs > p {
+    font-size: large;
+}
+
+.uniformenAssets-divs > [type='text'] {
+    width: 6ch;
+    margin-left: auto;
+}
+
+.uniformenAssets-divs > [type='checkbox'] {
+    margin-left: auto;
+    cursor: pointer;
+    width: 2rem;
+}
+
+/* ? widths for the p in the input divs, to get the same width it is the min-width of the longest p in this 'uniformen' set  */
+
+.galaAsset > p {
+    width: 6ch;
+}
+
+.dienstAsset > p {
+width: 8ch;
+}
+
+.einsatzAsset > p {
+width: 19ch;
+}
+
+.firestore-manipulate-div{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    gap: 2rem;
+}
+
+/* #endregion  */
+
+/*!= = Nomal Devices end = = !*/
+
+
+
+
+
+
+/*!= = = = = = = = = = = = = = !*/
+        /* ? Small devices  */
+
+@media (max-width: 576px) {
+
+.FirestoreDataForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    gap: .5rem;
+    margin: 0rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0rem;
+    background-color:  var(--main-colour);
+    outline: none;
+}
+
+    /* ? Console elements */
+
+    .console {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: .5rem;
+    }
+    
+    .consoleButtons {
+        display: flex;
+        margin-top: .5rem;
+        justify-content: space-between;
+        width: 100%;
+        gap: .5rem;
+    }
+    
+    .consoleBars {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        height: fit-content;
+    }
+
+/* ? All individual data member form */
+.member-forms {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0rem;
+    gap: 1rem;
+    background-color: lightgray;
+}
+
+/* ? summary class for the form input fields */
+.data-labels-div{
+    display: flex;
+    padding: 0rem;
+    padding-left: 0rem;
+    background-color: lightgray;
+    gap: 0rem;
+}
+
+.data-labels-div > h3 {
+    border: none;
+    outline: none;
+    text-align: center;
+    color:  var(--main-colour);
+    font-size: large;
+    font-weight: bolder;
+}
+
+.label-ID{
+    margin-left: 0rem;
+    color:  var(--main-colour);
+}
+
+.label-FN,
+.label-LN,
+.label-PO{
+    margin-left: 1rem;
+}
+
+.member-section-visible {
+    height: 10%;
+    display: flex;
+    padding: 0em;
+    margin-top: 0rem;
+    margin-left: 0rem;
+    margin-bottom: 1rem;
+    gap: .3rem;
+    align-items: center;
+}
+
+.member-section-visible input {
+    height: 2rem;
+    outline: solid 1px black;
+}
+
+.member-section-toToggle {
+    height: fit-content;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0rem;
+    gap: 1rem;
+    color:  var(--design-colour);
+    background-color:  var(--counter-colour);
+}
+
+.uniformen-div{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.uniformen-div > h3 {
+    text-align: center;
+}
+
+.uniformen-divs {
+    display: flex;
+    gap: .5rem;
+}
+
+.uniformen-divs > p{
+    width: 8ch;
+}
+
+/* ? classes for the individual inputs  */
+.id-value  {
+    font-size: medium;
+    font-weight: bolder;
+    margin-left: .5rem;
+    color:  var(--design-colour);
+}
+
+.input-firstName  {
+    width: 11ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-lastName  {
+    width: 11ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-position  {
+    width: 11ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.memberInfo-wrapper{
+    margin-left: 0%;
+    margin-bottom: 0rem;
+}
+
+.memberInfo-wrapper > h3{
+    color:  var(--design-colour);
+}
+
+.firestore-data-wrapper {
+    margin-left: 0rem;
+    margin-right: 0rem;
+    outline: none;
+    outline-width: 0;
+    outline-offset: 0;
+    padding: 0rem;
+}
+    
+.memberInfo-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.memberInfo-wrapper > h3{
+    padding-top: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-textarea {
+    height: 50%;
+    width: 80vw;
+    font-size: medium;
+}
+
+.memberInfo-wrapper:before{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 10%;
+    width: 80%;
+    border: solid 1px  var(--design-colour);
+}
+
 .notSelectedMember-div{
-   display: none;
+    display: none;
 }
 
 .visibleMemberSection-div{
-    outline: solid 15px  var(--design-colour);   
-    width: 98vw;
+    outline: solid 2px  var(--design-colour);   
+    width: 100vw;
+    height: fit-content;
     position: absolute;
-    top: .5rem;
-    left: .5rem;
+    top: 0;
+    left: 0;
+    padding: .5rem;
     background-color:  var(--counter-colour);
 }
 
@@ -298,7 +630,6 @@ width: 21ch;
 width: 21ch;
 }
 
-
 .firestore-manipulate-div{
     display: flex;
     flex-direction: column;
@@ -308,337 +639,4 @@ width: 21ch;
     gap: 2rem;
 }
 
-/*!= = Nomal Devices end = = !*/
-
-
-
-
-
-
-/*!= = = = = = = = = = = = = = !*/
-        /* ? Small devices  */
-
-@media (max-width: 576px) {
-
-    .FirestoreDataForm {
-        display: flex;
-        flex-direction: column;
-        max-width: 100vw;
-        gap: .5rem;
-        margin: 0rem;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 0rem;
-        background-color:  var(--main-colour);
-        outline: none;
-    }
-    
-        /* ? Console elements */
-    
-        .console {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: .5rem;
-        }
-        
-        .consoleButtons {
-            display: flex;
-            margin-top: .5rem;
-            justify-content: space-between;
-            width: 100%;
-            gap: .5rem;
-        }
-        
-        .consoleBars {
-            display: flex;
-            flex-direction: column;
-            justify-items: center;
-            height: fit-content;
-        }
-
-    /* ? All individual data member form */
-    .member-forms {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 0rem;
-        gap: 1rem;
-        background-color: lightgray;
-    }
-    
-    /* ? summary class for the form input fields */
-    .data-labels-div{
-        display: flex;
-        padding: 0rem;
-        padding-left: 0rem;
-        background-color: lightgray;
-        gap: 0rem;
-    }
-    
-    .data-labels-div > h3 {
-        border: none;
-        outline: none;
-        text-align: center;
-        color:  var(--main-colour);
-        font-size: large;
-        font-weight: bolder;
-    }
-    
-    .label-ID{
-        margin-left: 0rem;
-        color:  var(--main-colour);
-    }
-    
-    .label-FN,
-    .label-LN,
-    .label-PO{
-        margin-left: 1rem;
-    }
-    
-    .member-section-visible {
-        height: 10%;
-        display: flex;
-        padding: 0em;
-        margin-top: 0rem;
-        margin-left: 0rem;
-        margin-bottom: 1rem;
-        gap: .3rem;
-        align-items: center;
-    }
-    
-    .member-section-visible input {
-        height: 2rem;
-        outline: solid 1px black;
-    }
-    
-    .member-section-toToggle {
-        height: fit-content;
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: .5rem;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 0rem;
-        gap: 1rem;
-        color:  var(--design-colour);
-        background-color:  var(--counter-colour);
-    }
-    
-    .uniformen-div{
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-    }
-    
-    .uniformen-div > h3 {
-        text-align: center;
-    }
-    
-    .uniformen-divs {
-        display: flex;
-        gap: .5rem;
-    }
-    
-    .uniformen-divs > p{
-        width: 8ch;
-    }
-    
-    /* ? classes for the individual inputs  */
-    .id-value  {
-        font-size: medium;
-        font-weight: bolder;
-        margin-left: .5rem;
-        color:  var(--design-colour);
-    }
-    
-    .input-firstName  {
-        width: 11ch;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .input-lastName  {
-        width: 11ch;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .input-position  {
-        width: 11ch;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .memberInfo-wrapper{
-        margin-left: 0%;
-        margin-bottom: 0rem;
-    }
-    
-    .memberInfo-wrapper > h3{
-        color:  var(--design-colour);
-    }
-    
-    .firestore-data-wrapper {
-        margin-left: 0rem;
-        margin-right: 0rem;
-        outline: none;
-        outline-width: 0;
-        outline-offset: 0;
-        padding: 0rem;
-    }
-      
-    .memberInfo-wrapper{
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        gap: 1rem;
-        margin-top: 1rem;
-        text-align: left;
-    }
-    
-    .memberInfo-wrapper > h3{
-        padding-top: .5rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .input-textarea {
-        height: 50%;
-        width: 80vw;
-        font-size: medium;
-    }
-    
-    .memberInfo-wrapper:before{
-        position: absolute;
-        content: "";
-        top: 0;
-        left: 10%;
-        width: 80%;
-        border: solid 1px  var(--design-colour);
-    }
-    
-    .notSelectedMember-div{
-       display: none;
-    }
-    
-    .visibleMemberSection-div{
-        outline: solid 2px  var(--design-colour);   
-        width: 100vw;
-        height: fit-content;
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: .5rem;
-        background-color:  var(--counter-colour);
-    }
-    
-    .uniformenTypes-div{
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-        height: fit-content;
-        gap: 1rem;
-        margin-top: 1rem;
-        padding: .5rem;
-        text-align: center;
-        position: relative;
-    }
-    
-    .uniformenTypes-div::before{ 
-        position: absolute;
-        content: "";
-        top: 0;
-        left: 10%;
-        width: 80%;
-        border: solid 1px  var(--design-colour);
-    }
-    
-    .uniformenLabels-div {
-        display: flex;
-        gap: 1rem;
-    }
-    
-    .memberInfo-wrapper > h3,
-    .uniformenTypes-div > h3 {
-        font-size: x-large;
-    }
-    
-    .galaLabel-div .uLabelsP1 {
-        margin-left: 13ch;
-    }
-    
-    .dienstbekleidungLabel-div .uLabelsP1 {
-        margin-left: 16ch;
-    }
-    
-    .einsatzuniformenLabel-div .uLabelsP1 {
-        margin-left: 33ch;
-    }
-    
-    .uniformenLabels-div .uLabelsP2 {
-        margin-left: auto;
-    }
-    
-    .uniformenAssets-divs {
-        display: flex;
-        gap: 1.5rem;
-    }
-    
-    .uniformenAssets-divs > p {
-        font-size: x-large;
-    }
-    
-    .uniformenAssets-divs > [type='text'] {
-        width: 6ch;
-    }
-    
-    .uniformenAssets-divs > [type='checkbox'] {
-        margin-left: auto;
-        cursor: pointer;
-        width: 1rem;
-    }
-    
-    
-    .galaAsset > p {
-        width: 6ch;
-    }
-    
-    .dienstAsset > p {
-    width: 8ch;
-    }
-    
-    .einsatzAsset > p {
-    width: 19ch;
-    }
-    
-    /* ? classes for the input labels */
-    
-    .id-label  {
-        color:  var(--design-colour);
-        width: 3ch;
-    }
-    
-    .firstName-label  {
-    width: 22ch;
-    }
-    
-    .lastName-label  {
-    width: 21ch;
-    }
-    
-    .position-label  {
-    width: 21ch;
-    }
-    
-    .firestore-manipulate-div{
-        display: flex;
-        flex-direction: column;
-        margin-top: 1rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        gap: 2rem;
-    }
-    
 }
