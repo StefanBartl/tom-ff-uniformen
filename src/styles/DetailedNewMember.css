@@ -80,7 +80,6 @@
     text-align: center;
     gap: 1rem;
     min-height: fit-content;
-    min-width: fit-content;
 }
 
 .leftSection{
@@ -156,7 +155,7 @@
 
 .dNewMember-anlegen-button,
 .dNewMember-back-button {
-    width: fit-content;
+    width: 10ch;
 }
 
 }
