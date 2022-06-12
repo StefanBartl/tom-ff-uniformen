@@ -26,24 +26,28 @@
 
 @media (max-width: 576px) {
 
-    .headline-a > img {
-        display: none;
+.headline-div  {
+    margin-top: 1rem;
+}
+
+.headline-a > img {
+    display: none;
+}
+
+.headline-div > h1 {
+    color: var(--design-colour);
+    text-align: center;
+    font-size: large;
+    margin-right: 1rem;
+}
+
+.headline-logout-div{
+    display: flex;
+    margin-bottom: 1rem;
+    margin-right: .5rem;
+    margin-left: .5rem;
+    align-items: center;
     }
-    
-    .headline-div > h1 {
-        color: var(--design-colour);
-        text-align: center;
-        font-size: large;
-        margin-right: 1rem;
-    }
-    
-    .headline-logout-div{
-        display: flex;
-        margin-bottom: 1rem;
-        margin-right: .5rem;
-        margin-left: .5rem;
-        align-items: center;
-      }
 
 
 }

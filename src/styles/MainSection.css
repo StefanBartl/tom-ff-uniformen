@@ -326,8 +326,8 @@ width: 19ch;
     margin: 0rem;
     margin-left: 0;
     margin-right: 0;
-    padding: 0rem;
-    background-color:  var(--main-colour);
+    padding: .5rem;
+    background-color:  gray;
     outline: none;
 }
 
@@ -336,7 +336,7 @@ width: 19ch;
     .console {
         display: flex;
         flex-direction: column;
-        margin-bottom: .5rem;
+        margin-bottom: 2.5rem;
     }
     
     .consoleButtons {
@@ -369,6 +369,7 @@ width: 19ch;
     display: flex;
     padding: 0rem;
     padding-left: 0rem;
+    margin-bottom: .5rem;
     background-color: gray;
     gap: 0rem;
 }
@@ -377,13 +378,13 @@ width: 19ch;
     border: none;
     outline: none;
     text-align: center;
-    color:  var(--main-colour);
+    color:  white;
     font-size: large;
     font-weight: bolder;
 }
 
 .label-ID{
-    margin-left: 0rem;
+    margin-left: .5rem;
     color:  var(--main-colour);
 }
 
@@ -406,7 +407,7 @@ width: 19ch;
 
 .member-section-visible input {
     height: 2rem;
-    outline: solid 1px black;
+    outline: none;
 }
 
 .member-section-toToggle {
