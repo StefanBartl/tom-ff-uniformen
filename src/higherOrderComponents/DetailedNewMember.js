@@ -143,13 +143,13 @@ export default function DetailedNewMember (props) {
 
             <section className='leftSection'>
                      <h3>Vorname</h3>
-                    <input name='firstName' className='dNM-text-input' onChange={(event) => {setFirstName(event.target.value)}} value={firstname} />
+                    <input name='firstName' className='dNM-text-input' onChange={(event) => {setFirstName(event.target.value)}} value={firstname} placeholder='Vorname' />
                     <h3>Nachname</h3>
-                    <input name='lastName' className='dNM-text-input' onChange={(event) => {setLastName(event.target.value)}} value={lastname} />
+                    <input name='lastName' className='dNM-text-input' onChange={(event) => {setLastName(event.target.value)}} value={lastname} placeholder='Nachname' />
                     <h3>Dienstgrad</h3>
-                    <input name='ffposition' className='dNM-text-input' onChange={(event) => {setffposition(event.target.value)}} value={ffposition} />
+                    <input name='ffposition' className='dNM-text-input' onChange={(event) => {setffposition(event.target.value)}} value={ffposition} placeholder='Dienstgrad' />
                     <h3>Infos</h3>
-                    <textarea name='textarea' className='dNM-text-input' onChange={(event) => {setTextarea(event.target.value)}} value={textarea}   />         
+                    <textarea name='textarea' className='dNM-text-input' onChange={(event) => {setTextarea(event.target.value)}} value={textarea} placeholder='Infos...'  />         
 
                     <div className='dNewMember-Buttons'>
                         <button className='dNewMember-anlegen-button consoleBtn' onClick={handleSaveNewFirestoreMember}>anlegen</button>
