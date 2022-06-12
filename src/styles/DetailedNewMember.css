@@ -154,4 +154,9 @@
     color: black;
 }
 
+.dNewMember-anlegen-button,
+.dNewMember-back-button {
+    width: fit-content;
+}
+
 }
