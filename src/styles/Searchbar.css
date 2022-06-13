@@ -22,7 +22,6 @@
     width: 20ch;
     height: fit-content;
     margin-bottom: .5rem;
-    outline: solid 1px black;
 }
 
 @media (max-width: 576px) {
@@ -50,7 +49,6 @@
     width: 7ch;
     height: fit-content;
     margin-bottom: .5rem;
-    outline: solid 1px black;
 }
 
 }

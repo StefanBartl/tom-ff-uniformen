@@ -103,7 +103,6 @@
 
 .member-section-visible input {
     height: fit-content;
-    outline: solid 1px black;
 }
 
 .member-section-toToggle {

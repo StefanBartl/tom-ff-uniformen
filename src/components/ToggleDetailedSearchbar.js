@@ -3,20 +3,19 @@ import ToggleOverflow from './ToggleOverflow';
 
 export default function ToggleDetailedSearchbar(back){
 
-
   //#region Toggle Fullscreen
 
       // if function is invoked from 'back' button
       if(back === true){
         // To prevent double TogglingFullscreen, only invoke ToggleFullScreen if browser is in fullscree mode
         if (window.innerHeight === window.screen.height) {
-          ToggleFullScreen(document.querySelector('.DetailedSearchbar'));
+          // ToggleFullScreen(document.querySelector('.DetailedSearchbar'));
           if(window.innerWidth > 576){
             ToggleOverflow('show');
           };
         };
       } else {  // if function is invoked from 'detailsuche' button invoke Fullscreen anyway
-        ToggleFullScreen(document.querySelector('.DetailedSearchbar'));
+        // ToggleFullScreen(document.querySelector('.DetailedSearchbar'));
         if(window.innerWidth > 576){
           ToggleOverflow('hide');
         };

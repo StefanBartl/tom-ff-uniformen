@@ -11,7 +11,6 @@
 .newMember-div > input {
     width: 20ch;
     height: fit-content;
-    outline: solid 1px black;
 }
 
 
@@ -31,7 +30,6 @@
     .newMember-div > input {
         width: 11ch;
         height: 2rem;
-        outline: solid 1px black;
     }
     
 }

@@ -176,12 +176,10 @@ input {
 }
 
 .remove-search-toggle,
-.remove-search-toggle,
 #save{
   width: fit-content;
   height: fit-content;
   cursor: pointer;
-  outline: solid 1px black;
 }
 
 .remove-search-toggle {
