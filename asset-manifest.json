@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tom-ff-uniformen/static/css/main.a56edeea.css",
+    "main.css": "/tom-ff-uniformen/static/css/main.47f7cdda.css",
     "main.js": "/tom-ff-uniformen/static/js/main.82356b7b.js",
     "index.html": "/tom-ff-uniformen/index.html",
-    "main.a56edeea.css.map": "/tom-ff-uniformen/static/css/main.a56edeea.css.map",
+    "main.47f7cdda.css.map": "/tom-ff-uniformen/static/css/main.47f7cdda.css.map",
     "main.82356b7b.js.map": "/tom-ff-uniformen/static/js/main.82356b7b.js.map"
   },
   "entrypoints": [
-    "static/css/main.a56edeea.css",
+    "static/css/main.47f7cdda.css",
     "static/js/main.82356b7b.js"
   ]
 }
